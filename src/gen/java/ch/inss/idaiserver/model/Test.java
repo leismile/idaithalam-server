@@ -18,7 +18,7 @@ import javax.validation.constraints.*;
  * virtualan.data.load&#x3D;sample.postman_collection.json  virtualan.data.type&#x3D;POSTMAN service.api.next&#x3D;http://localhost:8081
  */
 @ApiModel(description = "virtualan.data.load=sample.postman_collection.json  virtualan.data.type=POSTMAN service.api.next=http://localhost:8081")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-22T17:28:19.872786+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-22T19:42:06.372683+01:00[Europe/Zurich]")
 public class Test   {
   @JsonProperty("testid")
   private UUID testid;

@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import ch.inss.idaiserver.model.Report;
+import ch.inss.idaiserver.model.Serviceapi;
 import ch.inss.idaiserver.model.TestDao;
 import ch.inss.idaiserver.utils.FileManagement;
 
@@ -162,13 +163,25 @@ public class Cucumblan {
 
 	public TestDao testFactory() {
 		TestDao dao = new TestDao();
-		dao.setUuid(this.uuid);
+		dao.setTestid(this.uuid);
 		dao.setCreationtime(FileManagement.whatTime());
 		dao.setError(FileManagement.NOERROR);
 		dao.setLoad(this.getFILE());
-		dao.setServiceapi(this.getURL());
+		dao.setServiceapi(this.generateServiceapi(this.getURL()));
 		
 		return dao;
+	}
+	
+	private List<Serviceapi> generateServiceapi(HashMap<String, String> map){
+		List<Serviceapi> list = new ArrayList<>();
+		for ( String key : map.keySet()) {
+			String value = map.get(key);
+			Serviceapi api = new Serviceapi();
+			api.setResource(key);
+			api.setUrl(value);
+			list.add(api);
+		}
+		return list;
 	}
 
 
