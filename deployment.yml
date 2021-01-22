@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: idaithalam-server-service
+spec:
+  selector:
+    matchLabels:
+      app: idaithalam-server
+      env: dev
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: idaithalam-server
+        env: dev
+    spec:
+      containers:
+      - name: idaithalam-server
+        image: "gcr.io/virtualan-cna/idaithalam-server:5.0"
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: idai-report-storage
+          mountPath: /conf/
+      - name: idaithalam-server-nginx
+        image: nginx:alpine
+        volumeMounts:
+        - name: idai-report-storage
+          mountPath: /usr/share/nginx/html
+      volumes:
+        - name: idai-report-storage
+          hostPath:
+            path: /home/elan_virtualan
+            type: Directory
