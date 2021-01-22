@@ -22,7 +22,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-22T16:54:31.589215+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-22T17:28:19.872786+01:00[Europe/Zurich]")
 @Validated
 @Api(value = "health", description = "the health API")
 public interface HealthApi {

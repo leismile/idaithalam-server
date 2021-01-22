@@ -1,5 +1,6 @@
 package ch.inss.idaiserver.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,7 +16,9 @@ public class TestDao   {
       this.creationtime = test.getCreationtime();
       this.lastexecution = test.getLastexecution();
       this.load = test.getLoad();
-//      this.serviceapi = test.getServiceapi();
+      //List<Serviceapi> api = test.getServiceapi();
+      		  
+     // this.serviceapi = test.getServiceapi();
   }
   
   public TestDao() {
@@ -35,8 +38,7 @@ public class TestDao   {
   @ElementCollection
   private List<String> load = null;
   
-  @ElementCollection
-  private List<String> serviceapi = null;
+  private HashMap<String, String> serviceapi = null;
 
 //  @OneToMany(targetEntity=ServiceapiDao.class, mappedBy="serviceapidbid", fetch=FetchType.EAGER)
 //  private List<ServiceapiDao> serviceapi = null;
@@ -46,8 +48,82 @@ public class TestDao   {
   private String message;
 
   private String error;
+  
+  
 
-  @Override
+  public int getTestdbid() {
+	return testdbid;
+}
+
+public void setTestdbid(int testdbid) {
+	this.testdbid = testdbid;
+}
+
+public UUID getUuid() {
+	return uuid;
+}
+
+public void setUuid(UUID uuid) {
+	this.uuid = uuid;
+}
+
+public String getCreationtime() {
+	return creationtime;
+}
+
+public void setCreationtime(String creationtime) {
+	this.creationtime = creationtime;
+}
+
+public String getLastexecution() {
+	return lastexecution;
+}
+
+public void setLastexecution(String lastexecution) {
+	this.lastexecution = lastexecution;
+}
+
+public List<String> getLoad() {
+	return load;
+}
+
+public void setLoad(List<String> load) {
+	this.load = load;
+}
+
+public HashMap<String, String> getServiceapi() {
+	return serviceapi;
+}
+
+public void setServiceapi(HashMap<String, String> serviceapi) {
+	this.serviceapi = serviceapi;
+}
+
+public String getType() {
+	return type;
+}
+
+public void setType(String type) {
+	this.type = type;
+}
+
+public String getMessage() {
+	return message;
+}
+
+public void setMessage(String message) {
+	this.message = message;
+}
+
+public String getError() {
+	return error;
+}
+
+public void setError(String error) {
+	this.error = error;
+}
+
+@Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TestDao {\n");

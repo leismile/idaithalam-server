@@ -47,7 +47,7 @@ public class TestApiController implements TestApi {
     
     @Override
     public ResponseEntity<Report> testrun(@ApiParam(value = "") @Valid @RequestPart(value = "filestream", required = true) MultipartFile filestream,@ApiParam(value = "The server url to be tested.", required=true, defaultValue="http://localhost:8080") @Valid @RequestPart(value = "serverurl", required = true)  String serverurl,@ApiParam(value = "filename", defaultValue="idaithalan.postman_collection.json") @Valid @RequestPart(value = "dataload", required = false)  String dataload,@ApiParam(value = "Execute test immediately. If false, only the property file will be updated (append).", defaultValue="true") @Valid @RequestPart(value = "execute", required = false)  String execute,@ApiParam(value = "Type of data is POSTMAN, VIRTUALAN OR EXCEL.", allowableValues="POSTMAN, VIRTUALAN, EXCEL", defaultValue="POSTMAN") @Valid @RequestPart(value = "datatype", required = false)  String datatype) {
-        logger.debug("STart POST /test");
+        logger.debug("Start POST /test");
         if (getRequest().isPresent() == false || filestream == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -59,7 +59,7 @@ public class TestApiController implements TestApi {
         
         for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
             if (mediaType.isCompatibleWith(MediaType.valueOf("application/octet-stream"))) {
-                logger.debug("STart application/octet-stream.");
+                logger.debug("Start application/octet-stream.");
                 try {
                     /* Define default values. */
                     if ( datatype == null || "".equals(datatype)) {

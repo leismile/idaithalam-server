@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ch.inss.idaiserver.model.*;
+import ch.inss.idaiserver.persistence.TestRepository;
 import ch.inss.idaiserver.utils.FileManagement;
 import ch.inss.idaiserver.utils.MavenClient;
 
@@ -17,6 +18,9 @@ import ch.inss.idaiserver.utils.MavenClient;
 public class TestService {
     
     private static final Logger logger = LoggerFactory.getLogger(TestService.class);
+    
+    @Autowired
+    TestRepository repo;
         
     public Report doTests(Cucumblan cucumblan)  {
         final String FEATURE = "virtualan-contract.feature";
@@ -36,6 +40,8 @@ public class TestService {
         boolean isSaved = FileManagement.save( cucumblan );
         
         /* Maybe later: create and store test in database. */
+        repo.save(cucumblan.testFactory());
+        
 
         /* Execute mvn test. */
         if ( cucumblan.getExecute()) {

@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import ch.inss.idaiserver.model.Report;
+import ch.inss.idaiserver.model.TestDao;
 import ch.inss.idaiserver.utils.FileManagement;
 
 @Component
@@ -27,7 +28,7 @@ public class Cucumblan {
     
     /** Store keys as key=service.api. 
      * Add resourcees with key=service.api.nextresource. */
-    private Map<String, String> URL;
+    private HashMap<String, String> URL;
     private List<String> FILE;
 
     public Cucumblan() {
@@ -148,17 +149,27 @@ public class Cucumblan {
     }
 
 
-
-    public Map<String, String> getURL() {
+    public HashMap<String, String> getURL() {
         return URL;
     }
-
-
-
 
     public List<String> getFILE() {
         return FILE;
     }
+
+
+
+
+	public TestDao testFactory() {
+		TestDao dao = new TestDao();
+		dao.setUuid(this.uuid);
+		dao.setCreationtime(FileManagement.whatTime());
+		dao.setError(FileManagement.NOERROR);
+		dao.setLoad(this.getFILE());
+		dao.setServiceapi(this.getURL());
+		
+		return dao;
+	}
 
 
     
