@@ -35,20 +35,20 @@ import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 
-import ch.inss.idaiserver.model.Cucumblan;
+import ch.inss.idaiserver.service.Cucumblan;
 
 public class FileManagement {
     
     private static final Logger logger = LoggerFactory.getLogger(FileManagement.class);
-    private static final String lf = System.getProperty("line.separator");
+    public static final String lf = System.getProperty("line.separator");
 //    private static final String fs = FileSystems.getDefault().getSeparator();
     
     private static final String PROPERTIES="src/test/resources/cucumblan.properties";
     private static final String FEATURE="conf/virtualan-contract.feature";
     
-    public final static String NOERROR = "No error";
+    public final static String NOERROR = "";
 
-    public static boolean save( String path, Cucumblan cuc) {
+    public static boolean save( Cucumblan cuc) {
           boolean ok = false;
           try {
           /* Create cucumblan.properties from mustache template. */  
@@ -61,7 +61,7 @@ public class FileManagement {
           
           /* Read existing file if no overwrite is set. */
           if ( cuc.getOverwrite() == false ) {
-              BufferedReader in = new BufferedReader(new FileReader(path));
+              BufferedReader in = new BufferedReader(new FileReader(PROPERTIES));
               StringBuilder sb = new StringBuilder();
               while(in.readLine() != null) {
                   sb.append(in.readLine()).append(lf);
@@ -73,10 +73,10 @@ public class FileManagement {
           }
           
           /* Write new properties file. */
-          writeString(props, path+"/cucumblan.properties");
+          writeString(props, PROPERTIES);             
           
           /* Write postman collection. */
-          writeFilestream(path +"/"+cuc.getFILE(), cuc.getInputStream());
+          writeFilestream(cuc.getOneFILE(), cuc.getInputStream());
           ok = true; 
           }catch(IOException ioe) {
               logger.error("Could not save file: " + cuc.getFILE(),ioe);
@@ -91,12 +91,14 @@ public class FileManagement {
 
     /* Write files like postman collection. */
     private static void writeFilestream(String filename, InputStream in) throws IOException {
-          File targetFile = new File( filename);
+          File targetFile = new File("src/test/resources/" + filename);
+          InputStream initialStream = in;
           java.nio.file.Files.copy(
-            in,
+            initialStream, 
             targetFile.toPath(), 
             StandardCopyOption.REPLACE_EXISTING);
-          in.close();
+          
+             initialStream.close();
     }
     
     /** Add a line to the cucumblan.properties file. */
@@ -174,7 +176,6 @@ public class FileManagement {
         /* Put String into writer. */
           BufferedWriter bwriter = new BufferedWriter(new FileWriter(filename));
           bwriter.write(content);
-          bwriter.flush();
           bwriter.close();
     }
     
@@ -301,6 +302,9 @@ public class FileManagement {
         return true;
     }
     
+    /** Give back a formated Date Time String: 
+     * yyyy-MM-dd 'at' HH:mm:ss z
+     * */
     public static String whatTime() {
       return  new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z").format(new Date(System.currentTimeMillis()));
     }

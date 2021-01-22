@@ -13,6 +13,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import ch.inss.idaiserver.model.*;
+import ch.inss.idaiserver.service.Cucumblan;
 import ch.inss.idaiserver.service.TestService;
 import ch.inss.idaiserver.utils.FileManagement;
 import io.swagger.annotations.ApiParam;
@@ -31,7 +32,7 @@ public class TestApiController implements TestApi {
     
     
     @Autowired private TestService testServices;
-    
+    @Autowired private Cucumblan cucumblan;
     
 
     @Autowired
@@ -73,9 +74,9 @@ public class TestApiController implements TestApi {
                         e = new Boolean(execute);
                     }
 
-                    Cucumblan cucumblan = new Cucumblan();
+//                    Cucumblan cucumblan = new Cucumblan();
                     
-                    cucumblan.setFILE(dataload);
+                    cucumblan.addFILE(dataload);
                     
                     try {
                         cucumblan.setInputStream(filestream.getInputStream());
@@ -83,7 +84,7 @@ public class TestApiController implements TestApi {
                         logger.error("The uploaded file is not readable.");
                     }
                     cucumblan.setTYPE(datatype);
-                    cucumblan.setURL(serverurl);
+                    cucumblan.addURL(null,serverurl);
                     cucumblan.setExecute(e);
                     links = testServices.doTests(cucumblan);
                     
