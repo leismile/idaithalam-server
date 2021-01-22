@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: idai-ingress
+spec:
+  rules:
+  - host: demo.idaithalam.io
+    http:
+      paths:
+      - path: /test
+        backend:
+          serviceName: idai-svc
+          servicePort: 80
+      - path: /
+        backend:
+          serviceName: idai-nginx-svc
+          servicePort: 80
