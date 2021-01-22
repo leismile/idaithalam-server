@@ -48,46 +48,46 @@ public class FileManagement {
     
     public final static String NOERROR = "";
 
-    public static boolean save( Cucumblan cuc) {
-          boolean ok = false;
-          try {
-          /* Create cucumblan.properties from mustache template. */  
-          MustacheFactory mf = new DefaultMustacheFactory();
-          Mustache m = mf.compile("cucumblan.mustache");
-          StringWriter writer = new StringWriter();
-          m.execute(writer, cuc).flush();
-          String props = writer.toString();
-          logger.info("props: " + props);
-          
-          /* Read existing file if no overwrite is set. */
-          if ( cuc.getOverwrite() == false ) {
-              BufferedReader in = new BufferedReader(new FileReader(PROPERTIES));
-              StringBuilder sb = new StringBuilder();
-              while(in.readLine() != null) {
-                  sb.append(in.readLine()).append(lf);
-              }
-
-              String content = sb.toString();
-              in.close();
-              props = content + lf + props;
-          }
-          
-          /* Write new properties file. */
-          writeString(props, PROPERTIES);             
-          
-          /* Write postman collection. */
-          writeFilestream(cuc.getOneFILE(), cuc.getInputStream());
-          ok = true; 
-          }catch(IOException ioe) {
-              logger.error("Could not save file: " + cuc.getFILE(),ioe);
-              
-          }finally {
-              try{cuc.getInputStream().close();}catch(Exception e) {};
-          }
-          return ok;
-          //IOUtils.closeQuietly(initialStream);
+    public static boolean save( String path, Cucumblan cuc) {
+        boolean ok = false;
+        try {
+        /* Create cucumblan.properties from mustache template. */  
+        MustacheFactory mf = new DefaultMustacheFactory();
+        Mustache m = mf.compile("cucumblan.mustache");
+        StringWriter writer = new StringWriter();
+        m.execute(writer, cuc).flush();
+        String props = writer.toString();
+        logger.info("props: " + props);
         
-    }
+        /* Read existing file if no overwrite is set. */
+        if ( cuc.getOverwrite() == false ) {
+            BufferedReader in = new BufferedReader(new FileReader(path));
+            StringBuilder sb = new StringBuilder();
+            while(in.readLine() != null) {
+                sb.append(in.readLine()).append(lf);
+            }
+
+            String content = sb.toString();
+            in.close();
+            props = content + lf + props;
+        }
+        
+        /* Write new properties file. */
+        writeString(props, path+"/cucumblan.properties");
+        
+        /* Write postman collection. */
+        writeFilestream(path +"/"+cuc.getFILE(), cuc.getInputStream());
+        ok = true; 
+        }catch(IOException ioe) {
+            logger.error("Could not save file: " + cuc.getFILE(),ioe);
+            
+        }finally {
+            try{cuc.getInputStream().close();}catch(Exception e) {};
+        }
+        return ok;
+        //IOUtils.closeQuietly(initialStream);
+      
+  }
 
     /* Write files like postman collection. */
     private static void writeFilestream(String filename, InputStream in) throws IOException {
