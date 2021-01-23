@@ -20,4 +20,7 @@ db/**
 
 src/main/resources/public/
 src/main/resources/public/**
+reports/
+reports/**
+
 
