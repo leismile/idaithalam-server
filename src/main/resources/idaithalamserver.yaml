@@ -457,6 +457,9 @@ components:
               linkToProperties:
                 type: string
                 format: url
+              linkToSessions:
+                type: string
+                format: url
               message:
                 type: string
               error:

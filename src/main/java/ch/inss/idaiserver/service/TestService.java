@@ -150,7 +150,7 @@ public class TestService {
 	    list.add(links);
 	    PersistJSON.writeJSON(reportFolder + "lasttest.json", links);
 	    PersistJSON.writeArray(list, reportFolder + "alltests.json");
-	    
+	    links.setLinkToSessions(reportURL + "/alltests.json");
 	    
 	    /* Message */
 	    links.setMessage("Report created.");

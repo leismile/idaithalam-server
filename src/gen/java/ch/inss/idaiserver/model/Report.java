@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
 /**
  * Report
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-23T10:08:12.383434+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-23T11:40:51.148172+01:00[Europe/Zurich]")
 public class Report   {
   @JsonProperty("testid")
   private UUID testid;
@@ -50,6 +50,9 @@ public class Report   {
 
   @JsonProperty("linkToProperties")
   private String linkToProperties;
+
+  @JsonProperty("linkToSessions")
+  private String linkToSessions;
 
   @JsonProperty("message")
   private String message;
@@ -298,6 +301,26 @@ public class Report   {
     this.linkToProperties = linkToProperties;
   }
 
+  public Report linkToSessions(String linkToSessions) {
+    this.linkToSessions = linkToSessions;
+    return this;
+  }
+
+  /**
+   * Get linkToSessions
+   * @return linkToSessions
+  */
+  @ApiModelProperty(value = "")
+
+
+  public String getLinkToSessions() {
+    return linkToSessions;
+  }
+
+  public void setLinkToSessions(String linkToSessions) {
+    this.linkToSessions = linkToSessions;
+  }
+
   public Report message(String message) {
     this.message = message;
     return this;
@@ -360,13 +383,14 @@ public class Report   {
         Objects.equals(this.linkToTeature, report.linkToTeature) &&
         Objects.equals(this.linkToReport, report.linkToReport) &&
         Objects.equals(this.linkToProperties, report.linkToProperties) &&
+        Objects.equals(this.linkToSessions, report.linkToSessions) &&
         Objects.equals(this.message, report.message) &&
         Objects.equals(this.error, report.error);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(testid, success, sessionNr, testExecuted, skipResponseValidation, creationTime, startTime, endTime, durationSeconds, linkToTeature, linkToReport, linkToProperties, message, error);
+    return Objects.hash(testid, success, sessionNr, testExecuted, skipResponseValidation, creationTime, startTime, endTime, durationSeconds, linkToTeature, linkToReport, linkToProperties, linkToSessions, message, error);
   }
 
   @Override
@@ -386,6 +410,7 @@ public class Report   {
     sb.append("    linkToTeature: ").append(toIndentedString(linkToTeature)).append("\n");
     sb.append("    linkToReport: ").append(toIndentedString(linkToReport)).append("\n");
     sb.append("    linkToProperties: ").append(toIndentedString(linkToProperties)).append("\n");
+    sb.append("    linkToSessions: ").append(toIndentedString(linkToSessions)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("}");
