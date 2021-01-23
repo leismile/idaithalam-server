@@ -38,7 +38,7 @@ public class UtilService {
 
   public ResponseEntity<String> updateCucumblan(String testId, Conf conf) {
     try {
-      String fileContent = update(testId, conf);
+      String fileContent = updateProps(testId, conf);
       if (fileContent == null) {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
       } else {
@@ -49,36 +49,73 @@ public class UtilService {
     }
   }
 
+  public ResponseEntity<String> deleteCucumblanPropKey(String testId, String key) {
+    try {
+      String fileContent = deleteProps(testId, key);
+      if (fileContent == null) {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      } else {
+        return new ResponseEntity<>(fileContent, HttpStatus.OK);
+      }
+    } catch (UnableProcessException e) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+  }
+
+  private String deleteProps(String testId, String key) throws UnableProcessException {
+    Properties prop;
+    if (isCucumblanExists(testId)) {
+      final String folder =
+          this.storagePath + FileManagement.fs + testId;
+      prop = FileManagement.readCucumblanPropertiesFile(folder);
+      if (prop != null && key != null) {
+        prop.remove(key);
+      }
+      FileManagement.saveCucumblan(folder, getPropertyAsString(prop));
+      return getPropertyAsString(prop);
+    }
+    logger.error("Could not remove line: " + key);
+    throw new UnableProcessException("Could not remove line: " + key);
+  }
+
+
+  private boolean isCucumblanExists(String testId) {
+    return new File(this.storagePath + FileManagement.fs + testId + FileManagement.fs
+        + FileManagement.PROPERTIES).exists();
+  }
+
   /**
-   * 	"serverUrl" : ["pets=http://localhost:8800", "order=http://localhost:8900", "http://localhost:8600"]
-   * Update to the cucumblan.properties file.
+   * "serverUrl" : ["pets=http://localhost:8800", "order=http://localhost:8900",
+   * "http://localhost:8600"] Update to the cucumblan.properties file.
    */
-  public String update(String testId, Conf conf) throws UnableProcessException {
-    String content = null;
+  private String updateProps(String testId, Conf conf) throws UnableProcessException {
     String key = "service.api";
     Properties prop;
-    final String folder =
-        this.storagePath + FileManagement.fs + testId;
-    File file = new File(folder);
-    if (file.exists()) {
+    if (isCucumblanExists(testId)) {
+      final String folder =
+          this.storagePath + FileManagement.fs + testId;
       prop = FileManagement.readCucumblanPropertiesFile(folder);
       List<String> urls = conf.getServerUrl();
       if (prop != null && urls != null) {
-        urls.stream().forEach(x ->
-        {
-          String[] values = x.split("=");
-          if (values.length == 2) {
-            prop.put(key + "." + values[0], values[1]);
-          } else {
-            prop.put(key, values[0]);
-          }
-        });
-        FileManagement.saveCucumblan(folder, getPropertyAsString(prop));
-        return getPropertyAsString(prop);
+        addServerUrls(key, prop, urls);
       }
+      FileManagement.saveCucumblan(folder, getPropertyAsString(prop));
+      return getPropertyAsString(prop);
     }
     logger.error("Could not add line: " + conf.toString());
     throw new UnableProcessException("Could not add line: " + conf.toString());
+  }
+
+  private void addServerUrls(String key, Properties prop, List<String> urls) {
+    urls.forEach(x ->
+    {
+      String[] values = x.split("=");
+      if (values.length == 2) {
+        prop.put(key + "." + values[0], values[1]);
+      } else {
+        prop.put(key, values[0]);
+      }
+    });
   }
 
 
@@ -113,4 +150,5 @@ public class UtilService {
     }
     return fileContent;
   }
+
 }

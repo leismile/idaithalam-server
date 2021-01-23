@@ -244,7 +244,7 @@ paths:
           in: path
           required: true
       responses:
-        '201':
+        '200':
           content:
             text/plain:
               schema:
@@ -262,16 +262,28 @@ paths:
       tags:
         - Configuration
       parameters:
+        - name: configKey
+          description: remove given key configuration.
+          schema:
+            type: string
+          example: 'service.api.pets'
+          in: query
+          required: true
         - name: testId
           schema:
             type: string
           in: path
           required: true
       responses:
-        '204':
-          description: Test deleted.
-      operationId: removetest
-      summary: Remove the entire test configuration.
+        '200':
+          content:
+            text/plain:
+              schema:
+                format: properties
+                type: string
+          description: delete key Configuration of cucumblan.properties file.
+      operationId: removeConf
+      summary: Remove the single config configuration.
       description: Remove the test.
     parameters:
       - name: testId

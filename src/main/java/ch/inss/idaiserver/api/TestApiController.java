@@ -65,6 +65,11 @@ public class TestApiController implements TestApi {
 
 
     @Override
+    public ResponseEntity<String> removeConf(String configkey, String testId) {
+        return utilService.deleteCucumblanPropKey(testId, configkey);
+    }
+
+    @Override
     public ResponseEntity<String> updateConf(String testId,Conf conf) {
         return utilService.updateCucumblan(testId, conf);
     }
