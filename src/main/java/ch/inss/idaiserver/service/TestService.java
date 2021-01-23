@@ -52,6 +52,7 @@ public class TestService {
 	    /* Initialize response. */
 	    links.setError(FileManagement.NOERROR);
 	    links.setCreationtime(FileManagement.whatTime());
+	    links.setSkipResponseValidation(cucumblan.getSkipResponseValidation());
 	    
 	    final String testId = cucumblan.getUuid().toString();
 	    links.setTestid(cucumblan.getUuid());
@@ -60,7 +61,7 @@ public class TestService {
 		final String reportFolder = this.storagePath + FileManagement.fs + cucumblan.getFolder();
 		final String confFolder = reportFolder + FileManagement.fs + "conf" + FileManagement.fs;
 		final String skip = ".*=IGNORE";
-		final String skipProp = "exclude-response.properties";
+		final String skipProp = confFolder + "exclude-response.properties";
 		
 		    
 	    /* Take care of the folder where all the files and reports will be stored. */
@@ -77,22 +78,34 @@ public class TestService {
 	    boolean isSaved =  FileManagement.saveCucumblan(confFolder, cucumblan.toString());
 	    String postmanFile = confFolder + cucumblan.getUploadFilename();
     	FileManagement.writeFilestream(postmanFile, cucumblan.getInputStream());
+    	logger.info("skipResponseValidation: " + cucumblan.getSkipResponseValidation());
     	if ( cucumblan.getSkipResponseValidation()) {
     		FileManagement.writeString(skipProp, skip);
+    		logger.info("Responses will not be validated.");
     	}
 	    
 	    /* Execute mvn test. */
 	    if (cucumblan.getExecute()) {
 	      
 	      links.executiontime(FileManagement.whatTime());
-	      boolean isSuccess = mvnTest(reportFolder);
+	      String result =  mvnTest(reportFolder);
+	      boolean isSuccess = Boolean.valueOf(result);
 	      links.setSuccess(isSuccess);
-	      removeFromClasspath(reportFolder);
+	      if ( isSuccess == false && result.equalsIgnoreCase("false") == false) {
+	    	  links.setError(result);
+	    	  links.testexecuted(false);
+	    	  links.setMessage("An internal error occured.");
+	    	  return links;
+	      }else {
+	    	  links.testexecuted(true);
+	      }
+	      
+	      
 	    } else {
 	      /* Message */
 	      links.setLinktofeature("Not generated");
 	      links.setLinktoreport("Not generated.");
-	      
+	      links.testexecuted(false);
 	      links.setMessage("Property file updated, no test executed (execute=false).");
 	      if ( isSaved == false ) {
 	    	  links.setError("Error: Could not save file.");
@@ -122,31 +135,55 @@ public class TestService {
 		links.setError(e.getLocalizedMessage());
 		links.setMessage("No reports.");
 		links.setSuccess(false);
+		
 	}
 
     return links;
   }
 
-	private boolean mvnTest(String reportfolder)
-			throws MalformedURLException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-//		addToClasspath("conf/" + testId);
-		addToClasspath(reportfolder);
-	      int status = 0;
-	      boolean isSuccess = false;
-	      try {
-	        status = IdaithalamExecutor
-	            .validateContract("IDAI Server test Execution", reportfolder);
-	        logger.info("Execution status: " + status);
-	        if (status != 0) {
-	            isSuccess = false;
-	        } else {
-	            isSuccess = true;
-	        }
-	      } catch (Exception e) {
-	        logger.info("Execution execption raised: " + e.getMessage());
-	        isSuccess = false;
-	      }
-		return isSuccess;
+	private String mvnTest(String reportFolder){
+		int status = 0;
+		String result = null;
+		boolean isSuccess = false;
+		try {
+			addToClasspath(reportFolder);
+			status = IdaithalamExecutor.validateContract("IDAI server test execution", reportFolder);
+			logger.info("Execution status: " + status);
+			if (status != 0) {
+				isSuccess = false;
+			} else {
+				isSuccess = true;
+			}
+			removeFromClasspath(reportFolder);
+			result = Boolean.valueOf(isSuccess).toString();
+		} catch (MalformedURLException e) {
+			result = e.getLocalizedMessage();
+			logger.info("Maven execution MalformedURLException raised: " + result);
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			result = e.getLocalizedMessage();
+			logger.info("Maven execution NoSuchMethodException raised: " + result);
+			e.printStackTrace(); 
+		} catch (InvocationTargetException e) {
+			result = e.getLocalizedMessage();
+			logger.info("Maven execution InvocationTargetException raised: " + result);
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			result = e.getLocalizedMessage();
+			logger.info("Maven execution IllegalAccessException raised: " + result);
+			e.printStackTrace();
+		} catch (Exception e) {
+			result = e.getLocalizedMessage();
+			logger.info("Maven execution Execption raised: " + result);
+			e.printStackTrace();
+		}
+//	      catch (Exception e) {
+//	        logger.info("Execution execption raised: " + e.getLocalizedMessage());
+//	      }
+      finally {
+    	  
+      }
+	return result;
 	}
 
   private void addToClasspath(String s)
