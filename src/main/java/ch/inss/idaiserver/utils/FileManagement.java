@@ -50,7 +50,7 @@ public class FileManagement {
     public static final String fs = FileSystems.getDefault().getSeparator();
     
 //    private static final String PROPERTIES="src/test/resources/cucumblan.properties";
-    private static final String PROPERTIES="cucumblan.properties";
+    public static final String PROPERTIES="cucumblan.properties";
 //    private static final String FEATURE="conf/virtualan-contract.feature";
     private static final String FEATURE="virtualan-contract.feature";
     

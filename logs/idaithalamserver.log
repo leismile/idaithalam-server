@@ -685,3 +685,405 @@ virtualan.data.type = POSTMAN
 2021-01-23 06:57:51,703 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Maven execution Execption raised: class jdk.internal.loader.ClassLoaders$AppClassLoader cannot be cast to class java.net.URLClassLoader (jdk.internal.loader.ClassLoaders$AppClassLoader and java.net.URLClassLoader are in module java.base of loader 'bootstrap')
 2021-01-23 06:59:39,891 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(11)-127.0.0.1] Application shutdown requested.
 2021-01-23 06:59:39,920 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(11)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-23 07:15:48,085 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 22254 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-23 07:15:48,090 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-23 07:15:48,092 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-01-23 07:15:49,640 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-23 07:15:49,647 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-23 07:15:49,648 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-23 07:15:49,649 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-23 07:15:49,754 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-23 07:15:49,754 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1223 ms
+2021-01-23 07:15:50,098 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-23 07:15:50,350 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-23 07:15:50,470 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-23 07:15:50,486 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 3.576 seconds (JVM running for 4.909)
+2021-01-23 07:15:57,198 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-23 07:15:57,199 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2021-01-23 07:15:57,211 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 11 ms
+2021-01-23 07:15:57,272 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start POST /test
+2021-01-23 07:15:57,273 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start application/octet-stream.
+2021-01-23 07:15:57,274 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Store reports in folder: ./reports/results_65a696cf-2f7f-484a-a7c7-e17bc21bb5bc
+2021-01-23 07:15:57,278 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Cucumblan: #Generated 2021-01-23 at 07:15:57 MEZ
+service.api = http://localhost:8081
+virtualan.data.load = idaithalan.postman_collection.json;
+virtualan.data.type = POSTMAN
+
+2021-01-23 07:15:57,281 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] skipResponseValidation: true
+2021-01-23 07:15:57,282 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Responses will not be validated.
+2021-01-23 07:15:57,286 ERROR io.virtualan.idaithalam.core.contract.validator.FeatureFileGenerator [http-nio-8080-exec-2] provide appropriate virtualan.data.type for the input data?
+2021-01-23 07:15:57,287 ERROR io.virtualan.idaithalam.contract.IdaithalamExecutor [http-nio-8080-exec-2] Provide appropriate input data? : provide appropriate virtualan.data.type for the input data?
+2021-01-23 07:15:57,287 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Maven execution Execption raised: Provide appropriate input data? : provide appropriate virtualan.data.type for the input data?
+2021-01-23 07:19:33,312 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(13)-127.0.0.1] Application shutdown requested.
+2021-01-23 07:19:33,335 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(13)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-23 07:23:57,619 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 22701 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-23 07:23:57,635 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-23 07:23:57,642 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-01-23 07:23:59,316 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-23 07:23:59,323 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-23 07:23:59,324 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-23 07:23:59,325 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-23 07:23:59,433 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-23 07:23:59,434 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1390 ms
+2021-01-23 07:23:59,811 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-23 07:24:00,061 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-23 07:24:00,170 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-23 07:24:00,180 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 3.246 seconds (JVM running for 3.991)
+2021-01-23 07:24:06,192 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-23 07:24:06,193 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2021-01-23 07:24:06,205 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 12 ms
+2021-01-23 07:24:06,274 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-1] Start POST /test
+2021-01-23 07:24:06,275 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-1] Start application/octet-stream.
+2021-01-23 07:24:06,275 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-1] Store reports in folder: ./reports/results_db6f9165-8ce6-4bc2-bf2f-6bffdc5640f7
+2021-01-23 07:24:06,279 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-1] Cucumblan: #Generated 2021-01-23 at 07:24:06 MEZ
+service.api = http://localhost:8081
+virtualan.data.load = idaithalan.postman_collection.json;
+virtualan.data.type = POSTMAN
+
+2021-01-23 07:24:06,281 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-1] skipResponseValidation: true
+2021-01-23 07:24:06,282 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-1] Responses will not be validated.
+2021-01-23 07:24:06,298 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-1]  Skipping comparison for resource based on pattern : /sample
+2021-01-23 07:24:06,299 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-1]  Skipping comparison for resource based on pattern : /sample/validate/:sampleId
+2021-01-23 07:24:06,300 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-1]  Skipping comparison for resource based on pattern : /sample/validate/:sampleId
+2021-01-23 07:24:07,073 WARN io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-1] cucumblan-env.properties is not configured. Need to add if default data loaded
+2021-01-23 07:24:08,492 INFO net.masterthought.cucumber.ReportParser [http-nio-8080-exec-1] File './reports/results_db6f9165-8ce6-4bc2-bf2f-6bffdc5640f7/conf//cucumber.json' contains 1 features
+2021-01-23 07:24:09,123 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-1] Execution status: 1
+2021-01-23 07:24:09,124 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-1] Generated report html file: ./reports/results_db6f9165-8ce6-4bc2-bf2f-6bffdc5640f7/cucumber-html-reports/overview-features.html
+2021-01-23 07:25:32,903 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(9)-127.0.0.1] Application shutdown requested.
+2021-01-23 07:25:32,923 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(9)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-23 07:42:05,960 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 23960 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-23 07:42:05,965 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-23 07:42:05,966 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-01-23 07:42:07,436 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-23 07:42:07,444 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-23 07:42:07,446 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-23 07:42:07,446 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-23 07:42:07,539 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-23 07:42:07,539 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1260 ms
+2021-01-23 07:42:07,937 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-23 07:42:08,175 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-23 07:42:08,276 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-23 07:42:08,288 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 2.822 seconds (JVM running for 3.436)
+2021-01-23 07:42:14,775 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-23 07:42:14,775 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2021-01-23 07:42:14,783 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 8 ms
+2021-01-23 07:42:14,855 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start POST /test
+2021-01-23 07:42:14,856 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start application/octet-stream.
+2021-01-23 07:42:14,857 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Store reports in folder: ./reports/results_0c1082ba-b306-487e-8a9f-64effee4db23
+2021-01-23 07:42:14,862 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Cucumblan: #Generated 2021-01-23 at 07:42:14 MEZ
+service.api = http://localhost:8081
+virtualan.data.load = idaithalan.postman_collection.json;
+virtualan.data.type = POSTMAN
+
+2021-01-23 07:42:14,865 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] skipResponseValidation: true
+2021-01-23 07:42:14,866 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Responses will not be validated.
+2021-01-23 07:42:14,885 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /sample
+2021-01-23 07:42:14,885 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /sample/validate/:sampleId
+2021-01-23 07:42:14,885 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /sample/validate/:sampleId
+2021-01-23 07:42:15,645 WARN io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] cucumblan-env.properties is not configured. Need to add if default data loaded
+2021-01-23 07:42:17,060 INFO net.masterthought.cucumber.ReportParser [http-nio-8080-exec-2] File './reports/results_0c1082ba-b306-487e-8a9f-64effee4db23/conf//cucumber.json' contains 1 features
+2021-01-23 07:42:17,675 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Execution status: 1
+2021-01-23 07:42:17,679 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Generated report html file: ./reports/results_0c1082ba-b306-487e-8a9f-64effee4db23/cucumber-html-reports/overview-features.html
+2021-01-23 07:43:00,586 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(10)-127.0.0.1] Application shutdown requested.
+2021-01-23 07:43:00,607 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(10)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-23 07:45:26,981 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 24195 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-23 07:45:26,984 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-23 07:45:26,985 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-01-23 07:45:28,477 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-23 07:45:28,490 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-23 07:45:28,491 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-23 07:45:28,492 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-23 07:45:28,586 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-23 07:45:28,587 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1303 ms
+2021-01-23 07:45:28,980 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-23 07:45:29,246 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-23 07:45:29,340 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-23 07:45:29,352 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 2.96 seconds (JVM running for 3.651)
+2021-01-23 07:45:38,103 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-23 07:45:38,103 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2021-01-23 07:45:38,115 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 11 ms
+2021-01-23 07:45:38,195 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start POST /test
+2021-01-23 07:45:38,196 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start application/octet-stream.
+2021-01-23 07:45:38,197 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Store reports in folder: ./reports/results_9fc49bae-c754-480a-841d-1502afdf790f
+2021-01-23 07:45:38,201 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Cucumblan: #Generated 2021-01-23 at 07:45:38 MEZ
+service.api = http://localhost:8081
+virtualan.data.load = idaithalan.postman_collection.json;
+virtualan.data.type = POSTMAN
+
+2021-01-23 07:45:38,205 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] skipResponseValidation: true
+2021-01-23 07:45:38,209 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Responses will not be validated.
+2021-01-23 07:45:38,226 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /sample
+2021-01-23 07:45:38,227 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /sample/validate/:sampleId
+2021-01-23 07:45:38,228 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /sample/validate/:sampleId
+2021-01-23 07:45:39,031 WARN io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] cucumblan-env.properties is not configured. Need to add if default data loaded
+2021-01-23 07:45:40,496 INFO net.masterthought.cucumber.ReportParser [http-nio-8080-exec-2] File './reports/results_9fc49bae-c754-480a-841d-1502afdf790f/conf//cucumber.json' contains 1 features
+2021-01-23 07:45:41,030 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Execution status: 1
+2021-01-23 07:45:41,032 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Generated report html file: https://localhost:8080/results_9fc49bae-c754-480a-841d-1502afdf790f/cucumber-html-reports/overview-features.html
+2021-01-23 07:48:04,927 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(11)-127.0.0.1] Application shutdown requested.
+2021-01-23 07:48:04,960 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(11)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-23 07:53:48,084 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 24673 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-23 07:53:48,089 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-23 07:53:48,090 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-01-23 07:53:49,652 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-23 07:53:49,662 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-23 07:53:49,663 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-23 07:53:49,664 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-23 07:53:49,774 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-23 07:53:49,774 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1258 ms
+2021-01-23 07:53:50,166 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-23 07:53:50,404 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-23 07:53:50,510 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-23 07:53:50,520 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 2.949 seconds (JVM running for 3.676)
+2021-01-23 07:53:56,367 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-23 07:53:56,368 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2021-01-23 07:53:56,381 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 12 ms
+2021-01-23 07:53:56,456 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start POST /test
+2021-01-23 07:53:56,456 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start application/octet-stream.
+2021-01-23 07:53:56,457 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Store reports in folder: ./reports/results_7442f23d-cf97-4ac8-8e9f-e0e4ded47697
+2021-01-23 07:53:56,461 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Cucumblan: #Generated 2021-01-23 at 07:53:56 MEZ
+service.api = http://localhost:8081
+virtualan.data.load = idaithalan.postman_collection.json;
+virtualan.data.type = POSTMAN
+
+2021-01-23 07:53:56,464 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] skipResponseValidation: true
+2021-01-23 07:53:56,465 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Responses will not be validated.
+2021-01-23 07:53:56,482 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /sample
+2021-01-23 07:53:56,483 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /sample/validate/:sampleId
+2021-01-23 07:53:56,484 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /sample/validate/:sampleId
+2021-01-23 07:53:57,289 WARN io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] cucumblan-env.properties is not configured. Need to add if default data loaded
+2021-01-23 07:53:58,660 INFO net.masterthought.cucumber.ReportParser [http-nio-8080-exec-2] File './reports/results_7442f23d-cf97-4ac8-8e9f-e0e4ded47697/conf//cucumber.json' contains 1 features
+2021-01-23 07:53:59,175 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Execution status: 1
+2021-01-23 07:53:59,176 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Generated report html file: https://localhost:8080/results_7442f23d-cf97-4ac8-8e9f-e0e4ded47697/cucumber-html-reports/overview-features.html
+2021-01-23 07:54:16,631 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(7)-127.0.0.1] Application shutdown requested.
+2021-01-23 07:54:16,653 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(7)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-23 07:58:50,067 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 24976 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-23 07:58:50,070 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-23 07:58:50,071 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-01-23 07:58:51,556 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-23 07:58:51,565 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-23 07:58:51,566 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-23 07:58:51,567 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-23 07:58:51,694 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-23 07:58:51,695 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1300 ms
+2021-01-23 07:58:52,147 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-23 07:58:52,396 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-23 07:58:52,501 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-23 07:58:52,515 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 2.963 seconds (JVM running for 3.709)
+2021-01-23 07:58:56,580 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-23 07:58:56,581 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2021-01-23 07:58:56,594 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 12 ms
+2021-01-23 07:58:56,663 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start POST /test
+2021-01-23 07:58:56,664 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start application/octet-stream.
+2021-01-23 07:58:56,664 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Store reports in folder: ./reports/results_056f0608-5557-40ed-95ca-2a9152383b6a
+2021-01-23 07:58:56,668 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Cucumblan: #Generated 2021-01-23 at 07:58:56 MEZ
+service.api = http://localhost:8081
+virtualan.data.load = idaithalan.postman_collection.json;
+virtualan.data.type = POSTMAN
+
+2021-01-23 07:58:56,671 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] skipResponseValidation: true
+2021-01-23 07:58:56,672 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Responses will not be validated.
+2021-01-23 07:58:56,694 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /sample
+2021-01-23 07:58:56,695 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /sample/validate/:sampleId
+2021-01-23 07:58:56,696 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /sample/validate/:sampleId
+2021-01-23 07:58:57,521 WARN io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] cucumblan-env.properties is not configured. Need to add if default data loaded
+2021-01-23 07:58:58,837 INFO net.masterthought.cucumber.ReportParser [http-nio-8080-exec-2] File './reports/results_056f0608-5557-40ed-95ca-2a9152383b6a/conf//cucumber.json' contains 1 features
+2021-01-23 07:58:59,339 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Execution status: 1
+2021-01-23 07:58:59,340 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Generated report html file: https://localhost:8080/results_056f0608-5557-40ed-95ca-2a9152383b6a/cucumber-html-reports/overview-features.html
+2021-01-23 07:59:20,065 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(10)-127.0.0.1] Application shutdown requested.
+2021-01-23 07:59:20,085 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(10)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-23 08:01:45,981 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 25244 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-23 08:01:46,012 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-23 08:01:46,019 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-01-23 08:01:47,634 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-23 08:01:47,645 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-23 08:01:47,646 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-23 08:01:47,647 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-23 08:01:47,750 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-23 08:01:47,750 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1368 ms
+2021-01-23 08:01:48,172 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-23 08:01:48,455 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-23 08:01:48,564 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-23 08:01:48,576 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 3.178 seconds (JVM running for 4.084)
+2021-01-23 08:01:51,805 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-23 08:01:51,805 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2021-01-23 08:01:51,815 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 10 ms
+2021-01-23 08:01:51,895 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start POST /test
+2021-01-23 08:01:51,896 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start application/octet-stream.
+2021-01-23 08:01:51,897 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Store reports in folder: ./reports/results_633d3bbf-4b2d-4f58-8fae-0af0eb723ec9
+2021-01-23 08:01:51,901 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Cucumblan: #Generated 2021-01-23 at 08:01:51 MEZ
+service.api = http://localhost:8081
+virtualan.data.load = idaithalan.postman_collection.json;
+virtualan.data.type = POSTMAN
+
+2021-01-23 08:01:51,904 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] skipResponseValidation: true
+2021-01-23 08:01:51,905 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Responses will not be validated.
+2021-01-23 08:01:51,929 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /sample
+2021-01-23 08:01:51,930 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /sample/validate/:sampleId
+2021-01-23 08:01:51,931 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /sample/validate/:sampleId
+2021-01-23 08:01:52,708 WARN io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] cucumblan-env.properties is not configured. Need to add if default data loaded
+2021-01-23 08:01:54,101 INFO net.masterthought.cucumber.ReportParser [http-nio-8080-exec-2] File './reports/results_633d3bbf-4b2d-4f58-8fae-0af0eb723ec9/conf//cucumber.json' contains 1 features
+2021-01-23 08:01:54,726 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Execution status: 1
+2021-01-23 08:01:54,727 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Generated report html file: https://localhost:8080/results_633d3bbf-4b2d-4f58-8fae-0af0eb723ec9/cucumber-html-reports/overview-features.html
+2021-01-23 08:03:05,998 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(10)-127.0.0.1] Application shutdown requested.
+2021-01-23 08:03:06,015 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(10)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-23 08:04:21,273 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 25457 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-23 08:04:21,276 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-23 08:04:21,277 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-01-23 08:04:22,994 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-23 08:04:23,004 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-23 08:04:23,005 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-23 08:04:23,006 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-23 08:04:23,104 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-23 08:04:23,105 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1394 ms
+2021-01-23 08:04:23,516 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-23 08:04:23,862 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-23 08:04:23,972 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-23 08:04:23,983 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 3.331 seconds (JVM running for 3.955)
+2021-01-23 08:04:27,251 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-23 08:04:27,252 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2021-01-23 08:04:27,262 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 10 ms
+2021-01-23 08:04:27,338 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start POST /test
+2021-01-23 08:04:27,339 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start application/octet-stream.
+2021-01-23 08:04:27,341 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Store reports in folder: ./reports/results_9cf10022-d2b5-4458-a6f0-855214d33fd7
+2021-01-23 08:04:27,346 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Cucumblan: #Generated 2021-01-23 at 08:04:27 MEZ
+service.api = http://localhost:8081
+virtualan.data.load = idaithalan.postman_collection.json;
+virtualan.data.type = POSTMAN
+
+2021-01-23 08:04:27,349 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] skipResponseValidation: true
+2021-01-23 08:04:27,350 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Responses will not be validated.
+2021-01-23 08:04:27,364 ERROR io.virtualan.idaithalam.contract.IdaithalamExecutor [http-nio-8080-exec-2] Provide appropriate input data? : Unable to find/process the input file(idaithalan.postman_collection.json) :
+2021-01-23 08:04:27,365 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Maven execution Execption raised: Provide appropriate input data? : Unable to find/process the input file(idaithalan.postman_collection.json) :
+2021-01-23 08:04:36,907 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(6)-127.0.0.1] Application shutdown requested.
+2021-01-23 08:04:36,930 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(6)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-23 08:05:50,867 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 25627 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-23 08:05:50,875 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-23 08:05:50,879 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-01-23 08:05:52,428 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-23 08:05:52,441 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-23 08:05:52,442 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-23 08:05:52,442 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-23 08:05:52,536 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-23 08:05:52,537 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1303 ms
+2021-01-23 08:05:52,953 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-23 08:05:53,305 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-23 08:05:53,426 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-23 08:05:53,440 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 3.109 seconds (JVM running for 3.751)
+2021-01-23 08:05:57,317 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-23 08:05:57,318 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2021-01-23 08:05:57,328 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 10 ms
+2021-01-23 08:05:57,403 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start POST /test
+2021-01-23 08:05:57,404 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start application/octet-stream.
+2021-01-23 08:05:57,405 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Store reports in folder: ./reports/results_be928f6e-2659-4984-b1f4-3fe96d6aa88f
+2021-01-23 08:05:57,409 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Cucumblan: #Generated 2021-01-23 at 08:05:57 MEZ
+service.api = http://localhost:8081
+virtualan.data.load = idaithalan.postman_collection.json;
+virtualan.data.type = POSTMAN
+
+2021-01-23 08:05:57,412 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] skipResponseValidation: true
+2021-01-23 08:05:57,413 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Responses will not be validated.
+2021-01-23 08:06:18,664 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(6)-127.0.0.1] Application shutdown requested.
+2021-01-23 08:06:18,688 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(6)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-23 08:07:16,288 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 25786 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-23 08:07:16,292 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-23 08:07:16,293 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-01-23 08:07:17,785 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-23 08:07:17,795 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-23 08:07:17,796 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-23 08:07:17,796 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-23 08:07:17,894 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-23 08:07:17,895 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1282 ms
+2021-01-23 08:07:18,301 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-23 08:07:18,546 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-23 08:07:18,642 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-23 08:07:18,654 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 2.871 seconds (JVM running for 3.483)
+2021-01-23 08:07:21,581 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 25853 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-23 08:07:21,586 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-23 08:07:21,587 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-01-23 08:07:23,212 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-23 08:07:23,220 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-23 08:07:23,221 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-23 08:07:23,221 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-23 08:07:23,326 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-23 08:07:23,326 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1341 ms
+2021-01-23 08:07:23,754 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-23 08:07:24,022 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-23 08:07:24,147 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-23 08:07:24,160 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 3.15 seconds (JVM running for 3.764)
+2021-01-23 08:07:33,557 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-23 08:07:33,557 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2021-01-23 08:07:33,564 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 7 ms
+2021-01-23 08:07:33,623 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start POST /test
+2021-01-23 08:07:33,623 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start application/octet-stream.
+2021-01-23 08:07:33,624 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Store reports in folder: ./reports/results_9943dc85-8a96-4672-a0de-28e909cd6340
+2021-01-23 08:07:33,628 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Cucumblan: #Generated 2021-01-23 at 08:07:33 MEZ
+service.api = http://localhost:8081
+virtualan.data.load = idaithalan.postman_collection.json;
+virtualan.data.type = POSTMAN
+
+2021-01-23 08:07:33,631 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] skipResponseValidation: true
+2021-01-23 08:07:33,632 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Responses will not be validated.
+2021-01-23 08:07:47,880 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-3] Start POST /test
+2021-01-23 08:07:47,880 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-3] Start application/octet-stream.
+2021-01-23 08:07:47,881 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-3] Store reports in folder: ./reports/results_40720662-274b-44e6-8f14-3f5295743af8
+2021-01-23 08:07:47,882 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-3] Cucumblan: #Generated 2021-01-23 at 08:07:47 MEZ
+service.api = http://localhost:8081
+virtualan.data.load = idaithalan.postman_collection.json;
+virtualan.data.type = POSTMAN
+
+2021-01-23 08:07:47,884 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-3] skipResponseValidation: true
+2021-01-23 08:07:47,890 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-3] Responses will not be validated.
+2021-01-23 08:08:25,443 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-4] Start POST /test
+2021-01-23 08:08:25,443 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-4] Start application/octet-stream.
+2021-01-23 08:08:25,450 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-4] Store reports in folder: ./reports/results_1a8f4f9f-ab80-4d86-af5c-70c2575c7a2f
+2021-01-23 08:08:25,451 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-4] Cucumblan: #Generated 2021-01-23 at 08:08:25 MEZ
+service.api = http://localhost:8081
+virtualan.data.load = idaithalan.postman_collection.json;
+virtualan.data.type = POSTMAN
+
+2021-01-23 08:08:25,453 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-4] skipResponseValidation: true
+2021-01-23 08:08:25,454 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-4] Responses will not be validated.
+2021-01-23 08:08:25,476 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-4]  Skipping comparison for resource based on pattern : /sample
+2021-01-23 08:08:25,477 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-4]  Skipping comparison for resource based on pattern : /sample/validate/:sampleId
+2021-01-23 08:08:25,477 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-4]  Skipping comparison for resource based on pattern : /sample/validate/:sampleId
+2021-01-23 08:08:26,149 WARN io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-4] cucumblan-env.properties is not configured. Need to add if default data loaded
+2021-01-23 08:08:27,232 INFO net.masterthought.cucumber.ReportParser [http-nio-8080-exec-4] File './reports/results_1a8f4f9f-ab80-4d86-af5c-70c2575c7a2f//cucumber.json' contains 1 features
+2021-01-23 08:08:27,591 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-4] Execution status: 1
+2021-01-23 08:08:27,592 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-4] Generated report html file: https://localhost:8080/results_1a8f4f9f-ab80-4d86-af5c-70c2575c7a2f/cucumber-html-reports/overview-features.html
+2021-01-23 08:09:52,263 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(12)-127.0.0.1] Application shutdown requested.
+2021-01-23 08:09:52,282 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(12)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-23 08:15:42,906 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 26668 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-23 08:15:42,909 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-23 08:15:42,910 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-01-23 08:15:44,114 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-23 08:15:44,123 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-23 08:15:44,124 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-23 08:15:44,124 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-23 08:15:44,198 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-23 08:15:44,198 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1050 ms
+2021-01-23 08:15:44,559 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-23 08:15:44,771 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-23 08:15:44,848 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-23 08:15:44,858 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 2.361 seconds (JVM running for 2.842)
+2021-01-23 08:15:47,841 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-23 08:15:47,842 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2021-01-23 08:15:47,850 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 8 ms
+2021-01-23 08:15:47,904 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start POST /test
+2021-01-23 08:15:47,904 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start application/octet-stream.
+2021-01-23 08:15:47,905 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Store reports in folder: ./reports/results_3507b6dc-c6ca-407d-8f90-7df3eafc1498
+2021-01-23 08:15:47,908 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Cucumblan: #Generated 2021-01-23 at 08:15:47 MEZ
+service.api = http://localhost:8081
+virtualan.data.load = idaithalan.postman_collection.json;
+virtualan.data.type = POSTMAN
+
+2021-01-23 08:15:47,910 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] skipResponseValidation: true
+2021-01-23 08:15:47,911 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Responses will not be validated.
+2021-01-23 08:15:47,924 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /sample
+2021-01-23 08:15:47,924 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /sample/validate/:sampleId
+2021-01-23 08:15:47,925 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /sample/validate/:sampleId
+2021-01-23 08:15:48,554 WARN io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] cucumblan-env.properties is not configured. Need to add if default data loaded
+2021-01-23 08:15:49,680 INFO net.masterthought.cucumber.ReportParser [http-nio-8080-exec-2] File './reports/results_3507b6dc-c6ca-407d-8f90-7df3eafc1498//cucumber.json' contains 1 features
+2021-01-23 08:15:50,043 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Execution status: 1
+2021-01-23 08:15:50,044 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Generated report html file: https://localhost:8080/results_3507b6dc-c6ca-407d-8f90-7df3eafc1498/cucumber-html-reports/overview-features.html
+2021-01-23 08:18:03,369 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(12)-127.0.0.1] Application shutdown requested.
+2021-01-23 08:18:03,389 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(12)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'

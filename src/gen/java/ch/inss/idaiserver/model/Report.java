@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
 /**
  * Report
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-23T06:28:03.267371+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-23T07:48:15.918062+01:00[Europe/Zurich]")
 public class Report   {
   @JsonProperty("testid")
   private UUID testid;
@@ -21,26 +21,32 @@ public class Report   {
   @JsonProperty("success")
   private Boolean success;
 
-  @JsonProperty("testexecuted")
-  private Boolean testexecuted;
+  @JsonProperty("testExecuted")
+  private Boolean testExecuted;
 
   @JsonProperty("skipResponseValidation")
   private Boolean skipResponseValidation;
 
-  @JsonProperty("creationtime")
-  private String creationtime;
+  @JsonProperty("creationTime")
+  private String creationTime;
 
-  @JsonProperty("executiontime")
-  private String executiontime;
+  @JsonProperty("startTime")
+  private String startTime;
 
-  @JsonProperty("linktofeature")
-  private String linktofeature;
+  @JsonProperty("endTime")
+  private String endTime;
 
-  @JsonProperty("linktoreport")
-  private String linktoreport;
+  @JsonProperty("durationSeconds")
+  private String durationSeconds;
 
-  @JsonProperty("linktoproperties")
-  private String linktoproperties;
+  @JsonProperty("linkToTeature")
+  private String linkToTeature;
+
+  @JsonProperty("linkToReport")
+  private String linkToReport;
+
+  @JsonProperty("linkToProperties")
+  private String linkToProperties;
 
   @JsonProperty("message")
   private String message;
@@ -89,24 +95,24 @@ public class Report   {
     this.success = success;
   }
 
-  public Report testexecuted(Boolean testexecuted) {
-    this.testexecuted = testexecuted;
+  public Report testExecuted(Boolean testExecuted) {
+    this.testExecuted = testExecuted;
     return this;
   }
 
   /**
-   * Get testexecuted
-   * @return testexecuted
+   * Get testExecuted
+   * @return testExecuted
   */
   @ApiModelProperty(value = "")
 
 
-  public Boolean getTestexecuted() {
-    return testexecuted;
+  public Boolean getTestExecuted() {
+    return testExecuted;
   }
 
-  public void setTestexecuted(Boolean testexecuted) {
-    this.testexecuted = testexecuted;
+  public void setTestExecuted(Boolean testExecuted) {
+    this.testExecuted = testExecuted;
   }
 
   public Report skipResponseValidation(Boolean skipResponseValidation) {
@@ -129,104 +135,144 @@ public class Report   {
     this.skipResponseValidation = skipResponseValidation;
   }
 
-  public Report creationtime(String creationtime) {
-    this.creationtime = creationtime;
+  public Report creationTime(String creationTime) {
+    this.creationTime = creationTime;
     return this;
   }
 
   /**
-   * Get creationtime
-   * @return creationtime
+   * Get creationTime
+   * @return creationTime
   */
   @ApiModelProperty(value = "")
 
 
-  public String getCreationtime() {
-    return creationtime;
+  public String getCreationTime() {
+    return creationTime;
   }
 
-  public void setCreationtime(String creationtime) {
-    this.creationtime = creationtime;
+  public void setCreationTime(String creationTime) {
+    this.creationTime = creationTime;
   }
 
-  public Report executiontime(String executiontime) {
-    this.executiontime = executiontime;
+  public Report startTime(String startTime) {
+    this.startTime = startTime;
     return this;
   }
 
   /**
-   * Get executiontime
-   * @return executiontime
+   * Get startTime
+   * @return startTime
   */
   @ApiModelProperty(value = "")
 
 
-  public String getExecutiontime() {
-    return executiontime;
+  public String getStartTime() {
+    return startTime;
   }
 
-  public void setExecutiontime(String executiontime) {
-    this.executiontime = executiontime;
+  public void setStartTime(String startTime) {
+    this.startTime = startTime;
   }
 
-  public Report linktofeature(String linktofeature) {
-    this.linktofeature = linktofeature;
+  public Report endTime(String endTime) {
+    this.endTime = endTime;
     return this;
   }
 
   /**
-   * Get linktofeature
-   * @return linktofeature
+   * Get endTime
+   * @return endTime
   */
   @ApiModelProperty(value = "")
 
 
-  public String getLinktofeature() {
-    return linktofeature;
+  public String getEndTime() {
+    return endTime;
   }
 
-  public void setLinktofeature(String linktofeature) {
-    this.linktofeature = linktofeature;
+  public void setEndTime(String endTime) {
+    this.endTime = endTime;
   }
 
-  public Report linktoreport(String linktoreport) {
-    this.linktoreport = linktoreport;
+  public Report durationSeconds(String durationSeconds) {
+    this.durationSeconds = durationSeconds;
     return this;
   }
 
   /**
-   * Get linktoreport
-   * @return linktoreport
+   * Get durationSeconds
+   * @return durationSeconds
   */
   @ApiModelProperty(value = "")
 
 
-  public String getLinktoreport() {
-    return linktoreport;
+  public String getDurationSeconds() {
+    return durationSeconds;
   }
 
-  public void setLinktoreport(String linktoreport) {
-    this.linktoreport = linktoreport;
+  public void setDurationSeconds(String durationSeconds) {
+    this.durationSeconds = durationSeconds;
   }
 
-  public Report linktoproperties(String linktoproperties) {
-    this.linktoproperties = linktoproperties;
+  public Report linkToTeature(String linkToTeature) {
+    this.linkToTeature = linkToTeature;
     return this;
   }
 
   /**
-   * Get linktoproperties
-   * @return linktoproperties
+   * Get linkToTeature
+   * @return linkToTeature
   */
   @ApiModelProperty(value = "")
 
 
-  public String getLinktoproperties() {
-    return linktoproperties;
+  public String getLinkToTeature() {
+    return linkToTeature;
   }
 
-  public void setLinktoproperties(String linktoproperties) {
-    this.linktoproperties = linktoproperties;
+  public void setLinkToTeature(String linkToTeature) {
+    this.linkToTeature = linkToTeature;
+  }
+
+  public Report linkToReport(String linkToReport) {
+    this.linkToReport = linkToReport;
+    return this;
+  }
+
+  /**
+   * Get linkToReport
+   * @return linkToReport
+  */
+  @ApiModelProperty(value = "")
+
+
+  public String getLinkToReport() {
+    return linkToReport;
+  }
+
+  public void setLinkToReport(String linkToReport) {
+    this.linkToReport = linkToReport;
+  }
+
+  public Report linkToProperties(String linkToProperties) {
+    this.linkToProperties = linkToProperties;
+    return this;
+  }
+
+  /**
+   * Get linkToProperties
+   * @return linkToProperties
+  */
+  @ApiModelProperty(value = "")
+
+
+  public String getLinkToProperties() {
+    return linkToProperties;
+  }
+
+  public void setLinkToProperties(String linkToProperties) {
+    this.linkToProperties = linkToProperties;
   }
 
   public Report message(String message) {
@@ -281,20 +327,22 @@ public class Report   {
     Report report = (Report) o;
     return Objects.equals(this.testid, report.testid) &&
         Objects.equals(this.success, report.success) &&
-        Objects.equals(this.testexecuted, report.testexecuted) &&
+        Objects.equals(this.testExecuted, report.testExecuted) &&
         Objects.equals(this.skipResponseValidation, report.skipResponseValidation) &&
-        Objects.equals(this.creationtime, report.creationtime) &&
-        Objects.equals(this.executiontime, report.executiontime) &&
-        Objects.equals(this.linktofeature, report.linktofeature) &&
-        Objects.equals(this.linktoreport, report.linktoreport) &&
-        Objects.equals(this.linktoproperties, report.linktoproperties) &&
+        Objects.equals(this.creationTime, report.creationTime) &&
+        Objects.equals(this.startTime, report.startTime) &&
+        Objects.equals(this.endTime, report.endTime) &&
+        Objects.equals(this.durationSeconds, report.durationSeconds) &&
+        Objects.equals(this.linkToTeature, report.linkToTeature) &&
+        Objects.equals(this.linkToReport, report.linkToReport) &&
+        Objects.equals(this.linkToProperties, report.linkToProperties) &&
         Objects.equals(this.message, report.message) &&
         Objects.equals(this.error, report.error);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(testid, success, testexecuted, skipResponseValidation, creationtime, executiontime, linktofeature, linktoreport, linktoproperties, message, error);
+    return Objects.hash(testid, success, testExecuted, skipResponseValidation, creationTime, startTime, endTime, durationSeconds, linkToTeature, linkToReport, linkToProperties, message, error);
   }
 
   @Override
@@ -304,13 +352,15 @@ public class Report   {
     
     sb.append("    testid: ").append(toIndentedString(testid)).append("\n");
     sb.append("    success: ").append(toIndentedString(success)).append("\n");
-    sb.append("    testexecuted: ").append(toIndentedString(testexecuted)).append("\n");
+    sb.append("    testExecuted: ").append(toIndentedString(testExecuted)).append("\n");
     sb.append("    skipResponseValidation: ").append(toIndentedString(skipResponseValidation)).append("\n");
-    sb.append("    creationtime: ").append(toIndentedString(creationtime)).append("\n");
-    sb.append("    executiontime: ").append(toIndentedString(executiontime)).append("\n");
-    sb.append("    linktofeature: ").append(toIndentedString(linktofeature)).append("\n");
-    sb.append("    linktoreport: ").append(toIndentedString(linktoreport)).append("\n");
-    sb.append("    linktoproperties: ").append(toIndentedString(linktoproperties)).append("\n");
+    sb.append("    creationTime: ").append(toIndentedString(creationTime)).append("\n");
+    sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
+    sb.append("    endTime: ").append(toIndentedString(endTime)).append("\n");
+    sb.append("    durationSeconds: ").append(toIndentedString(durationSeconds)).append("\n");
+    sb.append("    linkToTeature: ").append(toIndentedString(linkToTeature)).append("\n");
+    sb.append("    linkToReport: ").append(toIndentedString(linkToReport)).append("\n");
+    sb.append("    linkToProperties: ").append(toIndentedString(linkToProperties)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("}");

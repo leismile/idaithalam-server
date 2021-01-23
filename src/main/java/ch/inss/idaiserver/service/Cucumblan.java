@@ -197,7 +197,7 @@ public class Cucumblan {
     public Report reportFactory() {
     	Report reportLinks = new Report();
 	   reportLinks.setError(FileManagement.NOERROR);
-       reportLinks.setCreationtime(FileManagement.whatTime());
+       reportLinks.setCreationTime(FileManagement.whatTime());
        reportLinks.setTestid( this.uuid );
        return reportLinks;
     }
