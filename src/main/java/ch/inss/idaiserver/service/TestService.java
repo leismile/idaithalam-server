@@ -36,70 +36,94 @@ public class TestService {
   
   @Autowired private Cucumblan cucumblan;
   
+  private static final String FEATURE = "virtualan-contract.feature";
+  private static final String REPORTS = "cucumber-html-reports/";
+  
+  
 
-
-  public Report doTests()      throws Exception {
+  /* Main method to do the actual Maven tests. */
+  public Report doTest()      {
 	  
-	logger.debug("Store reports in folder: " + this.storagePath);
+	logger.debug("Store reports in folder: " + this.addSlash(this.storagePath) + cucumblan.getFolder());
 	logger.debug("Cucumblan: " + cucumblan.toString());
+	Report links = new Report();
+	try {
+		
+	    /* Initialize response. */
+	    links.setError(FileManagement.NOERROR);
+	    links.setCreationtime(FileManagement.whatTime());
+	    
+	    final String testId = cucumblan.getUuid().toString();
+	    links.setTestid(cucumblan.getUuid());
+	    
+	    /* Folder for the results to store into the filesystem. */
+		final String reportFolder = this.storagePath + FileManagement.fs + cucumblan.getFolder();
+		final String confFolder = reportFolder + FileManagement.fs + "conf" + FileManagement.fs;
+		final String skip = ".*=IGNORE";
+		final String skipProp = "exclude-response.properties";
+		
+		    
+	    /* Take care of the folder where all the files and reports will be stored. */
+	    if (!new File(reportFolder).exists()) {
+	      new File(reportFolder).mkdir();
+	      new File(confFolder).mkdir();
+	    }
+	    if (!new File(confFolder).exists()) {
+	      logger.error("Cannot create folder " + confFolder);
+	      links.setError("Cannot create folder " + confFolder);
+	      return links;
+	    }
+	    /* Generate the cucumblan.properties and some other files.*/
+	    boolean isSaved =  FileManagement.saveCucumblan(confFolder, cucumblan.toString());
+	    String postmanFile = confFolder + cucumblan.getUploadFilename();
+    	FileManagement.writeFilestream(postmanFile, cucumblan.getInputStream());
+    	if ( cucumblan.getSkipResponseValidation()) {
+    		FileManagement.writeString(skipProp, skip);
+    	}
+	    
+	    /* Execute mvn test. */
+	    if (cucumblan.getExecute()) {
+	      
+	      links.executiontime(FileManagement.whatTime());
+	      boolean isSuccess = mvnTest(reportFolder);
+	      links.setSuccess(isSuccess);
+	      removeFromClasspath(reportFolder);
+	    } else {
+	      /* Message */
+	      links.setLinktofeature("Not generated");
+	      links.setLinktoreport("Not generated.");
+	      
+	      links.setMessage("Property file updated, no test executed (execute=false).");
+	      if ( isSaved == false ) {
+	    	  links.setError("Error: Could not save file.");
+	      }
+	      return links;
+	    }
 	
-    final String FEATURE = "virtualan-contract.feature";
-    final String REPORTS = "target/cucumber-html-reports/";
+	    /* Copy generated feature file to the public folder. */
+	//    String target = "http://35.193.57.60/"+testId + "/feature/virtualan-contract.0.feature";
+	    String target = serverHost + "/" + cucumblan.getFolder() + "/feature/virtualan-contract.0.feature";
+	    
+	    links.setLinktofeature(target);
+	
+	    /* Copy the cucumber report folder and send back the link
+	     * to the main report html file: report-feature_1959214294.html.
+	     * */
+	//    String linkReport = "http://35.193.57.60/"+testId + "/cucumber-html-reports/overview-features.html";
+	    String linkReport = serverHost + "/" + cucumblan.getFolder() + "/cucumber-html-reports/overview-features.html";
+	    logger.info("Generated report html file: " + linkReport);
+	    links.setLinktoreport(linkReport);
+	    
+	    /* Message */
+	    links.setMessage("Report created.");
+	    links.setError(FileManagement.NOERROR);
     
-    /* Initialize response. */
-    Report links = new Report();
-    links.setError(FileManagement.NOERROR);
-    links.setCreationtime(FileManagement.whatTime());
-    
-    final String testId = cucumblan.getUuid().toString();
-    links.setTestid(cucumblan.getUuid());
-    
-    
-    if (!new File("conf").exists()) {
-      new File("conf").mkdir();
-    }
-    if (!new File("conf/" + testId).exists()) {
-      new File("conf/" + testId).mkdir();
-    }
-    /* Generate the cucumblan.properties file.*/
-    boolean isSaved = false;
-    if ( cucumblan.getOverwrite()) {
-    	FileManagement.save("conf/" + testId, cucumblan.toString());	
-    }
-    
-    
-    
-    
-    /* Execute mvn test. */
-    if (cucumblan.getExecute()) {
-      String reportfolder = this.storagePath + FileManagement.fs + cucumblan.getUuid().toString();
-      links.executiontime(FileManagement.whatTime());
-      boolean isSuccess = mvnTest(reportfolder);
-      links.setSuccess(isSuccess);
-      removeFromClasspath(reportfolder);
-    } else {
-      /* Message */
-      links.setLinktofeature("Not generated");
-      links.setLinktoreport("Not generated.");
-      links.setMessage("Property file updated, no test executed (execute=false).");
-      links.setError(FileManagement.NOERROR);
-      return links;
-    }
+	}catch(Exception e) {
+		links.setError(e.getLocalizedMessage());
+		links.setMessage("No reports.");
+		links.setSuccess(false);
+	}
 
-    /* Copy generated feature file to the public folder. */
-    String target = "http://35.193.57.60/"+testId + "/feature/virtualan-contract.0.feature";
-    links.setLinktofeature(target);
-
-    /* Copy the cucumber report folder and send back the link
-     * to the main report html file: report-feature_1959214294.html.
-     * */
-    String linkReport = "http://35.193.57.60/"+testId + "/cucumber-html-reports/overview-features.html";
-    logger.info("Generated report html file: " + linkReport);
-    links.setLinktoreport(linkReport);
-
-    /* Message */
-    links.setMessage("Report created.");
-    links.setError(FileManagement.NOERROR);
     return links;
   }
 
@@ -155,6 +179,14 @@ public class TestService {
 //    urlsField.setAccessible(true);
 //    List urlss = (List) urlsField.get(ucp);
 //    urlss.remove(url);
+  }
+  
+  private String addSlash(String url) {
+	  if (url.endsWith("/")) {
+		  return url;
+	  }else {
+		  return url + "/";
+	  }
   }
   
   

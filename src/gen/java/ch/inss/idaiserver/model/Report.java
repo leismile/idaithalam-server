@@ -13,13 +13,19 @@ import javax.validation.constraints.*;
 /**
  * Report
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-23T01:48:59.823546+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-23T06:06:06.086944+01:00[Europe/Zurich]")
 public class Report   {
   @JsonProperty("testid")
   private UUID testid;
 
   @JsonProperty("success")
   private Boolean success;
+
+  @JsonProperty("testexecuted")
+  private Boolean testexecuted;
+
+  @JsonProperty("skipResponseValidation")
+  private Boolean skipResponseValidation;
 
   @JsonProperty("creationtime")
   private String creationtime;
@@ -81,6 +87,46 @@ public class Report   {
 
   public void setSuccess(Boolean success) {
     this.success = success;
+  }
+
+  public Report testexecuted(Boolean testexecuted) {
+    this.testexecuted = testexecuted;
+    return this;
+  }
+
+  /**
+   * Get testexecuted
+   * @return testexecuted
+  */
+  @ApiModelProperty(value = "")
+
+
+  public Boolean getTestexecuted() {
+    return testexecuted;
+  }
+
+  public void setTestexecuted(Boolean testexecuted) {
+    this.testexecuted = testexecuted;
+  }
+
+  public Report skipResponseValidation(Boolean skipResponseValidation) {
+    this.skipResponseValidation = skipResponseValidation;
+    return this;
+  }
+
+  /**
+   * Get skipResponseValidation
+   * @return skipResponseValidation
+  */
+  @ApiModelProperty(value = "")
+
+
+  public Boolean getSkipResponseValidation() {
+    return skipResponseValidation;
+  }
+
+  public void setSkipResponseValidation(Boolean skipResponseValidation) {
+    this.skipResponseValidation = skipResponseValidation;
   }
 
   public Report creationtime(String creationtime) {
@@ -235,6 +281,8 @@ public class Report   {
     Report report = (Report) o;
     return Objects.equals(this.testid, report.testid) &&
         Objects.equals(this.success, report.success) &&
+        Objects.equals(this.testexecuted, report.testexecuted) &&
+        Objects.equals(this.skipResponseValidation, report.skipResponseValidation) &&
         Objects.equals(this.creationtime, report.creationtime) &&
         Objects.equals(this.executiontime, report.executiontime) &&
         Objects.equals(this.linktofeature, report.linktofeature) &&
@@ -246,7 +294,7 @@ public class Report   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(testid, success, creationtime, executiontime, linktofeature, linktoreport, linktoproperties, message, error);
+    return Objects.hash(testid, success, testexecuted, skipResponseValidation, creationtime, executiontime, linktofeature, linktoreport, linktoproperties, message, error);
   }
 
   @Override
@@ -256,6 +304,8 @@ public class Report   {
     
     sb.append("    testid: ").append(toIndentedString(testid)).append("\n");
     sb.append("    success: ").append(toIndentedString(success)).append("\n");
+    sb.append("    testexecuted: ").append(toIndentedString(testexecuted)).append("\n");
+    sb.append("    skipResponseValidation: ").append(toIndentedString(skipResponseValidation)).append("\n");
     sb.append("    creationtime: ").append(toIndentedString(creationtime)).append("\n");
     sb.append("    executiontime: ").append(toIndentedString(executiontime)).append("\n");
     sb.append("    linktofeature: ").append(toIndentedString(linktofeature)).append("\n");

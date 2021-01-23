@@ -23,7 +23,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-23T01:48:59.823546+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-23T06:06:06.086944+01:00[Europe/Zurich]")
 @Validated
 @Api(value = "test", description = "the test API")
 public interface TestApi {
@@ -127,6 +127,7 @@ public interface TestApi {
      * @param serverurl The server url to be tested. (required)
      * @param dataload filename (optional, default to &quot;idaithalan.postman_collection.json&quot;)
      * @param execute Execute test immediately. If false, only the property file will be updated (append). (optional, default to &quot;true&quot;)
+     * @param skipResponseValidation Skip the respone validation in tests. (optional, default to &quot;true&quot;)
      * @param datatype Type of data is POSTMAN, VIRTUALAN OR EXCEL. (optional, default to POSTMAN)
      * @return Test created. (status code 201)
      *         or Bad request. (status code 400)
@@ -144,7 +145,7 @@ public interface TestApi {
         produces = { "application/json" },
         consumes = { "multipart/form-data" }
     )
-    default ResponseEntity<Report> testrun(@ApiParam(value = "") @Valid @RequestPart(value = "filestream", required = true) MultipartFile filestream,@ApiParam(value = "The server url to be tested.", required=true, defaultValue="http://localhost:8080") @Valid @RequestPart(value = "serverurl", required = true)  String serverurl,@ApiParam(value = "filename", defaultValue="idaithalan.postman_collection.json") @Valid @RequestPart(value = "dataload", required = false)  String dataload,@ApiParam(value = "Execute test immediately. If false, only the property file will be updated (append).", defaultValue="true") @Valid @RequestPart(value = "execute", required = false)  String execute,@ApiParam(value = "Type of data is POSTMAN, VIRTUALAN OR EXCEL.", allowableValues="POSTMAN, VIRTUALAN, EXCEL", defaultValue="POSTMAN") @Valid @RequestPart(value = "datatype", required = false)  String datatype) {
+    default ResponseEntity<Report> testrun(@ApiParam(value = "") @Valid @RequestPart(value = "filestream", required = true) MultipartFile filestream,@ApiParam(value = "The server url to be tested.", required=true, defaultValue="http://localhost:8080") @Valid @RequestPart(value = "serverurl", required = true)  String serverurl,@ApiParam(value = "filename", defaultValue="idaithalan.postman_collection.json") @Valid @RequestPart(value = "dataload", required = false)  String dataload,@ApiParam(value = "Execute test immediately. If false, only the property file will be updated (append).", defaultValue="true") @Valid @RequestPart(value = "execute", required = false)  String execute,@ApiParam(value = "Skip the respone validation in tests.", defaultValue="true") @Valid @RequestPart(value = "skipResponseValidation", required = false)  String skipResponseValidation,@ApiParam(value = "Type of data is POSTMAN, VIRTUALAN OR EXCEL.", allowableValues="POSTMAN, VIRTUALAN, EXCEL", defaultValue="POSTMAN") @Valid @RequestPart(value = "datatype", required = false)  String datatype) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

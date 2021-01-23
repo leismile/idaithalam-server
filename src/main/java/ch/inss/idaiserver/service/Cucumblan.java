@@ -18,14 +18,16 @@ public class Cucumblan {
     private String TYPE;
     private InputStream inputStream;
     private String folder;
+    private String uploadFilename;
     private Boolean execute;
-    private Boolean overwrite;
+    private Boolean skipResponseValidation;
     private UUID uuid;
     
     /** Store keys as key=service.api. 
      * Add resourcees with key=service.api.nextresource. */
     private HashMap<String, String> URL;
-    private List<String> postmanCollections;
+    /* List of all postman collection files. */
+    private LinkedHashSet<String> postmanCollections;  //TODO: check if always only one.
     
     private static final String dataload = "virtualan.data.load";
     private static final String datatype = "virtualan.data.type";
@@ -42,9 +44,9 @@ public class Cucumblan {
     public void init() {
         this.uuid = UUID.randomUUID();
         this.execute = new Boolean(true);
-        this.overwrite = new Boolean(true);
+//        this.overwrite = new Boolean(true);
         this.folder = "results_" + this.uuid;
-        this.postmanCollections = new ArrayList<String>();
+        this.postmanCollections = new LinkedHashSet<String>();
         this.URL = new HashMap<String, String>();
     }
     
@@ -55,10 +57,17 @@ public class Cucumblan {
         return folder;
     }
 
-    public UUID getUuid() {
+    public String getUploadFilename() {
+		return uploadFilename;
+	}
+
+	public void setUploadFilename(String uploadFilename) {
+		this.uploadFilename = uploadFilename;
+	}
+
+	public UUID getUuid() {
         return uuid;
     }
-
 
     public InputStream getInputStream() {
         return inputStream;
@@ -84,15 +93,22 @@ public class Cucumblan {
         this.execute = execute;
     }
 
-    public Boolean getOverwrite() {
-        return overwrite;
-    }
-
-    public void setOverwrite(Boolean overwrite) {
-        this.overwrite = overwrite;
-    }
     
-    /** Input is only the resource. service.api is added. */
+    public Boolean getSkipResponseValidation() {
+		return skipResponseValidation;
+	}
+
+
+
+
+	public void setSkipResponseValidation(Boolean skipResponseValidation) {
+		this.skipResponseValidation = skipResponseValidation;
+	}
+
+
+
+
+	/** Input is only the resource. service.api is added. */
     public void addURL(String resource, String value) {
         if ( resource == null || "".equals(resource)) {
             resource = "service.api"; 
@@ -150,7 +166,7 @@ public class Cucumblan {
         /* Semicolon separated list of postman collections. */
         String post = p.getProperty(dataload);
         String[] posts = post.split(";");
-        this.postmanCollections = Arrays.asList(posts);
+        this.postmanCollections = new LinkedHashSet(Arrays.asList(posts));
         
         /* List of URLs with resources */
         for ( Object key : p.keySet()) {
@@ -170,7 +186,12 @@ public class Cucumblan {
             logger.error("There was no postman collection file added.");
             return null;
         }
-        return this.postmanCollections.get(0);
+        Iterator<String> iterator = this.postmanCollections.iterator();
+        if(iterator.hasNext()){
+            return iterator.next(); 
+        }else{
+            return "";
+        }
     }
 
     public Report reportFactory() {
@@ -186,7 +207,7 @@ public class Cucumblan {
         return URL;
     }
 
-    public List<String> getFILE() {
+    public LinkedHashSet<String> getFILE() {
         return postmanCollections;
     }
 

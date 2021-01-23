@@ -46,7 +46,7 @@ public class TestApiController implements TestApi {
     }
     
     @Override
-    public ResponseEntity<Report> testrun(@ApiParam(value = "") @Valid @RequestPart(value = "filestream", required = true) MultipartFile filestream,@ApiParam(value = "The server url to be tested.", required=true, defaultValue="http://localhost:8080") @Valid @RequestPart(value = "serverurl", required = true)  String serverurl,@ApiParam(value = "filename", defaultValue="idaithalan.postman_collection.json") @Valid @RequestPart(value = "dataload", required = false)  String dataload,@ApiParam(value = "Execute test immediately. If false, only the property file will be updated (append).", defaultValue="true") @Valid @RequestPart(value = "execute", required = false)  String execute,@ApiParam(value = "Type of data is POSTMAN, VIRTUALAN OR EXCEL.", allowableValues="POSTMAN, VIRTUALAN, EXCEL", defaultValue="POSTMAN") @Valid @RequestPart(value = "datatype", required = false)  String datatype) {
+    public ResponseEntity<Report> testrun(@ApiParam(value = "") @Valid @RequestPart(value = "filestream", required = true) MultipartFile filestream,@ApiParam(value = "The server url to be tested.", required=true, defaultValue="http://localhost:8080") @Valid @RequestPart(value = "serverurl", required = true)  String serverurl,@ApiParam(value = "filename", defaultValue="idaithalan.postman_collection.json") @Valid @RequestPart(value = "dataload", required = false)  String dataload,@ApiParam(value = "Execute test immediately. If false, only the property file will be updated (append).", defaultValue="true") @Valid @RequestPart(value = "execute", required = false)  String execute,@ApiParam(value = "Skip the respone validation in tests.", defaultValue="true") @Valid @RequestPart(value = "skipResponseValidation", required = false)  String skipResponseValidation,@ApiParam(value = "Type of data is POSTMAN, VIRTUALAN OR EXCEL.", allowableValues="POSTMAN, VIRTUALAN, EXCEL", defaultValue="POSTMAN") @Valid @RequestPart(value = "datatype", required = false)  String datatype) {
         logger.debug("Start POST /test");
         if (getRequest().isPresent() == false || filestream == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -73,10 +73,16 @@ public class TestApiController implements TestApi {
                     if ( execute != null) {
                         e = new Boolean(execute);
                     }
+                    Boolean skip = new Boolean(false);
+                    if ( skipResponseValidation != null) {
+                    	skip = new Boolean(skipResponseValidation);
+                    }
 
 //                    Cucumblan cucumblan = new Cucumblan();
                     cucumblan.init();
                     cucumblan.addFILE(dataload);
+                    cucumblan.setUploadFilename(dataload);
+                    cucumblan.setSkipResponseValidation(skip);
                     
                     try {
                         cucumblan.setInputStream(filestream.getInputStream());
@@ -86,10 +92,10 @@ public class TestApiController implements TestApi {
                     cucumblan.setTYPE(datatype);
                     cucumblan.addURL(null,serverurl);
                     cucumblan.setExecute(e);
-                    links = testServices.doTests();
+                    links = testServices.doTest();
                     
                     if (links.getError() != null && links.getError().equals(FileManagement.NOERROR) == false) {
-                        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);    
+                        return new ResponseEntity<Report>(links,HttpStatus.INTERNAL_SERVER_ERROR);    
                     }
                 }catch(Exception e) {
                     Report error = new Report();

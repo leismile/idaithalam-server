@@ -1,6 +1,7 @@
 package ch.inss.idaiserver.model;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -11,17 +12,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import io.jsondb.annotation.Document;
-import io.jsondb.annotation.Id;
-
-
 //import javax.persistence.*;
 
 
-@Document(collection = "Tests", schemaVersion= "1.0")
+//@Document(collection = "Tests", schemaVersion= "1.0")
 public class TestDao   {
 	
-  @Id
   @JsonProperty("testid")
   private UUID testid;
 
@@ -149,8 +145,8 @@ public class TestDao   {
     return load;
   }
 
-  public void setLoad(List<String> load) {
-    this.load = load;
+  public void setLoad(LinkedHashSet<String> load) {
+    this.load = new ArrayList<String>(load);
   }
 
   public TestDao serviceapi(List<Serviceapi> serviceapi) {

@@ -39,18 +39,29 @@ import com.github.mustachejava.MustacheFactory;
 import ch.inss.idaiserver.service.Cucumblan;
 
 
+/**
+ * @author amrit
+ *
+ */
 public class FileManagement {
 	
     private static final Logger logger = LoggerFactory.getLogger(FileManagement.class);
     public static final String lf = System.getProperty("line.separator");
     public static final String fs = FileSystems.getDefault().getSeparator();
     
-    private static final String PROPERTIES="src/test/resources/cucumblan.properties";
-    private static final String FEATURE="conf/virtualan-contract.feature";
+//    private static final String PROPERTIES="src/test/resources/cucumblan.properties";
+    private static final String PROPERTIES="cucumblan.properties";
+//    private static final String FEATURE="conf/virtualan-contract.feature";
+    private static final String FEATURE="virtualan-contract.feature";
     
     public final static String NOERROR = "";
 
-    public static boolean save( String path, String content) {
+    /** Save the cucumblan.properties file to the uuid/conf folder.
+     * @param confFolder
+     * @param content
+     * @return
+     */
+    public static boolean saveCucumblan( String  confFolder, String content) {
         boolean ok = false;
         try {
         /* Create cucumblan.properties from mustache template. */  
@@ -67,14 +78,14 @@ public class FileManagement {
        
         
         /* Write new properties file. */
-        writeString(content, path+"/cucumblan.properties");
+        writeString( confFolder + fs + PROPERTIES, content);
         
         /* Write postman collection. */
         //writeFilestream(path +"/"+cucumblan.getFILE(), cucumblan.getInputStream());
         ok = true; 
         }catch(IOException ioe) {
-            logger.error("Could not save file: " + path,ioe);
-            
+            logger.error("Could not save " + PROPERTIES + " to folder  " + confFolder);
+            return false;
         }
         return ok;
         //IOUtils.closeQuietly(initialStream);
@@ -106,7 +117,7 @@ public class FileManagement {
 
     /* Write files like postman collection. */
     public static void writeFilestream(String filename, InputStream in) throws IOException {
-          File targetFile = new File("src/test/resources/" + filename);
+          File targetFile = new File(filename);
           InputStream initialStream = in;
           java.nio.file.Files.copy(
             initialStream, 
@@ -196,12 +207,13 @@ public class FileManagement {
         return prop;
      }
 
+    
     /**
-     * @param content
      * @param filename
+     * @param content
      * @throws IOException
      */
-    private static void writeString(String content, String filename) throws IOException {
+    public static void writeString(String filename, String content) throws IOException {
         /* Put String into writer. */
           BufferedWriter bwriter = new BufferedWriter(new FileWriter(filename));
           bwriter.write(content);
@@ -223,6 +235,11 @@ public class FileManagement {
         return sb.toString();
     }
     
+    /**
+     * @param source
+     * @param targetFolder
+     * @return
+     */
     public static String copyFiles(String source, String targetFolder) {
         Path sourcePath = Paths.get(source);
         String filename = sourcePath.getFileName().toString();
@@ -248,6 +265,10 @@ public class FileManagement {
         return "ok";
     }
     
+    /**
+     * @param sourceFolder
+     * @param targetFolder
+     */
     public static void copyFolder(String sourceFolder, String targetFolder) {
 //        String source = "C:/your/source";
         File srcDir = new File(sourceFolder);
@@ -262,6 +283,10 @@ public class FileManagement {
         }
     }
 
+    /**
+     * @param target
+     * @return
+     */
     public static String getReportfile(String target) {
         Path testPath = Paths.get(target);
         String result = "notfound";
@@ -292,7 +317,11 @@ public class FileManagement {
         return result;
     }
 
-    /** Write down the Postmancollection to the filesystem and add it to the list in cucumblan.properties. */
+    /** Write down the Postmancollection to the filesystem and add it to the list in cucumblan.properties.
+     *
+     * @param fileStream
+     * @return
+     */
     public static boolean addCollection(@Valid MultipartFile fileStream) {
         try {
             writeFilestream(fileStream.getName(), fileStream.getInputStream());
@@ -313,6 +342,10 @@ public class FileManagement {
         return true;
     }
     
+    /**
+     * @param resource
+     * @return
+     */
     public static boolean removeServer(String resource) {
         String key = null;
         
