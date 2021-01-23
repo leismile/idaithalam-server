@@ -11,7 +11,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -29,53 +31,49 @@ public class PersistJSON {
 	 * @param filePath
 	 * @param report
 	 * @return
+	 * @throws IOException 
+	 * @throws JsonMappingException 
+	 * @throws JsonGenerationException 
 	 */
-	public static boolean writeJSON(String filePath, Report report) {
+	public static boolean writeJSON(String filePath, Report report) throws JsonGenerationException, JsonMappingException, IOException {
 		boolean ok = false;
 		ObjectMapper objectMapper = new ObjectMapper();
-		try {
 			objectMapper.writeValue(new File(filePath), report);
 			ok = true;
-		} catch (IOException e) {
-			logger.error("Could not write JSON object.");
-			e.printStackTrace();
-		}
+
 		return ok;
 	}
 	
-	public static Report reportFromJSON(String string) {
-//		String json = "{ \"color\" : \"Black\", \"type\" : \"BMW\" }";
+	/**
+	 * @param string
+	 * @return
+	 * @throws JsonMappingException
+	 * @throws JsonProcessingException
+	 */
+	public static Report reportFromJSON(String string) throws JsonMappingException, JsonProcessingException {
+		logger.debug("Going to read JSON from file " + string);
 		ObjectMapper objectMapper = new ObjectMapper();
 		Report report = null;
-		try {
 			report = objectMapper.readValue(string, Report.class);
-		} catch (JsonProcessingException e) {
-			logger.error("Could not create JSON object.");
-			e.printStackTrace();
-		}
+		
 		return report;
 	}
 	
-	public static List<Report> readArray(String array){
+	public static List<Report> readArray(String array) throws JsonMappingException, JsonProcessingException{
 		String jsonArray = "[{\"brand\":\"ford\"}, {\"brand\":\"Fiat\"}]";
 
 		ObjectMapper objectMapper = new ObjectMapper();
 
 		Report[] reports = null;
-		try {
 			reports = objectMapper.readValue(jsonArray, Report[].class);
-		} catch (JsonProcessingException e) {
-			logger.error("Could not create Report object.");
-			e.printStackTrace();
-		}
+		
 		return Arrays.asList(reports);
 	}
 	
-	public static String writeArray(List<Report> list, String filePath) {
+	public static String writeArray(List<Report> list, String filePath) throws IOException {
 		String string = null;
 		ObjectMapper objectMapper = new ObjectMapper();
 	    ArrayNode arrayNode = objectMapper.createArrayNode();
-	    try {
 		    for (Report report : list) {
 		    	String json = objectMapper.writeValueAsString(report);
 				
@@ -88,43 +86,26 @@ public class PersistJSON {
 		    // 	without pretty-print, use `arrayNode.toString()` method
 	    	string = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(arrayNode);
 	    	objectMapper.writeValue(new File(filePath), string);
-	    } catch (JsonProcessingException e) {
-	    	logger.error("Could not create JSON object.");
-			e.printStackTrace();
-		} catch (IOException e) {
-			logger.error("Could not write JSON object.");
-			e.printStackTrace();
-		} 
 		return string;
 	}
 	
-	public static List<Report> getReportList(String string){
+	public static List<Report> getReportList(String string) throws JsonProcessingException{
 //		String jsonCarArray = "[{ \"color\" : \"Black\", \"type\" : \"BMW\" }, { \"color\" : \"Red\", \"type\" : \"FIAT\" }]";
 		ObjectMapper objectMapper = new ObjectMapper();
 		List<Report> list = null;
-		try {
 			list = objectMapper.readValue(string, new TypeReference<List<Report>>(){});
-		} catch (JsonProcessingException e) {
-			logger.error("Could not create JSON object.");
-			e.printStackTrace();
-		}
 		
 		return list;
 
 	}
 	
 	//TODO just sample.
-	public static Map<String, Object> getMap()
+	public static Map<String, Object> getMap() throws JsonMappingException, JsonProcessingException
 	{
 		ObjectMapper objectMapper = new ObjectMapper();
 		String json = "{ \"color\" : \"Black\", \"type\" : \"BMW\" }";
 		Map<String, Object> map = null;
-		try {
 			map = objectMapper.readValue(json, new TypeReference<Map<String,Object>>(){});
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return map;
 	}
 }

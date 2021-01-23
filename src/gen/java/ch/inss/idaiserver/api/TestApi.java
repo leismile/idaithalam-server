@@ -6,7 +6,7 @@
 package ch.inss.idaiserver.api;
 
 import ch.inss.idaiserver.model.Report;
-import ch.inss.idaiserver.model.Test;
+import java.util.UUID;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,7 +23,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-23T11:40:51.148172+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-23T13:14:27.767932+01:00[Europe/Zurich]")
 @Validated
 @Api(value = "test", description = "the test API")
 public interface TestApi {
@@ -33,78 +33,20 @@ public interface TestApi {
     }
 
     /**
-     * GET /test/{testid} : Get the content of the configured cucumblan.properties.
-     * Get the content of the configured cucumblan.properties.
+     * PUT /test/{testid} : Run test.
+     * Run test
      *
      * @param testid testid for that test (required)
-     * @return Configuration of cucumblan.properties file. (status code 200)
-     *         or Test not found. (status code 404)
-     *         or Internal server error. (status code 500)
-     *         or unexpected error (status code 200)
+     * @return Gives back the entire cucumblan.properties file and generated testid. (status code 201)
      */
-    @ApiOperation(value = "Get the content of the configured cucumblan.properties.", nickname = "getproperty", notes = "Get the content of the configured cucumblan.properties.", response = Test.class, tags={ "API test", })
+    @ApiOperation(value = "Run test.", nickname = "runtest", notes = "Run test", response = Report.class, tags={ "API test execution", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Configuration of cucumblan.properties file.", response = Test.class),
-        @ApiResponse(code = 404, message = "Test not found."),
-        @ApiResponse(code = 500, message = "Internal server error."),
-        @ApiResponse(code = 200, message = "unexpected error") })
-    @GetMapping(
+        @ApiResponse(code = 201, message = "Gives back the entire cucumblan.properties file and generated testid.", response = Report.class) })
+    @PutMapping(
         value = "/test/{testid}",
         produces = { "application/json" }
     )
-    default ResponseEntity<Test> getproperty(@ApiParam(value = "testid for that test",required=true) @PathVariable("testid") String testid) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"linktofeature\" : \"http://localhost:8080/result.feature\", \"linktoreport\" : \"http://localhost:8080/result.html\", \"message\" : \"Test created.\", \"error\" : \"no error occured.\" }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
-    }
-
-
-    /**
-     * DELETE /test/{testid} : Remove the configuration.
-     * Remove the test.
-     *
-     * @param testid testid for that test (required)
-     * @return Test deleted. (status code 204)
-     */
-    @ApiOperation(value = "Remove the configuration.", nickname = "removetest", notes = "Remove the test.", tags={ "API test", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 204, message = "Test deleted.") })
-    @DeleteMapping(
-        value = "/test/{testid}"
-    )
-    default ResponseEntity<Void> removetest(@ApiParam(value = "testid for that test",required=true) @PathVariable("testid") String testid) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
-    }
-
-
-    /**
-     * GET /test/report/{testid} : Get the content of the configured cucumblan.properties.
-     * Get the content of the configured cucumblan.properties.
-     *
-     * @param testid testid for that test (required)
-     * @return Configuration of cucumblan.properties file. (status code 200)
-     *         or Internal server error. (status code 500)
-     *         or unexpected error (status code 200)
-     */
-    @ApiOperation(value = "Get the content of the configured cucumblan.properties.", nickname = "report", notes = "Get the content of the configured cucumblan.properties.", response = Report.class, tags={ "API test", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Configuration of cucumblan.properties file.", response = Report.class),
-        @ApiResponse(code = 500, message = "Internal server error."),
-        @ApiResponse(code = 200, message = "unexpected error") })
-    @GetMapping(
-        value = "/test/report/{testid}",
-        produces = { "application/json" }
-    )
-    default ResponseEntity<Report> report(@ApiParam(value = "testid for that test",required=true) @PathVariable("testid") String testid) {
+    default ResponseEntity<Report> runtest(@ApiParam(value = "testid for that test",required=true) @PathVariable("testid") UUID testid) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -134,7 +76,7 @@ public interface TestApi {
      *         or I am a teapot. (status code 418)
      *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "Create and run the test with the uploaded Postman collection.", nickname = "testrun", notes = "Create a new test and run against an API. Generates the Cucumber report and a Gherkin file.", response = Report.class, tags={ "API test", })
+    @ApiOperation(value = "Create and run the test with the uploaded Postman collection.", nickname = "testrun", notes = "Create a new test and run against an API. Generates the Cucumber report and a Gherkin file.", response = Report.class, tags={ "API test execution", })
     @ApiResponses(value = { 
         @ApiResponse(code = 201, message = "Test created.", response = Report.class),
         @ApiResponse(code = 400, message = "Bad request."),
@@ -155,26 +97,6 @@ public interface TestApi {
                 }
             }
         });
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
-    }
-
-
-    /**
-     * PUT /test/{testid} : Update the configuration.
-     * Run the test.
-     *
-     * @param testid testid for that test (required)
-     * @return Gives back the entire cucumblan.properties file and generated testid. (status code 201)
-     */
-    @ApiOperation(value = "Update the configuration.", nickname = "updatetest", notes = "Run the test.", response = String.class, tags={ "API test", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 201, message = "Gives back the entire cucumblan.properties file and generated testid.", response = String.class) })
-    @PutMapping(
-        value = "/test/{testid}",
-        produces = { "application/json" }
-    )
-    default ResponseEntity<String> updatetest(@ApiParam(value = "testid for that test",required=true) @PathVariable("testid") String testid) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

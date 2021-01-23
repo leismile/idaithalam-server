@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
     title: idaithalamserver
-    version: 1.1.2
+    version: 1.1.4
     description: Idaithalam Server
     contact:
         name: Oliver Glas
@@ -17,9 +17,11 @@ servers:
   description: Localhost
 tags:
 - description: Run a test against an API and generate the Cucumber report and a Gherkin file.
-  name: API test
-- description: Configuration of the property file.
-  name: configuration
+  name: API test execution
+- description: Test results and reports of the test sessions
+  name: Results
+- description: Configuration of the test sessions in the cucumblan.properties file.
+  name: Configuration
 - description: Health of the server.
   name: health
 paths:
@@ -29,7 +31,7 @@ paths:
       description: Create a new test and run against an API. Generates the Cucumber report and a Gherkin file.
       operationId: testrun
       tags:
-        - API test
+        - API test execution
       requestBody:
         content:
           multipart/form-data:
@@ -90,12 +92,35 @@ paths:
         default:
           description: unexpected error
   /test/{testid}:
+    put:
+      summary: Run test.
+      description: Run test
+      operationId: runtest
+      tags:
+      - API test execution
+      parameters:
+      - description: testid for that test
+        name: testid
+        in: path
+        schema:
+          type: string
+          format: uuid
+        required: true
+      responses:
+        '201':
+          description: Gives back the entire cucumblan.properties file and generated testid.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Report"
+                
+  /conf/{testid}:
     get:
-      summary: Get the content of the configured cucumblan.properties.  
+      summary: Get the test configuration content from the cucumblan.properties.  
       description: Get the content of the configured cucumblan.properties.  
       operationId: getproperty
       tags:
-      - API test
+      - Configuration
       parameters:
       - description: testid for that test
         name: testid
@@ -117,34 +142,13 @@ paths:
           description: Internal server error.
         default:
           description: unexpected error   
-    put:
-      summary: Update the configuration.
-      description: Run the test.
-      operationId: Updatetest
-      tags:
-      - API test
-      parameters:
-      - description: testid for that test
-        name: testid
-        in: path
-        schema:
-          type: string
-          format: testid
-        required: true
-      responses:
-        '201':
-          description: Gives back the entire cucumblan.properties file and generated testid.
-          content:
-            application/json:
-              schema: 
-                type: string
-                format: properties
+   
     delete:
-      summary: Remove the configuration.
+      summary: Remove the entire test configuration.
       description: Remove the test.
       operationId: removetest
       tags:
-      - API test
+      - Configuration
       parameters:
       - description: testid for that test
         name: testid
@@ -157,13 +161,13 @@ paths:
         '204':
           description: Test deleted.
 
-  /test/report/{testid}:
+  /report/{testid}:
     get:
-      summary: Get the content of the configured cucumblan.properties.  
-      description: Get the content of the configured cucumblan.properties.  
+      summary: Get the report for this uuid. 
+      description: Get the report of a previously executed test.
       operationId: report
       tags:
-      - API test
+      - Results
       parameters:
       - description: testid for that test
         name: testid
@@ -185,13 +189,13 @@ paths:
           description: unexpected error 
           
           
-  /conf/gherkin/{testid}:
+  /gherkin/{testid}:
     get:
-      summary: Get the content of the enerated Gherkin feature file.  
+      summary: Get the content of the generated Gherkin feature file.  
       description: Get the content of the generated Gherkin feature file.    
       operationId: getgherkin
       tags:
-      - configuration
+      - Results
       parameters:
       - description: testid for that Gherkin file.
         name: testid
@@ -218,7 +222,7 @@ paths:
       description: Add a server url to the configuration. That is added as additional URL.
       operationId: addserver
       tags:
-      - configuration
+      - Configuration
       parameters:
       - description: testid for that serverurl
         in: path
@@ -238,7 +242,7 @@ paths:
 
       responses:
         '201':
-          description: Gives back the entire cucumblan.properties file.
+          description: Gives back the entire test configuration as a cucumblan.properties file.
           content:
             text/plain:
               schema: 
@@ -250,11 +254,11 @@ paths:
         default:
           description: unexpected error
     delete:
-      summary: Remove a server url from the configuration.
+      summary: Remove a server url from the test configuration.
       description: Remove a server url from the configuration.
       operationId: removeserver
       tags:
-      - configuration
+      - Configuration
       parameters:
       - description: testid for that serverurl
         in: path
@@ -287,7 +291,7 @@ paths:
       description: Add a Postman collection to the configuration. All added Postman collections will be executed as one test.
       operationId: addcollection
       tags:
-        - configuration
+        - Configuration
       parameters:
       - description: testid for that collection
         in: path
@@ -315,11 +319,11 @@ paths:
           description: unexpected error
           
     delete:
-      summary: Remove a server url from the configuration.
-      description: Remove a server url from the configuration.
+      summary: Remove a Postman collection from the configuration.
+      description: Remove a Postman collection from the configuration.
       operationId: removecollection
       tags:
-      - configuration
+      - Configuration
       parameters:
       - description: testid for that serverurl
         in: path

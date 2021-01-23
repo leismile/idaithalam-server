@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -20,6 +21,7 @@ import io.swagger.annotations.ApiParam;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.UUID;
 
 import javax.validation.Valid;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-21T08:48:24.320856+01:00[Europe/Zurich]")
@@ -45,6 +47,7 @@ public class TestApiController implements TestApi {
         return Optional.ofNullable(request);
     }
     
+    /** POST for the main initial test with execution and creation of the uuid. */
     @Override
     public ResponseEntity<Report> testrun(@ApiParam(value = "") @Valid @RequestPart(value = "filestream", required = true) MultipartFile filestream,@ApiParam(value = "The server url to be tested.", required=true, defaultValue="http://localhost:8080") @Valid @RequestPart(value = "serverurl", required = true)  String serverurl,@ApiParam(value = "filename", defaultValue="idaithalan.postman_collection.json") @Valid @RequestPart(value = "dataload", required = false)  String dataload,@ApiParam(value = "Execute test immediately. If false, only the property file will be updated (append).", defaultValue="true") @Valid @RequestPart(value = "execute", required = false)  String execute,@ApiParam(value = "Skip the respone validation in tests.", defaultValue="true") @Valid @RequestPart(value = "skipResponseValidation", required = false)  String skipResponseValidation,@ApiParam(value = "Type of data is POSTMAN, VIRTUALAN OR EXCEL.", allowableValues="POSTMAN, VIRTUALAN, EXCEL", defaultValue="POSTMAN") @Valid @RequestPart(value = "datatype", required = false)  String datatype) {
         logger.debug("Start POST /test");
@@ -92,7 +95,7 @@ public class TestApiController implements TestApi {
                     cucumblan.setTYPE(datatype);
                     cucumblan.addURL(null,serverurl);
                     cucumblan.setExecute(e);
-                    links = testServices.doTest();
+                    links = testServices.doInitialTest();
                     
                     if (links.getError() != null && links.getError().equals(FileManagement.NOERROR) == false) {
                         return new ResponseEntity<Report>(links,HttpStatus.INTERNAL_SERVER_ERROR);    
@@ -107,7 +110,28 @@ public class TestApiController implements TestApi {
             }
         }
         return new ResponseEntity<Report>(links,HttpStatus.CREATED);
+    }
+    
+    @Override
+    public ResponseEntity<Report> runtest(@ApiParam(value = "testid for that test",required=true) @PathVariable("testid") UUID testid) {
+    	logger.debug("Start PUT /test");
+        if (getRequest().isPresent() == false || testid == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    	Report reportLinks = null;
+        for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+            if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+            	
+        	  	cucumblan.init(testid);
+        	  	reportLinks = testServices.runTest(testid);
+            	
+            	break;
+            }
+        }
+        return new ResponseEntity<Report>(reportLinks, HttpStatus.CREATED);
 
     }
+    
+
 
 }

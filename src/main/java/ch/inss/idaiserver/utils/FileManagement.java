@@ -222,7 +222,7 @@ public class FileManagement {
     
 
     /** Read any file and give back the String content. */
-    private static String readToString(String file) throws FileNotFoundException, IOException {
+    public static String readToString(String file) throws FileNotFoundException, IOException {
         logger.debug("File path: " + file);
         BufferedReader br = new BufferedReader(new FileReader(file));
         StringBuilder sb = new StringBuilder();

@@ -39,23 +39,35 @@ public class Cucumblan {
         
     }
     
-    
     private static final Logger logger = LoggerFactory.getLogger(Cucumblan.class);
     
     public void init() {
         this.uuid = UUID.randomUUID();
-        this.execute = new Boolean(true);
+        this.iniAll();
+    }
+    public void init(UUID uuid) {
+    	this.uuid = uuid;
+    	this.iniAll();
+    }
+    
+    /**
+     * uuid must be set already.
+     */
+    private void iniAll() {
+    	if ( this.uuid == null ) {
+    		logger.error("Wrong initialization. UUID must be set.");
+    		return;
+    	}
+    	this.execute = new Boolean(true);
 //        this.overwrite = new Boolean(true);
-        this.folder = "results_" + this.uuid;
+        this.folder = this.uuid.toString();
         this.postmanCollections = new LinkedHashSet<String>();
         this.URL = new HashMap<String, String>();
         this.sessionNr = new Integer(0);
     }
     
     
-    
-    
-    public String getFolder() {
+	public String getFolder() {
         return folder;
     }
 
@@ -113,8 +125,6 @@ public class Cucumblan {
     public Boolean getSkipResponseValidation() {
 		return skipResponseValidation;
 	}
-
-
 
 
 	public void setSkipResponseValidation(Boolean skipResponseValidation) {

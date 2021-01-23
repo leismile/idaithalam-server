@@ -1,6 +1,7 @@
 package ch.inss.idaiserver.service;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -11,12 +12,15 @@ import java.net.URLClassLoader;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import ch.inss.idaiserver.model.Report;
 import ch.inss.idaiserver.utils.FileManagement;
@@ -39,11 +43,90 @@ public class TestService {
   
   private static final String FEATURE = "/feature/virtualan-contract.0.feature";
   private static final String REPORTOVERVIEW = "cucumber-html-reports/overview-features.html";
+  private static final String ALLTESTS = "alltests.json";
+  private static final String LASTTEST = "lasttest.json";
   
-  
+  /** Cucumblan service is initialized when calling this method (init()).
+ * @param testid
+ * @return
+ */
+public Report runTest(UUID testid) {
+	  	logger.debug("Running tests from folder: " + this.addSlash(this.storagePath) + cucumblan.getFolder());
+	  	
+	  	if ( cucumblan.getUuid() == null) {
+	  		logger.error("Object for cucumblan service not correctly initiazlized.");
+	  	}
+	  	
+	  	/* Paths for the results in the filesystem and URLs. */
+		final String reportFolder = this.storagePath + FileManagement.fs + cucumblan.getFolder() + FileManagement.fs;
+//		final String confFolder = reportFolder + FileManagement.fs + "conf" + FileManagement.fs;
+		final String skip = ".*=IGNORE";
+		final String skipProp = reportFolder + "exclude-response.properties";
+		final String reportURL = this.serverHost + "/" + cucumblan.getFolder();
+		final String lastSession = reportFolder + FileManagement.fs + LASTTEST;
+		
+	  	/* Initialize cucumblan service with last session. */
+	  	Report links = null;
+		try {
+			String json = FileManagement.readToString(lastSession);
+			links = PersistJSON.reportFromJSON(json);
+		  	links.setSessionNr((links.getSessionNr()+1));
+		  	
+			logger.debug("Cucumblan: " + FileManagement.fs + cucumblan.toString());
+			
+		    /* Initialize response. */
+		    links.setError(FileManagement.NOERROR);
+	//	    links.setCreationTime(FileManagement.whatTime());
+	//	    links.setSkipResponseValidation(cucumblan.getSkipResponseValidation()); TODO
+		    links.setSessionNr(cucumblan.getSessionNr());
+		    
+		    final String testId = cucumblan.getUuid().toString();
+		    links.setTestid(cucumblan.getUuid());
+		    
+		    long startTime = System.nanoTime();
+	    	links.setStartTime(FileManagement.whatTime());
+	    	
+	    	/* Here comes the actual man Maven test execution. 
+	    	 **/
+		    String result = this.mvnTest(cucumblan.getFolder());
+	    	
+	    	/* Calcuate execution time. */
+	    	long endTime = System.nanoTime();
+	    	long duration = (endTime - startTime);
+	    	Duration d = Duration.ofNanos(duration);
+	    	links.setDurationSeconds(Long.valueOf(d.getSeconds()).toString());
+	    	links.setEndTime(FileManagement.whatTime());
+	    	
+	    	/* Check test result. */
+	    	boolean isSuccess = Boolean.valueOf(result);
+	    	links.setSuccess(isSuccess);
+	    	if ( isSuccess == false && result.equalsIgnoreCase("false") == false) {
+	    		links.setError(result);
+	    		links.setTestExecuted(false);
+	    		links.setMessage("An internal error occured.");
+	    		return links;
+	    	}else {
+	    		links.setTestExecuted(true);
+	    	}
+	    
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			links.setError(e.getLocalizedMessage());
+			links.setMessage("An internal error occured.");
+			links.setTestExecuted(false);
+		}catch (IOException ioe) {
+			ioe.printStackTrace();
+			links.setError(ioe.getLocalizedMessage());
+			links.setMessage("An internal error occured.");
+			links.setTestExecuted(false);
+		}
+		
+		return links;
+  }
 
   /* Main method to do the actual Maven tests. */
-  public Report doTest()      {
+  public Report doInitialTest()      {
 	  
 	logger.debug("Store reports in folder: " + this.addSlash(this.storagePath) + cucumblan.getFolder());
 	logger.debug("Cucumblan: " + cucumblan.toString());
@@ -148,9 +231,9 @@ public class TestService {
 	    /* Persist test execution in JSON file. */
 	    List<Report> list = new ArrayList<Report>();
 	    list.add(links);
-	    PersistJSON.writeJSON(reportFolder + "lasttest.json", links);
-	    PersistJSON.writeArray(list, reportFolder + "alltests.json");
-	    links.setLinkToSessions(reportURL + "/alltests.json");
+	    PersistJSON.writeJSON(reportFolder + LASTTEST, links);
+	    PersistJSON.writeArray(list, reportFolder + ALLTESTS);
+	    links.setLinkToSessions(reportURL + "/" + ALLTESTS);
 	    
 	    /* Message */
 	    links.setMessage("Report created.");
@@ -171,6 +254,7 @@ public class TestService {
 	 * @return the result as String. "true" if success, "false" if test failed, or Exception message if an error occured.
 	 */
 	private String mvnTest(String reportFolder){
+		logger.debug("Starting Maven test in folder " + reportFolder);
 		int status = 0;
 		String result = null;
 		boolean isSuccess = false;

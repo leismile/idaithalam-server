@@ -5,7 +5,6 @@
  */
 package ch.inss.idaiserver.api;
 
-import ch.inss.idaiserver.model.HealthResponse;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,38 +23,32 @@ import java.util.Map;
 import java.util.Optional;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-23T13:14:27.767932+01:00[Europe/Zurich]")
 @Validated
-@Api(value = "health", description = "the health API")
-public interface HealthApi {
+@Api(value = "gherkin", description = "the gherkin API")
+public interface GherkinApi {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
     }
 
     /**
-     * GET /health : The health check of this service.
-     * The health check of this service.
+     * GET /gherkin/{testid} : Get the content of the generated Gherkin feature file.
+     * Get the content of the generated Gherkin feature file.
      *
-     * @return OK (status code 200)
-     *         or Server not available. (status code 503)
+     * @param testid testid for that Gherkin file. (required)
+     * @return Content of the generated Gherkin feature file. (status code 200)
+     *         or Internal server error. (status code 500)
+     *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "The health check of this service.", nickname = "health", notes = "The health check of this service.", response = HealthResponse.class, tags={ "health", })
+    @ApiOperation(value = "Get the content of the generated Gherkin feature file.", nickname = "getgherkin", notes = "Get the content of the generated Gherkin feature file.", response = String.class, tags={ "Results", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "OK", response = HealthResponse.class),
-        @ApiResponse(code = 503, message = "Server not available.") })
+        @ApiResponse(code = 200, message = "Content of the generated Gherkin feature file.", response = String.class),
+        @ApiResponse(code = 500, message = "Internal server error."),
+        @ApiResponse(code = 200, message = "unexpected error") })
     @GetMapping(
-        value = "/health",
-        produces = { "application/json" }
+        value = "/gherkin/{testid}",
+        produces = { "text/plain" }
     )
-    default ResponseEntity<HealthResponse> health() {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"status\" : \"UP\" }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
+    default ResponseEntity<String> getgherkin(@ApiParam(value = "testid for that Gherkin file.",required=true) @PathVariable("testid") String testid) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

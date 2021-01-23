@@ -5,7 +5,7 @@
  */
 package ch.inss.idaiserver.api;
 
-import ch.inss.idaiserver.model.HealthResponse;
+import ch.inss.idaiserver.model.Report;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,33 +24,36 @@ import java.util.Map;
 import java.util.Optional;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-23T13:14:27.767932+01:00[Europe/Zurich]")
 @Validated
-@Api(value = "health", description = "the health API")
-public interface HealthApi {
+@Api(value = "report", description = "the report API")
+public interface ReportApi {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
     }
 
     /**
-     * GET /health : The health check of this service.
-     * The health check of this service.
+     * GET /report/{testid} : Get the report for this uuid.
+     * Get the report of a previously executed test.
      *
-     * @return OK (status code 200)
-     *         or Server not available. (status code 503)
+     * @param testid testid for that test (required)
+     * @return Configuration of cucumblan.properties file. (status code 200)
+     *         or Internal server error. (status code 500)
+     *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "The health check of this service.", nickname = "health", notes = "The health check of this service.", response = HealthResponse.class, tags={ "health", })
+    @ApiOperation(value = "Get the report for this uuid.", nickname = "report", notes = "Get the report of a previously executed test.", response = Report.class, tags={ "Results", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "OK", response = HealthResponse.class),
-        @ApiResponse(code = 503, message = "Server not available.") })
+        @ApiResponse(code = 200, message = "Configuration of cucumblan.properties file.", response = Report.class),
+        @ApiResponse(code = 500, message = "Internal server error."),
+        @ApiResponse(code = 200, message = "unexpected error") })
     @GetMapping(
-        value = "/health",
+        value = "/report/{testid}",
         produces = { "application/json" }
     )
-    default ResponseEntity<HealthResponse> health() {
+    default ResponseEntity<Report> report(@ApiParam(value = "testid for that test",required=true) @PathVariable("testid") String testid) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"status\" : \"UP\" }";
+                    String exampleString = "{ \"linktofeature\" : \"http://localhost:8080/result.feature\", \"linktoreport\" : \"http://localhost:8080/result.html\", \"message\" : \"Test created.\", \"error\" : \"no error occured.\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
