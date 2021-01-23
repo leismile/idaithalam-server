@@ -27,7 +27,8 @@ import org.springframework.stereotype.Service;
 public class TestService {
 
   private static final Logger logger = LoggerFactory.getLogger(TestService.class);
-  private static final String FEATURE = "/feature/virtualan-contract.0.feature";
+  private static final String FEATUREX = "/feature/virtualan-contract.";     // 0.feature";
+  private static final String DOTFEATURE = ".feature";
   private static final String REPORTOVERVIEW = "cucumber-html-reports/overview-features.html";
   private static final String ALLTESTS = "alltests.json";
   private static final String LASTTEST = "lasttest.json";
@@ -83,6 +84,7 @@ public class TestService {
     final String skipProp = reportFolder + "exclude-response.properties";
     final String reportURL = this.serverHost + "/" + cucumblan.getFolder();
     final String lastSession = reportFolder + FileManagement.fs + LASTTEST;
+    final String allSessions = reportFolder +  ALLTESTS;
 
     /* Initialize cucumblan service with last session. */
     Report links = null;
@@ -127,7 +129,22 @@ public class TestService {
         return links;
       } else {
         links.setTestExecuted(true);
+        links.setMessage("Test executed.");
       }
+      
+    /* First get all previous sessions. Add current session. */
+	List<Report> list = PersistJSON.readReports(allSessions);
+    list.add(links);
+    logger.debug("There are " +  list.size() + " test sessions stored.");
+    
+    /* Persist test execution in JSON file. */
+    PersistJSON.writeJSON(reportFolder + LASTTEST, links);
+    String reportList = PersistJSON.writeArray(list, allSessions);
+    FileManagement.writeString(allSessions, reportList);
+    links.setLinkToSessions(reportURL + "/" + ALLTESTS);
+    
+    String target = reportURL + FEATUREX + links.getSessionNr().toString() + DOTFEATURE;
+    links.setLinkToTeature(target);
 
     } catch (JsonProcessingException e) {
       // TODO Auto-generated catch block
@@ -168,11 +185,15 @@ public class TestService {
     final String skip = ".*=IGNORE";
     final String skipProp = reportFolder + "exclude-response.properties";
     final String reportURL = this.serverHost + "/" + cucumblan.getFolder();
+    final String allSessions = reportFolder +  ALLTESTS;
 
     try {
 
 
       /* Take care of the folder where all the files and reports will be stored. */
+      if (!new File(reportFolder).exists()) {
+    	  new File(this.storagePath).mkdir();
+      }
       if (!new File(reportFolder).exists()) {
         new File(reportFolder).mkdir();
       }
@@ -233,9 +254,8 @@ public class TestService {
       }
 
       /* Copy generated feature file to the public folder. */
-      String target = reportURL + FEATURE;
-
-      links.setLinkToTeature(target);
+      String target = reportURL + FEATUREX + "0" + DOTFEATURE;
+	  links.setLinkToTeature(target);
 
       /* Copy the cucumber report folder and send back the link
        * to the main report html file: report-feature_1959214294.html.
@@ -247,15 +267,18 @@ public class TestService {
       links.setLinkToProperties(reportURL + "/" + FileManagement.PROPERTIES);
 
       /* Persist test execution in JSON file. */
-      List<Report> list = new ArrayList<Report>();
-      list.add(links);
-      PersistJSON.writeJSON(reportFolder + LASTTEST, links);
-      PersistJSON.writeArray(list, reportFolder + ALLTESTS);
-      links.setLinkToSessions(reportURL + "/" + ALLTESTS);
-
-      /* Message */
-      links.setMessage("Report created.");
-      links.setError(FileManagement.NOERROR);
+	    List<Report> list = new ArrayList<Report>();
+	    list.add(links);
+	    
+	    PersistJSON.writeJSON(reportFolder + LASTTEST, links);
+	    String array = PersistJSON.writeArray(list, allSessions);
+	    FileManagement.writeString(allSessions, array);
+	    
+	    links.setLinkToSessions(reportURL + "/" + ALLTESTS);
+	    
+	    /* Message */
+	    links.setMessage("Report created.");
+	    links.setError(FileManagement.NOERROR);
 
     } catch (Exception e) {
       links.setError(e.getLocalizedMessage());

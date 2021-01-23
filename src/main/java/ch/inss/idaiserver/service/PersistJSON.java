@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -85,7 +86,10 @@ public class PersistJSON {
 		    // convert `ArrayNode` to pretty-print JSON
 		    // 	without pretty-print, use `arrayNode.toString()` method
 	    	string = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(arrayNode);
-	    	objectMapper.writeValue(new File(filePath), string);
+//	    	logger.debug(string);
+//	    	logger.debug(arrayNode.toPrettyString());
+//	    	logger.debug(arrayNode.toString());
+//	    	objectMapper.writeValue(new File(filePath), string);
 		return string;
 	}
 	
@@ -108,4 +112,15 @@ public class PersistJSON {
 			map = objectMapper.readValue(json, new TypeReference<Map<String,Object>>(){});
 		return map;
 	}
+
+	public static List<Report> readReports(String filename) throws JsonParseException, JsonMappingException, IOException{
+		logger.debug("Reading into List<Report>: " + filename);
+		ObjectMapper objectMapper = new ObjectMapper();
+		List<Report> list = objectMapper.readValue(
+		        new File(filename), 
+		        new TypeReference<List<Report>>(){});
+		return list;
+		
+	}
+	
 }

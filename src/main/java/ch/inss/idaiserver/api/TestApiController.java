@@ -57,10 +57,10 @@ public class TestApiController implements TestApi {
         return utilService.getContent(testId, FEATURE);
     }
 
-    @Override
-    public ResponseEntity<String> getproperty( String testId) {
-        return utilService.getContent(testId, CUCUMBLAN);
-    }
+//    @Override
+//    public ResponseEntity<String> getproperty( String testId) {
+//        return utilService.getContent(testId, CUCUMBLAN);
+//    }
 
 
     /** POST for the main initial test with execution and creation of the uuid. */
