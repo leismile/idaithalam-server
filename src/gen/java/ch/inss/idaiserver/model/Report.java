@@ -13,13 +13,16 @@ import javax.validation.constraints.*;
 /**
  * Report
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-23T07:48:15.918062+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-23T10:08:12.383434+01:00[Europe/Zurich]")
 public class Report   {
   @JsonProperty("testid")
   private UUID testid;
 
   @JsonProperty("success")
   private Boolean success;
+
+  @JsonProperty("sessionNr")
+  private Integer sessionNr;
 
   @JsonProperty("testExecuted")
   private Boolean testExecuted;
@@ -93,6 +96,26 @@ public class Report   {
 
   public void setSuccess(Boolean success) {
     this.success = success;
+  }
+
+  public Report sessionNr(Integer sessionNr) {
+    this.sessionNr = sessionNr;
+    return this;
+  }
+
+  /**
+   * Get sessionNr
+   * @return sessionNr
+  */
+  @ApiModelProperty(value = "")
+
+
+  public Integer getSessionNr() {
+    return sessionNr;
+  }
+
+  public void setSessionNr(Integer sessionNr) {
+    this.sessionNr = sessionNr;
   }
 
   public Report testExecuted(Boolean testExecuted) {
@@ -327,6 +350,7 @@ public class Report   {
     Report report = (Report) o;
     return Objects.equals(this.testid, report.testid) &&
         Objects.equals(this.success, report.success) &&
+        Objects.equals(this.sessionNr, report.sessionNr) &&
         Objects.equals(this.testExecuted, report.testExecuted) &&
         Objects.equals(this.skipResponseValidation, report.skipResponseValidation) &&
         Objects.equals(this.creationTime, report.creationTime) &&
@@ -342,7 +366,7 @@ public class Report   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(testid, success, testExecuted, skipResponseValidation, creationTime, startTime, endTime, durationSeconds, linkToTeature, linkToReport, linkToProperties, message, error);
+    return Objects.hash(testid, success, sessionNr, testExecuted, skipResponseValidation, creationTime, startTime, endTime, durationSeconds, linkToTeature, linkToReport, linkToProperties, message, error);
   }
 
   @Override
@@ -352,6 +376,7 @@ public class Report   {
     
     sb.append("    testid: ").append(toIndentedString(testid)).append("\n");
     sb.append("    success: ").append(toIndentedString(success)).append("\n");
+    sb.append("    sessionNr: ").append(toIndentedString(sessionNr)).append("\n");
     sb.append("    testExecuted: ").append(toIndentedString(testExecuted)).append("\n");
     sb.append("    skipResponseValidation: ").append(toIndentedString(skipResponseValidation)).append("\n");
     sb.append("    creationTime: ").append(toIndentedString(creationTime)).append("\n");

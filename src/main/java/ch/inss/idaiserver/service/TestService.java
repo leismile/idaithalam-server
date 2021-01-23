@@ -9,6 +9,8 @@ import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,8 +37,8 @@ public class TestService {
   
   @Autowired private Cucumblan cucumblan;
   
-  private static final String FEATURE = "virtualan-contract.feature";
-  private static final String REPORTS = "cucumber-html-reports/";
+  private static final String FEATURE = "/feature/virtualan-contract.0.feature";
+  private static final String REPORTOVERVIEW = "cucumber-html-reports/overview-features.html";
   
   
 
@@ -46,24 +48,26 @@ public class TestService {
 	logger.debug("Store reports in folder: " + this.addSlash(this.storagePath) + cucumblan.getFolder());
 	logger.debug("Cucumblan: " + cucumblan.toString());
 	Report links = new Report();
+	
+    /* Initialize response. */
+    links.setError(FileManagement.NOERROR);
+    links.setCreationTime(FileManagement.whatTime());
+    links.setSkipResponseValidation(cucumblan.getSkipResponseValidation());
+    links.setSessionNr(cucumblan.getSessionNr());
+    
+    final String testId = cucumblan.getUuid().toString();
+    links.setTestid(cucumblan.getUuid());
+    
+    /* Paths for the results in the filesystem and URLs. */
+	final String reportFolder = this.storagePath + FileManagement.fs + cucumblan.getFolder() + FileManagement.fs;
+//	final String confFolder = reportFolder + FileManagement.fs + "conf" + FileManagement.fs;
+	final String skip = ".*=IGNORE";
+	final String skipProp = reportFolder + "exclude-response.properties";
+	final String reportURL = this.serverHost + "/" + cucumblan.getFolder();
+	
 	try {
+
 		
-	    /* Initialize response. */
-	    links.setError(FileManagement.NOERROR);
-	    links.setCreationTime(FileManagement.whatTime());
-	    links.setSkipResponseValidation(cucumblan.getSkipResponseValidation());
-	    
-	    final String testId = cucumblan.getUuid().toString();
-	    links.setTestid(cucumblan.getUuid());
-	    
-	    /* Paths for the results in the filesystem and URLs. */
-		final String reportFolder = this.storagePath + FileManagement.fs + cucumblan.getFolder() + FileManagement.fs;
-//		final String confFolder = reportFolder + FileManagement.fs + "conf" + FileManagement.fs;
-		final String skip = ".*=IGNORE";
-		final String skipProp = reportFolder + "exclude-response.properties";
-		final String reportURL = this.serverHost + "/" + cucumblan.getFolder();
-		
-		    
 	    /* Take care of the folder where all the files and reports will be stored. */
 	    if (!new File(reportFolder).exists()) {
 	      new File(reportFolder).mkdir();
@@ -74,6 +78,7 @@ public class TestService {
 	      links.setError("Cannot create folder " + reportFolder);
 	      return links;
 	    }
+	    
 	    /* Generate the cucumblan.properties and some other files.*/
 	    boolean isSaved =  FileManagement.saveCucumblan(reportFolder, cucumblan.toString());
 	    String postmanFile = reportFolder + cucumblan.getUploadFilename();
@@ -112,7 +117,6 @@ public class TestService {
 	    		links.setTestExecuted(true);
 	    	}
 	      
-	      
 		 } else {
 		      /* Message */
 		      links.setLinkToTeature("Not generated");
@@ -127,7 +131,7 @@ public class TestService {
 	
 	    /* Copy generated feature file to the public folder. */
 	//    String target = "http://35.193.57.60/"+testId + "/feature/virtualan-contract.0.feature";
-	    String target = reportURL + "/feature/virtualan-contract.0.feature";
+	    String target = reportURL + FEATURE;
 	    
 	    links.setLinkToTeature(target);
 	
@@ -135,11 +139,18 @@ public class TestService {
 	     * to the main report html file: report-feature_1959214294.html.
 	     * */
 	//    String linkReport = "http://35.193.57.60/"+testId + "/cucumber-html-reports/overview-features.html";
-	    String linkReport = reportURL + "/cucumber-html-reports/overview-features.html";
+	    String linkReport = reportURL + REPORTOVERVIEW;
 	    logger.info("Generated report html file: " + linkReport);
 	    links.setLinkToReport(linkReport);
 	    
 	    links.setLinkToProperties(reportURL + "/" + FileManagement.PROPERTIES);
+	    
+	    /* Persist test execution in JSON file. */
+	    List<Report> list = new ArrayList<Report>();
+	    list.add(links);
+	    PersistJSON.writeJSON(reportFolder + "lasttest.json", links);
+	    PersistJSON.writeArray(list, reportFolder + "alltests.json");
+	    
 	    
 	    /* Message */
 	    links.setMessage("Report created.");

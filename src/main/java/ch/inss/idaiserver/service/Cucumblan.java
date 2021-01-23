@@ -19,6 +19,7 @@ public class Cucumblan {
     private InputStream inputStream;
     private String folder;
     private String uploadFilename;
+    private Integer sessionNr;
     private Boolean execute;
     private Boolean skipResponseValidation;
     private UUID uuid;
@@ -48,6 +49,7 @@ public class Cucumblan {
         this.folder = "results_" + this.uuid;
         this.postmanCollections = new LinkedHashSet<String>();
         this.URL = new HashMap<String, String>();
+        this.sessionNr = new Integer(0);
     }
     
     
@@ -69,7 +71,21 @@ public class Cucumblan {
         return uuid;
     }
 
-    public InputStream getInputStream() {
+    public Integer getSessionNr() {
+		return sessionNr;
+	}
+
+
+
+
+	public void setSessionNr(Integer sessionNr) {
+		this.sessionNr = sessionNr;
+	}
+
+
+
+
+	public InputStream getInputStream() {
         return inputStream;
     }
 
@@ -199,6 +215,7 @@ public class Cucumblan {
 	   reportLinks.setError(FileManagement.NOERROR);
        reportLinks.setCreationTime(FileManagement.whatTime());
        reportLinks.setTestid( this.uuid );
+       reportLinks.setSessionNr(this.sessionNr);
        return reportLinks;
     }
 

@@ -429,6 +429,9 @@ components:
                 format: uuid
               success:
                 type: boolean
+              sessionNr:
+                type: integer
+                format: int32
               testExecuted:
                 type: boolean
               skipResponseValidation:
