@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -57,10 +58,16 @@ public class TestApiController implements TestApi {
         return utilService.getContent(testId, FEATURE);
     }
 
-//    @Override
-//    public ResponseEntity<String> getproperty( String testId) {
-//        return utilService.getContent(testId, CUCUMBLAN);
-//    }
+    @Override
+    public ResponseEntity<String> getConfProperty( String testId) {
+        return utilService.getContent(testId, CUCUMBLAN);
+    }
+
+
+    @Override
+    public ResponseEntity<String> updateConf(String testId,Conf conf) {
+        return utilService.updateCucumblan(testId, conf);
+    }
 
 
     /** POST for the main initial test with execution and creation of the uuid. */

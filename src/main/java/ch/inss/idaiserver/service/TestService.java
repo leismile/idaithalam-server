@@ -103,7 +103,7 @@ public class TestService {
       cucumblan.setSessionNr(links.getSessionNr());
 
       final String testId = cucumblan.getUuid().toString();
-      links.setTestid(cucumblan.getUuid());
+      links.setTestId(cucumblan.getUuid());
 
       long startTime = System.nanoTime();
       links.setStartTime(FileManagement.whatTime());
@@ -144,7 +144,7 @@ public class TestService {
     links.setLinkToSessions(reportURL + "/" + ALLTESTS);
     
     String target = reportURL + FEATUREX + links.getSessionNr().toString() + DOTFEATURE;
-    links.setLinkToTeature(target);
+    links.setLinkToFeature(target);
 
     } catch (JsonProcessingException e) {
       // TODO Auto-generated catch block
@@ -177,7 +177,7 @@ public class TestService {
     links.setSessionNr(cucumblan.getSessionNr());
 
     final String testId = cucumblan.getUuid().toString();
-    links.setTestid(cucumblan.getUuid());
+    links.setTestId(cucumblan.getUuid());
 
     /* Paths for the results in the filesystem and URLs. */
     final String reportFolder =
@@ -243,7 +243,7 @@ public class TestService {
 
       } else {
         /* Message */
-        links.setLinkToTeature("Not generated");
+        links.setLinkToFeature("Not generated");
         links.setLinkToReport("Not generated.");
         links.setTestExecuted(false);
         links.setMessage("Property file updated, no test executed (execute=false).");
@@ -255,7 +255,7 @@ public class TestService {
 
       /* Copy generated feature file to the public folder. */
       String target = reportURL + FEATUREX + "0" + DOTFEATURE;
-	  links.setLinkToTeature(target);
+	  links.setLinkToFeature(target);
 
       /* Copy the cucumber report folder and send back the link
        * to the main report html file: report-feature_1959214294.html.

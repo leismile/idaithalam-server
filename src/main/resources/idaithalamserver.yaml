@@ -11,296 +11,274 @@ info:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
 servers:
-  - description: Dev server
-    url: http://5.22.250.180:8080
+  - url: 'http://5.22.250.180:8080'
+    description: Dev server
   - url: 'http://localhost:8080'
     description: Localhost
-tags:
-  - description: Run a test against an API and generate the Cucumber report and a Gherkin file.
-    name: API test execution
-  - description: Test results and reports of the test sessions
-    name: Results
-  - description: Configuration of the test sessions in the cucumblan.properties file.
-    name: Configuration
-  - description: Health of the server.
-    name: health
 paths:
   /test:
     post:
-      summary: Create and run the test with the uploaded Postman collection.
-      description: Create a new test and run against an API. Generates the Cucumber report and a Gherkin file.
-      operationId: testrun
-      tags:
-        - API test execution
       requestBody:
         content:
           multipart/form-data:
             schema:
-              type: object
               required:
                 - filestream
                 - serverurl
+              type: object
               properties:
                 filestream:
-                  type: string
                   format: binary
+                  type: string
                 serverurl:
-                  description: The server url to be tested.
-                  type: string
                   format: url
-                  example: http://localhost:8080
-                  default: http://localhost:8080
+                  description: The server url to be tested.
+                  default: 'http://localhost:8080'
+                  type: string
+                  example: 'http://localhost:8080'
                 dataload:
-                  description: filename
-                  type: string
                   format: filepath
-                  example: idaithalan.postman_collection.json
+                  description: filename
                   default: idaithalan.postman_collection.json
+                  type: string
+                  example: idaithalan.postman_collection.json
                 execute:
-                  description: Execute test immediately. If false, only the property file will be updated (append).
-                  type: string
                   format: stringboolean
-                  example: true
+                  description: 'Execute test immediately. If false, only the property file will be updated (append).'
                   default: true
+                  type: string
+                  example: true
                 skipResponseValidation:
-                  description: Skip the respone validation in tests.
-                  type: string
                   format: stringboolean
-                  example: true
+                  description: Skip the respone validation in tests.
                   default: true
-                datatype:
-                  description: Type of data is POSTMAN, VIRTUALAN OR EXCEL.
                   type: string
-                  example: POSTMAN
+                  example: true
+                datatype:
+                  description: 'Type of data is POSTMAN, VIRTUALAN OR EXCEL.'
                   default: POSTMAN
                   enum:
                     - POSTMAN
                     - VIRTUALAN
                     - EXCEL
-
+                  type: string
+                  example: POSTMAN
+      tags:
+        - API test execution
       responses:
         '201':
-          description: Test created.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Report"
+                $ref: '#/components/schemas/Report'
+          description: Test created.
         '400':
           description: Bad request.
         '418':
           description: I am a teapot.
         default:
           description: unexpected error
-  /test/{testid}:
-    put:
-      summary: Run test.
-      description: Run test
-      operationId: runtest
+      operationId: testrun
+      summary: Create and run the test with the uploaded Postman collection.
+      description: Create a new test and run against an API. Generates the Cucumber report and a Gherkin file.
+  '/test/{testid}':
+    get:
       tags:
         - API test execution
       parameters:
-        - description: testid for that test
-          name: testid
-          in: path
+        - name: testid
+          description: testid for that test
           schema:
+            format: testid
             type: string
-            format: uuid
+          in: path
           required: true
       responses:
-        '201':
-          description: Gives back the entire cucumblan.properties file and generated testid.
+        '200':
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Report"
-
-    get:
+                $ref: '#/components/schemas/Test'
+          description: Configuration of cucumblan.properties file.
+        '404':
+          description: Test not found.
+        '500':
+          description: Internal server error.
+        default:
+          description: unexpected error
+      operationId: getreport
       summary: Get the test result links as in PUT.
       description: Get the test result links as in PUT.
-      operationId: getreport
+    put:
       tags:
         - API test execution
       parameters:
-        - description: testid for that test
-          name: testid
+        - name: testid
+          description: testid for that test
+          schema:
+            format: uuid
+            type: string
           in: path
-          schema:
-            type: string
-            format: testid
           required: true
-      responses:
-        '200':
-          description: Configuration of cucumblan.properties file.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Test"
-        '404':
-          description: Test not found.
-        '500':
-          description: Internal server error.
-        default:
-          description: unexpected error
-
-
-  /test/{testid}/conf:
-    get:
-      summary: Get the test configuration content from the cucumblan.properties.
-      description: Get the content of the configured cucumblan.properties.
-      operationId: getproperty
-      tags:
-        - Configuration
-      parameters:
-        - description: testid for that test
-          name: testid
-          in: path
-          schema:
-            type: string
-            format: testid
-          required: true
-      responses:
-        '200':
-          description: Configuration of cucumblan.properties file.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Test"
-        '404':
-          description: Test not found.
-        '500':
-          description: Internal server error.
-        default:
-          description: unexpected error
-
-    delete:
-      summary: Remove the entire test configuration.
-      description: Remove the test.
-      operationId: removetest
-      tags:
-        - Configuration
-      parameters:
-        - description: testid for that test
-          name: testid
-          in: path
-          schema:
-            type: string
-            format: testid
-          required: true
-      responses:
-        '204':
-          description: Test deleted.
-    put:
-      summary: Update the configuration.
-      description: Update the configuration.
-      operationId: addserver
-      tags:
-        - Configuration
-      parameters:
-        - description: testid for that serverurl
-          in: path
-          name: testid
-          schema:
-            type: string
-            format: testid
-          required: true
-        - description: Serverurl to add to the test configuration.
-          name: serverurl
-          in: query
-          schema:
-            type: string
-            format: url
-            example: http://localhost:8081/employee
-          required: true
-
       responses:
         '201':
-          description: Gives back the entire test configuration as a cucumblan.properties file.
-          content:
-            text/plain:
-              schema:
-                type: string
-                format: properties
-
-        '400':
-          description: Bad request.
-        default:
-          description: unexpected error
-
-
-  /test/{testid}/report:
-    get:
-      summary: Get the report for this uuid.
-      description: Get the report of a previously executed test.
-      operationId: report
-      tags:
-        - Results
-      parameters:
-        - description: testid for that test
-          name: testid
-          in: path
-          schema:
-            type: string
-            format: testid
-          required: true
-      responses:
-        '200':
-          description: Configuration of cucumblan.properties file.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Report'
-        '500':
-          description: Internal server error.
-        default:
-          description: unexpected error
-
-
-  /test/{testid}/feature:
+          description: Gives back the entire cucumblan.properties file and generated testid.
+      operationId: runtest
+      summary: Run test.
+      description: Run test
+  '/test/{testid}/report':
     get:
-      summary: Get the content of the generated Gherkin feature file.
-      description: Get the content of the generated Gherkin feature file.
-      operationId: getgherkin
       tags:
         - Results
       parameters:
-        - description: testid for that Gherkin file.
-          name: testid
-          in: path
+        - name: testid
+          description: testid for that test
           schema:
-            type: string
             format: testid
+            type: string
+          in: path
           required: true
       responses:
         '200':
-          description: Content of the generated Gherkin feature file.
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                format: Gherkin
+                $ref: '#/components/schemas/Report'
+          description: Configuration of cucumblan.properties file.
         '500':
           description: Internal server error.
         default:
           description: unexpected error
-
+      operationId: report
+      summary: Get the report for this uuid.
+      description: Get the report of a previously executed test.
+  '/test/{testid}/feature':
+    get:
+      tags:
+        - Results
+      parameters:
+        - name: testid
+          description: testid for that Gherkin file.
+          schema:
+            format: testid
+            type: string
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            text/plain:
+              schema:
+                format: Gherkin
+                type: string
+          description: Content of the generated Gherkin feature file.
+        '500':
+          description: Internal server error.
+        default:
+          description: unexpected error
+      operationId: getgherkin
+      summary: Get the content of the generated Gherkin feature file.
+      description: Get the content of the generated Gherkin feature file.
   /health:
     get:
       tags:
         - health
-      summary: The health check of this service.
-      description: The health check of this service.
-      operationId: health
       responses:
-        "200":
-          description: OK
+        '200':
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/HealthResponse"
+                $ref: '#/components/schemas/HealthResponse'
               example:
-                status: "UP"
-        "503":
+                status: UP
+          description: OK
+        '503':
           description: Server not available.
+      operationId: health
+      summary: The health check of this service.
+      description: The health check of this service.
+  '/test/{testId}/conf':
+    get:
+      tags:
+        - Configuration
+      parameters:
+        - name: testId
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            text/plain:
+              schema:
+                format: properties
+                type: string
+          description: Configuration of cucumblan.properties file.
+        '404':
+          description: Test not found.
+        '500':
+          description: Internal server error.
+        default:
+          description: unexpected error
+      operationId: getConfProperty
+      summary: Get the test configuration content from the cucumblan.properties.
+      description: Get the content of the configured cucumblan.properties.
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Conf'
+        required: true
+      tags:
+        - Configuration
+      parameters:
+        - name: testId
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '201':
+          content:
+            text/plain:
+              schema:
+                format: properties
+                type: string
+          description: Gives back the entire test configuration as a cucumblan.properties file.
+        '400':
+          description: Bad request.
+        default:
+          description: unexpected error
+      operationId: updateConf
+      summary: Update the configuration.
+      description: Update the configuration.
+    delete:
+      tags:
+        - Configuration
+      parameters:
+        - name: testId
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '204':
+          description: Test deleted.
+      operationId: removetest
+      summary: Remove the entire test configuration.
+      description: Remove the test.
+    parameters:
+      - name: testId
+        schema:
+          type: string
+        in: path
+        required: true
 components:
   schemas:
     Test:
@@ -309,29 +287,29 @@ components:
       type: object
       properties:
         testid:
-          type: string
           format: uuid
+          type: string
         creationtime:
-          type: string
           format: datetime
+          type: string
         lastexecution:
-          type: string
           format: datetime
+          type: string
         load:
+          format: filename
           type: array
           items:
             type: string
-          format: filename
         serviceapi:
           type: array
           items:
-            $ref: "#/components/schemas/Serviceapi"
+            $ref: '#/components/schemas/Serviceapi'
         type:
-          type: string
           enum:
             - POSTMAN
             - VIRTUALAN
             - EXCEL
+          type: string
         message:
           type: string
         error:
@@ -347,71 +325,93 @@ components:
       type: object
       properties:
         resource:
-          type: string
           format: resouce
+          type: string
           example: pet
         url:
-          type: string
           format: url
-          example: http://localhost.8080
-
-    Report:
-      title: Root Type for every testreport.
-      description: ''
-      type: object
-      properties:
-        testid:
           type: string
-          format: uuid
-        success:
-          type: boolean
-        sessionNr:
-          type: integer
-          format: int32
-        testExecuted:
-          type: boolean
-        skipResponseValidation:
-          type: boolean
-        creationTime:
-          type: string
-          format: datetime
-        startTime:
-          type: string
-          format: datetime
-        endTime:
-          type: string
-          format: datetime
-        durationSeconds:
-          type: string
-          format: time
-        linkToTeature:
-          type: string
-          format: url
-        linkToReport:
-          type: string
-          format: url
-        linkToProperties:
-          type: string
-          format: url
-        linkToSessions:
-          type: string
-          format: url
-        message:
-          type: string
-        error:
-          type: string
-      example:
-        linktofeature: 'http://localhost:8080/result.feature'
-        linktoreport: 'http://localhost:8080/result.html'
-        message: Test created.
-        error: no error occured.
+          example: 'http://localhost.8080'
     HealthResponse:
-      type: object
       required:
         - status
+      type: object
       properties:
         status:
-          type: string
           enum:
             - UP
             - ERROR
+          type: string
+    Report:
+      description: ''
+      type: object
+      properties:
+        testId:
+          description: ''
+          type: string
+          format: uuid
+        success:
+          description: ''
+          type: boolean
+        sessionNr:
+          format: int32
+          description: ''
+          type: integer
+        testExecuted:
+          description: ''
+          type: boolean
+        skipResponseValidation:
+          description: ''
+          type: boolean
+        creationTime:
+          format: datetime
+          description: ''
+          type: string
+        startTime:
+          format: datetime
+          description: ''
+          type: string
+        endTime:
+          format: datetime
+          description: ''
+          type: string
+        durationSeconds:
+          format: time
+          description: ''
+          type: string
+        linkToFeature:
+          description: ''
+          type: string
+        linkToReport:
+          description: ''
+          type: string
+        linkToProperties:
+          description: ''
+          type: string
+        linkToSessions:
+          description: ''
+          type: string
+        message:
+          description: ''
+          type: string
+        error:
+          description: ''
+          type: string
+    Conf:
+      description: ''
+      type: object
+      properties:
+        serverUrl:
+          description: ''
+          type: array
+          items:
+            type: string
+tags:
+  - name: API test execution
+    description: Run a test against an API and generate the Cucumber report and a Gherkin file.
+  - name: Results
+    description: Test results and reports of the test sessions
+  - name: Configuration
+    description: Configuration of the test sessions in the cucumblan.properties file.
+  - name: health
+    description: Health of the server.

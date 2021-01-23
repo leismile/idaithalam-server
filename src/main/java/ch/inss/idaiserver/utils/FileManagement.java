@@ -64,32 +64,32 @@ public class FileManagement {
     public static boolean saveCucumblan( String  confFolder, String content) {
         boolean ok = false;
         try {
-        /* Create cucumblan.properties from mustache template. */  
+        /* Create cucumblan.properties from mustache template. */
 //        MustacheFactory mf = new DefaultMustacheFactory();
 //        Mustache m = mf.compile("cucumblan.mustache");
 //        StringWriter writer = new StringWriter();
 //        m.execute(writer, cucumblan).flush();
-        
+
 //        String props = writer.toString();
 //        logger.info("props: " + props);
-        
+
 //        writeString(content, path);
-        
-       
-        
+
+
+
         /* Write new properties file. */
         writeString( confFolder + fs + PROPERTIES, content);
-        
+
         /* Write postman collection. */
         //writeFilestream(path +"/"+cucumblan.getFILE(), cucumblan.getInputStream());
-        ok = true; 
+        ok = true;
         }catch(IOException ioe) {
             logger.error("Could not save " + PROPERTIES + " to folder  " + confFolder);
             return false;
         }
         return ok;
         //IOUtils.closeQuietly(initialStream);
-      
+
   }
     /* Read existing file if no overwrite is set. */
     public static List<String> readLines(String path){
@@ -126,14 +126,14 @@ public class FileManagement {
           
              initialStream.close();
     }
-    
+
     /** Add a line to the cucumblan.properties file. */
-    public static String addLine(String value, String resource) {
+    public static String addLine(String path, String value, String resource) {
         String content;
         String key = "service.api" + "." + resource;
         Properties prop;
         try {
-            prop = readCucumblanPropertiesFile();
+            prop = readCucumblanPropertiesFile(path);
             prop.put(key, value);
             writeProperty(prop, "adding line for " + resource);
 //            content = line + lf + readToString(PROPERTIES);
@@ -186,15 +186,14 @@ public class FileManagement {
     
     
     /**
-     * @param fileName
      * @return
      * @throws IOException
      */
-    public static Properties readCucumblanPropertiesFile() {
+    public static Properties readCucumblanPropertiesFile(String path) {
         FileInputStream fis = null;
         Properties prop = null;
         try {
-           fis = new FileInputStream(PROPERTIES);
+           fis = new FileInputStream(path +fs+ PROPERTIES);
            prop = new Properties();
            prop.load(fis);
         } catch(FileNotFoundException fnfe) {
@@ -322,10 +321,10 @@ public class FileManagement {
      * @param fileStream
      * @return
      */
-    public static boolean addCollection(@Valid MultipartFile fileStream) {
+    public static boolean addCollection(String path, @Valid MultipartFile fileStream) {
         try {
             writeFilestream(fileStream.getName(), fileStream.getInputStream());
-            Properties prop = readCucumblanPropertiesFile();
+            Properties prop = readCucumblanPropertiesFile(path);
             String value = prop.getProperty("virtualan.data.load");
             String file = fileStream.getName();
             if ( file == null || file.equals("")) {
@@ -346,7 +345,7 @@ public class FileManagement {
      * @param resource
      * @return
      */
-    public static boolean removeServer(String resource) {
+    public static boolean removeServer(String path, String resource) {
         String key = null;
         
         try {
@@ -354,7 +353,7 @@ public class FileManagement {
             key = "service.api" + "." + resource;
             logger.debug("Removing " + key);
             Properties prop;
-            prop = readCucumblanPropertiesFile();
+            prop = readCucumblanPropertiesFile(path);
             prop.remove(key);
             writeProperty(prop, "removing " + key);
         }catch(IOException ioe) {
