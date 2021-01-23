@@ -100,7 +100,7 @@ public class TestService {
       links.setError(FileManagement.NOERROR);
       //	    links.setCreationTime(FileManagement.whatTime());
       //	    links.setSkipResponseValidation(cucumblan.getSkipResponseValidation()); TODO
-      links.setSessionNr(cucumblan.getSessionNr());
+      cucumblan.setSessionNr(links.getSessionNr());
 
       final String testId = cucumblan.getUuid().toString();
       links.setTestid(cucumblan.getUuid());
