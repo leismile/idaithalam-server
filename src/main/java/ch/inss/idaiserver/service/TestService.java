@@ -46,7 +46,7 @@ public class TestService {
   private static final String ALLTESTS = "alltests.json";
   private static final String LASTTEST = "lasttest.json";
   
-  /** Cucumblan service is initialized when calling this method (init()).
+  /** /test PUT Cucumblan service is initialized when calling this method (init()).
  * @param testid
  * @return
  */
@@ -73,6 +73,7 @@ public Report runTest(UUID testid) {
 		  	links.setSessionNr((links.getSessionNr()+1));
 		  	
 			logger.debug("Cucumblan: " + FileManagement.fs + cucumblan.toString());
+			logger.debug("Report from last session: " + FileManagement.fs + links.toString());
 			
 		    /* Initialize response. */
 		    links.setError(FileManagement.NOERROR);
@@ -88,7 +89,7 @@ public Report runTest(UUID testid) {
 	    	
 	    	/* Here comes the actual man Maven test execution. 
 	    	 **/
-		    String result = this.mvnTest(cucumblan.getFolder());
+		    String result = this.mvnTest(reportFolder);
 	    	
 	    	/* Calcuate execution time. */
 	    	long endTime = System.nanoTime();

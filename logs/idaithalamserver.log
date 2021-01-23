@@ -1965,3 +1965,222 @@ virtualan.data.type = null
 2021-01-23 15:46:56,111 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Maven execution Execption raised: Provide appropriate input data? : provide appropriate virtualan.data.type for the input data?
 2021-01-23 15:47:27,268 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(10)-127.0.0.1] Application shutdown requested.
 2021-01-23 15:47:27,294 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(10)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-23 15:51:38,563 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 22536 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-23 15:51:38,584 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-23 15:51:38,585 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-01-23 15:51:38,890 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 22562 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-23 15:51:38,899 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-23 15:51:38,901 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-01-23 15:51:40,713 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-23 15:51:40,725 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-23 15:51:40,726 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-23 15:51:40,726 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-23 15:51:40,846 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-23 15:51:40,849 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1792 ms
+2021-01-23 15:51:40,873 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-23 15:51:40,888 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-23 15:51:40,890 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-23 15:51:40,890 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-23 15:51:41,054 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-23 15:51:41,055 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1787 ms
+2021-01-23 15:51:41,473 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-23 15:51:41,666 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-23 15:51:41,826 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-23 15:51:41,867 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-23 15:51:41,886 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 4.154 seconds (JVM running for 5.216)
+2021-01-23 15:51:42,081 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-23 15:51:42,095 WARN org.springframework.context.support.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat server
+2021-01-23 15:51:42,098 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-23 15:51:42,103 INFO org.apache.juli.logging.DirectJDKLog [main] Pausing ProtocolHandler ["http-nio-8080"]
+2021-01-23 15:51:42,104 INFO org.apache.juli.logging.DirectJDKLog [main] Stopping service [Tomcat]
+2021-01-23 15:51:42,112 INFO org.apache.juli.logging.DirectJDKLog [main] Stopping ProtocolHandler ["http-nio-8080"]
+2021-01-23 15:51:42,113 INFO org.apache.juli.logging.DirectJDKLog [main] Destroying ProtocolHandler ["http-nio-8080"]
+2021-01-23 15:51:42,122 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [main] 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-01-23 15:51:42,137 ERROR org.springframework.boot.SpringApplication [main] Application run failed
+org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat server
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:185)
+	at org.springframework.context.support.DefaultLifecycleProcessor.access$200(DefaultLifecycleProcessor.java:53)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:360)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:158)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:122)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:895)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:554)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:758)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:750)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at ch.inss.idaiserver.OpenAPI2SpringBoot.main(OpenAPI2SpringBoot.java:27)
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat server
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:229)
+	at org.springframework.boot.web.servlet.context.WebServerStartStopLifecycle.start(WebServerStartStopLifecycle.java:43)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:182)
+	... 12 common frames omitted
+Caused by: java.lang.IllegalArgumentException: standardService.connector.startFailed
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:231)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:282)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:213)
+	... 14 common frames omitted
+Caused by: org.apache.catalina.LifecycleException: Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1067)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:227)
+	... 16 common frames omitted
+Caused by: java.net.BindException: Die Adresse wird bereits verwendet
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Net.java:444)
+	at sun.nio.ch.Net.bind(Net.java:436)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:225)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.apache.tomcat.util.net.NioEndpoint.initServerSocket(NioEndpoint.java:228)
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:211)
+	at org.apache.tomcat.util.net.AbstractEndpoint.bindWithCleanup(AbstractEndpoint.java:1141)
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1227)
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:592)
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1064)
+	... 18 common frames omitted
+2021-01-23 15:51:56,023 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 22707 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-23 15:51:56,029 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-23 15:51:56,031 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-01-23 15:51:57,597 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-23 15:51:57,607 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-23 15:51:57,608 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-23 15:51:57,609 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-23 15:51:57,713 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-23 15:51:57,713 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1352 ms
+2021-01-23 15:51:58,288 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-23 15:51:58,516 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-23 15:51:58,541 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-23 15:51:58,557 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 3.075 seconds (JVM running for 3.982)
+2021-01-23 15:52:05,119 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-23 15:52:05,119 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2021-01-23 15:52:05,130 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 10 ms
+2021-01-23 15:52:05,165 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-1] Start PUT /test
+2021-01-23 15:52:05,166 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-1] Running tests from folder: ./reports/df690f65-9a3b-44da-8f66-c35e96e9004b
+2021-01-23 15:52:05,167 DEBUG ch.inss.idaiserver.utils.FileManagement [http-nio-8080-exec-1] File path: ./reports/df690f65-9a3b-44da-8f66-c35e96e9004b//lasttest.json
+2021-01-23 15:52:05,168 INFO ch.inss.idaiserver.utils.FileManagement [http-nio-8080-exec-1] LINE: {"testid":"df690f65-9a3b-44da-8f66-c35e96e9004b","success":false,"sessionNr":0,"testExecuted":true,"skipResponseValidation":true,"creationTime":"2021-01-23 at 15:35:20 MEZ","startTime":"2021-01-23 at 15:35:20 MEZ","endTime":"2021-01-23 at 15:35:22 CET","durationSeconds":"2","linkToTeature":"https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004b/feature/virtualan-contract.0.feature","linkToReport":"https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004bcucumber-html-reports/overview-features.html","linkToProperties":"https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004b/cucumblan.properties","linkToSessions":null,"message":null,"error":""}
+2021-01-23 15:52:05,168 DEBUG ch.inss.idaiserver.service.PersistJSON [http-nio-8080-exec-1] Going to read JSON from file {"testid":"df690f65-9a3b-44da-8f66-c35e96e9004b","success":false,"sessionNr":0,"testExecuted":true,"skipResponseValidation":true,"creationTime":"2021-01-23 at 15:35:20 MEZ","startTime":"2021-01-23 at 15:35:20 MEZ","endTime":"2021-01-23 at 15:35:22 CET","durationSeconds":"2","linkToTeature":"https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004b/feature/virtualan-contract.0.feature","linkToReport":"https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004bcucumber-html-reports/overview-features.html","linkToProperties":"https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004b/cucumblan.properties","linkToSessions":null,"message":null,"error":""}
+
+2021-01-23 15:52:05,246 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-1] Cucumblan: /#Generated 2021-01-23 at 15:52:05 MEZ
+virtualan.data.load = 
+virtualan.data.type = null
+
+2021-01-23 15:52:05,247 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-1] Report from last session: /class Report {
+    testid: df690f65-9a3b-44da-8f66-c35e96e9004b
+    success: false
+    sessionNr: 1
+    testExecuted: true
+    skipResponseValidation: true
+    creationTime: 2021-01-23 at 15:35:20 MEZ
+    startTime: 2021-01-23 at 15:35:20 MEZ
+    endTime: 2021-01-23 at 15:35:22 CET
+    durationSeconds: 2
+    linkToTeature: https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004b/feature/virtualan-contract.0.feature
+    linkToReport: https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004bcucumber-html-reports/overview-features.html
+    linkToProperties: https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004b/cucumblan.properties
+    linkToSessions: null
+    message: null
+    error: 
+}
+2021-01-23 15:52:46,617 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-1] Starting Maven test in folder df690f65-9a3b-44da-8f66-c35e96e9004b
+2021-01-23 15:52:46,761 ERROR io.virtualan.idaithalam.core.contract.validator.FeatureFileGenerator [http-nio-8080-exec-1] provide appropriate virtualan.data.type for the input data?
+2021-01-23 15:52:46,778 ERROR io.virtualan.idaithalam.contract.IdaithalamExecutor [http-nio-8080-exec-1] Provide appropriate input data? : provide appropriate virtualan.data.type for the input data?
+2021-01-23 15:52:46,784 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-1] Maven execution Execption raised: Provide appropriate input data? : provide appropriate virtualan.data.type for the input data?
+2021-01-23 15:52:58,251 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 22888 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-23 15:52:58,257 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-23 15:52:58,266 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-01-23 15:52:59,828 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-23 15:52:59,843 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-23 15:52:59,844 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-23 15:52:59,844 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-23 15:52:59,932 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-23 15:52:59,932 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1389 ms
+2021-01-23 15:53:00,405 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-23 15:53:00,630 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-23 15:53:00,656 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-23 15:53:00,672 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 3.051 seconds (JVM running for 4.016)
+2021-01-23 15:53:03,959 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-23 15:53:03,959 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2021-01-23 15:53:03,968 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 9 ms
+2021-01-23 15:53:03,999 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-1] Start PUT /test
+2021-01-23 15:53:04,000 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-1] Running tests from folder: ./reports/df690f65-9a3b-44da-8f66-c35e96e9004b
+2021-01-23 15:53:04,001 DEBUG ch.inss.idaiserver.utils.FileManagement [http-nio-8080-exec-1] File path: ./reports/df690f65-9a3b-44da-8f66-c35e96e9004b//lasttest.json
+2021-01-23 15:53:04,001 INFO ch.inss.idaiserver.utils.FileManagement [http-nio-8080-exec-1] LINE: {"testid":"df690f65-9a3b-44da-8f66-c35e96e9004b","success":false,"sessionNr":0,"testExecuted":true,"skipResponseValidation":true,"creationTime":"2021-01-23 at 15:35:20 MEZ","startTime":"2021-01-23 at 15:35:20 MEZ","endTime":"2021-01-23 at 15:35:22 CET","durationSeconds":"2","linkToTeature":"https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004b/feature/virtualan-contract.0.feature","linkToReport":"https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004bcucumber-html-reports/overview-features.html","linkToProperties":"https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004b/cucumblan.properties","linkToSessions":null,"message":null,"error":""}
+2021-01-23 15:53:04,002 DEBUG ch.inss.idaiserver.service.PersistJSON [http-nio-8080-exec-1] Going to read JSON from file {"testid":"df690f65-9a3b-44da-8f66-c35e96e9004b","success":false,"sessionNr":0,"testExecuted":true,"skipResponseValidation":true,"creationTime":"2021-01-23 at 15:35:20 MEZ","startTime":"2021-01-23 at 15:35:20 MEZ","endTime":"2021-01-23 at 15:35:22 CET","durationSeconds":"2","linkToTeature":"https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004b/feature/virtualan-contract.0.feature","linkToReport":"https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004bcucumber-html-reports/overview-features.html","linkToProperties":"https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004b/cucumblan.properties","linkToSessions":null,"message":null,"error":""}
+
+2021-01-23 15:53:04,073 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-1] Cucumblan: /#Generated 2021-01-23 at 15:53:04 MEZ
+virtualan.data.load = 
+virtualan.data.type = null
+
+2021-01-23 15:53:04,073 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-1] Report from last session: /class Report {
+    testid: df690f65-9a3b-44da-8f66-c35e96e9004b
+    success: false
+    sessionNr: 1
+    testExecuted: true
+    skipResponseValidation: true
+    creationTime: 2021-01-23 at 15:35:20 MEZ
+    startTime: 2021-01-23 at 15:35:20 MEZ
+    endTime: 2021-01-23 at 15:35:22 CET
+    durationSeconds: 2
+    linkToTeature: https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004b/feature/virtualan-contract.0.feature
+    linkToReport: https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004bcucumber-html-reports/overview-features.html
+    linkToProperties: https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004b/cucumblan.properties
+    linkToSessions: null
+    message: null
+    error: 
+}
+2021-01-23 15:53:22,693 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-1] Starting Maven test in folder df690f65-9a3b-44da-8f66-c35e96e9004b
+2021-01-23 15:56:13,128 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 23142 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-23 15:56:13,131 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-23 15:56:13,132 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-01-23 15:56:14,440 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-23 15:56:14,452 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-23 15:56:14,454 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-23 15:56:14,455 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-23 15:56:14,531 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-23 15:56:14,531 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1129 ms
+2021-01-23 15:56:14,914 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-23 15:56:15,126 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-23 15:56:15,201 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-23 15:56:15,211 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 2.492 seconds (JVM running for 3.017)
+2021-01-23 15:56:18,299 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-23 15:56:18,300 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2021-01-23 15:56:18,310 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 9 ms
+2021-01-23 15:56:18,340 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start PUT /test
+2021-01-23 15:56:18,341 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Running tests from folder: ./reports/df690f65-9a3b-44da-8f66-c35e96e9004b
+2021-01-23 15:56:18,342 DEBUG ch.inss.idaiserver.utils.FileManagement [http-nio-8080-exec-2] File path: ./reports/df690f65-9a3b-44da-8f66-c35e96e9004b//lasttest.json
+2021-01-23 15:56:18,342 INFO ch.inss.idaiserver.utils.FileManagement [http-nio-8080-exec-2] LINE: {"testid":"df690f65-9a3b-44da-8f66-c35e96e9004b","success":false,"sessionNr":0,"testExecuted":true,"skipResponseValidation":true,"creationTime":"2021-01-23 at 15:35:20 MEZ","startTime":"2021-01-23 at 15:35:20 MEZ","endTime":"2021-01-23 at 15:35:22 CET","durationSeconds":"2","linkToTeature":"https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004b/feature/virtualan-contract.0.feature","linkToReport":"https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004bcucumber-html-reports/overview-features.html","linkToProperties":"https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004b/cucumblan.properties","linkToSessions":null,"message":null,"error":""}
+2021-01-23 15:56:18,343 DEBUG ch.inss.idaiserver.service.PersistJSON [http-nio-8080-exec-2] Going to read JSON from file {"testid":"df690f65-9a3b-44da-8f66-c35e96e9004b","success":false,"sessionNr":0,"testExecuted":true,"skipResponseValidation":true,"creationTime":"2021-01-23 at 15:35:20 MEZ","startTime":"2021-01-23 at 15:35:20 MEZ","endTime":"2021-01-23 at 15:35:22 CET","durationSeconds":"2","linkToTeature":"https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004b/feature/virtualan-contract.0.feature","linkToReport":"https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004bcucumber-html-reports/overview-features.html","linkToProperties":"https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004b/cucumblan.properties","linkToSessions":null,"message":null,"error":""}
+
+2021-01-23 15:56:18,413 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Cucumblan: /#Generated 2021-01-23 at 15:56:18 MEZ
+virtualan.data.load = 
+virtualan.data.type = null
+
+2021-01-23 15:56:18,414 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Report from last session: /class Report {
+    testid: df690f65-9a3b-44da-8f66-c35e96e9004b
+    success: false
+    sessionNr: 1
+    testExecuted: true
+    skipResponseValidation: true
+    creationTime: 2021-01-23 at 15:35:20 MEZ
+    startTime: 2021-01-23 at 15:35:20 MEZ
+    endTime: 2021-01-23 at 15:35:22 CET
+    durationSeconds: 2
+    linkToTeature: https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004b/feature/virtualan-contract.0.feature
+    linkToReport: https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004bcucumber-html-reports/overview-features.html
+    linkToProperties: https://localhost:8080/df690f65-9a3b-44da-8f66-c35e96e9004b/cucumblan.properties
+    linkToSessions: null
+    message: null
+    error: 
+}
+2021-01-23 15:56:18,414 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Starting Maven test in folder ./reports/df690f65-9a3b-44da-8f66-c35e96e9004b/
+2021-01-23 15:56:18,437 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /sample
+2021-01-23 15:56:18,438 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /sample/validate/:sampleId
+2021-01-23 15:56:18,439 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /sample/validate/:sampleId
+2021-01-23 15:56:19,150 WARN io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] cucumblan-env.properties is not configured. Need to add if default data loaded
+2021-01-23 15:56:20,301 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-23 15:56:20,302 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {"timestamp":"2021-01-23T14:56:20.296+00:00","status":404,"error":"Not Found","message":"","path":"/sample/validate/%3AsampleId"}
+2021-01-23 15:56:20,506 INFO net.masterthought.cucumber.ReportParser [http-nio-8080-exec-2] File './reports/df690f65-9a3b-44da-8f66-c35e96e9004b//cucumber.json' contains 1 features
+2021-01-23 15:56:20,883 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Execution status: 1
