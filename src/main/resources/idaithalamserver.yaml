@@ -1,29 +1,29 @@
 openapi: 3.0.2
 info:
-    title: idaithalamserver
-    version: 1.1.4
-    description: Idaithalam Server
-    contact:
-        name: Oliver Glas
-        url: 'http://inss.ch'
-        email: oliver.glas@inss.ch
-    license:
-        name: Apache 2.0
-        url: 'https://www.apache.org/licenses/LICENSE-2.0'
+  title: idaithalamserver
+  version: 1.1.5
+  description: Idaithalam Server
+  contact:
+    name: Oliver Glas
+    url: 'http://inss.ch'
+    email: oliver.glas@inss.ch
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0'
 servers:
-- description: Dev server
-  url: http://5.22.250.180:8080
-- url: 'http://localhost:8080'
-  description: Localhost
+  - description: Dev server
+    url: http://5.22.250.180:8080
+  - url: 'http://localhost:8080'
+    description: Localhost
 tags:
-- description: Run a test against an API and generate the Cucumber report and a Gherkin file.
-  name: API test execution
-- description: Test results and reports of the test sessions
-  name: Results
-- description: Configuration of the test sessions in the cucumblan.properties file.
-  name: Configuration
-- description: Health of the server.
-  name: health
+  - description: Run a test against an API and generate the Cucumber report and a Gherkin file.
+    name: API test execution
+  - description: Test results and reports of the test sessions
+    name: Results
+  - description: Configuration of the test sessions in the cucumblan.properties file.
+    name: Configuration
+  - description: Health of the server.
+    name: health
 paths:
   /test:
     post:
@@ -38,8 +38,8 @@ paths:
             schema:
               type: object
               required:
-              - filestream
-              - serverurl
+                - filestream
+                - serverurl
               properties:
                 filestream:
                   type: string
@@ -74,9 +74,9 @@ paths:
                   example: POSTMAN
                   default: POSTMAN
                   enum:
-                  - POSTMAN
-                  - VIRTUALAN
-                  - EXCEL
+                    - POSTMAN
+                    - VIRTUALAN
+                    - EXCEL
 
       responses:
         '201':
@@ -97,15 +97,15 @@ paths:
       description: Run test
       operationId: runtest
       tags:
-      - API test execution
+        - API test execution
       parameters:
-      - description: testid for that test
-        name: testid
-        in: path
-        schema:
-          type: string
-          format: uuid
-        required: true
+        - description: testid for that test
+          name: testid
+          in: path
+          schema:
+            type: string
+            format: uuid
+          required: true
       responses:
         '201':
           description: Gives back the entire cucumblan.properties file and generated testid.
@@ -113,69 +113,135 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Report"
-                
-  /conf/{testid}:
+
     get:
-      summary: Get the test configuration content from the cucumblan.properties.  
-      description: Get the content of the configured cucumblan.properties.  
-      operationId: getproperty
+      summary: Get the test result links as in PUT.
+      description: Get the test result links as in PUT.
+      operationId: getreport
       tags:
-      - Configuration
+        - API test execution
       parameters:
-      - description: testid for that test
-        name: testid
-        in: path
-        schema:
-          type: string
-          format: testid
-        required: true
+        - description: testid for that test
+          name: testid
+          in: path
+          schema:
+            type: string
+            format: testid
+          required: true
       responses:
         '200':
           description: Configuration of cucumblan.properties file.
           content:
             application/json:
-              schema: 
+              schema:
                 $ref: "#/components/schemas/Test"
         '404':
           description: Test not found.
         '500':
           description: Internal server error.
         default:
-          description: unexpected error   
-   
+          description: unexpected error
+
+
+  /test/{testid}/conf:
+    get:
+      summary: Get the test configuration content from the cucumblan.properties.
+      description: Get the content of the configured cucumblan.properties.
+      operationId: getproperty
+      tags:
+        - Configuration
+      parameters:
+        - description: testid for that test
+          name: testid
+          in: path
+          schema:
+            type: string
+            format: testid
+          required: true
+      responses:
+        '200':
+          description: Configuration of cucumblan.properties file.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Test"
+        '404':
+          description: Test not found.
+        '500':
+          description: Internal server error.
+        default:
+          description: unexpected error
+
     delete:
       summary: Remove the entire test configuration.
       description: Remove the test.
       operationId: removetest
       tags:
-      - Configuration
+        - Configuration
       parameters:
-      - description: testid for that test
-        name: testid
-        in: path
-        schema:
-          type: string
-          format: testid
-        required: true
+        - description: testid for that test
+          name: testid
+          in: path
+          schema:
+            type: string
+            format: testid
+          required: true
       responses:
         '204':
           description: Test deleted.
+    put:
+      summary: Update the configuration.
+      description: Update the configuration.
+      operationId: addserver
+      tags:
+        - Configuration
+      parameters:
+        - description: testid for that serverurl
+          in: path
+          name: testid
+          schema:
+            type: string
+            format: testid
+          required: true
+        - description: Serverurl to add to the test configuration.
+          name: serverurl
+          in: query
+          schema:
+            type: string
+            format: url
+            example: http://localhost:8081/employee
+          required: true
 
-  /report/{testid}:
+      responses:
+        '201':
+          description: Gives back the entire test configuration as a cucumblan.properties file.
+          content:
+            text/plain:
+              schema:
+                type: string
+                format: properties
+
+        '400':
+          description: Bad request.
+        default:
+          description: unexpected error
+
+
+  /test/{testid}/report:
     get:
-      summary: Get the report for this uuid. 
+      summary: Get the report for this uuid.
       description: Get the report of a previously executed test.
       operationId: report
       tags:
-      - Results
+        - Results
       parameters:
-      - description: testid for that test
-        name: testid
-        in: path
-        schema:
-          type: string
-          format: testid
-        required: true
+        - description: testid for that test
+          name: testid
+          in: path
+          schema:
+            type: string
+            format: testid
+          required: true
       responses:
         '200':
           description: Configuration of cucumblan.properties file.
@@ -186,170 +252,36 @@ paths:
         '500':
           description: Internal server error.
         default:
-          description: unexpected error 
-          
-          
-  /gherkin/{testid}:
+          description: unexpected error
+
+
+  /test/{testid}/feature:
     get:
-      summary: Get the content of the generated Gherkin feature file.  
-      description: Get the content of the generated Gherkin feature file.    
+      summary: Get the content of the generated Gherkin feature file.
+      description: Get the content of the generated Gherkin feature file.
       operationId: getgherkin
       tags:
-      - Results
+        - Results
       parameters:
-      - description: testid for that Gherkin file.
-        name: testid
-        in: path
-        schema:
-          type: string
-          format: testid
-        required: true
+        - description: testid for that Gherkin file.
+          name: testid
+          in: path
+          schema:
+            type: string
+            format: testid
+          required: true
       responses:
         '200':
           description: Content of the generated Gherkin feature file.
           content:
             text/plain:
-              schema: 
+              schema:
                 type: string
                 format: Gherkin
         '500':
           description: Internal server error.
         default:
-          description: unexpected error      
-  /conf/server/{testid}:
-    put:
-      summary: Add a server url to the configuration.
-      description: Add a server url to the configuration. That is added as additional URL.
-      operationId: addserver
-      tags:
-      - Configuration
-      parameters:
-      - description: testid for that serverurl
-        in: path
-        name: testid
-        schema:
-          type: string
-          format: testid
-        required: true
-      - description: Serverurl to add to the test configuration.
-        name: serverurl
-        in: query
-        schema:
-          type: string
-          format: url
-          example: http://localhost:8081/employee
-        required: true
-
-      responses:
-        '201':
-          description: Gives back the entire test configuration as a cucumblan.properties file.
-          content:
-            text/plain:
-              schema: 
-                type: string
-                format: properties
-          
-        '400':
-          description: Bad request.
-        default:
           description: unexpected error
-    delete:
-      summary: Remove a server url from the test configuration.
-      description: Remove a server url from the configuration.
-      operationId: removeserver
-      tags:
-      - Configuration
-      parameters:
-      - description: testid for that serverurl
-        in: path
-        name: testid
-        schema:
-          type: string
-          format: testid
-        required: true
-      - description: Resource of serverurl to be removed from the configuration.
-        name: resource
-        in: query
-        schema:
-          type: string
-          format: url
-          example: http://localhost:8081/employee
-        required: true
-      responses:
-        '204': 
-          description: Serverurl removed
-        '400':
-          description: Bad request.
-        '404':
-          description: Serverurl not found.
-        default:
-          description: unexpected error
-      
-  /conf/collection/{testid}:
-    put:
-      summary: Add a Postman collection to the configuration.
-      description: Add a Postman collection to the configuration. All added Postman collections will be executed as one test.
-      operationId: addcollection
-      tags:
-        - Configuration
-      parameters:
-      - description: testid for that collection
-        in: path
-        name: testid
-        schema:
-          type: string
-          format: testid
-        required: true
-      requestBody:
-        description: Upload of the Postman collection to add it to the test.
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                fileStream:
-                  type: string
-                  format: binary
-      responses:
-        '201':
-          description: Configuration updated.
-        '400':
-          description: Bad request.
-        default:
-          description: unexpected error
-          
-    delete:
-      summary: Remove a Postman collection from the configuration.
-      description: Remove a Postman collection from the configuration.
-      operationId: removecollection
-      tags:
-      - Configuration
-      parameters:
-      - description: testid for that serverurl
-        in: path
-        name: testid
-        schema:
-          type: string
-          format: testid
-        required: true
-      - description: Resource of serverurl to be removed from the configuration.
-        name: resource
-        in: query
-        schema:
-          type: string
-          format: url
-          example: http://localhost:8081/employee
-        required: true
-      responses:
-        '204': 
-          description: Serverurl removed
-        '400':
-          description: Bad request.
-        '404':
-          description: Serverurl not found.
-        default:
-          description: unexpected error
-          
 
   /health:
     get:
@@ -368,123 +300,118 @@ paths:
               example:
                 status: "UP"
         "503":
-          description: Server not available.       
+          description: Server not available.
 components:
-    schemas:
-      Test:
-        title: Root Type for every test.
-        description: 'virtualan.data.load=sample.postman_collection.json  virtualan.data.type=POSTMAN service.api.next=http://localhost:8081'
-        type: object
-        properties:
-          testid:
+  schemas:
+    Test:
+      title: Root Type for every test.
+      description: 'virtualan.data.load=sample.postman_collection.json  virtualan.data.type=POSTMAN service.api.next=http://localhost:8081'
+      type: object
+      properties:
+        testid:
+          type: string
+          format: uuid
+        creationtime:
+          type: string
+          format: datetime
+        lastexecution:
+          type: string
+          format: datetime
+        load:
+          type: array
+          items:
             type: string
-            format: uuid
-          creationtime:
-            type: string
-            format: datetime
-          lastexecution:
-            type: string
-            format: datetime
-          load:
-            type: array
-            items:
-              type: string
-            format: filename
-          serviceapi:
-            type: array
-            items:
-              $ref: "#/components/schemas/Serviceapi"
-          type:
-            type: string
-            enum:
+          format: filename
+        serviceapi:
+          type: array
+          items:
+            $ref: "#/components/schemas/Serviceapi"
+        type:
+          type: string
+          enum:
             - POSTMAN
             - VIRTUALAN
             - EXCEL
-          message:
-            type: string
-          error:
-            type: string
-        example:
-          linktofeature: 'http://localhost:8080/result.feature'
-          linktoreport: 'http://localhost:8080/result.html'
-          message: Test created.
-          error: no error occured.
-      Serviceapi:
-        title: The single service.api object.
-        description: service.api
-        type: object
-        properties:
-          resource:
-            type: string
-            format: resouce
-            example: pet
-          url:
-            type: string
-            format: url
-            example: http://localhost.8080
+        message:
+          type: string
+        error:
+          type: string
+      example:
+        linktofeature: 'http://localhost:8080/result.feature'
+        linktoreport: 'http://localhost:8080/result.html'
+        message: Test created.
+        error: no error occured.
+    Serviceapi:
+      title: The single service.api object.
+      description: service.api
+      type: object
+      properties:
+        resource:
+          type: string
+          format: resouce
+          example: pet
+        url:
+          type: string
+          format: url
+          example: http://localhost.8080
 
-      Report:
-          title: Root Type for every testreport.
-          description: ''
-          type: object
-          properties:
-              testid:
-                type: string
-                format: uuid
-              success:
-                type: boolean
-              sessionNr:
-                type: integer
-                format: int32
-              testExecuted:
-                type: boolean
-              skipResponseValidation:
-                type: boolean
-              creationTime:
-                type: string
-                format: datetime
-              startTime:
-                type: string
-                format: datetime
-              endTime:
-                type: string
-                format: datetime
-              durationSeconds:
-                type: string
-                format: time
-              linkToTeature:
-                type: string
-                format: url
-              linkToReport:
-                type: string
-                format: url
-              linkToProperties:
-                type: string
-                format: url
-              linkToSessions:
-                type: string
-                format: url
-              message:
-                type: string
-              error:
-                type: string
-          example:
-              linktofeature: 'http://localhost:8080/result.feature'
-              linktoreport: 'http://localhost:8080/result.html'
-              message: Test created.
-              error: no error occured.
-      HealthResponse:
-        type: object
-        required:
-          - status
-        properties:
-          status:
-            type: string
-            enum:
-              - UP
-              - ERROR
-            
-              
-
-
-
+    Report:
+      title: Root Type for every testreport.
+      description: ''
+      type: object
+      properties:
+        testid:
+          type: string
+          format: uuid
+        success:
+          type: boolean
+        sessionNr:
+          type: integer
+          format: int32
+        testExecuted:
+          type: boolean
+        skipResponseValidation:
+          type: boolean
+        creationTime:
+          type: string
+          format: datetime
+        startTime:
+          type: string
+          format: datetime
+        endTime:
+          type: string
+          format: datetime
+        durationSeconds:
+          type: string
+          format: time
+        linkToTeature:
+          type: string
+          format: url
+        linkToReport:
+          type: string
+          format: url
+        linkToProperties:
+          type: string
+          format: url
+        linkToSessions:
+          type: string
+          format: url
+        message:
+          type: string
+        error:
+          type: string
+      example:
+        linktofeature: 'http://localhost:8080/result.feature'
+        linktoreport: 'http://localhost:8080/result.html'
+        message: Test created.
+        error: no error occured.
+    HealthResponse:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          enum:
+            - UP
+            - ERROR

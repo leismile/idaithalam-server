@@ -59,7 +59,6 @@ public class Cucumblan {
     		return;
     	}
     	this.execute = new Boolean(true);
-//        this.overwrite = new Boolean(true);
         this.folder = this.uuid.toString();
         this.postmanCollections = new LinkedHashSet<String>();
         this.URL = new HashMap<String, String>();
@@ -154,8 +153,6 @@ public class Cucumblan {
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer("#Generated " + FileManagement.whatTime());
-//        final String dataload = "virtualan.data.load";
-//        final String datatype = "virtualan.data.type";
         sb.append(FileManagement.lf);
         for ( String key : this.URL.keySet()) {
             sb.append(key).append(" = ").append(this.URL.get(key)).append(FileManagement.lf);    
@@ -171,7 +168,6 @@ public class Cucumblan {
     }
     
     /**
-     * @param prpüertyCpmtemt
      * @return
      * 
      * Read the property file.
@@ -180,10 +176,7 @@ public class Cucumblan {
      * virtualan.data.type=POSTMAN
      */
     public void fromProperty() {
-    	
-    	
-//        StringBuffer sb = new StringBuffer("#Generated " + FileManagement.whatTime());
-        
+
         Properties p = FileManagement.readCucumblanPropertiesFile();
         
         /* POSTMAN, VIRTUALAN or EXCEL. */
@@ -222,7 +215,7 @@ public class Cucumblan {
 
     public Report reportFactory() {
     	Report reportLinks = new Report();
-	   reportLinks.setError(FileManagement.NOERROR);
+	    reportLinks.setError(FileManagement.NOERROR);
        reportLinks.setCreationTime(FileManagement.whatTime());
        reportLinks.setTestid( this.uuid );
        reportLinks.setSessionNr(this.sessionNr);
