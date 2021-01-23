@@ -75,7 +75,7 @@ public class TestApiController implements TestApi {
                     }
 
 //                    Cucumblan cucumblan = new Cucumblan();
-                    
+                    cucumblan.init();
                     cucumblan.addFILE(dataload);
                     
                     try {
@@ -86,7 +86,7 @@ public class TestApiController implements TestApi {
                     cucumblan.setTYPE(datatype);
                     cucumblan.addURL(null,serverurl);
                     cucumblan.setExecute(e);
-                    links = testServices.doTests(cucumblan);
+                    links = testServices.doTests();
                     
                     if (links.getError() != null && links.getError().equals(FileManagement.NOERROR) == false) {
                         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);    
@@ -94,6 +94,7 @@ public class TestApiController implements TestApi {
                 }catch(Exception e) {
                     Report error = new Report();
                     error.setError(e.getLocalizedMessage());
+                    return new ResponseEntity<Report>(error,HttpStatus.INTERNAL_SERVER_ERROR);
                 }
                 
                 break;

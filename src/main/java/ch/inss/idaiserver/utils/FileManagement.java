@@ -13,14 +13,14 @@ import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Properties;
+import java.util.*;
 import java.util.stream.Stream;
 
 import javax.validation.Valid;
@@ -29,6 +29,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.github.mustachejava.DefaultMustacheFactory;
@@ -37,60 +38,74 @@ import com.github.mustachejava.MustacheFactory;
 
 import ch.inss.idaiserver.service.Cucumblan;
 
+
 public class FileManagement {
-    
+	
     private static final Logger logger = LoggerFactory.getLogger(FileManagement.class);
     public static final String lf = System.getProperty("line.separator");
-//    private static final String fs = FileSystems.getDefault().getSeparator();
+    public static final String fs = FileSystems.getDefault().getSeparator();
     
     private static final String PROPERTIES="src/test/resources/cucumblan.properties";
     private static final String FEATURE="conf/virtualan-contract.feature";
     
     public final static String NOERROR = "";
 
-    public static boolean save( String path, Cucumblan cuc) {
+    public static boolean save( String path, String content) {
         boolean ok = false;
         try {
         /* Create cucumblan.properties from mustache template. */  
-        MustacheFactory mf = new DefaultMustacheFactory();
-        Mustache m = mf.compile("cucumblan.mustache");
-        StringWriter writer = new StringWriter();
-        m.execute(writer, cuc).flush();
-        String props = writer.toString();
-        logger.info("props: " + props);
+//        MustacheFactory mf = new DefaultMustacheFactory();
+//        Mustache m = mf.compile("cucumblan.mustache");
+//        StringWriter writer = new StringWriter();
+//        m.execute(writer, cucumblan).flush();
         
-        /* Read existing file if no overwrite is set. */
-        if ( cuc.getOverwrite() == false ) {
-            BufferedReader in = new BufferedReader(new FileReader(path));
-            StringBuilder sb = new StringBuilder();
-            while(in.readLine() != null) {
-                sb.append(in.readLine()).append(lf);
-            }
-
-            String content = sb.toString();
-            in.close();
-            props = content + lf + props;
-        }
+//        String props = writer.toString();
+//        logger.info("props: " + props);
+        
+//        writeString(content, path);
+        
+       
         
         /* Write new properties file. */
-        writeString(props, path+"/cucumblan.properties");
+        writeString(content, path+"/cucumblan.properties");
         
         /* Write postman collection. */
-        writeFilestream(path +"/"+cuc.getFILE(), cuc.getInputStream());
+        //writeFilestream(path +"/"+cucumblan.getFILE(), cucumblan.getInputStream());
         ok = true; 
         }catch(IOException ioe) {
-            logger.error("Could not save file: " + cuc.getFILE(),ioe);
+            logger.error("Could not save file: " + path,ioe);
             
-        }finally {
-            try{cuc.getInputStream().close();}catch(Exception e) {};
         }
         return ok;
         //IOUtils.closeQuietly(initialStream);
       
   }
+    /* Read existing file if no overwrite is set. */
+    public static List<String> readLines(String path){
+    	List<String> lines = new ArrayList<String>();
+    	BufferedReader in;
+    	try {
+         in = new BufferedReader(new FileReader(path));
+//        StringBuilder sb = new StringBuilder();
+        
+			while(in.readLine() != null) {
+				lines.add(in.readLine());
+//            sb.append(in.readLine()).append(lf);
+			}
+			in.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			logger.error("Could not read file: " + path);
+			return null;
+		}
+//        String content = sb.toString();
+        
+//        props = content + lf + props;
+        return lines;
+     }
 
     /* Write files like postman collection. */
-    private static void writeFilestream(String filename, InputStream in) throws IOException {
+    public static void writeFilestream(String filename, InputStream in) throws IOException {
           File targetFile = new File("src/test/resources/" + filename);
           InputStream initialStream = in;
           java.nio.file.Files.copy(
@@ -107,7 +122,7 @@ public class FileManagement {
         String key = "service.api" + "." + resource;
         Properties prop;
         try {
-            prop = readPropertiesFile(PROPERTIES);
+            prop = readCucumblanPropertiesFile();
             prop.put(key, value);
             writeProperty(prop, "adding line for " + resource);
 //            content = line + lf + readToString(PROPERTIES);
@@ -155,11 +170,20 @@ public class FileManagement {
         
     }
     
-    private static Properties readPropertiesFile(String fileName) throws IOException {
+    
+
+    
+    
+    /**
+     * @param fileName
+     * @return
+     * @throws IOException
+     */
+    public static Properties readCucumblanPropertiesFile() {
         FileInputStream fis = null;
         Properties prop = null;
         try {
-           fis = new FileInputStream(fileName);
+           fis = new FileInputStream(PROPERTIES);
            prop = new Properties();
            prop.load(fis);
         } catch(FileNotFoundException fnfe) {
@@ -167,11 +191,16 @@ public class FileManagement {
         } catch(IOException ioe) {
            ioe.printStackTrace();
         } finally {
-           fis.close();
+           try{fis.close();}catch(Exception e) {}
         }
         return prop;
      }
 
+    /**
+     * @param content
+     * @param filename
+     * @throws IOException
+     */
     private static void writeString(String content, String filename) throws IOException {
         /* Put String into writer. */
           BufferedWriter bwriter = new BufferedWriter(new FileWriter(filename));
@@ -267,7 +296,7 @@ public class FileManagement {
     public static boolean addCollection(@Valid MultipartFile fileStream) {
         try {
             writeFilestream(fileStream.getName(), fileStream.getInputStream());
-            Properties prop = readPropertiesFile(PROPERTIES);
+            Properties prop = readCucumblanPropertiesFile();
             String value = prop.getProperty("virtualan.data.load");
             String file = fileStream.getName();
             if ( file == null || file.equals("")) {
@@ -292,7 +321,7 @@ public class FileManagement {
             key = "service.api" + "." + resource;
             logger.debug("Removing " + key);
             Properties prop;
-            prop = readPropertiesFile(PROPERTIES);
+            prop = readCucumblanPropertiesFile();
             prop.remove(key);
             writeProperty(prop, "removing " + key);
         }catch(IOException ioe) {

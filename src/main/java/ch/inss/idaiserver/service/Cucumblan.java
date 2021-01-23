@@ -1,12 +1,7 @@
 package ch.inss.idaiserver.service;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +25,11 @@ public class Cucumblan {
     /** Store keys as key=service.api. 
      * Add resourcees with key=service.api.nextresource. */
     private HashMap<String, String> URL;
-    private List<String> FILE;
+    private List<String> postmanCollections;
+    
+    private static final String dataload = "virtualan.data.load";
+    private static final String datatype = "virtualan.data.type";
+    private static final String serviceapi = "service.api";
 
     public Cucumblan() {
 
@@ -45,7 +44,7 @@ public class Cucumblan {
         this.execute = new Boolean(true);
         this.overwrite = new Boolean(true);
         this.folder = "results_" + this.uuid;
-        this.FILE = new ArrayList<String>();
+        this.postmanCollections = new ArrayList<String>();
         this.URL = new HashMap<String, String>();
     }
     
@@ -107,20 +106,20 @@ public class Cucumblan {
     /** Add a postman collection file name for the property virtualan.data.load. */
     public void addFILE(String dataload) {
         if (dataload == null) return;
-        this.FILE.add(dataload);
+        this.postmanCollections.add(dataload);
     }
     
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer("#Generated " + FileManagement.whatTime());
-        final String dataload = "virtualan.data.load";
-        final String datatype = "virtualan.data.type";
+//        final String dataload = "virtualan.data.load";
+//        final String datatype = "virtualan.data.type";
         sb.append(FileManagement.lf);
         for ( String key : this.URL.keySet()) {
             sb.append(key).append(" = ").append(this.URL.get(key)).append(FileManagement.lf);    
         }
         sb.append(dataload).append(" = ");
-        for ( String filename : this.FILE) {
+        for ( String filename : this.postmanCollections) {
             sb.append(filename).append(";");
         }
         sb.append(FileManagement.lf);
@@ -129,16 +128,49 @@ public class Cucumblan {
         return sb.toString();
     }
     
+    /**
+     * @param prpüertyCpmtemt
+     * @return
+     * 
+     * Read the property file.
+     * service.api=http://localhost:8080
+     * virtualan.data.load=idaiserver.postman_collection.json
+     * virtualan.data.type=POSTMAN
+     */
+    public void fromProperty() {
+    	
+    	
+//        StringBuffer sb = new StringBuffer("#Generated " + FileManagement.whatTime());
+        
+        Properties p = FileManagement.readCucumblanPropertiesFile();
+        
+        /* POSTMAN, VIRTUALAN or EXCEL. */
+        this.TYPE = p.getProperty(datatype);
+        
+        /* Semicolon separated list of postman collections. */
+        String post = p.getProperty(dataload);
+        String[] posts = post.split(";");
+        this.postmanCollections = Arrays.asList(posts);
+        
+        /* List of URLs with resources */
+        for ( Object key : p.keySet()) {
+        	if ( key.toString().startsWith(serviceapi)) {
+        		this.URL.put(key.toString(), p.get(key).toString());
+        	}
+        }
+        
+    }
+    
     /** Get a single file. */
     public String getOneFILE() {
-        if ( this.FILE.size() > 1 ) {
+        if ( this.postmanCollections.size() > 1 ) {
             logger.warn("There are more files in this configuration. This method should be only called for a single file configuration like instan execution for a test. ");
         }
-        if ( this.FILE == null || this.FILE.isEmpty()) {
+        if ( this.postmanCollections == null || this.postmanCollections.isEmpty()) {
             logger.error("There was no postman collection file added.");
             return null;
         }
-        return this.FILE.get(0);
+        return this.postmanCollections.get(0);
     }
 
     public Report reportFactory() {
@@ -155,7 +187,7 @@ public class Cucumblan {
     }
 
     public List<String> getFILE() {
-        return FILE;
+        return postmanCollections;
     }
 
 
