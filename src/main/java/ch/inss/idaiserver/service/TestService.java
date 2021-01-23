@@ -93,13 +93,13 @@ public class TestService {
     }
 
     /* Copy generated feature file to the public folder. */
-    String target = "http://demo.idaithalam.io/"+testId.toString() + "/feature/virtualan-contract.0.feature";
+    String target = "http://report.idaithalam.io/"+testId.toString() + "/feature/virtualan-contract.0.feature";
     links.setLinktofeature(target);
 
     /* Copy the cucumber report folder and send back the link
      * to the main report html file: report-feature_1959214294.html.
      * */
-    String linkReport = "http://demo.idaithalam.io/"+testId.toString() + "/cucumber-html-reports/overview-features.html";
+    String linkReport = "http://report.idaithalam.io/"+testId.toString() + "/cucumber-html-reports/overview-features.html";
     logger.info("Generated report html file: " + linkReport);
     links.setLinktoreport(linkReport);
 
