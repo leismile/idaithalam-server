@@ -87,12 +87,13 @@ public class TestApiController implements TestApi {
 
     /** POST for the main initial test with execution and creation of the uuid. */
     @Override
-    public ResponseEntity<Report> testRun(MultipartFile filestream, String serverurl, String dataload, String execute, String skipResponseValidation, String datatype) {
+    public ResponseEntity<Report> testRun(@ApiParam(value = "") @Valid @RequestPart(value = "filestream", required = true) MultipartFile filestream,@ApiParam(value = "The server url to be tested.", required=true, defaultValue="http://localhost:8080") @Valid @RequestPart(value = "serverurl", required = true)  String serverurl,@ApiParam(value = "Execute test immediately. If false, only the property file will be updated (append).", defaultValue="true") @Valid @RequestPart(value = "execute", required = false)  String execute,@ApiParam(value = "Skip the respone validation in tests.", defaultValue="true") @Valid @RequestPart(value = "skipResponseValidation", required = false)  String skipResponseValidation,@ApiParam(value = "Type of data is POSTMAN, VIRTUALAN OR EXCEL.", allowableValues="POSTMAN, VIRTUALAN, EXCEL", defaultValue="POSTMAN") @Valid @RequestPart(value = "datatype", required = false)  String datatype) {
         logger.debug("Start POST /test");
         if (getRequest().isPresent() == false || filestream == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        if ( "teapot".equalsIgnoreCase(dataload) || "teapot".equalsIgnoreCase(serverurl)) {
+        ;
+		if ( "teapot".equalsIgnoreCase(serverurl)) {
             return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
         }
         
@@ -106,9 +107,8 @@ public class TestApiController implements TestApi {
                     if ( datatype == null || "".equals(datatype)) {
                         datatype= "POSTMAN";
                     }
-                    if ( dataload == null || "".equals(dataload)) {
-                        dataload = filestream.getOriginalFilename();
-                    }
+                    
+                    String dataload = filestream.getOriginalFilename();
                     
                     Boolean e = new Boolean(true);
                     if ( execute != null) {

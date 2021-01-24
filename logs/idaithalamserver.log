@@ -2477,3 +2477,5 @@ virtualan.data.type = null
 2021-01-23 20:08:48,564 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Execution status: 1
 2021-01-23 20:08:48,565 DEBUG ch.inss.idaiserver.service.PersistJSON [http-nio-8080-exec-2] Reading into List<Report>: ./reports/ea5e26dd-cdca-44f0-86ff-0f937195a9e4/alltests.json
 2021-01-23 20:08:48,572 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] There are 3 test sessions stored.
+2021-01-23 20:55:42,353 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(55)-127.0.0.1] Application shutdown requested.
+2021-01-23 20:55:42,373 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(55)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'

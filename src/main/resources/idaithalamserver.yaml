@@ -36,12 +36,6 @@ paths:
                   default: 'http://localhost:8080'
                   type: string
                   example: 'http://localhost:8080'
-                dataload:
-                  format: filepath
-                  description: filename
-                  default: idaithalan.postman_collection.json
-                  type: string
-                  example: idaithalan.postman_collection.json
                 execute:
                   format: stringboolean
                   description: 'Execute test immediately. If false, only the property file will be updated (append).'
