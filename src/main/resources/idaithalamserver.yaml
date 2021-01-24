@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: idaithalamserver
-  version: 1.1.6
+  version: 1.1.7
   description: Idaithalam Server
   contact:
     name: Oliver Glas
@@ -66,10 +66,31 @@ paths:
       operationId: testRun
       summary: Create and run the test with the uploaded Postman collection.
       description: Create a new test and run against an API. Generates the Cucumber report and a Gherkin file.
+    get:
+      tags:
+        - Results
+      
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Testidlist'
+          description: List of all test IDs.
+        '404':
+          description: No test found.
+        '500':
+          description: Internal server error.
+        default:
+          description: unexpected error
+      operationId: listTest
+      summary: Get all test IDs as a list.
+      
+      description: Get all test IDs as a list.
   '/test/{testId}':
     get:
       tags:
-        - API test execution
+        - Results
       parameters:
         - name: testId
           description: testId for that test
@@ -92,8 +113,8 @@ paths:
         default:
           description: unexpected error
       operationId: getReport
-      summary: Get the test result links as in PUT.
-      description: Get the test result links as in PUT.
+      summary: Get the test result links.
+      description: Get the test result links.
     put:
       tags:
         - API test execution
@@ -352,6 +373,20 @@ components:
       properties:
         serverUrl:
           description: ''
+          type: array
+          items:
+            type: string
+    Testidlist:
+      description: 'List of all test IDs.'
+      type: object
+      properties:
+        serverUrl:
+          description: 'Array of all testlinks.'
+          type: array
+          items:
+            type: string
+        idList:
+          description: 'Array of all test IDs.'
           type: array
           items:
             type: string

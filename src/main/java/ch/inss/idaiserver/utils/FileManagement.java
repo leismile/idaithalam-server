@@ -369,6 +369,25 @@ public class FileManagement {
     public static String whatTime() {
       return  new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z").format(new Date(System.currentTimeMillis()));
     }
+	public static List<String> listFolders(String path) {
+		List<String> folders = new ArrayList<String>();
+		 File main_dir = new File(path);
+	      if(main_dir.exists() && main_dir.isDirectory()){
+	         File arr[] = main_dir.listFiles();
+	         for ( File file : arr ) {
+	        	if ( file.isDirectory()) {
+	        		folders.add(file.getName());
+	        	}
+	         }
+
+	      }else {
+	    	  logger.error("Folder cannot be read: " + path);
+	    	  return new ArrayList<String>();
+	      }
+		
+		
+		return folders;
+	}
     
 //  /** Generate UUID for the testid. */  
 //  public static String getUUID () {

@@ -12,20 +12,25 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * Conf
+ * List of all test IDs.
  */
+@ApiModel(description = "List of all test IDs.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-24T13:06:58.535874+01:00[Europe/Zurich]")
-public class Conf   {
+public class Testidlist   {
   @JsonProperty("serverUrl")
   @Valid
   private List<String> serverUrl = null;
 
-  public Conf serverUrl(List<String> serverUrl) {
+  @JsonProperty("idList")
+  @Valid
+  private List<String> idList = null;
+
+  public Testidlist serverUrl(List<String> serverUrl) {
     this.serverUrl = serverUrl;
     return this;
   }
 
-  public Conf addServerUrlItem(String serverUrlItem) {
+  public Testidlist addServerUrlItem(String serverUrlItem) {
     if (this.serverUrl == null) {
       this.serverUrl = new ArrayList<>();
     }
@@ -34,10 +39,10 @@ public class Conf   {
   }
 
   /**
-   * Get serverUrl
+   * Array of all testlinks.
    * @return serverUrl
   */
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Array of all testlinks.")
 
 
   public List<String> getServerUrl() {
@@ -46,6 +51,34 @@ public class Conf   {
 
   public void setServerUrl(List<String> serverUrl) {
     this.serverUrl = serverUrl;
+  }
+
+  public Testidlist idList(List<String> idList) {
+    this.idList = idList;
+    return this;
+  }
+
+  public Testidlist addIdListItem(String idListItem) {
+    if (this.idList == null) {
+      this.idList = new ArrayList<>();
+    }
+    this.idList.add(idListItem);
+    return this;
+  }
+
+  /**
+   * Array of all test IDs.
+   * @return idList
+  */
+  @ApiModelProperty(value = "Array of all test IDs.")
+
+
+  public List<String> getIdList() {
+    return idList;
+  }
+
+  public void setIdList(List<String> idList) {
+    this.idList = idList;
   }
 
 
@@ -57,21 +90,23 @@ public class Conf   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Conf conf = (Conf) o;
-    return Objects.equals(this.serverUrl, conf.serverUrl);
+    Testidlist testidlist = (Testidlist) o;
+    return Objects.equals(this.serverUrl, testidlist.serverUrl) &&
+        Objects.equals(this.idList, testidlist.idList);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(serverUrl);
+    return Objects.hash(serverUrl, idList);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Conf {\n");
+    sb.append("class Testidlist {\n");
     
     sb.append("    serverUrl: ").append(toIndentedString(serverUrl)).append("\n");
+    sb.append("    idList: ").append(toIndentedString(idList)).append("\n");
     sb.append("}");
     return sb.toString();
   }

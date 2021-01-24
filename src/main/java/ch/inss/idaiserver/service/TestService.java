@@ -1,6 +1,7 @@
 package ch.inss.idaiserver.service;
 
 import ch.inss.idaiserver.model.Report;
+import ch.inss.idaiserver.model.Testidlist;
 import ch.inss.idaiserver.utils.FileManagement;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.virtualan.idaithalam.contract.IdaithalamExecutor;
@@ -32,6 +33,7 @@ public class TestService {
   private static final String FEATUREX = "feature/virtualan-contract.";     // 0.feature";
   private static final String DOTFEATURE = ".feature";
   private static final String REPORTOVERVIEW = "cucumber-html-reports/overview-features.html";
+private static final String String = null;
   /**
    * Folder to store the Cucumber reports.
    */
@@ -394,6 +396,19 @@ public class TestService {
       return url + "/";
     }
   }
+  
+  	/** List all ids. */
+	public Testidlist listAllIDs() {
+		List<String> list = FileManagement.listFolders(this.storagePath);
+		Testidlist idlist = new Testidlist();
+		for ( String folder : list) {
+			idlist.addServerUrlItem(this.serverHost + "/" + folder + "/" + ALLTESTS);
+			idlist.addIdListItem(folder);
+		}
+		
+		
+		return idlist;
+	}
 
 
 }

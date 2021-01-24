@@ -7,6 +7,7 @@ package ch.inss.idaiserver.api;
 
 import ch.inss.idaiserver.model.Conf;
 import ch.inss.idaiserver.model.Report;
+import ch.inss.idaiserver.model.Testidlist;
 import java.util.UUID;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-24T10:01:40.626621+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-24T13:06:58.535874+01:00[Europe/Zurich]")
 @Validated
 @Api(value = "test", description = "the test API")
 public interface TestApi {
@@ -60,8 +61,8 @@ public interface TestApi {
 
 
     /**
-     * GET /test/{testId} : Get the test result links as in PUT.
-     * Get the test result links as in PUT.
+     * GET /test/{testId} : Get the test result links.
+     * Get the test result links.
      *
      * @param testId testId for that test (required)
      * @return Configuration of cucumblan.properties file. (status code 200)
@@ -69,7 +70,7 @@ public interface TestApi {
      *         or Internal server error. (status code 500)
      *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "Get the test result links as in PUT.", nickname = "getReport", notes = "Get the test result links as in PUT.", response = Report.class, tags={ "API test execution", })
+    @ApiOperation(value = "Get the test result links.", nickname = "getReport", notes = "Get the test result links.", response = Report.class, tags={ "Results", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Configuration of cucumblan.properties file.", response = Report.class),
         @ApiResponse(code = 404, message = "Test not found."),
@@ -113,6 +114,40 @@ public interface TestApi {
         produces = { "text/plain" }
     )
     default ResponseEntity<String> getgherkin(@ApiParam(value = "testid for that Gherkin file.",required=true) @PathVariable("testId") String testId) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * GET /test : Get all test IDs as a list.
+     * Get all test IDs as a list.
+     *
+     * @return List of all test IDs. (status code 200)
+     *         or No test found. (status code 404)
+     *         or Internal server error. (status code 500)
+     *         or unexpected error (status code 200)
+     */
+    @ApiOperation(value = "Get all test IDs as a list.", nickname = "listTest", notes = "Get all test IDs as a list.", response = Testidlist.class, tags={ "Results", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "List of all test IDs.", response = Testidlist.class),
+        @ApiResponse(code = 404, message = "No test found."),
+        @ApiResponse(code = 500, message = "Internal server error."),
+        @ApiResponse(code = 200, message = "unexpected error") })
+    @GetMapping(
+        value = "/test",
+        produces = { "application/json" }
+    )
+    default ResponseEntity<Testidlist> listTest() {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"serverUrl\" : [ \"serverUrl\", \"serverUrl\" ], \"idList\" : [ \"idList\", \"idList\" ] }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

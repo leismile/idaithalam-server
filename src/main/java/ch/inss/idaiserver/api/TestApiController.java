@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import ch.inss.idaiserver.model.Conf;
 import ch.inss.idaiserver.model.Report;
+import ch.inss.idaiserver.model.Testidlist;
 import ch.inss.idaiserver.service.Cucumblan;
 import ch.inss.idaiserver.service.TestService;
 import ch.inss.idaiserver.service.UtilService;
@@ -161,6 +162,20 @@ public class TestApiController implements TestApi {
             }
         }
         return new ResponseEntity<Report>(reportLinks, HttpStatus.CREATED);
+
+    }
+    
+    @Override
+    public ResponseEntity<Testidlist> listTest() {
+    	Testidlist idlist = null;
+        for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+            if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                idlist = testServices.listAllIDs();
+            	
+            	break;
+            }
+        }
+        return new ResponseEntity<Testidlist>(idlist,HttpStatus.NOT_IMPLEMENTED);
 
     }
     
