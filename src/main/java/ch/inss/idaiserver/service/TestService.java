@@ -57,8 +57,7 @@ private static final String String = null;
       logger.error("Object for cucumblan service not correctly initiazlized.");
     }
     /* Paths for the results in the filesystem and URLs. */
-    final String reportFolder =
-    this.storagePath + File.separator + cucumblan.getFolder();
+    final String reportFolder = this.storagePath + File.separator + cucumblan.getFolder();
     final String skip = ".*=IGNORE";
     final String skipProp = reportFolder + File.separator + "exclude-response.properties";
     final String lastSession = reportFolder + File.separator + LASTTEST;
@@ -406,6 +405,10 @@ private static final String String = null;
 		for ( String folder : list) {
 			idlist.addServerUrlItem(this.serverHost + "/" + folder + "/" + ALLTESTS);
 			idlist.addIdListItem(folder);
+		}
+		if ( list.size() == 0) {
+			idlist.addIdListItem("empty");
+			idlist.addServerUrlItem("empty");
 		}
 		
 		

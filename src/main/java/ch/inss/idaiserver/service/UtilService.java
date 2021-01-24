@@ -5,7 +5,9 @@ import ch.inss.idaiserver.model.Conf;
 import ch.inss.idaiserver.model.Report;
 import ch.inss.idaiserver.utils.FileManagement;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
@@ -120,7 +122,36 @@ public class UtilService {
   }
 
 
-  public ResponseEntity<String> getContent(String testId, String fileName) {
+  /** Get the feature file from very last session. 
+ * @param testId
+ * @return
+ */
+public ResponseEntity<String> getSessionContent(String testId, String file) {
+//    final String FEATURE = "feature"+FileManagement.fs+"virtualan-contract.0.feature";
+    Report report;
+	try {
+		/* Get last session number. */
+		report = this.getLastSession(testId);
+	    String nr = null;
+	    if (report == null || report.getSessionNr() == null) nr = "1";
+	    else nr = report.getSessionNr().toString();
+	    
+	    /* Get feature file content.*/
+	    String fileName = "/" + nr + "/" + file;
+	    String fileContent = readProps(UUID.fromString(testId), fileName);
+	    if (fileContent == null) {
+	      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    } else {
+	      return new ResponseEntity<>(fileContent, HttpStatus.OK);
+	    }
+	} catch (IOException e) {
+		logger.error(e.getLocalizedMessage());
+		e.printStackTrace();
+		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		
+	}
+  }
+public ResponseEntity<String> getContent(String testId, String fileName) {
     String fileContent = readProps(UUID.fromString(testId), fileName);
     if (fileContent == null) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -185,4 +216,16 @@ public class UtilService {
     }
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
+  
+  public Report getLastSession(String testId) throws FileNotFoundException, IOException {
+		final String LASTTEST = "lasttest.json";
+		final String reportFolder = storagePath + File.separator + testId;
+		final String lastSession = reportFolder + File.separator + LASTTEST;
+		String json = FileManagement.readToString(lastSession);
+	    Report links = PersistJSON.reportFromJSON(json);
+		return links;
+		
+	}
+  
+  
 }

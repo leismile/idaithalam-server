@@ -34,7 +34,8 @@ import io.swagger.annotations.ApiParam;
 @RequestMapping("${openapi.idaiserver.base-path:}")
 public class TestApiController implements TestApi {
 
-    private static final String FEATURE = "feature"+FileManagement.fs+"virtualan-contract.0.feature";
+	private static final String FEATURE = "feature/virtualan-contract.0.feature";
+	//final String FEATURE = "feature"+FileManagement.fs+"virtualan-contract.0.feature";
     private static final String CUCUMBLAN = "cucumblan.properties";
 
     private static final Logger logger = LoggerFactory.getLogger(TestApiController.class);
@@ -56,7 +57,7 @@ public class TestApiController implements TestApi {
 
     @Override
     public ResponseEntity<String> getgherkin(String testId) {
-        return utilService.getContent(testId, FEATURE);
+        return utilService.getSessionContent(testId, FEATURE );
     }
 
     @Override

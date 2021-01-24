@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-24T13:26:32.313525+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-24T14:09:46.792892+01:00[Europe/Zurich]")
 @Validated
 @Api(value = "test", description = "the test API")
 public interface TestApi {
@@ -101,12 +101,14 @@ public interface TestApi {
      *
      * @param testId testid for that Gherkin file. (required)
      * @return Content of the generated Gherkin feature file. (status code 200)
+     *         or testID not found (status code 404)
      *         or Internal server error. (status code 500)
      *         or unexpected error (status code 200)
      */
     @ApiOperation(value = "Get the content of the generated Gherkin feature file.", nickname = "getgherkin", notes = "Get the content of the generated Gherkin feature file.", response = String.class, tags={ "Results", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Content of the generated Gherkin feature file.", response = String.class),
+        @ApiResponse(code = 404, message = "testID not found"),
         @ApiResponse(code = 500, message = "Internal server error."),
         @ApiResponse(code = 200, message = "unexpected error") })
     @GetMapping(
@@ -160,10 +162,12 @@ public interface TestApi {
      * @param configKey remove given key configuration. (required)
      * @param testId  (required)
      * @return delete key Configuration of cucumblan.properties file. (status code 200)
+     *         or testID not found (status code 404)
      */
     @ApiOperation(value = "Remove the single config configuration.", nickname = "removeConf", notes = "Remove the test.", response = String.class, tags={ "Configuration", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "delete key Configuration of cucumblan.properties file.", response = String.class) })
+        @ApiResponse(code = 200, message = "delete key Configuration of cucumblan.properties file.", response = String.class),
+        @ApiResponse(code = 404, message = "testID not found") })
     @DeleteMapping(
         value = "/test/{testId}/conf",
         produces = { "text/plain" }
@@ -180,12 +184,14 @@ public interface TestApi {
      *
      * @param testId testid for that test (required)
      * @return Configuration of cucumblan.properties file. (status code 200)
+     *         or testID not found (status code 404)
      *         or Internal server error. (status code 500)
      *         or unexpected error (status code 200)
      */
     @ApiOperation(value = "Get the report for this uuid.", nickname = "report", notes = "Get the report of a previously executed test.", response = Report.class, responseContainer = "List", tags={ "Results", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Configuration of cucumblan.properties file.", response = Report.class, responseContainer = "List"),
+        @ApiResponse(code = 404, message = "testID not found"),
         @ApiResponse(code = 500, message = "Internal server error."),
         @ApiResponse(code = 200, message = "unexpected error") })
     @GetMapping(
@@ -213,10 +219,12 @@ public interface TestApi {
      *
      * @param testId testid for that test (required)
      * @return Gives back the entire cucumblan.properties file and generated testid. (status code 201)
+     *         or testID not found (status code 404)
      */
     @ApiOperation(value = "Run test.", nickname = "runTest", notes = "Run test", response = Report.class, tags={ "API test execution", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 201, message = "Gives back the entire cucumblan.properties file and generated testid.", response = Report.class) })
+        @ApiResponse(code = 201, message = "Gives back the entire cucumblan.properties file and generated testid.", response = Report.class),
+        @ApiResponse(code = 404, message = "testID not found") })
     @PutMapping(
         value = "/test/{testId}",
         produces = { "application/json" }
@@ -282,12 +290,14 @@ public interface TestApi {
      * @param testId  (required)
      * @param conf  (required)
      * @return Gives back the entire test configuration as a cucumblan.properties file. (status code 200)
+     *         or testID not found (status code 404)
      *         or Bad request. (status code 400)
      *         or unexpected error (status code 200)
      */
     @ApiOperation(value = "Update the configuration.", nickname = "updateConf", notes = "Update the configuration.", response = String.class, tags={ "Configuration", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Gives back the entire test configuration as a cucumblan.properties file.", response = String.class),
+        @ApiResponse(code = 404, message = "testID not found"),
         @ApiResponse(code = 400, message = "Bad request."),
         @ApiResponse(code = 200, message = "unexpected error") })
     @PutMapping(

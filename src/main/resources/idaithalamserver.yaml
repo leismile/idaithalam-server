@@ -132,6 +132,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Report'
           description: Gives back the entire cucumblan.properties file and generated testid.
+        '404':
+           description: testID not found
       operationId: runTest
       summary: Run test.
       description: Run test
@@ -156,6 +158,8 @@ paths:
                 items:
                   $ref: '#/components/schemas/Report'
           description: Configuration of cucumblan.properties file.
+        '404':
+           description: testID not found
         '500':
           description: Internal server error.
         default:
@@ -183,6 +187,8 @@ paths:
                 format: Gherkin
                 type: string
           description: Content of the generated Gherkin feature file.
+        '404':
+           description: testID not found
         '500':
           description: Internal server error.
         default:
@@ -258,6 +264,8 @@ paths:
                 format: properties
                 type: string
           description: Gives back the entire test configuration as a cucumblan.properties file.
+        '404':
+           description: testID not found
         '400':
           description: Bad request.
         default:
@@ -289,6 +297,8 @@ paths:
                 format: properties
                 type: string
           description: delete key Configuration of cucumblan.properties file.
+        '404':
+           description: testID not found
       operationId: removeConf
       summary: Remove the single config configuration.
       description: Remove the test.
