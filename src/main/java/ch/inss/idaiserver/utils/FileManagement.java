@@ -13,14 +13,14 @@ import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Properties;
+import java.util.*;
 import java.util.stream.Stream;
 
 import javax.validation.Valid;
@@ -29,83 +29,111 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 
-import ch.inss.idaiserver.model.Cucumblan;
+import ch.inss.idaiserver.service.Cucumblan;
 
+
+/**
+ * @author amrit
+ *
+ */
 public class FileManagement {
-    
+	
     private static final Logger logger = LoggerFactory.getLogger(FileManagement.class);
-    private static final String lf = System.getProperty("line.separator");
-//    private static final String fs = FileSystems.getDefault().getSeparator();
+    public static final String lf = System.getProperty("line.separator");
+    public static final String fs = FileSystems.getDefault().getSeparator();
     
-    private static final String PROPERTIES="src/test/resources/cucumblan.properties";
-    private static final String FEATURE="conf/virtualan-contract.feature";
+//    private static final String PROPERTIES="src/test/resources/cucumblan.properties";
+    public static final String PROPERTIES="cucumblan.properties";
+//    private static final String FEATURE="conf/virtualan-contract.feature";
+    private static final String FEATURE="virtualan-contract.feature";
     
-    public final static String NOERROR = "No error";
+    public final static String NOERROR = "";
 
-    public static boolean save( String path, Cucumblan cuc) {
-          boolean ok = false;
-          try {
-          /* Create cucumblan.properties from mustache template. */  
-          MustacheFactory mf = new DefaultMustacheFactory();
-          Mustache m = mf.compile("cucumblan.mustache");
-          StringWriter writer = new StringWriter();
-          m.execute(writer, cuc).flush();
-          String props = writer.toString();
-          logger.info("props: " + props);
-          
-          /* Read existing file if no overwrite is set. */
-          if ( cuc.getOverwrite() == false ) {
-              BufferedReader in = new BufferedReader(new FileReader(path));
-              StringBuilder sb = new StringBuilder();
-              while(in.readLine() != null) {
-                  sb.append(in.readLine()).append(lf);
-              }
+    /** Save the cucumblan.properties file to the uuid/conf folder.
+     * @param confFolder
+     * @param content
+     * @return
+     */
+    public static boolean saveCucumblan( String  confFolder, String content) {
+        boolean ok = false;
+        try {
+        /* Create cucumblan.properties from mustache template. */
+//        MustacheFactory mf = new DefaultMustacheFactory();
+//        Mustache m = mf.compile("cucumblan.mustache");
+//        StringWriter writer = new StringWriter();
+//        m.execute(writer, cucumblan).flush();
 
-              String content = sb.toString();
-              in.close();
-              props = content + lf + props;
-          }
-          
-          /* Write new properties file. */
-          writeString(props, path+"/cucumblan.properties");
-          
-          /* Write postman collection. */
-          writeFilestream(path +"/"+cuc.getFILE(), cuc.getInputStream());
-          ok = true; 
-          }catch(IOException ioe) {
-              logger.error("Could not save file: " + cuc.getFILE(),ioe);
-              
-          }finally {
-              try{cuc.getInputStream().close();}catch(Exception e) {};
-          }
-          return ok;
-          //IOUtils.closeQuietly(initialStream);
+//        String props = writer.toString();
+//        logger.info("props: " + props);
+
+//        writeString(content, path);
+
+
+
+        /* Write new properties file. */
+        writeString( confFolder + fs + PROPERTIES, content);
+
+        /* Write postman collection. */
+        //writeFilestream(path +"/"+cucumblan.getFILE(), cucumblan.getInputStream());
+        ok = true;
+        }catch(IOException ioe) {
+            logger.error("Could not save " + PROPERTIES + " to folder  " + confFolder);
+            return false;
+        }
+        return ok;
+        //IOUtils.closeQuietly(initialStream);
+
+  }
+    /* Read existing file if no overwrite is set. */
+    public static List<String> readLines(String path){
+    	List<String> lines = new ArrayList<String>();
+    	BufferedReader in;
+    	try {
+         in = new BufferedReader(new FileReader(path));
+//        StringBuilder sb = new StringBuilder();
         
-    }
+			while(in.readLine() != null) {
+				lines.add(in.readLine());
+//            sb.append(in.readLine()).append(lf);
+			}
+			in.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			logger.error("Could not read file: " + path);
+			return null;
+		}
+//        String content = sb.toString();
+        
+//        props = content + lf + props;
+        return lines;
+     }
 
     /* Write files like postman collection. */
-    private static void writeFilestream(String filename, InputStream in) throws IOException {
-          File targetFile = new File( filename);
+    public static void writeFilestream(String filename, InputStream in) throws IOException {
+          File targetFile = new File(filename);
+          InputStream initialStream = in;
           java.nio.file.Files.copy(
-            in,
+            initialStream, 
             targetFile.toPath(), 
             StandardCopyOption.REPLACE_EXISTING);
-          in.close();
+          
+             initialStream.close();
     }
-    
+
     /** Add a line to the cucumblan.properties file. */
-    public static String addLine(String value, String resource) {
+    public static String addLine(String path, String value, String resource) {
         String content;
         String key = "service.api" + "." + resource;
         Properties prop;
         try {
-            prop = readPropertiesFile(PROPERTIES);
+            prop = readCucumblanPropertiesFile(path);
             prop.put(key, value);
             writeProperty(prop, "adding line for " + resource);
 //            content = line + lf + readToString(PROPERTIES);
@@ -153,11 +181,19 @@ public class FileManagement {
         
     }
     
-    private static Properties readPropertiesFile(String fileName) throws IOException {
+    
+
+    
+    
+    /**
+     * @return
+     * @throws IOException
+     */
+    public static Properties readCucumblanPropertiesFile(String path) {
         FileInputStream fis = null;
         Properties prop = null;
         try {
-           fis = new FileInputStream(fileName);
+           fis = new FileInputStream(path +fs+ PROPERTIES);
            prop = new Properties();
            prop.load(fis);
         } catch(FileNotFoundException fnfe) {
@@ -165,22 +201,27 @@ public class FileManagement {
         } catch(IOException ioe) {
            ioe.printStackTrace();
         } finally {
-           fis.close();
+           try{fis.close();}catch(Exception e) {}
         }
         return prop;
      }
 
-    private static void writeString(String content, String filename) throws IOException {
+    
+    /**
+     * @param filename
+     * @param content
+     * @throws IOException
+     */
+    public static void writeString(String filename, String content) throws IOException {
         /* Put String into writer. */
           BufferedWriter bwriter = new BufferedWriter(new FileWriter(filename));
           bwriter.write(content);
-          bwriter.flush();
           bwriter.close();
     }
     
 
     /** Read any file and give back the String content. */
-    private static String readToString(String file) throws FileNotFoundException, IOException {
+    public static String readToString(String file) throws FileNotFoundException, IOException {
         logger.debug("File path: " + file);
         BufferedReader br = new BufferedReader(new FileReader(file));
         StringBuilder sb = new StringBuilder();
@@ -193,6 +234,11 @@ public class FileManagement {
         return sb.toString();
     }
     
+    /**
+     * @param source
+     * @param targetFolder
+     * @return
+     */
     public static String copyFiles(String source, String targetFolder) {
         Path sourcePath = Paths.get(source);
         String filename = sourcePath.getFileName().toString();
@@ -218,6 +264,10 @@ public class FileManagement {
         return "ok";
     }
     
+    /**
+     * @param sourceFolder
+     * @param targetFolder
+     */
     public static void copyFolder(String sourceFolder, String targetFolder) {
 //        String source = "C:/your/source";
         File srcDir = new File(sourceFolder);
@@ -232,6 +282,10 @@ public class FileManagement {
         }
     }
 
+    /**
+     * @param target
+     * @return
+     */
     public static String getReportfile(String target) {
         Path testPath = Paths.get(target);
         String result = "notfound";
@@ -262,11 +316,15 @@ public class FileManagement {
         return result;
     }
 
-    /** Write down the Postmancollection to the filesystem and add it to the list in cucumblan.properties. */
-    public static boolean addCollection(@Valid MultipartFile fileStream) {
+    /** Write down the Postmancollection to the filesystem and add it to the list in cucumblan.properties.
+     *
+     * @param fileStream
+     * @return
+     */
+    public static boolean addCollection(String path, @Valid MultipartFile fileStream) {
         try {
             writeFilestream(fileStream.getName(), fileStream.getInputStream());
-            Properties prop = readPropertiesFile(PROPERTIES);
+            Properties prop = readCucumblanPropertiesFile(path);
             String value = prop.getProperty("virtualan.data.load");
             String file = fileStream.getName();
             if ( file == null || file.equals("")) {
@@ -283,7 +341,11 @@ public class FileManagement {
         return true;
     }
     
-    public static boolean removeServer(String resource) {
+    /**
+     * @param resource
+     * @return
+     */
+    public static boolean removeServer(String path, String resource) {
         String key = null;
         
         try {
@@ -291,7 +353,7 @@ public class FileManagement {
             key = "service.api" + "." + resource;
             logger.debug("Removing " + key);
             Properties prop;
-            prop = readPropertiesFile(PROPERTIES);
+            prop = readCucumblanPropertiesFile(path);
             prop.remove(key);
             writeProperty(prop, "removing " + key);
         }catch(IOException ioe) {
@@ -301,6 +363,9 @@ public class FileManagement {
         return true;
     }
     
+    /** Give back a formated Date Time String: 
+     * yyyy-MM-dd 'at' HH:mm:ss z
+     * */
     public static String whatTime() {
       return  new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z").format(new Date(System.currentTimeMillis()));
     }

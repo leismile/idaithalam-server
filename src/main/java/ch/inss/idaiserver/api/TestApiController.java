@@ -1,5 +1,8 @@
 package ch.inss.idaiserver.api;
 
+import ch.inss.idaiserver.service.UtilService;
+import java.util.List;
+import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,18 +10,23 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import ch.inss.idaiserver.model.*;
+import ch.inss.idaiserver.service.Cucumblan;
 import ch.inss.idaiserver.service.TestService;
 import ch.inss.idaiserver.utils.FileManagement;
 import io.swagger.annotations.ApiParam;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.UUID;
 
 import javax.validation.Valid;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-21T08:48:24.320856+01:00[Europe/Zurich]")
@@ -26,13 +34,15 @@ import javax.validation.Valid;
 @RequestMapping("${openapi.idaiserver.base-path:}")
 public class TestApiController implements TestApi {
 
+    private static final String FEATURE = "feature"+FileManagement.fs+"virtualan-contract.0.feature";
+    private static final String CUCUMBLAN = "cucumblan.properties";
+
     private static final Logger logger = LoggerFactory.getLogger(TestApiController.class);
     private final NativeWebRequest request;
     
-    
     @Autowired private TestService testServices;
-    
-    
+
+    @Autowired private UtilService utilService;
 
     @Autowired
     public TestApiController(NativeWebRequest request) {
@@ -43,10 +53,42 @@ public class TestApiController implements TestApi {
     public Optional<NativeWebRequest> getRequest() {
         return Optional.ofNullable(request);
     }
-    
+
     @Override
-    public ResponseEntity<Report> testrun(@ApiParam(value = "") @Valid @RequestPart(value = "filestream", required = true) MultipartFile filestream,@ApiParam(value = "The server url to be tested.", required=true, defaultValue="http://localhost:8080") @Valid @RequestPart(value = "serverurl", required = true)  String serverurl,@ApiParam(value = "filename", defaultValue="idaithalan.postman_collection.json") @Valid @RequestPart(value = "dataload", required = false)  String dataload,@ApiParam(value = "Execute test immediately. If false, only the property file will be updated (append).", defaultValue="true") @Valid @RequestPart(value = "execute", required = false)  String execute,@ApiParam(value = "Type of data is POSTMAN, VIRTUALAN OR EXCEL.", allowableValues="POSTMAN, VIRTUALAN, EXCEL", defaultValue="POSTMAN") @Valid @RequestPart(value = "datatype", required = false)  String datatype) {
-        logger.debug("STart POST /test");
+    public ResponseEntity<String> getgherkin(String testId) {
+        return utilService.getContent(testId, FEATURE);
+    }
+
+    @Override
+    public ResponseEntity<String> getConfProperty( String testId) {
+        return utilService.getContent(testId, CUCUMBLAN);
+    }
+
+
+    @Override
+    public ResponseEntity<String> removeConf(String configkey, String testId) {
+        return utilService.deleteCucumblanPropKey(testId, configkey);
+    }
+
+    @Override
+    public ResponseEntity<String> updateConf(String testId,Conf conf) {
+        return utilService.updateCucumblan(testId, conf);
+    }
+
+    @Override
+    public ResponseEntity<Report> getReport(String testId) {
+        return utilService.readLatestTestResult(testId);
+    }
+
+    @Override
+    public ResponseEntity<List<Report>> report(String testId) {
+        return utilService.readAllReport(testId);
+    }
+
+    /** POST for the main initial test with execution and creation of the uuid. */
+    @Override
+    public ResponseEntity<Report> testRun(MultipartFile filestream, String serverurl, String dataload, String execute, String skipResponseValidation, String datatype) {
+        logger.debug("Start POST /test");
         if (getRequest().isPresent() == false || filestream == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -58,7 +100,7 @@ public class TestApiController implements TestApi {
         
         for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
             if (mediaType.isCompatibleWith(MediaType.valueOf("application/octet-stream"))) {
-                logger.debug("STart application/octet-stream.");
+                logger.debug("Start application/octet-stream.");
                 try {
                     /* Define default values. */
                     if ( datatype == null || "".equals(datatype)) {
@@ -72,10 +114,16 @@ public class TestApiController implements TestApi {
                     if ( execute != null) {
                         e = new Boolean(execute);
                     }
+                    Boolean skip = new Boolean(false);
+                    if ( skipResponseValidation != null) {
+                    	skip = new Boolean(skipResponseValidation);
+                    }
 
                     Cucumblan cucumblan = new Cucumblan();
-                    
-                    cucumblan.setFILE(dataload);
+                    cucumblan.init();
+                    cucumblan.addFILE(dataload);
+                    cucumblan.setUploadFilename(dataload);
+                    cucumblan.setSkipResponseValidation(skip);
                     
                     try {
                         cucumblan.setInputStream(filestream.getInputStream());
@@ -83,23 +131,45 @@ public class TestApiController implements TestApi {
                         logger.error("The uploaded file is not readable.");
                     }
                     cucumblan.setTYPE(datatype);
-                    cucumblan.setURL(serverurl);
+                    cucumblan.addURL(null,serverurl);
                     cucumblan.setExecute(e);
-                    links = testServices.doTests(cucumblan);
+                    links = testServices.doInitialTest(cucumblan);
                     
                     if (links.getError() != null && links.getError().equals(FileManagement.NOERROR) == false) {
-                        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);    
+                        return new ResponseEntity<Report>(links,HttpStatus.INTERNAL_SERVER_ERROR);    
                     }
                 }catch(Exception e) {
                     Report error = new Report();
                     error.setError(e.getLocalizedMessage());
+                    return new ResponseEntity<Report>(error,HttpStatus.INTERNAL_SERVER_ERROR);
                 }
                 
                 break;
             }
         }
         return new ResponseEntity<Report>(links,HttpStatus.CREATED);
+    }
+    
+    @Override
+    public ResponseEntity<Report> runTest(UUID testid) {
+    	logger.debug("Start PUT /test");
+        if (getRequest().isPresent() == false || testid == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    	Report reportLinks = null;
+        for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+            if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+
+              Cucumblan cucumblan = new Cucumblan();
+        	  	cucumblan.init(testid);
+        	  	reportLinks = testServices.runTest(cucumblan, testid);
+            	break;
+            }
+        }
+        return new ResponseEntity<Report>(reportLinks, HttpStatus.CREATED);
 
     }
+    
+
 
 }
