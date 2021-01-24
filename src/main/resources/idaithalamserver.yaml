@@ -4,9 +4,9 @@ info:
   version: 1.1.7
   description: Idaithalam Server
   contact:
-    name: Oliver Glas
-    url: 'http://inss.ch'
-    email: oliver.glas@inss.ch
+    name: Oliver Glas/Elan Thangamani
+    url: 'http://idaithalam.io'
+    email: info@idaithalam.io
   license:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
@@ -412,9 +412,11 @@ components:
       description: ''
       type: object
       properties:
-        serverUrl:
+        serverUrls:
           description: ''
-          type: string
+          type: array
+          items:
+            type: string
           
     Testidlist:
       description: 'List of all test IDs.'

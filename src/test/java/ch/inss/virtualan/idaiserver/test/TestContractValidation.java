@@ -1,4 +1,4 @@
-package ch.inss.idaiserver.test;
+package ch.inss.virtualan.idaiserver.test;
 
 import io.virtualan.idaithalam.contract.IdaithalamExecutor;
 import org.junit.Assert;
