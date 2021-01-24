@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>ch.inss.idaiserver</groupId>
+    <groupId>io.virtualan.ch.inss.idaiserver</groupId>
     <artifactId>idaiserver</artifactId>
     <packaging>jar</packaging>
     <name>idaiserver</name>
@@ -43,8 +43,8 @@
                         <configuration>
                             <inputSpec>${project.basedir}/src/main/resources/idaithalamserver.yaml</inputSpec>
                             <generatorName>spring</generatorName>
-                            <apiPackage>ch.inss.idaiserver.api</apiPackage>
-                            <modelPackage>ch.inss.idaiserver.model</modelPackage>
+                            <apiPackage>ch.inss.virtualan.idaiserver.api</apiPackage>
+                            <modelPackage>ch.inss.virtualan.idaiserver.model</modelPackage>
                             <generateSupportingFiles>false</generateSupportingFiles>
                             
 				                    <generateApis>true</generateApis>
@@ -57,10 +57,10 @@
 				                    <configHelp>false</configHelp>
                     
                             <configOptions>
-                                <modelPackage>ch.inss.idaiserver.model</modelPackage>
+                                <modelPackage>ch.inss.virtualan.idaiserver.model</modelPackage>
                                 <sourceFolder>src/gen/java</sourceFolder>
-                                <groupId>ch.inss.idaiserver</groupId>
-                                <invokerPackage>ch.inss.idaiserver</invokerPackage>
+                                <groupId>ch.inss.virtualan.idaiserver</groupId>
+                                <invokerPackage>ch.inss.virtualan.idaiserver</invokerPackage>
                                 <developerEmail>oliver.glas@inss.ch</developerEmail>
                                 <title>idaiserver</title>
                                 <developerOrganizationUrl>http://inss.ch</developerOrganizationUrl>
@@ -70,9 +70,9 @@
                                 <developerOrganization>inss.ch</developerOrganization>
                                 <developerName>OliverGlas</developerName>
                                 <artifactVersion>0.1.0</artifactVersion>
-                                <configPackage>ch.inss.idaiserver.config</configPackage>
-                                <basePackage>ch.inss.idaiserver</basePackage>
-                                <apiPackage>ch.inss.idaiserver.api</apiPackage>
+                                <configPackage>ch.inss.virtualan.idaiserver.config</configPackage>
+                                <basePackage>ch.inss.virtualan.idaiserver</basePackage>
+                                <apiPackage>ch.inss.virtualan.idaiserver.api</apiPackage>
                                 
                                 <interfaceOnly>true</interfaceOnly>
                                 <skipDefaultInterface>false</skipDefaultInterface>

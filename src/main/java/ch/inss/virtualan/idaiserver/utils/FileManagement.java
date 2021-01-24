@@ -1,4 +1,4 @@
-package ch.inss.idaiserver.utils;
+package ch.inss.virtualan.idaiserver.utils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -30,13 +30,15 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
-
-import ch.inss.idaiserver.service.Cucumblan;
 
 
 /**
@@ -49,10 +51,14 @@ public class FileManagement {
     public static final String lf = System.getProperty("line.separator");
     public static final String fs = FileSystems.getDefault().getSeparator();
     
-//    private static final String PROPERTIES="src/test/resources/cucumblan.properties";
     public static final String PROPERTIES="cucumblan.properties";
-//    private static final String FEATURE="conf/virtualan-contract.feature";
     private static final String FEATURE="virtualan-contract.feature";
+    
+    /**
+     * Folder to store the Cucumber reports.
+     */
+    @Value("${ch.inss.idaiserver.reports.folder}")
+    private String storagePath;
     
     public final static String NOERROR = "";
 
@@ -369,6 +375,31 @@ public class FileManagement {
     public static String whatTime() {
       return  new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z").format(new Date(System.currentTimeMillis()));
     }
+	public static List<String> listFolders(String path) {
+		List<String> folders = new ArrayList<String>();
+		 File main_dir = new File(path);
+	      if(main_dir.exists() && main_dir.isDirectory()){
+	         File arr[] = main_dir.listFiles();
+	         for ( File file : arr ) {
+	        	if ( file.isDirectory()) {
+	        		folders.add(file.getName());
+	        	}
+	         }
+
+	      }else {
+	    	  logger.error("Folder cannot be read: " + path);
+	    	  return new ArrayList<String>();
+	      }
+		
+		
+		return folders;
+	}
+	
+	public static boolean removeFolder(String path) {
+		
+		File folder = new File(path);
+		return FileSystemUtils.deleteRecursively(folder);
+	}
     
 //  /** Generate UUID for the testid. */  
 //  public static String getUUID () {

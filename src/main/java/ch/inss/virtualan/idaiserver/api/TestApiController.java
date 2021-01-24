@@ -1,8 +1,16 @@
-package ch.inss.idaiserver.api;
+package ch.inss.virtualan.idaiserver.api;
 
-import ch.inss.idaiserver.service.UtilService;
+import ch.inss.virtualan.idaiserver.model.Conf;
+import ch.inss.virtualan.idaiserver.model.Report;
+import ch.inss.virtualan.idaiserver.model.Testidlist;
+import ch.inss.virtualan.idaiserver.utils.FileManagement;
+import java.io.IOException;
 import java.util.List;
-import javax.validation.constraints.NotNull;
+import java.util.Optional;
+import java.util.UUID;
+
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,30 +19,24 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
-import ch.inss.idaiserver.model.*;
-import ch.inss.idaiserver.service.Cucumblan;
-import ch.inss.idaiserver.service.TestService;
-import ch.inss.idaiserver.utils.FileManagement;
+import ch.inss.virtualan.idaiserver.service.Cucumblan;
+import ch.inss.virtualan.idaiserver.service.TestService;
+import ch.inss.virtualan.idaiserver.service.UtilService;
 import io.swagger.annotations.ApiParam;
 
-import java.io.IOException;
-import java.util.Optional;
-import java.util.UUID;
 
-import javax.validation.Valid;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-21T08:48:24.320856+01:00[Europe/Zurich]")
 @Controller
 @RequestMapping("${openapi.idaiserver.base-path:}")
 public class TestApiController implements TestApi {
 
-    private static final String FEATURE = "feature"+FileManagement.fs+"virtualan-contract.0.feature";
+	private static final String FEATURE = "feature/virtualan-contract.0.feature";
+	//final String FEATURE = "feature"+FileManagement.fs+"virtualan-contract.0.feature";
     private static final String CUCUMBLAN = "cucumblan.properties";
 
     private static final Logger logger = LoggerFactory.getLogger(TestApiController.class);
@@ -56,7 +58,7 @@ public class TestApiController implements TestApi {
 
     @Override
     public ResponseEntity<String> getgherkin(String testId) {
-        return utilService.getContent(testId, FEATURE);
+        return utilService.getSessionContent(testId, FEATURE );
     }
 
     @Override
@@ -71,7 +73,7 @@ public class TestApiController implements TestApi {
     }
 
     @Override
-    public ResponseEntity<String> updateConf(String testId,Conf conf) {
+    public ResponseEntity<String> updateConf(String testId, Conf conf) {
         return utilService.updateCucumblan(testId, conf);
     }
 
@@ -84,15 +86,24 @@ public class TestApiController implements TestApi {
     public ResponseEntity<List<Report>> report(String testId) {
         return utilService.readAllReport(testId);
     }
+    
+    public ResponseEntity<String> removetest(@ApiParam(value = "",required=true) @PathVariable("testId") String testId) {
+    	
+		testServices.remove(testId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+    }
+
 
     /** POST for the main initial test with execution and creation of the uuid. */
     @Override
-    public ResponseEntity<Report> testRun(MultipartFile filestream, String serverurl, String dataload, String execute, String skipResponseValidation, String datatype) {
+    public ResponseEntity<Report> testRun(@ApiParam(value = "") @Valid @RequestPart(value = "filestream", required = true) MultipartFile filestream,@ApiParam(value = "The server url to be tested.", required=true, defaultValue="http://localhost:8080") @Valid @RequestPart(value = "serverurl", required = true)  String serverurl,@ApiParam(value = "Execute test immediately. If false, only the property file will be updated (append).", defaultValue="true") @Valid @RequestPart(value = "execute", required = false)  String execute,@ApiParam(value = "Skip the respone validation in tests.", defaultValue="true") @Valid @RequestPart(value = "skipResponseValidation", required = false)  String skipResponseValidation) {
         logger.debug("Start POST /test");
         if (getRequest().isPresent() == false || filestream == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        if ( "teapot".equalsIgnoreCase(dataload) || "teapot".equalsIgnoreCase(serverurl)) {
+        ;
+		if ( "teapot".equalsIgnoreCase(serverurl)) {
             return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
         }
         
@@ -102,13 +113,8 @@ public class TestApiController implements TestApi {
             if (mediaType.isCompatibleWith(MediaType.valueOf("application/octet-stream"))) {
                 logger.debug("Start application/octet-stream.");
                 try {
-                    /* Define default values. */
-                    if ( datatype == null || "".equals(datatype)) {
-                        datatype= "POSTMAN";
-                    }
-                    if ( dataload == null || "".equals(dataload)) {
-                        dataload = filestream.getOriginalFilename();
-                    }
+                                        
+                    String dataload = filestream.getOriginalFilename();
                     
                     Boolean e = new Boolean(true);
                     if ( execute != null) {
@@ -130,7 +136,6 @@ public class TestApiController implements TestApi {
                     } catch (IOException e1) {
                         logger.error("The uploaded file is not readable.");
                     }
-                    cucumblan.setTYPE(datatype);
                     cucumblan.addURL(null,serverurl);
                     cucumblan.setExecute(e);
                     links = testServices.doInitialTest(cucumblan);
@@ -160,13 +165,27 @@ public class TestApiController implements TestApi {
         for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
             if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
 
-              Cucumblan cucumblan = new Cucumblan();
+            	Cucumblan cucumblan = new Cucumblan();
         	  	cucumblan.init(testid);
         	  	reportLinks = testServices.runTest(cucumblan, testid);
             	break;
             }
         }
         return new ResponseEntity<Report>(reportLinks, HttpStatus.CREATED);
+
+    }
+    
+    @Override
+    public ResponseEntity<Testidlist> listTest() {
+    	Testidlist idlist = null;
+        for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+            if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                idlist = testServices.listAllIDs();
+            	
+            	break;
+            }
+        }
+        return new ResponseEntity<Testidlist>(idlist,HttpStatus.NOT_IMPLEMENTED);
 
     }
     

@@ -1,12 +1,12 @@
-package ch.inss.idaiserver.service;
+package ch.inss.virtualan.idaiserver.service;
 
+import ch.inss.virtualan.idaiserver.model.Report;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-//import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.core.type.*;
 
-import ch.inss.idaiserver.model.*;
 
 
 @Service

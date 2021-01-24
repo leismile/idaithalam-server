@@ -1,18 +1,18 @@
 openapi: 3.0.2
 info:
   title: idaithalamserver
-  version: 1.1.5
+  version: 1.1.7
   description: Idaithalam Server
   contact:
-    name: Oliver Glas
-    url: 'http://inss.ch'
-    email: oliver.glas@inss.ch
+    name: Oliver Glas/Elan Thangamani
+    url: 'http://idaithalam.io'
+    email: info@idaithalam.io
   license:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
 servers:
-  - url: 'http://5.22.250.180:8080'
-    description: Dev server
+  - url: 'http://api.idaithalam.io'
+    description: Prod server
   - url: 'http://localhost:8080'
     description: Localhost
 paths:
@@ -33,15 +33,8 @@ paths:
                 serverurl:
                   format: url
                   description: The server url to be tested.
-                  default: 'http://localhost:8080'
                   type: string
-                  example: 'http://localhost:8080'
-                dataload:
-                  format: filepath
-                  description: filename
-                  default: idaithalan.postman_collection.json
-                  type: string
-                  example: idaithalan.postman_collection.json
+                  example: 'https://live.virtualandemo.com'
                 execute:
                   format: stringboolean
                   description: 'Execute test immediately. If false, only the property file will be updated (append).'
@@ -54,15 +47,6 @@ paths:
                   default: true
                   type: string
                   example: true
-                datatype:
-                  description: 'Type of data is POSTMAN, VIRTUALAN OR EXCEL.'
-                  default: POSTMAN
-                  enum:
-                    - POSTMAN
-                    - VIRTUALAN
-                    - EXCEL
-                  type: string
-                  example: POSTMAN
       tags:
         - API test execution
       responses:
@@ -81,10 +65,31 @@ paths:
       operationId: testRun
       summary: Create and run the test with the uploaded Postman collection.
       description: Create a new test and run against an API. Generates the Cucumber report and a Gherkin file.
+    get:
+      tags:
+        - Results
+      
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Testidlist'
+          description: List of all test IDs.
+        '404':
+          description: No test found.
+        '500':
+          description: Internal server error.
+        default:
+          description: unexpected error
+      operationId: listTest
+      summary: Get all test IDs as a list.
+      
+      description: Get all test IDs as a list.
   '/test/{testId}':
     get:
       tags:
-        - API test execution
+        - Results
       parameters:
         - name: testId
           description: testId for that test
@@ -107,8 +112,8 @@ paths:
         default:
           description: unexpected error
       operationId: getReport
-      summary: Get the test result links as in PUT.
-      description: Get the test result links as in PUT.
+      summary: Get the test result links for the last test session..
+      description: Get the test result links for the last test session..
     put:
       tags:
         - API test execution
@@ -127,9 +132,40 @@ paths:
               schema:
                 $ref: '#/components/schemas/Report'
           description: Gives back the entire cucumblan.properties file and generated testid.
+        '404':
+           description: testID not found
       operationId: runTest
       summary: Run test.
       description: Run test
+    delete:
+      tags:
+        - API test execution
+      parameters:
+        - name: testId
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '204':
+          content:
+            text/plain:
+              schema:
+                format: properties
+                type: string
+          description: Removed the entire test including all sessions.
+        '404':
+           description: testID not found
+      operationId: removetest
+      summary: Remove the entire test including all sessions.
+      description: Removed the entire test including all sessions.
+    parameters:
+      - name: testId
+        schema:
+          type: string
+        in: path
+        required: true
+        
   '/test/{testId}/report':
     get:
       tags:
@@ -151,13 +187,15 @@ paths:
                 items:
                   $ref: '#/components/schemas/Report'
           description: Configuration of cucumblan.properties file.
+        '404':
+           description: testID not found
         '500':
           description: Internal server error.
         default:
           description: unexpected error
       operationId: report
-      summary: Get the report for this uuid.
-      description: Get the report of a previously executed test.
+      summary: Get all sesson reports for this uuid.
+      description: Get all sesson reports for this uuid.
   '/test/{testId}/feature':
     get:
       tags:
@@ -178,6 +216,8 @@ paths:
                 format: Gherkin
                 type: string
           description: Content of the generated Gherkin feature file.
+        '404':
+           description: testID not found
         '500':
           description: Internal server error.
         default:
@@ -253,6 +293,8 @@ paths:
                 format: properties
                 type: string
           description: Gives back the entire test configuration as a cucumblan.properties file.
+        '404':
+           description: testID not found
         '400':
           description: Bad request.
         default:
@@ -277,13 +319,15 @@ paths:
           in: path
           required: true
       responses:
-        '200':
+        '204':
           content:
             text/plain:
               schema:
                 format: properties
                 type: string
           description: delete key Configuration of cucumblan.properties file.
+        '404':
+           description: testID not found
       operationId: removeConf
       summary: Remove the single config configuration.
       description: Remove the test.
@@ -295,57 +339,7 @@ paths:
         required: true
 components:
   schemas:
-    Test:
-      title: Root Type for every test.
-      description: 'virtualan.data.load=sample.postman_collection.json  virtualan.data.type=POSTMAN service.api.next=http://localhost:8081'
-      type: object
-      properties:
-        testId:
-          format: uuid
-          type: string
-        creationtime:
-          format: datetime
-          type: string
-        lastexecution:
-          format: datetime
-          type: string
-        load:
-          format: filename
-          type: array
-          items:
-            type: string
-        serviceapi:
-          type: array
-          items:
-            $ref: '#/components/schemas/Serviceapi'
-        type:
-          enum:
-            - POSTMAN
-            - VIRTUALAN
-            - EXCEL
-          type: string
-        message:
-          type: string
-        error:
-          type: string
-      example:
-        linktofeature: 'http://localhost:8080/result.feature'
-        linktoreport: 'http://localhost:8080/result.html'
-        message: Test created.
-        error: no error occured.
-    Serviceapi:
-      title: The single service.api object.
-      description: service.api
-      type: object
-      properties:
-        resource:
-          format: resouce
-          type: string
-          example: pet
-        url:
-          format: url
-          type: string
-          example: 'http://localhost.8080'
+   
     HealthResponse:
       required:
         - status
@@ -356,6 +350,9 @@ components:
             - UP
             - ERROR
           type: string
+        server:
+          type: string
+          format: hostname
     Report:
       description: ''
       type: object
@@ -390,9 +387,9 @@ components:
           description: ''
           type: string
         durationSeconds:
-          format: time
+          format: int64
           description: ''
-          type: string
+          type: integer
         linkToFeature:
           description: ''
           type: string
@@ -415,8 +412,23 @@ components:
       description: ''
       type: object
       properties:
-        serverUrl:
+        serverUrls:
           description: ''
+          type: array
+          items:
+            type: string
+          
+    Testidlist:
+      description: 'List of all test IDs.'
+      type: object
+      properties:
+        serverUrl:
+          description: 'Array of all testlinks.'
+          type: array
+          items:
+            type: string
+        idList:
+          description: 'Array of all test IDs.'
           type: array
           items:
             type: string

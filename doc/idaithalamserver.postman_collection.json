@@ -1,0 +1,1724 @@
+{
+	"info": {
+		"_postman_id": "9618af04-f4bd-4008-b99b-94a5fc5ea80b",
+		"name": "idaithalamserver",
+		"description": "Idaithalam Server\n\nContact Support:\n Name: Oliver Glas\n Email: oliver.glas@inss.ch",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "test",
+			"item": [
+				{
+					"name": "{test Id}",
+					"item": [
+						{
+							"name": "conf",
+							"item": [
+								{
+									"name": "Get the test configuration content from the cucumblan.properties.",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/test/:testId/conf",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"test",
+												":testId",
+												"conf"
+											],
+											"variable": [
+												{
+													"key": "testId",
+													"value": "fugiat non",
+													"type": "string",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Get the content of the configured cucumblan.properties."
+									},
+									"response": [
+										{
+											"name": "unexpected error",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/test/:testId/conf",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"test",
+														":testId",
+														"conf"
+													],
+													"variable": [
+														{
+															"key": "testId"
+														}
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Test not found.",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/test/:testId/conf",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"test",
+														":testId",
+														"conf"
+													],
+													"variable": [
+														{
+															"key": "testId"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Configuration of cucumblan.properties file.",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/test/:testId/conf",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"test",
+														":testId",
+														"conf"
+													],
+													"variable": [
+														{
+															"key": "testId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": "fugiat non"
+										},
+										{
+											"name": "Internal server error.",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/test/:testId/conf",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"test",
+														":testId",
+														"conf"
+													],
+													"variable": [
+														{
+															"key": "testId"
+														}
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "Update the configuration.",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"serverUrl\": \"non minim consectetur dolore magna\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/test/:testId/conf",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"test",
+												":testId",
+												"conf"
+											],
+											"variable": [
+												{
+													"key": "testId",
+													"value": "fugiat non",
+													"type": "string",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Update the configuration."
+									},
+									"response": [
+										{
+											"name": "Gives back the entire test configuration as a cucumblan.properties file.",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"serverUrl\": \"non minim consectetur dolore magna\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/test/:testId/conf",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"test",
+														":testId",
+														"conf"
+													],
+													"variable": [
+														{
+															"key": "testId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": "fugiat non"
+										},
+										{
+											"name": "unexpected error",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"serverUrl\": \"non minim consectetur dolore magna\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/test/:testId/conf",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"test",
+														":testId",
+														"conf"
+													],
+													"variable": [
+														{
+															"key": "testId"
+														}
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Bad request.",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"serverUrl\": \"non minim consectetur dolore magna\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/test/:testId/conf",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"test",
+														":testId",
+														"conf"
+													],
+													"variable": [
+														{
+															"key": "testId"
+														}
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "testID not found",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"serverUrl\": \"non minim consectetur dolore magna\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/test/:testId/conf",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"test",
+														":testId",
+														"conf"
+													],
+													"variable": [
+														{
+															"key": "testId"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "Remove the single config configuration.",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/test/:testId/conf?configKey=fugiat non",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"test",
+												":testId",
+												"conf"
+											],
+											"query": [
+												{
+													"key": "configKey",
+													"value": "fugiat non",
+													"description": "(Required) remove given key configuration."
+												}
+											],
+											"variable": [
+												{
+													"key": "testId",
+													"value": "fugiat non",
+													"type": "string",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Remove the test."
+									},
+									"response": [
+										{
+											"name": "testID not found",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/test/:testId/conf?configKey=fugiat non",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"test",
+														":testId",
+														"conf"
+													],
+													"query": [
+														{
+															"key": "configKey",
+															"value": "fugiat non"
+														}
+													],
+													"variable": [
+														{
+															"key": "testId"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "delete key Configuration of cucumblan.properties file.",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/test/:testId/conf?configKey=fugiat non",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"test",
+														":testId",
+														"conf"
+													],
+													"query": [
+														{
+															"key": "configKey",
+															"value": "fugiat non"
+														}
+													],
+													"variable": [
+														{
+															"key": "testId"
+														}
+													]
+												}
+											},
+											"status": "No Content",
+											"code": 204,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": "fugiat non"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Get the test result links for the last test session..",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/test/:testId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"test",
+										":testId"
+									],
+									"variable": [
+										{
+											"key": "testId",
+											"value": "fugiat non",
+											"type": "string",
+											"description": "(Required) testId for that test"
+										}
+									]
+								},
+								"description": "Get the test result links for the last test session.."
+							},
+							"response": [
+								{
+									"name": "unexpected error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/test/:testId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"test",
+												":testId"
+											],
+											"variable": [
+												{
+													"key": "testId"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Internal server error.",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/test/:testId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"test",
+												":testId"
+											],
+											"variable": [
+												{
+													"key": "testId"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Configuration of cucumblan.properties file.",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/test/:testId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"test",
+												":testId"
+											],
+											"variable": [
+												{
+													"key": "testId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"testId\": \"7f2251d0-a14a-afa6-db2d-c26dd0cd78a2\",\n \"success\": true,\n \"sessionNr\": 42838925,\n \"testExecuted\": true,\n \"skipResponseValidation\": true,\n \"creationTime\": \"ipsum commodo\",\n \"startTime\": \"proident\",\n \"endTime\": \"pariatur con\",\n \"durationSeconds\": -90071796,\n \"linkToFeature\": \"velit fugiat ut eiusmod ex\",\n \"linkToReport\": \"aliquip pariatur\",\n \"linkToProperties\": \"dolore culpa dolore\",\n \"linkToSessions\": \"minim commodo laboris velit\",\n \"message\": \"fugiat nisi aliqu\",\n \"error\": \"incididunt id\"\n}"
+								},
+								{
+									"name": "Test not found.",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/test/:testId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"test",
+												":testId"
+											],
+											"variable": [
+												{
+													"key": "testId"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Run test.",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/test/:testId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"test",
+										":testId"
+									],
+									"variable": [
+										{
+											"key": "testId",
+											"value": "urn:uuid:19f07490-3e75-64cf-9a97-fcb4f43add3a",
+											"type": "string",
+											"description": "(Required) testid for that test"
+										}
+									]
+								},
+								"description": "Run test"
+							},
+							"response": [
+								{
+									"name": "Gives back the entire cucumblan.properties file and generated testid.",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/test/:testId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"test",
+												":testId"
+											],
+											"variable": [
+												{
+													"key": "testId"
+												}
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"testId\": \"7f2251d0-a14a-afa6-db2d-c26dd0cd78a2\",\n \"success\": true,\n \"sessionNr\": 42838925,\n \"testExecuted\": true,\n \"skipResponseValidation\": true,\n \"creationTime\": \"ipsum commodo\",\n \"startTime\": \"proident\",\n \"endTime\": \"pariatur con\",\n \"durationSeconds\": -90071796,\n \"linkToFeature\": \"velit fugiat ut eiusmod ex\",\n \"linkToReport\": \"aliquip pariatur\",\n \"linkToProperties\": \"dolore culpa dolore\",\n \"linkToSessions\": \"minim commodo laboris velit\",\n \"message\": \"fugiat nisi aliqu\",\n \"error\": \"incididunt id\"\n}"
+								},
+								{
+									"name": "testID not found",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/test/:testId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"test",
+												":testId"
+											],
+											"variable": [
+												{
+													"key": "testId"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Remove the entire test including all sessions.",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/test/:testId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"test",
+										":testId"
+									],
+									"variable": [
+										{
+											"key": "testId",
+											"value": "fugiat non",
+											"type": "string",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Removed the entire test including all sessions."
+							},
+							"response": [
+								{
+									"name": "testID not found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/test/:testId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"test",
+												":testId"
+											],
+											"variable": [
+												{
+													"key": "testId"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Removed the entire test including all sessions.",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/test/:testId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"test",
+												":testId"
+											],
+											"variable": [
+												{
+													"key": "testId"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": "fugiat non"
+								}
+							]
+						},
+						{
+							"name": "Get all sesson reports for this uuid.",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/test/:testId/report",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"test",
+										":testId",
+										"report"
+									],
+									"variable": [
+										{
+											"key": "testId",
+											"value": "fugiat non",
+											"type": "string",
+											"description": "(Required) testid for that test"
+										}
+									]
+								},
+								"description": "Get all sesson reports for this uuid."
+							},
+							"response": [
+								{
+									"name": "Configuration of cucumblan.properties file.",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/test/:testId/report",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"test",
+												":testId",
+												"report"
+											],
+											"variable": [
+												{
+													"key": "testId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n {\n  \"testId\": \"urn:uuid:b1cd42c4-652c-c86a-77e4-514fb7b4bcea\",\n  \"success\": false,\n  \"sessionNr\": 39738015,\n  \"testExecuted\": false,\n  \"skipResponseValidation\": true,\n  \"creationTime\": \"nostrud Lorem Excepteur dolore\",\n  \"startTime\": \"magna pariatur do\",\n  \"endTime\": \"aliqua reprehenderit qui\",\n  \"durationSeconds\": 92361141,\n  \"linkToFeature\": \"commodo officia\",\n  \"linkToReport\": \"nulla Excepteur tempor quis\",\n  \"linkToProperties\": \"non consequat ut sunt\",\n  \"linkToSessions\": \"velit dolor ea elit\",\n  \"message\": \"eiusmod qui\",\n  \"error\": \"ut\"\n },\n {\n  \"testId\": \"urn:uuid:af21d1c6-804b-bd5a-221d-9229885f28f4\",\n  \"success\": true,\n  \"sessionNr\": 96059229,\n  \"testExecuted\": false,\n  \"skipResponseValidation\": false,\n  \"creationTime\": \"aliquip quis anim veniam irure\",\n  \"startTime\": \"ut Lorem sunt\",\n  \"endTime\": \"cupidatat minim\",\n  \"durationSeconds\": -9900463,\n  \"linkToFeature\": \"consequat eu velit mollit\",\n  \"linkToReport\": \"veniam nostrud\",\n  \"linkToProperties\": \"sed adipisicing dolore dolore\",\n  \"linkToSessions\": \"ad labore veniam\",\n  \"message\": \"tempor aute\",\n  \"error\": \"Duis magna nostrud\"\n }\n]"
+								},
+								{
+									"name": "Internal server error.",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/test/:testId/report",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"test",
+												":testId",
+												"report"
+											],
+											"variable": [
+												{
+													"key": "testId"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "unexpected error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/test/:testId/report",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"test",
+												":testId",
+												"report"
+											],
+											"variable": [
+												{
+													"key": "testId"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "testID not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/test/:testId/report",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"test",
+												":testId",
+												"report"
+											],
+											"variable": [
+												{
+													"key": "testId"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Get the content of the generated Gherkin feature file.",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/test/:testId/feature",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"test",
+										":testId",
+										"feature"
+									],
+									"variable": [
+										{
+											"key": "testId",
+											"value": "fugiat non",
+											"type": "string",
+											"description": "(Required) testid for that Gherkin file."
+										}
+									]
+								},
+								"description": "Get the content of the generated Gherkin feature file."
+							},
+							"response": [
+								{
+									"name": "unexpected error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/test/:testId/feature",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"test",
+												":testId",
+												"feature"
+											],
+											"variable": [
+												{
+													"key": "testId"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Content of the generated Gherkin feature file.",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/test/:testId/feature",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"test",
+												":testId",
+												"feature"
+											],
+											"variable": [
+												{
+													"key": "testId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": "fugiat non"
+								},
+								{
+									"name": "Internal server error.",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/test/:testId/feature",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"test",
+												":testId",
+												"feature"
+											],
+											"variable": [
+												{
+													"key": "testId"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "testID not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/test/:testId/feature",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"test",
+												":testId",
+												"feature"
+											],
+											"variable": [
+												{
+													"key": "testId"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Create and run the test with the uploaded Postman collection.",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "filestream",
+									"value": "mollit voluptate officia consequat",
+									"type": "text"
+								},
+								{
+									"key": "serverurl",
+									"value": "https://live.virtualandemo.com",
+									"description": "The server url to be tested.",
+									"type": "text"
+								},
+								{
+									"key": "execute",
+									"value": "true",
+									"description": "Execute test immediately. If false, only the property file will be updated (append).",
+									"type": "text"
+								},
+								{
+									"key": "skipResponseValidation",
+									"value": "true",
+									"description": "Skip the respone validation in tests.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/test",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"test"
+							]
+						},
+						"description": "Create a new test and run against an API. Generates the Cucumber report and a Gherkin file."
+					},
+					"response": [
+						{
+							"name": "Bad request.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "filestream",
+											"value": "mollit voluptate officia consequat",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											},
+											"type": "text"
+										},
+										{
+											"key": "serverurl",
+											"value": "https://live.virtualandemo.com",
+											"description": {
+												"content": "The server url to be tested.",
+												"type": "text/plain"
+											},
+											"type": "text"
+										},
+										{
+											"key": "execute",
+											"value": "true",
+											"description": {
+												"content": "Execute test immediately. If false, only the property file will be updated (append).",
+												"type": "text/plain"
+											},
+											"type": "text"
+										},
+										{
+											"key": "skipResponseValidation",
+											"value": "true",
+											"description": {
+												"content": "Skip the respone validation in tests.",
+												"type": "text/plain"
+											},
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/test",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"test"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "I am a teapot.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "filestream",
+											"value": "mollit voluptate officia consequat",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											},
+											"type": "text"
+										},
+										{
+											"key": "serverurl",
+											"value": "https://live.virtualandemo.com",
+											"description": {
+												"content": "The server url to be tested.",
+												"type": "text/plain"
+											},
+											"type": "text"
+										},
+										{
+											"key": "execute",
+											"value": "true",
+											"description": {
+												"content": "Execute test immediately. If false, only the property file will be updated (append).",
+												"type": "text/plain"
+											},
+											"type": "text"
+										},
+										{
+											"key": "skipResponseValidation",
+											"value": "true",
+											"description": {
+												"content": "Skip the respone validation in tests.",
+												"type": "text/plain"
+											},
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/test",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"test"
+									]
+								}
+							},
+							"status": "I'm a teapot (RFC 2324)",
+							"code": 418,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Test created.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "filestream",
+											"value": "mollit voluptate officia consequat",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											},
+											"type": "text"
+										},
+										{
+											"key": "serverurl",
+											"value": "https://live.virtualandemo.com",
+											"description": {
+												"content": "The server url to be tested.",
+												"type": "text/plain"
+											},
+											"type": "text"
+										},
+										{
+											"key": "execute",
+											"value": "true",
+											"description": {
+												"content": "Execute test immediately. If false, only the property file will be updated (append).",
+												"type": "text/plain"
+											},
+											"type": "text"
+										},
+										{
+											"key": "skipResponseValidation",
+											"value": "true",
+											"description": {
+												"content": "Skip the respone validation in tests.",
+												"type": "text/plain"
+											},
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/test",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"test"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"testId\": \"7f2251d0-a14a-afa6-db2d-c26dd0cd78a2\",\n \"success\": true,\n \"sessionNr\": 42838925,\n \"testExecuted\": true,\n \"skipResponseValidation\": true,\n \"creationTime\": \"ipsum commodo\",\n \"startTime\": \"proident\",\n \"endTime\": \"pariatur con\",\n \"durationSeconds\": -90071796,\n \"linkToFeature\": \"velit fugiat ut eiusmod ex\",\n \"linkToReport\": \"aliquip pariatur\",\n \"linkToProperties\": \"dolore culpa dolore\",\n \"linkToSessions\": \"minim commodo laboris velit\",\n \"message\": \"fugiat nisi aliqu\",\n \"error\": \"incididunt id\"\n}"
+						},
+						{
+							"name": "unexpected error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "filestream",
+											"value": "mollit voluptate officia consequat",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											},
+											"type": "text"
+										},
+										{
+											"key": "serverurl",
+											"value": "https://live.virtualandemo.com",
+											"description": {
+												"content": "The server url to be tested.",
+												"type": "text/plain"
+											},
+											"type": "text"
+										},
+										{
+											"key": "execute",
+											"value": "true",
+											"description": {
+												"content": "Execute test immediately. If false, only the property file will be updated (append).",
+												"type": "text/plain"
+											},
+											"type": "text"
+										},
+										{
+											"key": "skipResponseValidation",
+											"value": "true",
+											"description": {
+												"content": "Skip the respone validation in tests.",
+												"type": "text/plain"
+											},
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/test",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"test"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Get all test IDs as a list.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/test",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"test"
+							]
+						},
+						"description": "Get all test IDs as a list."
+					},
+					"response": [
+						{
+							"name": "Internal server error.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/test",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"test"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "No test found.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/test",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"test"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "unexpected error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/test",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"test"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "List of all test IDs.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/test",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"test"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"serverUrl\": [\n  \"sed adipisicing nulla enim sunt\",\n  \"in\"\n ],\n \"idList\": [\n  \"ipsum sit in\",\n  \"non cupidatat aliqua tempor\"\n ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "The health check of this service.",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/health",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"health"
+					]
+				},
+				"description": "The health check of this service."
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/health",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"status\": \"UP\"\n}"
+				},
+				{
+					"name": "Server not available.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/health",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"status": "Service Unavailable",
+					"code": 503,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://api.idaithalam.io"
+		}
+	]
+}

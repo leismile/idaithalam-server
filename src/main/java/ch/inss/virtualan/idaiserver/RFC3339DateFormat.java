@@ -1,4 +1,4 @@
-package ch.inss.idaiserver;
+package ch.inss.virtualan.idaiserver;
 
 import com.fasterxml.jackson.databind.util.StdDateFormat;
 

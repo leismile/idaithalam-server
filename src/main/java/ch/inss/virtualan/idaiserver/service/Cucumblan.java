@@ -1,16 +1,12 @@
-package ch.inss.idaiserver.service;
+package ch.inss.virtualan.idaiserver.service;
 
-import ch.inss.idaiserver.model.Report;
-import ch.inss.idaiserver.model.Serviceapi;
-import ch.inss.idaiserver.model.TestDao;
-import ch.inss.idaiserver.utils.FileManagement;
+import ch.inss.virtualan.idaiserver.model.Report;
+import ch.inss.virtualan.idaiserver.utils.FileManagement;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
 import org.slf4j.Logger;
@@ -66,6 +62,7 @@ public class Cucumblan {
     this.postmanCollections = new LinkedHashSet<String>();
     this.URL = new HashMap<String, String>();
     this.sessionNr = new Integer(0);
+    this.TYPE = "POSTMAN";
   }
 
 
@@ -232,30 +229,6 @@ public class Cucumblan {
 
   public LinkedHashSet<String> getFILE() {
     return postmanCollections;
-  }
-
-
-  public TestDao testFactory() {
-    TestDao dao = new TestDao();
-    dao.setTestid(this.uuid);
-    dao.setCreationtime(FileManagement.whatTime());
-    dao.setError(FileManagement.NOERROR);
-    dao.setLoad(this.getFILE());
-    dao.setServiceapi(this.generateServiceapi(this.getURL()));
-
-    return dao;
-  }
-
-  private List<Serviceapi> generateServiceapi(HashMap<String, String> map) {
-    List<Serviceapi> list = new ArrayList<>();
-    for (String key : map.keySet()) {
-      String value = map.get(key);
-      Serviceapi api = new Serviceapi();
-      api.setResource(key);
-      api.setUrl(value);
-      list.add(api);
-    }
-    return list;
   }
 
 

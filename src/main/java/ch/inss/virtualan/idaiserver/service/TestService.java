@@ -1,7 +1,8 @@
-package ch.inss.idaiserver.service;
+package ch.inss.virtualan.idaiserver.service;
 
-import ch.inss.idaiserver.model.Report;
-import ch.inss.idaiserver.utils.FileManagement;
+import ch.inss.virtualan.idaiserver.model.Report;
+import ch.inss.virtualan.idaiserver.model.Testidlist;
+import ch.inss.virtualan.idaiserver.utils.FileManagement;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.virtualan.idaithalam.contract.IdaithalamExecutor;
 import java.io.File;
@@ -32,6 +33,7 @@ public class TestService {
   private static final String FEATUREX = "feature/virtualan-contract.";     // 0.feature";
   private static final String DOTFEATURE = ".feature";
   private static final String REPORTOVERVIEW = "cucumber-html-reports/overview-features.html";
+private static final String String = null;
   /**
    * Folder to store the Cucumber reports.
    */
@@ -40,29 +42,6 @@ public class TestService {
   @Value("${ch.inss.idaiserver.host}")
   private String serverHost;
 
-  /**
-   * @param path
-   * @throws Exception
-   */
-  private static void removeFromClasspath(String path) throws Exception {
-    URL url = new File(path).toURI().toURL();
-    URLClassLoader urlClassLoader = (URLClassLoader)
-        ClassLoader.getSystemClassLoader();
-    Class<?> urlClass = URLClassLoader.class;
-    Field ucpField = urlClass.getDeclaredField("ucp");
-    ucpField.setAccessible(true);
-//    URLClassPath ucp = (URLClassPath) ucpField.get(urlClassLoader);
-//    Class<?> ucpClass = URLClassPath.class;
-//    Field urlsField = ucpClass.getDeclaredField("urls");
-//    urlsField.setAccessible(true);
-//    Stack urls = (Stack) urlsField.get(ucp);
-//    urls.remove(url);
-
-//    urlsField = ucpClass.getDeclaredField("path");
-//    urlsField.setAccessible(true);
-//    List urlss = (List) urlsField.get(ucp);
-//    urlss.remove(url);
-  }
 
   /**
    * /test PUT Cucumblan service is initialized when calling this method (init()).
@@ -78,8 +57,7 @@ public class TestService {
       logger.error("Object for cucumblan service not correctly initiazlized.");
     }
     /* Paths for the results in the filesystem and URLs. */
-    final String reportFolder =
-        this.storagePath + File.separator + cucumblan.getFolder();
+    final String reportFolder = this.storagePath + File.separator + cucumblan.getFolder();
     final String skip = ".*=IGNORE";
     final String skipProp = reportFolder + File.separator + "exclude-response.properties";
     final String lastSession = reportFolder + File.separator + LASTTEST;
@@ -122,7 +100,7 @@ public class TestService {
       long endTime = System.nanoTime();
       long duration = (endTime - startTime);
       Duration d = Duration.ofNanos(duration);
-      links.setDurationSeconds(Long.valueOf(d.getSeconds()).toString());
+      links.setDurationSeconds(Long.valueOf(d.getSeconds()));
       links.setEndTime(FileManagement.whatTime());
 
       /* Check test result. */
@@ -142,15 +120,8 @@ public class TestService {
       List<Report> list = PersistJSON.readReports(allSessions);
       list.add(links);
       logger.debug("There are " + list.size() + " test sessions stored.");
-
-      /* Persist test execution in JSON file. */
-      PersistJSON.writeJSON(reportFolder + File.separator + LASTTEST, links);
-      String reportList = PersistJSON.writeArray(list, allSessions);
-      FileManagement.writeString(allSessions, reportList);
-      links.setLinkToSessions(propsUrl + File.separator + ALLTESTS);
-
-      String target = reportURL + File.separator + FEATUREX + "0"
-          + DOTFEATURE;
+      
+      String target = reportURL + File.separator + FEATUREX + "0" + DOTFEATURE;
       links.setLinkToFeature(target);
 
       /* Copy the cucumber report folder and send back the link
@@ -159,16 +130,25 @@ public class TestService {
       String linkReport = reportURL + File.separator + REPORTOVERVIEW;
       logger.info("Generated report html file: " + linkReport);
       links.setLinkToReport(linkReport);
-
       links.setLinkToProperties(propsUrl + File.separator + FileManagement.PROPERTIES);
+      links.setLinkToSessions(propsUrl + File.separator + ALLTESTS);
+
+      /* Persist test execution in JSON file. */
+      PersistJSON.writeJSON(reportFolder + File.separator + LASTTEST, links);
+      String reportList = PersistJSON.writeArray(list, allSessions);
+      FileManagement.writeString(allSessions, reportList);
+      
+
+
 
     } catch (JsonProcessingException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
+      if ( links == null) links = new Report();
       links.setError(e.getLocalizedMessage());
       links.setMessage("An internal error occured.");
       links.setTestExecuted(false);
     } catch (IOException ioe) {
+      if ( links == null) links = new Report();
       ioe.printStackTrace();
       links.setError(ioe.getLocalizedMessage());
       links.setMessage("An internal error occured.");
@@ -250,7 +230,7 @@ public class TestService {
         long endTime = System.nanoTime();
         long duration = (endTime - startTime);
         Duration d = Duration.ofNanos(duration);
-        links.setDurationSeconds(Long.valueOf(d.getSeconds()).toString());
+        links.setDurationSeconds(Long.valueOf(d.getSeconds()));
         links.setEndTime(FileManagement.whatTime());
 
         /* Check test result. */
@@ -287,8 +267,12 @@ public class TestService {
       String linkReport = reportURL + File.separator + REPORTOVERVIEW;
       logger.info("Generated report html file: " + linkReport);
       links.setLinkToReport(linkReport);
-
       links.setLinkToProperties(propsUrl + File.separator + FileManagement.PROPERTIES);
+      links.setLinkToSessions(propsUrl + File.separator + ALLTESTS);
+
+      /* Message */
+      links.setMessage("Report created.");
+      links.setError(FileManagement.NOERROR);
 
       /* Persist test execution in JSON file. */
       List<Report> list = new ArrayList<Report>();
@@ -298,13 +282,9 @@ public class TestService {
       String array = PersistJSON.writeArray(list, allSessions);
       FileManagement.writeString(allSessions, array);
 
-      links.setLinkToSessions(propsUrl + File.separator + ALLTESTS);
-
-      /* Message */
-      links.setMessage("Report created.");
-      links.setError(FileManagement.NOERROR);
-
+      
     } catch (Exception e) {
+      if ( links == null) links = new Report();
       links.setError(e.getLocalizedMessage());
       links.setMessage("No reports.");
       links.setSuccess(false);
@@ -358,8 +338,6 @@ public class TestService {
       result = e.getLocalizedMessage();
       logger.info("Maven execution Execption raised: " + result);
       e.printStackTrace();
-    } finally {
-
     }
     return result;
   }
@@ -386,6 +364,31 @@ public class TestService {
     method.setAccessible(true);
     method.invoke(urlClassLoader, new Object[]{u.toURL()});
   }
+  
+
+  /**
+   * @param path
+   * @throws Exception
+   */
+  private static void removeFromClasspath(String path) throws Exception {
+    URL url = new File(path).toURI().toURL();
+    URLClassLoader urlClassLoader = (URLClassLoader)
+        ClassLoader.getSystemClassLoader();
+    Class<?> urlClass = URLClassLoader.class;
+    Field ucpField = urlClass.getDeclaredField("ucp");
+    ucpField.setAccessible(true);
+//    URLClassPath ucp = (URLClassPath) ucpField.get(urlClassLoader);
+//    Class<?> ucpClass = URLClassPath.class;
+//    Field urlsField = ucpClass.getDeclaredField("urls");
+//    urlsField.setAccessible(true);
+//    Stack urls = (Stack) urlsField.get(ucp);
+//    urls.remove(url);
+
+//    urlsField = ucpClass.getDeclaredField("path");
+//    urlsField.setAccessible(true);
+//    List urlss = (List) urlsField.get(ucp);
+//    urlss.remove(url);
+  }
 
   private String addSlash(String url) {
     if (url.endsWith("/")) {
@@ -394,6 +397,28 @@ public class TestService {
       return url + "/";
     }
   }
+  
+  	/** List all ids. */
+	public Testidlist listAllIDs() {
+		List<String> list = FileManagement.listFolders(this.storagePath);
+		Testidlist idlist = new Testidlist();
+		for ( String folder : list) {
+			idlist.addServerUrlItem(this.serverHost + "/" + folder + "/" + ALLTESTS);
+			idlist.addIdListItem(folder);
+		}
+		if ( list.size() == 0) {
+			idlist.addIdListItem("empty");
+			idlist.addServerUrlItem("empty");
+		}
+		
+		
+		return idlist;
+	}
+
+	public void remove(java.lang.String testId) {
+		final String reportFolder = this.storagePath + File.separator + testId;
+		FileManagement.removeFolder(reportFolder);
+	}
 
 
 }

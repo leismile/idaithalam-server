@@ -1,4 +1,4 @@
-package ch.inss.idaiserver.api;
+package ch.inss.virtualan.idaiserver.api;
 
 import org.springframework.web.context.request.NativeWebRequest;
 

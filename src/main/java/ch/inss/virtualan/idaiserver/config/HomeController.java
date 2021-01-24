@@ -1,4 +1,4 @@
-package ch.inss.idaiserver.config;
+package ch.inss.virtualan.idaiserver.config;
 
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import org.springframework.beans.factory.annotation.Value;
