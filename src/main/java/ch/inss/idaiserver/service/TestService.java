@@ -40,29 +40,6 @@ public class TestService {
   @Value("${ch.inss.idaiserver.host}")
   private String serverHost;
 
-  /**
-   * @param path
-   * @throws Exception
-   */
-  private static void removeFromClasspath(String path) throws Exception {
-    URL url = new File(path).toURI().toURL();
-    URLClassLoader urlClassLoader = (URLClassLoader)
-        ClassLoader.getSystemClassLoader();
-    Class<?> urlClass = URLClassLoader.class;
-    Field ucpField = urlClass.getDeclaredField("ucp");
-    ucpField.setAccessible(true);
-//    URLClassPath ucp = (URLClassPath) ucpField.get(urlClassLoader);
-//    Class<?> ucpClass = URLClassPath.class;
-//    Field urlsField = ucpClass.getDeclaredField("urls");
-//    urlsField.setAccessible(true);
-//    Stack urls = (Stack) urlsField.get(ucp);
-//    urls.remove(url);
-
-//    urlsField = ucpClass.getDeclaredField("path");
-//    urlsField.setAccessible(true);
-//    List urlss = (List) urlsField.get(ucp);
-//    urlss.remove(url);
-  }
 
   /**
    * /test PUT Cucumblan service is initialized when calling this method (init()).
@@ -358,8 +335,6 @@ public class TestService {
       result = e.getLocalizedMessage();
       logger.info("Maven execution Execption raised: " + result);
       e.printStackTrace();
-    } finally {
-
     }
     return result;
   }
@@ -385,6 +360,31 @@ public class TestService {
     Method method = urlClass.getDeclaredMethod("addURL", new Class[]{URL.class});
     method.setAccessible(true);
     method.invoke(urlClassLoader, new Object[]{u.toURL()});
+  }
+  
+
+  /**
+   * @param path
+   * @throws Exception
+   */
+  private static void removeFromClasspath(String path) throws Exception {
+    URL url = new File(path).toURI().toURL();
+    URLClassLoader urlClassLoader = (URLClassLoader)
+        ClassLoader.getSystemClassLoader();
+    Class<?> urlClass = URLClassLoader.class;
+    Field ucpField = urlClass.getDeclaredField("ucp");
+    ucpField.setAccessible(true);
+//    URLClassPath ucp = (URLClassPath) ucpField.get(urlClassLoader);
+//    Class<?> ucpClass = URLClassPath.class;
+//    Field urlsField = ucpClass.getDeclaredField("urls");
+//    urlsField.setAccessible(true);
+//    Stack urls = (Stack) urlsField.get(ucp);
+//    urls.remove(url);
+
+//    urlsField = ucpClass.getDeclaredField("path");
+//    urlsField.setAccessible(true);
+//    List urlss = (List) urlsField.get(ucp);
+//    urlss.remove(url);
   }
 
   private String addSlash(String url) {

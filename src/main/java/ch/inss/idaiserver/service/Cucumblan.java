@@ -66,6 +66,7 @@ public class Cucumblan {
     this.postmanCollections = new LinkedHashSet<String>();
     this.URL = new HashMap<String, String>();
     this.sessionNr = new Integer(0);
+    this.TYPE = "POSTMAN";
   }
 
 

@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: idaithalamserver
-  version: 1.1.5
+  version: 1.1.6
   description: Idaithalam Server
   contact:
     name: Oliver Glas
@@ -11,8 +11,8 @@ info:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
 servers:
-  - url: 'http://5.22.250.180:8080'
-    description: Dev server
+  - url: 'http://api.idaithalam.io'
+    description: Prod server
   - url: 'http://localhost:8080'
     description: Localhost
 paths:
@@ -48,15 +48,6 @@ paths:
                   default: true
                   type: string
                   example: true
-                datatype:
-                  description: 'Type of data is POSTMAN, VIRTUALAN OR EXCEL.'
-                  default: POSTMAN
-                  enum:
-                    - POSTMAN
-                    - VIRTUALAN
-                    - EXCEL
-                  type: string
-                  example: POSTMAN
       tags:
         - API test execution
       responses:
@@ -289,57 +280,7 @@ paths:
         required: true
 components:
   schemas:
-    Test:
-      title: Root Type for every test.
-      description: 'virtualan.data.load=sample.postman_collection.json  virtualan.data.type=POSTMAN service.api.next=http://localhost:8081'
-      type: object
-      properties:
-        testId:
-          format: uuid
-          type: string
-        creationtime:
-          format: datetime
-          type: string
-        lastexecution:
-          format: datetime
-          type: string
-        load:
-          format: filename
-          type: array
-          items:
-            type: string
-        serviceapi:
-          type: array
-          items:
-            $ref: '#/components/schemas/Serviceapi'
-        type:
-          enum:
-            - POSTMAN
-            - VIRTUALAN
-            - EXCEL
-          type: string
-        message:
-          type: string
-        error:
-          type: string
-      example:
-        linktofeature: 'http://localhost:8080/result.feature'
-        linktoreport: 'http://localhost:8080/result.html'
-        message: Test created.
-        error: no error occured.
-    Serviceapi:
-      title: The single service.api object.
-      description: service.api
-      type: object
-      properties:
-        resource:
-          format: resouce
-          type: string
-          example: pet
-        url:
-          format: url
-          type: string
-          example: 'http://localhost.8080'
+   
     HealthResponse:
       required:
         - status

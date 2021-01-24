@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * service.api
  */
 @ApiModel(description = "service.api")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-24T07:36:16.643094+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-24T09:32:21.012675+01:00[Europe/Zurich]")
 public class Serviceapi   {
   @JsonProperty("resource")
   private String resource;
