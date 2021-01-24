@@ -147,7 +147,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Report'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Report'
           description: Configuration of cucumblan.properties file.
         '500':
           description: Internal server error.

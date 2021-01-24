@@ -167,4 +167,22 @@ public class UtilService {
     }
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
+
+
+  public ResponseEntity<List<Report>> readAllReport(String testId) {
+    final String folder =
+        this.storagePath + FileManagement.fs + testId + FileManagement.fs + TestService.ALLTESTS;
+    File file = new File(folder);
+    if (file.exists()) {
+      try {
+        List<Report> report = PersistJSON.readReports(folder);
+        if (report != null) {
+          return new ResponseEntity<>(report, HttpStatus.OK);
+        }
+      } catch (Exception e) {
+        logger.warn("Unable to load latest json response");
+      }
+    }
+    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  }
 }
