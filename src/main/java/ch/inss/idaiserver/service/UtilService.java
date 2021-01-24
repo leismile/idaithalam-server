@@ -2,6 +2,7 @@ package ch.inss.idaiserver.service;
 
 import ch.inss.idaiserver.exception.UnableProcessException;
 import ch.inss.idaiserver.model.Conf;
+import ch.inss.idaiserver.model.Report;
 import ch.inss.idaiserver.utils.FileManagement;
 import java.io.File;
 import java.io.FileReader;
@@ -136,11 +137,10 @@ public class UtilService {
   private String readProps(UUID testId, String fileName) {
     String fileContent = null;
     /* Paths for the results in the filesystem and URLs. */
-    final String folder =
-        this.storagePath + FileManagement.fs + testId + FileManagement.fs + fileName;
-    File file = new File(folder);
     try {
-      if (file.exists()) {
+      if (isCucumblanExists(testId.toString())) {
+        File file = new File(
+            this.storagePath + FileManagement.fs + testId + FileManagement.fs + fileName);
         fileContent = IOUtils.toString(new FileReader(file));
       } else {
         logger.error("Object for cucumblan service not correctly initiazlized.");
@@ -151,4 +151,20 @@ public class UtilService {
     return fileContent;
   }
 
+  public ResponseEntity<Report> readLatestTestResult(String testId) {
+    final String folder =
+        this.storagePath + FileManagement.fs + testId + FileManagement.fs + TestService.LASTTEST;
+    File file = new File(folder);
+    if (file.exists()) {
+      try {
+        Report report = PersistJSON.readLatestReport(folder);
+        if (report != null) {
+          return new ResponseEntity<>(report, HttpStatus.OK);
+        }
+      } catch (Exception e) {
+        logger.warn("Unable to load latest json response");
+      }
+    }
+    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  }
 }

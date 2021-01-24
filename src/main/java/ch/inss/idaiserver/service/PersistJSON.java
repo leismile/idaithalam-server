@@ -120,7 +120,14 @@ public class PersistJSON {
 		        new File(filename), 
 		        new TypeReference<List<Report>>(){});
 		return list;
-		
 	}
-	
+
+
+	public static Report readLatestReport(String filename) throws JsonParseException, JsonMappingException, IOException{
+		logger.debug("Reading into Report: " + filename);
+		ObjectMapper objectMapper = new ObjectMapper();
+		Report list = objectMapper.readValue(new File(filename),Report.class);
+		return list;
+	}
+
 }

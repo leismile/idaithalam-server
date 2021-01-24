@@ -31,7 +31,7 @@ public class TestService {
   private static final String DOTFEATURE = ".feature";
   private static final String REPORTOVERVIEW = "cucumber-html-reports/overview-features.html";
   private static final String ALLTESTS = "alltests.json";
-  private static final String LASTTEST = "lasttest.json";
+  public static final String LASTTEST = "lasttest.json";
   /**
    * Folder to store the Cucumber reports.
    */
