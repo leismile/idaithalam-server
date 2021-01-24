@@ -31,6 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -398,6 +399,11 @@ public class FileManagement {
 		return folders;
 	}
 	
+	public static boolean removeFolder(String path) {
+		
+		File folder = new File(path);
+		return FileSystemUtils.deleteRecursively(folder);
+	}
     
 //  /** Generate UUID for the testid. */  
 //  public static String getUUID () {

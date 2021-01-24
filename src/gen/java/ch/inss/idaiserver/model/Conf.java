@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -14,22 +12,13 @@ import javax.validation.constraints.*;
 /**
  * Conf
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-24T14:09:46.792892+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-24T15:45:18.941236+01:00[Europe/Zurich]")
 public class Conf   {
   @JsonProperty("serverUrl")
-  @Valid
-  private List<String> serverUrl = null;
+  private String serverUrl;
 
-  public Conf serverUrl(List<String> serverUrl) {
+  public Conf serverUrl(String serverUrl) {
     this.serverUrl = serverUrl;
-    return this;
-  }
-
-  public Conf addServerUrlItem(String serverUrlItem) {
-    if (this.serverUrl == null) {
-      this.serverUrl = new ArrayList<>();
-    }
-    this.serverUrl.add(serverUrlItem);
     return this;
   }
 
@@ -40,11 +29,11 @@ public class Conf   {
   @ApiModelProperty(value = "")
 
 
-  public List<String> getServerUrl() {
+  public String getServerUrl() {
     return serverUrl;
   }
 
-  public void setServerUrl(List<String> serverUrl) {
+  public void setServerUrl(String serverUrl) {
     this.serverUrl = serverUrl;
   }
 

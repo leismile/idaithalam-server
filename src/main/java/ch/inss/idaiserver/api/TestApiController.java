@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -85,6 +86,14 @@ public class TestApiController implements TestApi {
     public ResponseEntity<List<Report>> report(String testId) {
         return utilService.readAllReport(testId);
     }
+    
+    public ResponseEntity<String> removetest(@ApiParam(value = "",required=true) @PathVariable("testId") String testId) {
+    	
+		testServices.remove(testId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+    }
+
 
     /** POST for the main initial test with execution and creation of the uuid. */
     @Override

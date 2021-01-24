@@ -112,8 +112,8 @@ paths:
         default:
           description: unexpected error
       operationId: getReport
-      summary: Get the test result links.
-      description: Get the test result links.
+      summary: Get the test result links for the last test session..
+      description: Get the test result links for the last test session..
     put:
       tags:
         - API test execution
@@ -137,6 +137,35 @@ paths:
       operationId: runTest
       summary: Run test.
       description: Run test
+    delete:
+      tags:
+        - API test execution
+      parameters:
+        - name: testId
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '204':
+          content:
+            text/plain:
+              schema:
+                format: properties
+                type: string
+          description: Removed the entire test including all sessions.
+        '404':
+           description: testID not found
+      operationId: removetest
+      summary: Remove the entire test including all sessions.
+      description: Removed the entire test including all sessions.
+    parameters:
+      - name: testId
+        schema:
+          type: string
+        in: path
+        required: true
+        
   '/test/{testId}/report':
     get:
       tags:
@@ -165,8 +194,8 @@ paths:
         default:
           description: unexpected error
       operationId: report
-      summary: Get the report for this uuid.
-      description: Get the report of a previously executed test.
+      summary: Get all sesson reports for this uuid.
+      description: Get all sesson reports for this uuid.
   '/test/{testId}/feature':
     get:
       tags:
@@ -290,7 +319,7 @@ paths:
           in: path
           required: true
       responses:
-        '200':
+        '204':
           content:
             text/plain:
               schema:
@@ -385,9 +414,8 @@ components:
       properties:
         serverUrl:
           description: ''
-          type: array
-          items:
-            type: string
+          type: string
+          
     Testidlist:
       description: 'List of all test IDs.'
       type: object

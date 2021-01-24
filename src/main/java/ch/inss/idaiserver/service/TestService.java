@@ -415,5 +415,10 @@ private static final String String = null;
 		return idlist;
 	}
 
+	public void remove(java.lang.String testId) {
+		final String reportFolder = this.storagePath + File.separator + testId;
+		FileManagement.removeFolder(reportFolder);
+	}
+
 
 }

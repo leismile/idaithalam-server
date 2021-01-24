@@ -98,9 +98,11 @@ public class UtilService {
       final String folder =
           this.storagePath + FileManagement.fs + testId;
       prop = FileManagement.readCucumblanPropertiesFile(folder);
-      List<String> urls = conf.getServerUrl();
+//      List<String> urls = conf.getServerUrl();
+      String urls = conf.getServerUrl();
       if (prop != null && urls != null) {
-        addServerUrls(key, prop, urls);
+//        addServerUrls(key, prop, urls);
+    	  prop.put(key, urls);
       }
       FileManagement.saveCucumblan(folder, getPropertyAsString(prop));
       return getPropertyAsString(prop);
