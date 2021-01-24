@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
 /**
  * Report
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-24T13:06:58.535874+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-24T13:26:32.313525+01:00[Europe/Zurich]")
 public class Report   {
   @JsonProperty("testId")
   private UUID testId;
@@ -40,7 +40,7 @@ public class Report   {
   private String endTime;
 
   @JsonProperty("durationSeconds")
-  private String durationSeconds;
+  private Long durationSeconds;
 
   @JsonProperty("linkToFeature")
   private String linkToFeature;
@@ -221,7 +221,7 @@ public class Report   {
     this.endTime = endTime;
   }
 
-  public Report durationSeconds(String durationSeconds) {
+  public Report durationSeconds(Long durationSeconds) {
     this.durationSeconds = durationSeconds;
     return this;
   }
@@ -233,11 +233,11 @@ public class Report   {
   @ApiModelProperty(value = "")
 
 
-  public String getDurationSeconds() {
+  public Long getDurationSeconds() {
     return durationSeconds;
   }
 
-  public void setDurationSeconds(String durationSeconds) {
+  public void setDurationSeconds(Long durationSeconds) {
     this.durationSeconds = durationSeconds;
   }
 

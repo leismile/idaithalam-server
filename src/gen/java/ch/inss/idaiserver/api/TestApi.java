@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-24T13:06:58.535874+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-24T13:26:32.313525+01:00[Europe/Zurich]")
 @Validated
 @Api(value = "test", description = "the test API")
 public interface TestApi {
@@ -84,7 +84,7 @@ public interface TestApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"sessionNr\" : 0, \"linkToProperties\" : \"linkToProperties\", \"creationTime\" : \"creationTime\", \"durationSeconds\" : \"durationSeconds\", \"linkToReport\" : \"linkToReport\", \"linkToSessions\" : \"linkToSessions\", \"message\" : \"message\", \"error\" : \"error\", \"linkToFeature\" : \"linkToFeature\", \"skipResponseValidation\" : true, \"success\" : true, \"testExecuted\" : true, \"testId\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"startTime\" : \"startTime\", \"endTime\" : \"endTime\" }";
+                    String exampleString = "{ \"sessionNr\" : 0, \"linkToProperties\" : \"linkToProperties\", \"creationTime\" : \"creationTime\", \"durationSeconds\" : 6, \"linkToReport\" : \"linkToReport\", \"linkToSessions\" : \"linkToSessions\", \"message\" : \"message\", \"error\" : \"error\", \"linkToFeature\" : \"linkToFeature\", \"skipResponseValidation\" : true, \"success\" : true, \"testExecuted\" : true, \"testId\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"startTime\" : \"startTime\", \"endTime\" : \"endTime\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -196,7 +196,7 @@ public interface TestApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"sessionNr\" : 0, \"linkToProperties\" : \"linkToProperties\", \"creationTime\" : \"creationTime\", \"durationSeconds\" : \"durationSeconds\", \"linkToReport\" : \"linkToReport\", \"linkToSessions\" : \"linkToSessions\", \"message\" : \"message\", \"error\" : \"error\", \"linkToFeature\" : \"linkToFeature\", \"skipResponseValidation\" : true, \"success\" : true, \"testExecuted\" : true, \"testId\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"startTime\" : \"startTime\", \"endTime\" : \"endTime\" }";
+                    String exampleString = "{ \"sessionNr\" : 0, \"linkToProperties\" : \"linkToProperties\", \"creationTime\" : \"creationTime\", \"durationSeconds\" : 6, \"linkToReport\" : \"linkToReport\", \"linkToSessions\" : \"linkToSessions\", \"message\" : \"message\", \"error\" : \"error\", \"linkToFeature\" : \"linkToFeature\", \"skipResponseValidation\" : true, \"success\" : true, \"testExecuted\" : true, \"testId\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"startTime\" : \"startTime\", \"endTime\" : \"endTime\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -225,7 +225,7 @@ public interface TestApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"sessionNr\" : 0, \"linkToProperties\" : \"linkToProperties\", \"creationTime\" : \"creationTime\", \"durationSeconds\" : \"durationSeconds\", \"linkToReport\" : \"linkToReport\", \"linkToSessions\" : \"linkToSessions\", \"message\" : \"message\", \"error\" : \"error\", \"linkToFeature\" : \"linkToFeature\", \"skipResponseValidation\" : true, \"success\" : true, \"testExecuted\" : true, \"testId\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"startTime\" : \"startTime\", \"endTime\" : \"endTime\" }";
+                    String exampleString = "{ \"sessionNr\" : 0, \"linkToProperties\" : \"linkToProperties\", \"creationTime\" : \"creationTime\", \"durationSeconds\" : 6, \"linkToReport\" : \"linkToReport\", \"linkToSessions\" : \"linkToSessions\", \"message\" : \"message\", \"error\" : \"error\", \"linkToFeature\" : \"linkToFeature\", \"skipResponseValidation\" : true, \"success\" : true, \"testExecuted\" : true, \"testId\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"startTime\" : \"startTime\", \"endTime\" : \"endTime\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -260,11 +260,11 @@ public interface TestApi {
         produces = { "application/json" },
         consumes = { "multipart/form-data" }
     )
-    default ResponseEntity<Report> testRun(@ApiParam(value = "") @Valid @RequestPart(value = "filestream", required = true) MultipartFile filestream,@ApiParam(value = "The server url to be tested.", required=true, defaultValue="http://localhost:8080") @Valid @RequestPart(value = "serverurl", required = true)  String serverurl,@ApiParam(value = "Execute test immediately. If false, only the property file will be updated (append).", defaultValue="true") @Valid @RequestPart(value = "execute", required = false)  String execute,@ApiParam(value = "Skip the respone validation in tests.", defaultValue="true") @Valid @RequestPart(value = "skipResponseValidation", required = false)  String skipResponseValidation) {
+    default ResponseEntity<Report> testRun(@ApiParam(value = "") @Valid @RequestPart(value = "filestream", required = true) MultipartFile filestream,@ApiParam(value = "The server url to be tested.", required=true) @Valid @RequestPart(value = "serverurl", required = true)  String serverurl,@ApiParam(value = "Execute test immediately. If false, only the property file will be updated (append).", defaultValue="true") @Valid @RequestPart(value = "execute", required = false)  String execute,@ApiParam(value = "Skip the respone validation in tests.", defaultValue="true") @Valid @RequestPart(value = "skipResponseValidation", required = false)  String skipResponseValidation) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"sessionNr\" : 0, \"linkToProperties\" : \"linkToProperties\", \"creationTime\" : \"creationTime\", \"durationSeconds\" : \"durationSeconds\", \"linkToReport\" : \"linkToReport\", \"linkToSessions\" : \"linkToSessions\", \"message\" : \"message\", \"error\" : \"error\", \"linkToFeature\" : \"linkToFeature\", \"skipResponseValidation\" : true, \"success\" : true, \"testExecuted\" : true, \"testId\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"startTime\" : \"startTime\", \"endTime\" : \"endTime\" }";
+                    String exampleString = "{ \"sessionNr\" : 0, \"linkToProperties\" : \"linkToProperties\", \"creationTime\" : \"creationTime\", \"durationSeconds\" : 6, \"linkToReport\" : \"linkToReport\", \"linkToSessions\" : \"linkToSessions\", \"message\" : \"message\", \"error\" : \"error\", \"linkToFeature\" : \"linkToFeature\", \"skipResponseValidation\" : true, \"success\" : true, \"testExecuted\" : true, \"testId\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"startTime\" : \"startTime\", \"endTime\" : \"endTime\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

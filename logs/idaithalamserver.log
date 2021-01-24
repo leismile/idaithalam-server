@@ -1512,3 +1512,1292 @@ virtualan.data.type = POSTMAN
 2021-01-24 13:08:20,868 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 12 ms
 2021-01-24 13:09:02,202 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(9)-127.0.0.1] Application shutdown requested.
 2021-01-24 13:09:02,226 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(9)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-24 13:14:31,597 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 5205 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-24 13:14:31,600 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-24 13:14:31,600 INFO org.springframework.boot.SpringApplication [main] The following profiles are active: oliver
+2021-01-24 13:14:32,765 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-24 13:14:32,772 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-24 13:14:32,773 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-24 13:14:32,774 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-24 13:14:32,849 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-24 13:14:32,850 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1010 ms
+2021-01-24 13:14:33,192 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-24 13:14:33,282 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [main] Adding welcome page: class path resource [public/index.html]
+2021-01-24 13:14:33,397 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-24 13:14:33,480 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-24 13:14:33,490 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 2.309 seconds (JVM running for 2.852)
+2021-01-24 13:14:37,924 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-24 13:14:37,925 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2021-01-24 13:14:37,935 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 10 ms
+2021-01-24 13:14:38,007 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start POST /test
+2021-01-24 13:14:38,008 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start application/octet-stream.
+2021-01-24 13:14:38,009 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Store reports in folder: ./src/main/resources/public/639edfce-9f7d-4db2-98d5-0321f791e178
+2021-01-24 13:14:38,012 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Cucumblan: #Generated 2021-01-24 at 13:14:38 MEZ
+service.api = https://live.virtualandemo.com
+virtualan.data.load = idaithalan.postman_collection.json;
+virtualan.data.type = POSTMAN
+
+2021-01-24 13:14:38,016 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] skipResponseValidation: true
+2021-01-24 13:14:38,016 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Responses will not be validated.
+2021-01-24 13:14:38,017 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Starting Maven test in folder ./src/main/resources/public//639edfce-9f7d-4db2-98d5-0321f791e178/
+2021-01-24 13:14:38,041 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /api/pets/200
+2021-01-24 13:14:38,043 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /api/pets/100
+2021-01-24 13:14:38,050 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /api/pets/100
+2021-01-24 13:14:38,052 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /api/pets/200
+2021-01-24 13:14:38,053 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /api/pets
+2021-01-24 13:14:38,053 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /api/pets
+2021-01-24 13:14:38,054 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /api/pets/findByTags
+2021-01-24 13:14:38,055 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /api/pets/findByTags
+2021-01-24 13:14:38,056 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /api/pets/findByStatus
+2021-01-24 13:14:38,864 WARN io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] cucumblan-env.properties is not configured. Need to add if default data loaded
+2021-01-24 13:14:40,240 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:14:40,241 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {
+  "category": {
+    "id": 200,
+    "name": "Bulldog"
+  },
+  "id": 201,
+  "name": "Butch",
+  "photoUrls": [
+    "string"
+  ],
+  "status": "available",
+  "tags": [
+    {
+      "id": 201,
+      "name": "grey"
+    }
+  ]
+}
+2021-01-24 13:14:40,521 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:14:40,522 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {
+  "category": {
+    "id": 100,
+    "name": "german shepherd"
+  },
+  "id": 101,
+  "name": "Rocky",
+  "photoUrls": [
+    "string"
+  ],
+  "status": "available",
+  "tags": [
+    {
+      "id": 101,
+      "name": "brown"
+    }
+  ]
+}
+2021-01-24 13:14:40,922 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:14:40,923 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {
+    "category": {
+        "id": 100,
+        "name": "german shepherd"
+    },
+    "id": 101,
+    "name": "Rocky",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 101,
+            "name": "brown"
+        }
+    ]
+}
+2021-01-24 13:14:41,203 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:14:41,204 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {
+    "category": {
+        "id": 200,
+        "name": "Bulldog"
+    },
+    "id": 201,
+    "name": "Butch",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 201,
+            "name": "white gray"
+        }
+    ]
+}
+2021-01-24 13:14:41,483 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:14:41,483 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {
+    "category": {
+        "id": 100,
+        "name": "German Shepherd"
+    },
+    "id": 101,
+    "name": "Rocky",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 101,
+            "name": "brown"
+        }
+    ]
+}
+2021-01-24 13:14:41,914 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:14:41,914 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {
+    "category": {
+        "id": 200,
+        "name": "Bulldog"
+    },
+    "id": 201,
+    "name": "Butch",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 201,
+            "name": "grey"
+        }
+    ]
+}
+2021-01-24 13:14:42,176 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:14:42,177 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] 
+2021-01-24 13:14:42,431 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:14:42,432 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] 
+2021-01-24 13:14:42,874 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:14:42,876 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {
+    "category": {
+        "id": 200,
+        "name": "Bulldog"
+    },
+    "id": 201,
+    "name": "Butch",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 201,
+            "name": "grey"
+        }
+    ]
+}
+2021-01-24 13:14:43,152 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:14:43,153 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {
+    "category": {
+        "id": 100,
+        "name": "german shepherd"
+    },
+    "id": 101,
+    "name": "Rocky",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 101,
+            "name": "brown"
+        }
+    ]
+}
+2021-01-24 13:14:43,407 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:14:43,408 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {
+    "category": {
+        "id": 100,
+        "name": "german shepherd"
+    },
+    "id": 101,
+    "name": "Rocky",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 101,
+            "name": "brown"
+        }
+    ]
+}
+2021-01-24 13:14:43,719 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:14:43,720 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] 40
+2021-01-24 13:14:43,898 INFO net.masterthought.cucumber.ReportParser [http-nio-8080-exec-2] File './src/main/resources/public//639edfce-9f7d-4db2-98d5-0321f791e178//1/cucumber.json' contains 1 features
+2021-01-24 13:14:44,694 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Execution status: 0
+2021-01-24 13:14:44,695 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Generated report html file: http://localhost:8080/639edfce-9f7d-4db2-98d5-0321f791e178/1/cucumber-html-reports/overview-features.html
+2021-01-24 13:24:51,918 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(17)-127.0.0.1] Application shutdown requested.
+2021-01-24 13:24:51,939 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(17)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-24 13:29:17,397 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 5866 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-24 13:29:17,401 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-24 13:29:17,401 INFO org.springframework.boot.SpringApplication [main] The following profiles are active: oliver
+2021-01-24 13:29:18,569 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-24 13:29:18,576 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-24 13:29:18,576 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-24 13:29:18,577 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-24 13:29:18,644 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-24 13:29:18,645 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1005 ms
+2021-01-24 13:29:18,955 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-24 13:29:19,037 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [main] Adding welcome page: class path resource [public/index.html]
+2021-01-24 13:29:19,150 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-24 13:29:19,230 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-24 13:29:19,240 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 2.236 seconds (JVM running for 2.708)
+2021-01-24 13:29:26,872 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-24 13:29:26,873 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2021-01-24 13:29:26,883 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 10 ms
+2021-01-24 13:29:39,307 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(8)-127.0.0.1] Application shutdown requested.
+2021-01-24 13:29:39,330 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(8)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-24 13:30:34,259 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 5992 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-24 13:30:34,263 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-24 13:30:34,263 INFO org.springframework.boot.SpringApplication [main] The following profiles are active: oliver
+2021-01-24 13:30:35,457 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-24 13:30:35,464 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-24 13:30:35,465 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-24 13:30:35,465 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-24 13:30:35,550 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-24 13:30:35,550 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1012 ms
+2021-01-24 13:30:35,871 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-24 13:30:35,959 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [main] Adding welcome page: class path resource [public/index.html]
+2021-01-24 13:30:36,063 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-24 13:30:36,142 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-24 13:30:36,152 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 2.309 seconds (JVM running for 2.794)
+2021-01-24 13:30:40,719 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-24 13:30:40,719 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2021-01-24 13:30:40,727 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 8 ms
+2021-01-24 13:30:56,397 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-5] Start POST /test
+2021-01-24 13:30:56,397 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-5] Start application/octet-stream.
+2021-01-24 13:30:56,398 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-5] Store reports in folder: ./src/main/resources/public/fd68c236-5f03-4b2e-a348-fafae33ea16e
+2021-01-24 13:30:56,400 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-5] Cucumblan: #Generated 2021-01-24 at 13:30:56 MEZ
+service.api = https://live.virtualandemo.com
+virtualan.data.load = idaithalan.postman_collection.json;
+virtualan.data.type = POSTMAN
+
+2021-01-24 13:30:56,403 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-5] skipResponseValidation: true
+2021-01-24 13:30:56,404 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-5] Responses will not be validated.
+2021-01-24 13:30:56,404 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-5] Starting Maven test in folder ./src/main/resources/public//fd68c236-5f03-4b2e-a348-fafae33ea16e/
+2021-01-24 13:30:56,418 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-5]  Skipping comparison for resource based on pattern : /api/pets/200
+2021-01-24 13:30:56,419 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-5]  Skipping comparison for resource based on pattern : /api/pets/100
+2021-01-24 13:30:56,420 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-5]  Skipping comparison for resource based on pattern : /api/pets/100
+2021-01-24 13:30:56,420 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-5]  Skipping comparison for resource based on pattern : /api/pets/200
+2021-01-24 13:30:56,421 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-5]  Skipping comparison for resource based on pattern : /api/pets
+2021-01-24 13:30:56,421 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-5]  Skipping comparison for resource based on pattern : /api/pets
+2021-01-24 13:30:56,422 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-5]  Skipping comparison for resource based on pattern : /api/pets/findByTags
+2021-01-24 13:30:56,423 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-5]  Skipping comparison for resource based on pattern : /api/pets/findByTags
+2021-01-24 13:30:56,424 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-5]  Skipping comparison for resource based on pattern : /api/pets/findByStatus
+2021-01-24 13:30:57,109 WARN io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] cucumblan-env.properties is not configured. Need to add if default data loaded
+2021-01-24 13:30:58,433 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:30:58,434 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {
+  "category": {
+    "id": 200,
+    "name": "Bulldog"
+  },
+  "id": 201,
+  "name": "Butch",
+  "photoUrls": [
+    "string"
+  ],
+  "status": "available",
+  "tags": [
+    {
+      "id": 201,
+      "name": "grey"
+    }
+  ]
+}
+2021-01-24 13:30:58,703 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:30:58,703 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {
+  "category": {
+    "id": 100,
+    "name": "german shepherd"
+  },
+  "id": 101,
+  "name": "Rocky",
+  "photoUrls": [
+    "string"
+  ],
+  "status": "available",
+  "tags": [
+    {
+      "id": 101,
+      "name": "brown"
+    }
+  ]
+}
+2021-01-24 13:30:59,025 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:30:59,026 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {
+    "category": {
+        "id": 100,
+        "name": "german shepherd"
+    },
+    "id": 101,
+    "name": "Rocky",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 101,
+            "name": "brown"
+        }
+    ]
+}
+2021-01-24 13:30:59,309 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:30:59,309 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {
+    "category": {
+        "id": 200,
+        "name": "Bulldog"
+    },
+    "id": 201,
+    "name": "Butch",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 201,
+            "name": "white gray"
+        }
+    ]
+}
+2021-01-24 13:30:59,584 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:30:59,585 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {
+    "category": {
+        "id": 100,
+        "name": "German Shepherd"
+    },
+    "id": 101,
+    "name": "Rocky",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 101,
+            "name": "brown"
+        }
+    ]
+}
+2021-01-24 13:30:59,850 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:30:59,851 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {
+    "category": {
+        "id": 200,
+        "name": "Bulldog"
+    },
+    "id": 201,
+    "name": "Butch",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 201,
+            "name": "grey"
+        }
+    ]
+}
+2021-01-24 13:31:00,108 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:31:00,109 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] 
+2021-01-24 13:31:00,365 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:31:00,366 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] 
+2021-01-24 13:31:00,660 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:31:00,662 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {
+    "category": {
+        "id": 200,
+        "name": "Bulldog"
+    },
+    "id": 201,
+    "name": "Butch",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 201,
+            "name": "grey"
+        }
+    ]
+}
+2021-01-24 13:31:01,102 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:31:01,104 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {
+    "category": {
+        "id": 100,
+        "name": "german shepherd"
+    },
+    "id": 101,
+    "name": "Rocky",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 101,
+            "name": "brown"
+        }
+    ]
+}
+2021-01-24 13:31:01,365 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:31:01,366 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {
+    "category": {
+        "id": 100,
+        "name": "german shepherd"
+    },
+    "id": 101,
+    "name": "Rocky",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 101,
+            "name": "brown"
+        }
+    ]
+}
+2021-01-24 13:31:01,679 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:31:01,680 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] 40
+2021-01-24 13:31:01,833 INFO net.masterthought.cucumber.ReportParser [http-nio-8080-exec-5] File './src/main/resources/public//fd68c236-5f03-4b2e-a348-fafae33ea16e//1/cucumber.json' contains 1 features
+2021-01-24 13:31:02,427 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-5] Execution status: 0
+2021-01-24 13:31:02,427 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-5] Generated report html file: http://localhost:8080/fd68c236-5f03-4b2e-a348-fafae33ea16e/1/cucumber-html-reports/overview-features.html
+2021-01-24 13:31:56,733 ERROR ch.inss.idaiserver.service.UtilService [http-nio-8080-exec-8] Unable to read the fle.
+2021-01-24 13:32:49,513 ERROR ch.inss.idaiserver.service.UtilService [http-nio-8080-exec-9] Unable to read the fle.
+2021-01-24 13:33:49,640 ERROR ch.inss.idaiserver.service.UtilService [http-nio-8080-exec-1] Unable to read the fle.
+2021-01-24 13:34:07,019 ERROR ch.inss.idaiserver.service.UtilService [http-nio-8080-exec-6] Unable to read the fle.
+2021-01-24 13:34:30,857 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(13)-127.0.0.1] Application shutdown requested.
+2021-01-24 13:34:30,878 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(13)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-24 13:34:33,698 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 6167 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-24 13:34:33,701 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-24 13:34:33,702 INFO org.springframework.boot.SpringApplication [main] The following profiles are active: oliver
+2021-01-24 13:34:34,888 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-24 13:34:34,896 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-24 13:34:34,897 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-24 13:34:34,897 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-24 13:34:34,970 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-24 13:34:34,971 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1020 ms
+2021-01-24 13:34:35,283 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-24 13:34:35,374 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [main] Adding welcome page: class path resource [public/index.html]
+2021-01-24 13:34:35,506 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-24 13:34:35,580 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-24 13:34:35,591 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 2.295 seconds (JVM running for 2.76)
+2021-01-24 13:34:44,641 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-24 13:34:44,642 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2021-01-24 13:34:44,651 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 9 ms
+2021-01-24 13:34:44,686 ERROR ch.inss.idaiserver.service.UtilService [http-nio-8080-exec-1] Unable to read the fle.
+2021-01-24 13:34:49,954 ERROR ch.inss.idaiserver.service.UtilService [http-nio-8080-exec-3] Unable to read the fle.
+2021-01-24 13:35:55,829 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(11)-127.0.0.1] Application shutdown requested.
+2021-01-24 13:35:55,850 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(11)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-24 13:40:57,287 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 6541 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-24 13:40:57,291 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-24 13:40:57,291 INFO org.springframework.boot.SpringApplication [main] The following profiles are active: oliver
+2021-01-24 13:40:58,462 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-24 13:40:58,469 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-24 13:40:58,469 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-24 13:40:58,470 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-24 13:40:58,543 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-24 13:40:58,543 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1013 ms
+2021-01-24 13:40:58,856 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-24 13:40:58,942 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [main] Adding welcome page: class path resource [public/index.html]
+2021-01-24 13:40:59,043 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-24 13:40:59,060 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-24 13:40:59,071 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 2.196 seconds (JVM running for 2.689)
+2021-01-24 13:41:03,918 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-24 13:41:03,918 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2021-01-24 13:41:03,924 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 6 ms
+2021-01-24 13:41:03,952 ERROR ch.inss.idaiserver.service.UtilService [http-nio-8080-exec-1] Unable to read the fle.
+2021-01-24 13:41:48,435 ERROR ch.inss.idaiserver.service.UtilService [http-nio-8080-exec-9] Unable to read the fle.
+2021-01-24 13:42:07,941 ERROR ch.inss.idaiserver.service.UtilService [http-nio-8080-exec-1] Unable to read the fle.
+2021-01-24 13:42:42,852 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(11)-127.0.0.1] Application shutdown requested.
+2021-01-24 13:42:42,872 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(11)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-24 13:42:44,271 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 6672 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-24 13:42:44,274 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-24 13:42:44,274 INFO org.springframework.boot.SpringApplication [main] The following profiles are active: oliver
+2021-01-24 13:42:45,422 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-24 13:42:45,429 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-24 13:42:45,430 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-24 13:42:45,430 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-24 13:42:45,503 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-24 13:42:45,503 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1000 ms
+2021-01-24 13:42:45,805 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-24 13:42:45,901 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [main] Adding welcome page: class path resource [public/index.html]
+2021-01-24 13:42:46,017 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-24 13:42:46,104 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-24 13:42:46,117 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 2.264 seconds (JVM running for 2.766)
+2021-01-24 13:42:49,200 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-24 13:42:49,201 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2021-01-24 13:42:49,207 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 6 ms
+2021-01-24 13:43:09,591 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(6)-127.0.0.1] Application shutdown requested.
+2021-01-24 13:43:09,611 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(6)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-24 13:43:10,996 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 6758 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-24 13:43:11,002 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-24 13:43:11,002 INFO org.springframework.boot.SpringApplication [main] The following profiles are active: oliver
+2021-01-24 13:43:12,178 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-24 13:43:12,185 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-24 13:43:12,186 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-24 13:43:12,186 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-24 13:43:12,262 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-24 13:43:12,262 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1042 ms
+2021-01-24 13:43:12,654 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-24 13:43:12,746 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [main] Adding welcome page: class path resource [public/index.html]
+2021-01-24 13:43:12,849 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-24 13:43:12,927 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-24 13:43:12,936 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 2.363 seconds (JVM running for 2.865)
+2021-01-24 13:44:41,534 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-24 13:44:41,534 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2021-01-24 13:44:41,543 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 9 ms
+2021-01-24 13:44:41,580 DEBUG ch.inss.idaiserver.service.PersistJSON [http-nio-8080-exec-2] Reading into List<Report>: ./src/main/resources/public//c663331b-1bba-4e93-baad-3ffd7a131c08/alltests.json
+2021-01-24 13:44:53,232 ERROR ch.inss.idaiserver.service.UtilService [http-nio-8080-exec-3] Unable to read the fle.
+2021-01-24 13:44:59,828 DEBUG ch.inss.idaiserver.service.PersistJSON [http-nio-8080-exec-4] Reading into List<Report>: ./src/main/resources/public//c663331b-1bba-4e93-baad-3ffd7a131c08/alltests.json
+2021-01-24 13:48:45,183 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-7] Start POST /test
+2021-01-24 13:48:45,184 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-7] Start application/octet-stream.
+2021-01-24 13:48:45,185 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-7] Store reports in folder: ./src/main/resources/public/8896a011-78aa-4b06-acaf-661938856af7
+2021-01-24 13:48:45,187 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-7] Cucumblan: #Generated 2021-01-24 at 13:48:45 MEZ
+service.api = https://live.virtualandemo.com
+virtualan.data.load = idaithalan.postman_collection.json;
+virtualan.data.type = POSTMAN
+
+2021-01-24 13:48:45,190 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-7] skipResponseValidation: true
+2021-01-24 13:48:45,191 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-7] Responses will not be validated.
+2021-01-24 13:48:45,192 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-7] Starting Maven test in folder ./src/main/resources/public//8896a011-78aa-4b06-acaf-661938856af7/
+2021-01-24 13:48:45,211 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-7]  Skipping comparison for resource based on pattern : /api/pets/200
+2021-01-24 13:48:45,212 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-7]  Skipping comparison for resource based on pattern : /api/pets/100
+2021-01-24 13:48:45,213 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-7]  Skipping comparison for resource based on pattern : /api/pets/100
+2021-01-24 13:48:45,214 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-7]  Skipping comparison for resource based on pattern : /api/pets/200
+2021-01-24 13:48:45,215 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-7]  Skipping comparison for resource based on pattern : /api/pets
+2021-01-24 13:48:45,216 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-7]  Skipping comparison for resource based on pattern : /api/pets
+2021-01-24 13:48:45,216 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-7]  Skipping comparison for resource based on pattern : /api/pets/findByTags
+2021-01-24 13:48:45,217 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-7]  Skipping comparison for resource based on pattern : /api/pets/findByTags
+2021-01-24 13:48:45,217 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-7]  Skipping comparison for resource based on pattern : /api/pets/findByStatus
+2021-01-24 13:48:46,025 WARN io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] cucumblan-env.properties is not configured. Need to add if default data loaded
+2021-01-24 13:48:47,331 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] {}
+2021-01-24 13:48:47,332 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] {
+  "category": {
+    "id": 200,
+    "name": "Bulldog"
+  },
+  "id": 201,
+  "name": "Butch",
+  "photoUrls": [
+    "string"
+  ],
+  "status": "available",
+  "tags": [
+    {
+      "id": 201,
+      "name": "grey"
+    }
+  ]
+}
+2021-01-24 13:48:47,645 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] {}
+2021-01-24 13:48:47,648 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] {
+  "category": {
+    "id": 100,
+    "name": "german shepherd"
+  },
+  "id": 101,
+  "name": "Rocky",
+  "photoUrls": [
+    "string"
+  ],
+  "status": "available",
+  "tags": [
+    {
+      "id": 101,
+      "name": "brown"
+    }
+  ]
+}
+2021-01-24 13:48:48,130 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] {}
+2021-01-24 13:48:48,132 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] {
+    "category": {
+        "id": 100,
+        "name": "german shepherd"
+    },
+    "id": 101,
+    "name": "Rocky",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 101,
+            "name": "brown"
+        }
+    ]
+}
+2021-01-24 13:48:48,458 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] {}
+2021-01-24 13:48:48,458 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] {
+    "category": {
+        "id": 200,
+        "name": "Bulldog"
+    },
+    "id": 201,
+    "name": "Butch",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 201,
+            "name": "white gray"
+        }
+    ]
+}
+2021-01-24 13:48:48,737 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] {}
+2021-01-24 13:48:48,737 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] {
+    "category": {
+        "id": 100,
+        "name": "German Shepherd"
+    },
+    "id": 101,
+    "name": "Rocky",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 101,
+            "name": "brown"
+        }
+    ]
+}
+2021-01-24 13:48:49,048 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] {}
+2021-01-24 13:48:49,049 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] {
+    "category": {
+        "id": 200,
+        "name": "Bulldog"
+    },
+    "id": 201,
+    "name": "Butch",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 201,
+            "name": "grey"
+        }
+    ]
+}
+2021-01-24 13:48:49,326 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] {}
+2021-01-24 13:48:49,327 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] 
+2021-01-24 13:48:49,707 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] {}
+2021-01-24 13:48:49,708 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] 
+2021-01-24 13:48:50,068 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] {}
+2021-01-24 13:48:50,069 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] {
+    "category": {
+        "id": 200,
+        "name": "Bulldog"
+    },
+    "id": 201,
+    "name": "Butch",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 201,
+            "name": "grey"
+        }
+    ]
+}
+2021-01-24 13:48:50,371 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] {}
+2021-01-24 13:48:50,374 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] {
+    "category": {
+        "id": 100,
+        "name": "german shepherd"
+    },
+    "id": 101,
+    "name": "Rocky",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 101,
+            "name": "brown"
+        }
+    ]
+}
+2021-01-24 13:48:50,635 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] {}
+2021-01-24 13:48:50,636 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] {
+    "category": {
+        "id": 100,
+        "name": "german shepherd"
+    },
+    "id": 101,
+    "name": "Rocky",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 101,
+            "name": "brown"
+        }
+    ]
+}
+2021-01-24 13:48:51,101 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] {}
+2021-01-24 13:48:51,102 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-7] 40
+2021-01-24 13:48:51,199 INFO net.masterthought.cucumber.ReportParser [http-nio-8080-exec-7] File './src/main/resources/public//8896a011-78aa-4b06-acaf-661938856af7//1/cucumber.json' contains 1 features
+2021-01-24 13:48:51,738 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-7] Execution status: 0
+2021-01-24 13:48:51,739 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-7] Generated report html file: http://localhost:8080/8896a011-78aa-4b06-acaf-661938856af7/1/cucumber-html-reports/overview-features.html
+2021-01-24 13:49:22,644 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-8] Start PUT /test
+2021-01-24 13:49:22,644 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-8] Running tests from folder: ./src/main/resources/public/c663331b-1bba-4e93-baad-3ffd7a131c08
+2021-01-24 13:49:22,645 DEBUG ch.inss.idaiserver.utils.FileManagement [http-nio-8080-exec-8] File path: ./src/main/resources/public//c663331b-1bba-4e93-baad-3ffd7a131c08/lasttest.json
+2021-01-24 13:49:22,657 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-8] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+java.lang.NullPointerException: null
+	at ch.inss.idaiserver.service.TestService.runTest(TestService.java:152)
+	at ch.inss.idaiserver.api.TestApiController.runTest(TestApiController.java:160)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:878)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:792)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:920)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1589)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2021-01-24 13:50:03,098 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(17)-127.0.0.1] Application shutdown requested.
+2021-01-24 13:50:03,118 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(17)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-24 13:50:51,639 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 7078 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-24 13:50:51,647 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-24 13:50:51,648 INFO org.springframework.boot.SpringApplication [main] The following profiles are active: oliver
+2021-01-24 13:50:53,162 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-24 13:50:53,171 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-24 13:50:53,172 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-24 13:50:53,172 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-24 13:50:53,268 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-24 13:50:53,269 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1318 ms
+2021-01-24 13:50:53,703 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-24 13:50:53,801 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [main] Adding welcome page: class path resource [public/index.html]
+2021-01-24 13:50:53,918 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-24 13:50:53,942 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-24 13:50:53,958 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 2.968 seconds (JVM running for 3.944)
+2021-01-24 13:51:17,546 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-24 13:51:17,547 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2021-01-24 13:51:17,558 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 11 ms
+2021-01-24 13:51:17,594 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start PUT /test
+2021-01-24 13:51:17,594 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Running tests from folder: ./src/main/resources/public/c663331b-1bba-4e93-baad-3ffd7a131c08
+2021-01-24 13:51:42,602 DEBUG ch.inss.idaiserver.utils.FileManagement [http-nio-8080-exec-2] File path: ./src/main/resources/public//c663331b-1bba-4e93-baad-3ffd7a131c08/lasttest.json
+2021-01-24 13:52:23,279 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 7306 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-24 13:52:23,285 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-24 13:52:23,286 INFO org.springframework.boot.SpringApplication [main] The following profiles are active: oliver
+2021-01-24 13:52:24,813 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-24 13:52:24,823 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-24 13:52:24,824 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-24 13:52:24,825 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-24 13:52:24,923 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-24 13:52:24,923 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1348 ms
+2021-01-24 13:52:25,439 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-24 13:52:25,573 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [main] Adding welcome page: class path resource [public/index.html]
+2021-01-24 13:52:25,714 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-24 13:52:25,756 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-24 13:52:25,768 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 3.049 seconds (JVM running for 4.013)
+2021-01-24 13:52:31,167 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-24 13:52:31,167 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2021-01-24 13:52:31,180 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 12 ms
+2021-01-24 13:52:31,215 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start PUT /test
+2021-01-24 13:52:31,216 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Running tests from folder: ./src/main/resources/public/c663331b-1bba-4e93-baad-3ffd7a131c08
+2021-01-24 13:52:43,123 DEBUG ch.inss.idaiserver.utils.FileManagement [http-nio-8080-exec-2] File path: ./src/main/resources/public//c663331b-1bba-4e93-baad-3ffd7a131c08/lasttest.json
+2021-01-24 13:54:38,944 INFO org.springframework.boot.StartupInfoLogger [main] Starting OpenAPI2SpringBoot on tplm with PID 7569 (/media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server/target/classes started by amrit in /media/amrit/f62417df-6c96-4797-a3d9-a06fb4352655/workspace/eclipse/API/idaithalam-server)
+2021-01-24 13:54:38,948 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.3.3.RELEASE, Spring v5.2.8.RELEASE
+2021-01-24 13:54:38,949 INFO org.springframework.boot.SpringApplication [main] The following profiles are active: oliver
+2021-01-24 13:54:40,350 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2021-01-24 13:54:40,362 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2021-01-24 13:54:40,364 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-01-24 13:54:40,365 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-01-24 13:54:40,445 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-01-24 13:54:40,445 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1056 ms
+2021-01-24 13:54:40,798 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-24 13:54:40,893 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [main] Adding welcome page: class path resource [public/index.html]
+2021-01-24 13:54:41,026 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2021-01-24 13:54:41,109 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2021-01-24 13:54:41,119 INFO org.springframework.boot.StartupInfoLogger [main] Started OpenAPI2SpringBoot in 2.583 seconds (JVM running for 3.102)
+2021-01-24 13:54:43,851 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-3] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-01-24 13:54:43,852 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-3] Initializing Servlet 'dispatcherServlet'
+2021-01-24 13:54:43,861 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-3] Completed initialization in 9 ms
+2021-01-24 13:54:43,893 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-3] Start PUT /test
+2021-01-24 13:54:43,894 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-3] Running tests from folder: ./src/main/resources/public/c663331b-1bba-4e93-baad-3ffd7a131c08
+2021-01-24 13:54:43,894 DEBUG ch.inss.idaiserver.utils.FileManagement [http-nio-8080-exec-3] File path: ./src/main/resources/public//c663331b-1bba-4e93-baad-3ffd7a131c08/lasttest.json
+2021-01-24 13:55:06,605 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-2] Start PUT /test
+2021-01-24 13:55:06,606 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Running tests from folder: ./src/main/resources/public/8896a011-78aa-4b06-acaf-661938856af7
+2021-01-24 13:55:06,607 DEBUG ch.inss.idaiserver.utils.FileManagement [http-nio-8080-exec-2] File path: ./src/main/resources/public//8896a011-78aa-4b06-acaf-661938856af7/lasttest.json
+2021-01-24 13:55:06,608 INFO ch.inss.idaiserver.utils.FileManagement [http-nio-8080-exec-2] LINE: {"testId":"8896a011-78aa-4b06-acaf-661938856af7","success":true,"sessionNr":1,"testExecuted":true,"skipResponseValidation":true,"creationTime":"2021-01-24 at 13:48:45 MEZ","startTime":"2021-01-24 at 13:48:45 MEZ","endTime":"2021-01-24 at 13:48:51 CET","durationSeconds":6,"linkToFeature":"http://localhost:8080/8896a011-78aa-4b06-acaf-661938856af7/1/feature/virtualan-contract.0.feature","linkToReport":"http://localhost:8080/8896a011-78aa-4b06-acaf-661938856af7/1/cucumber-html-reports/overview-features.html","linkToProperties":"http://localhost:8080/8896a011-78aa-4b06-acaf-661938856af7/cucumblan.properties","linkToSessions":null,"message":null,"error":""}
+2021-01-24 13:55:06,608 DEBUG ch.inss.idaiserver.service.PersistJSON [http-nio-8080-exec-2] Going to read JSON from file {"testId":"8896a011-78aa-4b06-acaf-661938856af7","success":true,"sessionNr":1,"testExecuted":true,"skipResponseValidation":true,"creationTime":"2021-01-24 at 13:48:45 MEZ","startTime":"2021-01-24 at 13:48:45 MEZ","endTime":"2021-01-24 at 13:48:51 CET","durationSeconds":6,"linkToFeature":"http://localhost:8080/8896a011-78aa-4b06-acaf-661938856af7/1/feature/virtualan-contract.0.feature","linkToReport":"http://localhost:8080/8896a011-78aa-4b06-acaf-661938856af7/1/cucumber-html-reports/overview-features.html","linkToProperties":"http://localhost:8080/8896a011-78aa-4b06-acaf-661938856af7/cucumblan.properties","linkToSessions":null,"message":null,"error":""}
+
+2021-01-24 13:55:06,659 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Cucumblan: /#Generated 2021-01-24 at 13:55:06 MEZ
+virtualan.data.load = 
+virtualan.data.type = POSTMAN
+
+2021-01-24 13:55:06,659 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Report from last session: /class Report {
+    testId: 8896a011-78aa-4b06-acaf-661938856af7
+    success: true
+    sessionNr: 2
+    testExecuted: true
+    skipResponseValidation: true
+    creationTime: 2021-01-24 at 13:48:45 MEZ
+    startTime: 2021-01-24 at 13:48:45 MEZ
+    endTime: 2021-01-24 at 13:48:51 CET
+    durationSeconds: 6
+    linkToFeature: http://localhost:8080/8896a011-78aa-4b06-acaf-661938856af7/1/feature/virtualan-contract.0.feature
+    linkToReport: http://localhost:8080/8896a011-78aa-4b06-acaf-661938856af7/1/cucumber-html-reports/overview-features.html
+    linkToProperties: http://localhost:8080/8896a011-78aa-4b06-acaf-661938856af7/cucumblan.properties
+    linkToSessions: null
+    message: null
+    error: 
+}
+2021-01-24 13:55:06,660 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Starting Maven test in folder ./src/main/resources/public//8896a011-78aa-4b06-acaf-661938856af7
+2021-01-24 13:55:06,674 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /api/pets/200
+2021-01-24 13:55:06,675 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /api/pets/100
+2021-01-24 13:55:06,676 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /api/pets/100
+2021-01-24 13:55:06,676 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /api/pets/200
+2021-01-24 13:55:06,677 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /api/pets
+2021-01-24 13:55:06,678 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /api/pets
+2021-01-24 13:55:06,678 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /api/pets/findByTags
+2021-01-24 13:55:06,679 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /api/pets/findByTags
+2021-01-24 13:55:06,679 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-2]  Skipping comparison for resource based on pattern : /api/pets/findByStatus
+2021-01-24 13:55:07,436 WARN io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] cucumblan-env.properties is not configured. Need to add if default data loaded
+2021-01-24 13:55:08,761 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:55:08,761 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {
+  "category": {
+    "id": 200,
+    "name": "Bulldog"
+  },
+  "id": 201,
+  "name": "Butch",
+  "photoUrls": [
+    "string"
+  ],
+  "status": "available",
+  "tags": [
+    {
+      "id": 201,
+      "name": "grey"
+    }
+  ]
+}
+2021-01-24 13:55:09,037 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:55:09,038 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {
+  "category": {
+    "id": 100,
+    "name": "german shepherd"
+  },
+  "id": 101,
+  "name": "Rocky",
+  "photoUrls": [
+    "string"
+  ],
+  "status": "available",
+  "tags": [
+    {
+      "id": 101,
+      "name": "brown"
+    }
+  ]
+}
+2021-01-24 13:55:09,411 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:55:09,412 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {
+    "category": {
+        "id": 100,
+        "name": "german shepherd"
+    },
+    "id": 101,
+    "name": "Rocky",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 101,
+            "name": "brown"
+        }
+    ]
+}
+2021-01-24 13:55:09,690 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:55:09,691 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {
+    "category": {
+        "id": 200,
+        "name": "Bulldog"
+    },
+    "id": 201,
+    "name": "Butch",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 201,
+            "name": "white gray"
+        }
+    ]
+}
+2021-01-24 13:55:09,972 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:55:09,973 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {
+    "category": {
+        "id": 100,
+        "name": "German Shepherd"
+    },
+    "id": 101,
+    "name": "Rocky",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 101,
+            "name": "brown"
+        }
+    ]
+}
+2021-01-24 13:55:10,388 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:55:10,389 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {
+    "category": {
+        "id": 200,
+        "name": "Bulldog"
+    },
+    "id": 201,
+    "name": "Butch",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 201,
+            "name": "grey"
+        }
+    ]
+}
+2021-01-24 13:55:10,645 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:55:10,647 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] 
+2021-01-24 13:55:10,912 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:55:10,913 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] 
+2021-01-24 13:55:11,397 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:55:11,398 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {
+    "category": {
+        "id": 200,
+        "name": "Bulldog"
+    },
+    "id": 201,
+    "name": "Butch",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 201,
+            "name": "grey"
+        }
+    ]
+}
+2021-01-24 13:55:11,663 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:55:11,665 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {
+    "category": {
+        "id": 100,
+        "name": "german shepherd"
+    },
+    "id": 101,
+    "name": "Rocky",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 101,
+            "name": "brown"
+        }
+    ]
+}
+2021-01-24 13:55:11,920 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:55:11,921 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {
+    "category": {
+        "id": 100,
+        "name": "german shepherd"
+    },
+    "id": 101,
+    "name": "Rocky",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 101,
+            "name": "brown"
+        }
+    ]
+}
+2021-01-24 13:55:12,400 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] {}
+2021-01-24 13:55:12,402 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-2] 40
+2021-01-24 13:55:12,506 INFO net.masterthought.cucumber.ReportParser [http-nio-8080-exec-2] File './src/main/resources/public//8896a011-78aa-4b06-acaf-661938856af7/2/cucumber.json' contains 1 features
+2021-01-24 13:55:13,073 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Execution status: 0
+2021-01-24 13:55:13,074 DEBUG ch.inss.idaiserver.service.PersistJSON [http-nio-8080-exec-2] Reading into List<Report>: ./src/main/resources/public//8896a011-78aa-4b06-acaf-661938856af7/alltests.json
+2021-01-24 13:55:13,081 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] There are 2 test sessions stored.
+2021-01-24 13:55:13,094 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-2] Generated report html file: http://localhost:8080/8896a011-78aa-4b06-acaf-661938856af7/2/cucumber-html-reports/overview-features.html
+2021-01-24 13:55:32,368 DEBUG ch.inss.idaiserver.service.PersistJSON [http-nio-8080-exec-4] Reading into List<Report>: ./src/main/resources/public//8896a011-78aa-4b06-acaf-661938856af7/alltests.json
+2021-01-24 13:56:53,018 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-5] Start POST /test
+2021-01-24 13:56:53,019 DEBUG ch.inss.idaiserver.api.TestApiController [http-nio-8080-exec-5] Start application/octet-stream.
+2021-01-24 13:56:53,020 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-5] Store reports in folder: ./src/main/resources/public/62260d2d-d3c1-459d-a8e1-01092419d002
+2021-01-24 13:56:53,020 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-5] Cucumblan: #Generated 2021-01-24 at 13:56:53 CET
+service.api = https://live.virtualandemo.com
+virtualan.data.load = idaithalan.postman_collection.json;
+virtualan.data.type = POSTMAN
+
+2021-01-24 13:56:53,023 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-5] skipResponseValidation: true
+2021-01-24 13:56:53,024 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-5] Responses will not be validated.
+2021-01-24 13:56:53,024 DEBUG ch.inss.idaiserver.service.TestService [http-nio-8080-exec-5] Starting Maven test in folder ./src/main/resources/public//62260d2d-d3c1-459d-a8e1-01092419d002/
+2021-01-24 13:56:53,028 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-5]  Skipping comparison for resource based on pattern : /api/pets/200
+2021-01-24 13:56:53,029 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-5]  Skipping comparison for resource based on pattern : /api/pets/100
+2021-01-24 13:56:53,029 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-5]  Skipping comparison for resource based on pattern : /api/pets/100
+2021-01-24 13:56:53,030 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-5]  Skipping comparison for resource based on pattern : /api/pets/200
+2021-01-24 13:56:53,030 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-5]  Skipping comparison for resource based on pattern : /api/pets
+2021-01-24 13:56:53,031 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-5]  Skipping comparison for resource based on pattern : /api/pets
+2021-01-24 13:56:53,032 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-5]  Skipping comparison for resource based on pattern : /api/pets/findByTags
+2021-01-24 13:56:53,032 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-5]  Skipping comparison for resource based on pattern : /api/pets/findByTags
+2021-01-24 13:56:53,033 INFO io.virtualan.cucumblan.props.ExcludeConfiguration [http-nio-8080-exec-5]  Skipping comparison for resource based on pattern : /api/pets/findByStatus
+2021-01-24 13:56:53,086 WARN io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] cucumblan-env.properties is not configured. Need to add if default data loaded
+2021-01-24 13:56:53,380 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:56:53,381 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {
+  "category": {
+    "id": 200,
+    "name": "Bulldog"
+  },
+  "id": 201,
+  "name": "Butch",
+  "photoUrls": [
+    "string"
+  ],
+  "status": "available",
+  "tags": [
+    {
+      "id": 201,
+      "name": "grey"
+    }
+  ]
+}
+2021-01-24 13:56:53,801 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:56:53,802 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {
+  "category": {
+    "id": 100,
+    "name": "german shepherd"
+  },
+  "id": 101,
+  "name": "Rocky",
+  "photoUrls": [
+    "string"
+  ],
+  "status": "available",
+  "tags": [
+    {
+      "id": 101,
+      "name": "brown"
+    }
+  ]
+}
+2021-01-24 13:56:54,071 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:56:54,072 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {
+    "category": {
+        "id": 100,
+        "name": "german shepherd"
+    },
+    "id": 101,
+    "name": "Rocky",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 101,
+            "name": "brown"
+        }
+    ]
+}
+2021-01-24 13:56:54,354 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:56:54,355 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {
+    "category": {
+        "id": 200,
+        "name": "Bulldog"
+    },
+    "id": 201,
+    "name": "Butch",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 201,
+            "name": "white gray"
+        }
+    ]
+}
+2021-01-24 13:56:54,780 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:56:54,781 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {
+    "category": {
+        "id": 100,
+        "name": "German Shepherd"
+    },
+    "id": 101,
+    "name": "Rocky",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 101,
+            "name": "brown"
+        }
+    ]
+}
+2021-01-24 13:56:55,042 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:56:55,043 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {
+    "category": {
+        "id": 200,
+        "name": "Bulldog"
+    },
+    "id": 201,
+    "name": "Butch",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 201,
+            "name": "grey"
+        }
+    ]
+}
+2021-01-24 13:56:55,307 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:56:55,308 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] 
+2021-01-24 13:56:55,590 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:56:55,590 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] 
+2021-01-24 13:56:55,856 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:56:55,857 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {
+    "category": {
+        "id": 200,
+        "name": "Bulldog"
+    },
+    "id": 201,
+    "name": "Butch",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 201,
+            "name": "grey"
+        }
+    ]
+}
+2021-01-24 13:56:56,109 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:56:56,110 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {
+    "category": {
+        "id": 100,
+        "name": "german shepherd"
+    },
+    "id": 101,
+    "name": "Rocky",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 101,
+            "name": "brown"
+        }
+    ]
+}
+2021-01-24 13:56:56,367 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:56:56,368 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {
+    "category": {
+        "id": 100,
+        "name": "german shepherd"
+    },
+    "id": 101,
+    "name": "Rocky",
+    "photoUrls": [
+        "string"
+    ],
+    "status": "available",
+    "tags": [
+        {
+            "id": 101,
+            "name": "brown"
+        }
+    ]
+}
+2021-01-24 13:56:56,765 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] {}
+2021-01-24 13:56:56,766 INFO io.virtualan.cucumblan.core.BaseStepDefinition [http-nio-8080-exec-5] 40
+2021-01-24 13:56:56,818 INFO net.masterthought.cucumber.ReportParser [http-nio-8080-exec-5] File './src/main/resources/public//62260d2d-d3c1-459d-a8e1-01092419d002//1/cucumber.json' contains 1 features
+2021-01-24 13:56:56,948 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-5] Execution status: 0
+2021-01-24 13:56:56,949 INFO ch.inss.idaiserver.service.TestService [http-nio-8080-exec-5] Generated report html file: http://localhost:8080/62260d2d-d3c1-459d-a8e1-01092419d002/1/cucumber-html-reports/overview-features.html
+2021-01-24 14:02:17,602 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(17)-127.0.0.1] Application shutdown requested.
+2021-01-24 14:02:17,621 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(17)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'

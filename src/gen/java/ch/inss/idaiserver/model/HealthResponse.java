@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
 /**
  * HealthResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-24T13:06:58.535874+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-01-24T13:26:32.313525+01:00[Europe/Zurich]")
 public class HealthResponse   {
   /**
    * Gets or Sets status
@@ -53,6 +53,9 @@ public class HealthResponse   {
   @JsonProperty("status")
   private StatusEnum status;
 
+  @JsonProperty("server")
+  private String server;
+
   public HealthResponse status(StatusEnum status) {
     this.status = status;
     return this;
@@ -74,6 +77,26 @@ public class HealthResponse   {
     this.status = status;
   }
 
+  public HealthResponse server(String server) {
+    this.server = server;
+    return this;
+  }
+
+  /**
+   * Get server
+   * @return server
+  */
+  @ApiModelProperty(value = "")
+
+
+  public String getServer() {
+    return server;
+  }
+
+  public void setServer(String server) {
+    this.server = server;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -84,12 +107,13 @@ public class HealthResponse   {
       return false;
     }
     HealthResponse healthResponse = (HealthResponse) o;
-    return Objects.equals(this.status, healthResponse.status);
+    return Objects.equals(this.status, healthResponse.status) &&
+        Objects.equals(this.server, healthResponse.server);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status);
+    return Objects.hash(status, server);
   }
 
   @Override
@@ -98,6 +122,7 @@ public class HealthResponse   {
     sb.append("class HealthResponse {\n");
     
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    server: ").append(toIndentedString(server)).append("\n");
     sb.append("}");
     return sb.toString();
   }

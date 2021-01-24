@@ -58,7 +58,7 @@ private static final String String = null;
     }
     /* Paths for the results in the filesystem and URLs. */
     final String reportFolder =
-        this.storagePath + File.separator + cucumblan.getFolder();
+    this.storagePath + File.separator + cucumblan.getFolder();
     final String skip = ".*=IGNORE";
     final String skipProp = reportFolder + File.separator + "exclude-response.properties";
     final String lastSession = reportFolder + File.separator + LASTTEST;
@@ -101,7 +101,7 @@ private static final String String = null;
       long endTime = System.nanoTime();
       long duration = (endTime - startTime);
       Duration d = Duration.ofNanos(duration);
-      links.setDurationSeconds(Long.valueOf(d.getSeconds()).toString());
+      links.setDurationSeconds(Long.valueOf(d.getSeconds()));
       links.setEndTime(FileManagement.whatTime());
 
       /* Check test result. */
@@ -121,15 +121,8 @@ private static final String String = null;
       List<Report> list = PersistJSON.readReports(allSessions);
       list.add(links);
       logger.debug("There are " + list.size() + " test sessions stored.");
-
-      /* Persist test execution in JSON file. */
-      PersistJSON.writeJSON(reportFolder + File.separator + LASTTEST, links);
-      String reportList = PersistJSON.writeArray(list, allSessions);
-      FileManagement.writeString(allSessions, reportList);
-      links.setLinkToSessions(propsUrl + File.separator + ALLTESTS);
-
-      String target = reportURL + File.separator + FEATUREX + "0"
-          + DOTFEATURE;
+      
+      String target = reportURL + File.separator + FEATUREX + "0" + DOTFEATURE;
       links.setLinkToFeature(target);
 
       /* Copy the cucumber report folder and send back the link
@@ -138,16 +131,25 @@ private static final String String = null;
       String linkReport = reportURL + File.separator + REPORTOVERVIEW;
       logger.info("Generated report html file: " + linkReport);
       links.setLinkToReport(linkReport);
-
       links.setLinkToProperties(propsUrl + File.separator + FileManagement.PROPERTIES);
+      links.setLinkToSessions(propsUrl + File.separator + ALLTESTS);
+
+      /* Persist test execution in JSON file. */
+      PersistJSON.writeJSON(reportFolder + File.separator + LASTTEST, links);
+      String reportList = PersistJSON.writeArray(list, allSessions);
+      FileManagement.writeString(allSessions, reportList);
+      
+
+
 
     } catch (JsonProcessingException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
+      if ( links == null) links = new Report();
       links.setError(e.getLocalizedMessage());
       links.setMessage("An internal error occured.");
       links.setTestExecuted(false);
     } catch (IOException ioe) {
+      if ( links == null) links = new Report();
       ioe.printStackTrace();
       links.setError(ioe.getLocalizedMessage());
       links.setMessage("An internal error occured.");
@@ -229,7 +231,7 @@ private static final String String = null;
         long endTime = System.nanoTime();
         long duration = (endTime - startTime);
         Duration d = Duration.ofNanos(duration);
-        links.setDurationSeconds(Long.valueOf(d.getSeconds()).toString());
+        links.setDurationSeconds(Long.valueOf(d.getSeconds()));
         links.setEndTime(FileManagement.whatTime());
 
         /* Check test result. */
@@ -266,8 +268,12 @@ private static final String String = null;
       String linkReport = reportURL + File.separator + REPORTOVERVIEW;
       logger.info("Generated report html file: " + linkReport);
       links.setLinkToReport(linkReport);
-
       links.setLinkToProperties(propsUrl + File.separator + FileManagement.PROPERTIES);
+      links.setLinkToSessions(propsUrl + File.separator + ALLTESTS);
+
+      /* Message */
+      links.setMessage("Report created.");
+      links.setError(FileManagement.NOERROR);
 
       /* Persist test execution in JSON file. */
       List<Report> list = new ArrayList<Report>();
@@ -277,13 +283,9 @@ private static final String String = null;
       String array = PersistJSON.writeArray(list, allSessions);
       FileManagement.writeString(allSessions, array);
 
-      links.setLinkToSessions(propsUrl + File.separator + ALLTESTS);
-
-      /* Message */
-      links.setMessage("Report created.");
-      links.setError(FileManagement.NOERROR);
-
+      
     } catch (Exception e) {
+      if ( links == null) links = new Report();
       links.setError(e.getLocalizedMessage());
       links.setMessage("No reports.");
       links.setSuccess(false);
