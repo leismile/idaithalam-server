@@ -1,5 +1,9 @@
-package ch.inss.idaiserver.api;
+package ch.inss.virtualan.idaiserver.api;
 
+import ch.inss.virtualan.idaiserver.model.Conf;
+import ch.inss.virtualan.idaiserver.model.Report;
+import ch.inss.virtualan.idaiserver.model.Testidlist;
+import ch.inss.virtualan.idaiserver.utils.FileManagement;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -20,13 +24,9 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
-import ch.inss.idaiserver.model.Conf;
-import ch.inss.idaiserver.model.Report;
-import ch.inss.idaiserver.model.Testidlist;
-import ch.inss.idaiserver.service.Cucumblan;
-import ch.inss.idaiserver.service.TestService;
-import ch.inss.idaiserver.service.UtilService;
-import ch.inss.idaiserver.utils.FileManagement;
+import ch.inss.virtualan.idaiserver.service.Cucumblan;
+import ch.inss.virtualan.idaiserver.service.TestService;
+import ch.inss.virtualan.idaiserver.service.UtilService;
 import io.swagger.annotations.ApiParam;
 
 
@@ -73,7 +73,7 @@ public class TestApiController implements TestApi {
     }
 
     @Override
-    public ResponseEntity<String> updateConf(String testId,Conf conf) {
+    public ResponseEntity<String> updateConf(String testId, Conf conf) {
         return utilService.updateCucumblan(testId, conf);
     }
 

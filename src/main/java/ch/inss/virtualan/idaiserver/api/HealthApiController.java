@@ -1,5 +1,6 @@
-package ch.inss.idaiserver.api;
+package ch.inss.virtualan.idaiserver.api;
 
+import ch.inss.virtualan.idaiserver.model.HealthResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,8 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.NativeWebRequest;
-
-import ch.inss.idaiserver.model.HealthResponse;
 
 import java.util.Optional;
 

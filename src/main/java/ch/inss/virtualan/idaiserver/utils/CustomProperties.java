@@ -1,4 +1,4 @@
-package ch.inss.idaiserver.utils;
+package ch.inss.virtualan.idaiserver.utils;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

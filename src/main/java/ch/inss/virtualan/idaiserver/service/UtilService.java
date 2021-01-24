@@ -1,9 +1,9 @@
-package ch.inss.idaiserver.service;
+package ch.inss.virtualan.idaiserver.service;
 
-import ch.inss.idaiserver.exception.UnableProcessException;
-import ch.inss.idaiserver.model.Conf;
-import ch.inss.idaiserver.model.Report;
-import ch.inss.idaiserver.utils.FileManagement;
+import ch.inss.virtualan.idaiserver.exception.UnableProcessException;
+import ch.inss.virtualan.idaiserver.model.Conf;
+import ch.inss.virtualan.idaiserver.model.Report;
+import ch.inss.virtualan.idaiserver.utils.FileManagement;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -98,11 +98,9 @@ public class UtilService {
       final String folder =
           this.storagePath + FileManagement.fs + testId;
       prop = FileManagement.readCucumblanPropertiesFile(folder);
-//      List<String> urls = conf.getServerUrl();
-      String urls = conf.getServerUrl();
+      List<String> urls = conf.getServerUrls();
       if (prop != null && urls != null) {
-//        addServerUrls(key, prop, urls);
-    	  prop.put(key, urls);
+        addServerUrls(key, prop, urls);
       }
       FileManagement.saveCucumblan(folder, getPropertyAsString(prop));
       return getPropertyAsString(prop);

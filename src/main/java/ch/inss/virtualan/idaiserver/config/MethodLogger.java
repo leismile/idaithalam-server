@@ -1,4 +1,4 @@
-package ch.inss.idaiserver.config;
+package ch.inss.virtualan.idaiserver.config;
 
 
 import java.lang.annotation.ElementType;

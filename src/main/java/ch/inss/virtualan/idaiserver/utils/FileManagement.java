@@ -1,4 +1,4 @@
-package ch.inss.idaiserver.utils;
+package ch.inss.virtualan.idaiserver.utils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -39,10 +39,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
-
-import ch.inss.idaiserver.model.Report;
-import ch.inss.idaiserver.service.Cucumblan;
-import ch.inss.idaiserver.service.PersistJSON;
 
 
 /**

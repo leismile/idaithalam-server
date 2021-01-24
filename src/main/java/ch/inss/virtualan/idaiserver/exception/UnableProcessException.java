@@ -1,4 +1,4 @@
-package ch.inss.idaiserver.exception;
+package ch.inss.virtualan.idaiserver.exception;
 
 public class UnableProcessException extends  Exception {
     public UnableProcessException(){

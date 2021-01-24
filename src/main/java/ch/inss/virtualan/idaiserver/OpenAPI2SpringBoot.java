@@ -1,4 +1,4 @@
-package ch.inss.idaiserver;
+package ch.inss.virtualan.idaiserver;
 
 import com.fasterxml.jackson.databind.Module;
 import org.openapitools.jackson.nullable.JsonNullableModule;
@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"ch.inss.idaiserver", "ch.inss.idaiserver.api" , "ch.inss.idaiserver.config"})
+@ComponentScan(basePackages = {"ch.inss.virtualan.idaiserver", "ch.inss.virtualan.idaiserver.api" , "ch.inss.virtualan.idaiserver.config"})
 public class OpenAPI2SpringBoot implements CommandLineRunner {
 
     @Override

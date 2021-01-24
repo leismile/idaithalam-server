@@ -1,4 +1,4 @@
-package ch.inss.idaiserver.config;
+package ch.inss.virtualan.idaiserver.config;
 
 import java.time.LocalDateTime;
 
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;;
 @Aspect
 public class LoggerAspect {
 
-    @Before("@annotation(ch.inss.idaiserver.config.MethodLogger)")
+    @Before("@annotation(ch.inss.virtualan.idaiserver.config.MethodLogger)")
     public void beforeMethodStart(JoinPoint point) {
         //final Logger logger = LoggerFactory.getLogger(point.getClass());
         System.out.println("Method " + point.getSignature().getName() + " Started at " + LocalDateTime.now());
@@ -23,7 +23,7 @@ public class LoggerAspect {
 
     }
 
-    @After("@annotation(ch.inss.idaiserver.config.MethodLogger)")
+    @After("@annotation(ch.inss.virtualan.idaiserver.config.MethodLogger)")
     public void afterMethodStart(JoinPoint point) {
         System.out.println("\nMethod " + point.getSignature().getName() + " Ended at " + LocalDateTime.now());
 

@@ -1,8 +1,8 @@
-package ch.inss.idaiserver.service;
+package ch.inss.virtualan.idaiserver.service;
 
-import ch.inss.idaiserver.model.Report;
-import ch.inss.idaiserver.model.Testidlist;
-import ch.inss.idaiserver.utils.FileManagement;
+import ch.inss.virtualan.idaiserver.model.Report;
+import ch.inss.virtualan.idaiserver.model.Testidlist;
+import ch.inss.virtualan.idaiserver.utils.FileManagement;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.virtualan.idaithalam.contract.IdaithalamExecutor;
 import java.io.File;
