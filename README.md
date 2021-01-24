@@ -123,6 +123,6 @@ You can use the other APIs to re-run tests, get links again and the test summary
 
 ## Project members
 This project is a collaboration of Elan Thangamani and Oliver Glas. 
-Elan is mainly responsible for Idaithalam. Oliver is mainly responsible for the reference implementation.
+Elan is responsible for Idaithalam. Oliver and Elan are responsible for the reference implementation.
 
 
