@@ -205,3 +205,5 @@
 2021-01-25 04:40:45,602 INFO net.masterthought.cucumber.ReportParser [http-nio-8080-exec-2] File './src/main/resources/public//8b647e6c-3dbd-4f9b-85a5-38daf0aeff84//1/cucumber.json' contains 1 features
 2021-01-25 04:40:46,263 INFO ch.inss.virtualan.idaiserver.service.TestService [http-nio-8080-exec-2] Execution status: 0
 2021-01-25 04:40:46,265 INFO ch.inss.virtualan.idaiserver.service.TestService [http-nio-8080-exec-2] Generated report html file: http://localhost:8080/8b647e6c-3dbd-4f9b-85a5-38daf0aeff84/1/cucumber-html-reports/overview-features.html
+2021-01-25 05:23:15,099 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(52)-127.0.0.1] Application shutdown requested.
+2021-01-25 05:23:15,117 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [RMI TCP Connection(52)-127.0.0.1] Shutting down ExecutorService 'applicationTaskExecutor'

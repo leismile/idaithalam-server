@@ -44,9 +44,9 @@ paths:
                 skipResponseValidation:
                   format: stringboolean
                   description: Skip the respone validation in tests.
-                  default: true
+                  default: false
                   type: string
-                  example: true
+                  example: false
       tags:
         - API test execution
       responses:

@@ -9,7 +9,7 @@ Idaiserver consists of two main parts:
 1. idaithalam to execute the tests and generate Cucumber reports.
 2. Idaiserver to provide the APIs for test execution and configuration.
 
-## What you will get
+## What you will get 
 1. Your API implementation will be tested against the contract you defined.
 2. You will get a Cucumber report with the test results.
 3. You will get a Gherkin feature file with all scenarios, steps and testdata for your API.
@@ -56,6 +56,20 @@ Idaiserver provides APIs for
 - get the feature file
 - get the configuration properties file
 - get a test summary.
+
+## Quick demo sample
+User the file ./samples/idaithalan.postman_collection.json as a sample collection.
+You can contract test it agains https://live.virtualandemo.com.
+To do that, start Postman. Import src/main/resources/idaithalamserver.yaml as a Postman collection.
+Select the API /test POST (Create and run the test with the uploaded Postman collection.).
+Go to body of that request. 
+Change "filestream" to "file". In Value choose the file ./samples/idaithalan.postman_collection.json.
+Choose value "https://live.virtualandemo.com" for "serverurl".
+Parameter "execute" shall be true. 
+Parameter skipResponseValidation shall be false.
+Send request.
+You will get a test summary with links to a Cucumber report, a Gherkin feature file, the generated configuration
+file (cucumblan.properties) and the link to the test summary itself.
 
 ## Usage steps
 1. - Create a Postman collection (e.g. import from OAS3 file).
@@ -111,6 +125,27 @@ You will get the links in the response body for the Cucumber report, the feature
 Check also TestId. You can use it for later test executions or getting again the Cucumber report.
 You will need the testId for all further API requests.
 You can use the other APIs to re-run tests, get links again and the test summary.
+
+## API 
+The API is hosted at:
+[http://api.idaithalam.io](http://api.idaithalam.io "http://api.idaithalam.io")
+
+## API list
+Here the APIs provided by Idaiserver.
+### Executions
+- /test POST Create and run a test
+- /test/{testid} PUT Re-run an existing test.
+- /test/{testid} DELETE Remove the test.
+### Results
+- /test GET Get a list of all test IDs.
+- /test/{testid} GET Get the test summary of last test for that testId.
+- /test/{testid}/report GET Get the report for this test.
+- /test/{testid}/feature GET Get the Gherkin feature file for that test.
+### Configuation
+- /test/{testid}/conf GET Get the test configuration for that test (cucumblan.properties).
+- /test/{testid}/conf Update the serverurl for that test configuration.
+- /test/{testid}/conf Remove a key from the test configuration (cucumblan.properties).
+
 
 ## Technology stack
 * [Idaithalam] - Contract test for REST API.
