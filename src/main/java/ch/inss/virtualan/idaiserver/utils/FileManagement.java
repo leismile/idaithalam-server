@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
@@ -39,6 +40,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
+
+import ch.inss.virtualan.idaiserver.service.TestService;
 
 
 /**
@@ -375,14 +378,23 @@ public class FileManagement {
     public static String whatTime() {
       return  new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z").format(new Date(System.currentTimeMillis()));
     }
-	public static List<String> listFolders(String path) {
+    
+    public static List<String> listSessions(String path){
+    	return listFolders(path, TestService.ALLTESTS);
+    	
+    }
+	private static List<String> listFolders(String path, String checkFile) {
 		List<String> folders = new ArrayList<String>();
-		 File main_dir = new File(path);
-	      if(main_dir.exists() && main_dir.isDirectory()){
-	         File arr[] = main_dir.listFiles();
-	         for ( File file : arr ) {
-	        	if ( file.isDirectory()) {
-	        		folders.add(file.getName());
+		File main_dir = new File(path);
+	    if(main_dir.exists() && main_dir.isDirectory()){
+	       File arr[] = main_dir.listFiles();
+	       for ( File dir : arr ) {
+	    	   if ( dir.isDirectory()) {
+
+	    	        if (dir.listFiles((dir1, name) -> name.equalsIgnoreCase(checkFile)).length >0) {
+	    	        	folders.add(dir.getName());	
+	    	        }
+	        		
 	        	}
 	         }
 

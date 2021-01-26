@@ -400,7 +400,7 @@ public class TestService {
   
   	/** List all ids. */
 	public Testidlist listAllIDs() {
-		List<String> list = FileManagement.listFolders(this.storagePath);
+		List<String> list = FileManagement.listSessions(this.storagePath);
 		Testidlist idlist = new Testidlist();
 		for ( String folder : list) {
 			idlist.addServerUrlItem(this.serverHost + "/" + folder + "/" + ALLTESTS);
