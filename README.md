@@ -1,5 +1,7 @@
 # Idaiserver
 
+[![Build Status](https://travis-ci.com/virtualansoftware/idaithalam-server.svg?branch=master)](https://travis-ci.com/virtualansoftware/idaithalam-server)
+
 Idaiserver provides APIs to execute REST API contract tests, generate test reports and feature files.
 
 [Powered by INSS ![INSS](https://inss.ch/wp-content/uploads/2021/01/favicon-32x32-1.png)](https://inss.ch) and
