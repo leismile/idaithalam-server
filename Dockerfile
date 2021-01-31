@@ -1,7 +1,5 @@
 FROM openjdk:8-jre-alpine
 
-apk --no-cache add openjdk11
-
 ENV MAVEN_VERSION 3.2.5
 
 RUN apk add --update \
