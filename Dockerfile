@@ -2,6 +2,8 @@ FROM openjdk:8-jre-alpine
 
 ENV MAVEN_VERSION 3.2.5
 
+RUN apk add openjdk11
+
 RUN apk add --update \
     curl \
     && rm -rf /var/cache/apk/*
