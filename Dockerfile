@@ -1,8 +1,6 @@
-FROM openjdk:8-jre-alpine
+FROM openjdk:11-alpine
 
 ENV MAVEN_VERSION 3.2.5
-
-RUN apk --no-cache add openjdk11 --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
 
 RUN apk add --update \
     curl \
