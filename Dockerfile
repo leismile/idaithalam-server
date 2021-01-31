@@ -2,7 +2,7 @@ FROM openjdk:8-jdk
 
 ENV MAVEN_VERSION 3.2.5
 
-RUN apk --no-cache add curl
+RUN apk add --no-cache curl jq bash
 
 RUN curl -sSL http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | tar xzf - -C /usr/share \
   && mv /usr/share/apache-maven-$MAVEN_VERSION /usr/share/maven \
