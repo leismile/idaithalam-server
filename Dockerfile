@@ -1,4 +1,4 @@
-FROM openjdk:8
+FROM openjdk:8-jdk
 
 ENV MAVEN_VERSION 3.2.5
 
