@@ -14,18 +14,12 @@ RUN curl -sSL http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binari
 
 ENV MAVEN_HOME /usr/share/maven
 
-ENV WK_HOME .
-
 COPY . /data/idaithalam-server
 WORKDIR /data/idaithalam-server
 
 RUN ["mvn", "clean", "install"]
 
-WORKDIR /data/idaithalam-server
-
-COPY /data/idaithalam-server/target/idaiserver-0.1.0.jar  $WK_HOME/
-
-WORKDIR $WK_HOME
+COPY $WORKDIR/target/idaiserver-0.1.0.jar  .
 
 ADD idaiserver-0.1.0.jar /openapi/virtualan/idaiserver.jar
 
