@@ -1,28 +1,16 @@
-FROM adoptopenjdk/openjdk11:alpine
-
+#
+# Build stage
+#
+FROM maven:3.6.0-jdk-11-slim AS build
+#FROM adoptopenjdk/openjdk11:alpine
 LABEL maintainer="info@virtualan.io"
-
-ENV MAVEN_VERSION 3.2.5
-
-RUN apk add --update \
-    curl \
-    && rm -rf /var/cache/apk/*
-    
-RUN curl -sSL http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | tar xzf - -C /usr/share \
-  && mv /usr/share/apache-maven-$MAVEN_VERSION /usr/share/maven \
-  && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
-
-ENV MAVEN_HOME /usr/share/maven
-
 COPY . /data/idaithalam-server
 WORKDIR /data/idaithalam-server
-
 RUN ["mvn", "clean", "install"]
 
-WORKDIR /data/idaithalam-server
-
-COPY target/idaiserver-0.1.0.jar  .
-
-ADD idaiserver-0.1.0.jar /openapi/virtualan/idaiserver.jar
-
+#
+# Package stage
+#
+FROM openjdk:11-jre-slim
+COPY --from=build /data/idaithalam-server/target/demo-0.0.1-SNAPSHOT.jar /openapi/virtualan/idaiserver.jar
 ENTRYPOINT ["java", "-jar", "/openapi/virtualan/idaiserver.jar"] 
