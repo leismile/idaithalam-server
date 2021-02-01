@@ -1,5 +1,7 @@
 FROM adoptopenjdk/openjdk11:alpine
 
+LABEL maintainer="info@virtualan.io"
+
 ENV MAVEN_VERSION 3.2.5
 
 RUN apk add --update \
@@ -10,15 +12,10 @@ RUN curl -sSL http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binari
   && mv /usr/share/apache-maven-$MAVEN_VERSION /usr/share/maven \
   && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
 
-COPY . /data/idaithalam-server
-WORKDIR /data/idaithalam-server
-
 ENV MAVEN_HOME /usr/share/maven
 
 RUN ["mvn", "clean", "install"]
 
-COPY /data/idaithalam-server/target/idaiserver-0.1.0.jar .
-
-ADD idaiserver-0.1.0.jar /openapi/virtualan/idaiserver.jar
+ADD target/idaiserver-0.1.0.jar /openapi/virtualan/idaiserver.jar
 
 ENTRYPOINT ["java", "-jar", "/openapi/virtualan/idaiserver.jar"] 
