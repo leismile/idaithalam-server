@@ -4,13 +4,12 @@
 FROM maven:3.6.0-jdk-11-slim AS build
 #FROM adoptopenjdk/openjdk11:alpine
 LABEL maintainer="info@virtualan.io"
-COPY . /data/idaithalam-server
-WORKDIR /data/idaithalam-server
-RUN ["mvn", "clean", "install"]
+COPY . /home/app/
+RUN mvn -f /home/app/pom.xml clean package
 
 #
 # Package stage
 #
 FROM openjdk:11-jre-slim
-COPY --from=build /data/idaithalam-server/target/demo-0.0.1-SNAPSHOT.jar /openapi/virtualan/idaiserver.jar
+COPY --from=build /home/app/target/idaiserver-0.1.0.jar /openapi/virtualan/idaiserver.jar
 ENTRYPOINT ["java", "-jar", "/openapi/virtualan/idaiserver.jar"] 
