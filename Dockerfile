@@ -21,7 +21,9 @@ WORKDIR /data/idaithalam-server
 
 RUN ["mvn", "clean", "install"]
 
-COPY target/idaiserver-0.1.0.jar  $WK_HOME/
+WORKDIR /data/idaithalam-server
+
+COPY /data/idaithalam-server/target/idaiserver-0.1.0.jar  $WK_HOME/
 
 WORKDIR $WK_HOME
 
