@@ -1,4 +1,5 @@
-FROM openjdk:8-java-alpine
+FROM adoptopenjdk/openjdk11:latest
+#FROM openjdk:8-java-alpine
 
 ENV MAVEN_VERSION 3.2.5
 
