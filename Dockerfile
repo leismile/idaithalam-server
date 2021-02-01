@@ -21,7 +21,7 @@ RUN ["mvn", "clean", "install"]
 
 WORKDIR /data/idaithalam-server
 
-RUN cp $SRC_HOME/target/idaiserver-0.1.0.jar  .
+RUN cp $WORKDIR/target/idaiserver-0.1.0.jar  .
 
 ADD idaiserver-0.1.0.jar /openapi/virtualan/idaiserver.jar
 
