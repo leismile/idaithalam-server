@@ -50,7 +50,7 @@ public class TestService {
    *
    * @param cucumblan the cucumblan
    * @param testid    the testid
-   * @return report
+   * @return report report
    */
   public Report runTest(Cucumblan cucumblan, UUID testid) {
     logger.debug(
@@ -345,8 +345,11 @@ public class TestService {
     }
   }
 
+
   /**
-   * List all ids.  @return the testidlist
+   * List all i ds testidlist.
+   *
+   * @return the testidlist
    */
   public Testidlist listAllIDs() {
     List<String> list = FileManagement.listFolders(this.storagePath);

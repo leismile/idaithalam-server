@@ -21,6 +21,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
+/**
+ * The type Util service.
+ */
 @Service
 public class UtilService {
 
@@ -39,6 +42,13 @@ public class UtilService {
         .collect(Collectors.joining("\n"));
   }
 
+  /**
+   * Update cucumblan response entity.
+   *
+   * @param testId the test id
+   * @param conf   the conf
+   * @return the response entity
+   */
   public ResponseEntity<String> updateCucumblan(String testId, Conf conf) {
     try {
       String fileContent = updateProps(testId, conf);
@@ -52,6 +62,13 @@ public class UtilService {
     }
   }
 
+  /**
+   * Delete cucumblan prop key response entity.
+   *
+   * @param testId the test id
+   * @param key    the key
+   * @return the response entity
+   */
   public ResponseEntity<String> deleteCucumblanPropKey(String testId, String key) {
     try {
       String fileContent = deleteProps(testId, key);
@@ -122,36 +139,48 @@ public class UtilService {
   }
 
 
-  /** Get the feature file from very last session. 
- * @param testId
- * @return
- */
-public ResponseEntity<String> getSessionContent(String testId, String file) {
-//    final String FEATURE = "feature"+FileManagement.fs+"virtualan-contract.0.feature";
+  /**
+   * Get the feature file from very last session.
+   *
+   * @param testId the test id
+   * @param file   the file
+   * @return session content
+   */
+  public ResponseEntity<String> getSessionContent(String testId, String file) {
     Report report;
-	try {
-		/* Get last session number. */
-		report = this.getLastSession(testId);
-	    String nr = null;
-	    if (report == null || report.getSessionNr() == null) nr = "1";
-	    else nr = report.getSessionNr().toString();
-	    
-	    /* Get feature file content.*/
-	    String fileName = "/" + nr + "/" + file;
-	    String fileContent = readProps(UUID.fromString(testId), fileName);
-	    if (fileContent == null) {
-	      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	    } else {
-	      return new ResponseEntity<>(fileContent, HttpStatus.OK);
-	    }
-	} catch (IOException e) {
-		logger.error(e.getLocalizedMessage());
-		e.printStackTrace();
-		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		
-	}
+    try {
+      /* Get last session number. */
+      report = this.getLastSession(testId);
+      String nr = null;
+      if (report == null || report.getSessionNr() == null) {
+        nr = "1";
+      } else {
+        nr = report.getSessionNr().toString();
+      }
+
+      /* Get feature file content.*/
+      String fileName = "/" + nr + "/" + file;
+      String fileContent = readProps(UUID.fromString(testId), fileName);
+      if (fileContent == null) {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      } else {
+        return new ResponseEntity<>(fileContent, HttpStatus.OK);
+      }
+    } catch (IOException e) {
+      logger.error(e.getLocalizedMessage());
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+    }
   }
-public ResponseEntity<String> getContent(String testId, String fileName) {
+
+  /**
+   * Gets content.
+   *
+   * @param testId   the test id
+   * @param fileName the file name
+   * @return the content
+   */
+  public ResponseEntity<String> getContent(String testId, String fileName) {
     String fileContent = readProps(UUID.fromString(testId), fileName);
     if (fileContent == null) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -182,6 +211,12 @@ public ResponseEntity<String> getContent(String testId, String fileName) {
     return fileContent;
   }
 
+  /**
+   * Read latest test result response entity.
+   *
+   * @param testId the test id
+   * @return the response entity
+   */
   public ResponseEntity<Report> readLatestTestResult(String testId) {
     final String folder =
         this.storagePath + FileManagement.fs + testId + FileManagement.fs + TestService.LASTTEST;
@@ -200,6 +235,12 @@ public ResponseEntity<String> getContent(String testId, String fileName) {
   }
 
 
+  /**
+   * Read all report response entity.
+   *
+   * @param testId the test id
+   * @return the response entity
+   */
   public ResponseEntity<List<Report>> readAllReport(String testId) {
     final String folder =
         this.storagePath + FileManagement.fs + testId + FileManagement.fs + TestService.ALLTESTS;
@@ -216,16 +257,22 @@ public ResponseEntity<String> getContent(String testId, String fileName) {
     }
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
-  
+
+  /**
+   * Gets last session.
+   *
+   * @param testId the test id
+   * @return the last session
+   * @throws FileNotFoundException the file not found exception
+   * @throws IOException           the io exception
+   */
   public Report getLastSession(String testId) throws FileNotFoundException, IOException {
-		final String LASTTEST = "lasttest.json";
-		final String reportFolder = storagePath + File.separator + testId;
-		final String lastSession = reportFolder + File.separator + LASTTEST;
-		String json = FileManagement.readToString(lastSession);
-	    Report links = PersistJSON.reportFromJSON(json);
-		return links;
-		
-	}
-  
-  
+    final String LASTTEST = "lasttest.json";
+    final String reportFolder = storagePath + File.separator + testId;
+    final String lastSession = reportFolder + File.separator + LASTTEST;
+    String json = FileManagement.readToString(lastSession);
+    Report links = PersistJSON.reportFromJSON(json);
+    return links;
+  }
+
 }
