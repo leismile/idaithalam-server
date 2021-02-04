@@ -25,10 +25,19 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 
+/**
+ * The type Test service.
+ */
 @Service
 public class TestService {
 
+  /**
+   * The constant ALLTESTS.
+   */
   public static final String ALLTESTS = "alltests.json";
+  /**
+   * The constant LASTTEST.
+   */
   public static final String LASTTEST = "lasttest.json";
   private static final Logger logger = LoggerFactory.getLogger(TestService.class);
   private static final String FEATUREX = "feature/virtualan-contract.";     // 0.feature";
@@ -47,8 +56,9 @@ public class TestService {
   /**
    * /test PUT Cucumblan service is initialized when calling this method (init()).
    *
-   * @param testid
-   * @return
+   * @param cucumblan the cucumblan
+   * @param testid    the testid
+   * @return report
    */
   public Report runTest(Cucumblan cucumblan, UUID testid) {
     logger.debug(
@@ -159,6 +169,12 @@ public class TestService {
     return links;
   }
 
+  /**
+   * Do initial test report.
+   *
+   * @param cucumblan the cucumblan
+   * @return the report
+   */
   /* Main method to do the actual Maven tests. */
   public Report doInitialTest(Cucumblan cucumblan) {
 
@@ -397,9 +413,11 @@ public class TestService {
       return url + "/";
     }
   }
-  
-  	/** List all ids. */
-	public Testidlist listAllIDs() {
+
+  /**
+   * List all ids.  @return the testidlist
+   */
+  public Testidlist listAllIDs() {
 		List<String> list = FileManagement.listFolders(this.storagePath);
 		Testidlist idlist = new Testidlist();
 		for ( String folder : list) {
@@ -415,7 +433,12 @@ public class TestService {
 		return idlist;
 	}
 
-	public void remove(java.lang.String testId) {
+  /**
+   * Remove.
+   *
+   * @param testId the test id
+   */
+  public void remove(java.lang.String testId) {
 		final String reportFolder = this.storagePath + File.separator + testId;
 		FileManagement.removeFolder(reportFolder);
 	}

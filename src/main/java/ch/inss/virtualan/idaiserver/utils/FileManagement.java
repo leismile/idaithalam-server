@@ -65,7 +65,7 @@ public class FileManagement {
    *
    * @param confFolder the conf folder
    * @param content    the content
-   * @return boolean
+   * @return boolean boolean
    */
   public static boolean saveCucumblan(String confFolder, String content) {
     boolean ok = false;
@@ -150,6 +150,7 @@ public class FileManagement {
   /**
    * Add a line to the cucumblan.properties file.  @param path the path
    *
+   * @param path     the path
    * @param value    the value
    * @param resource the resource
    * @return the string
@@ -201,6 +202,8 @@ public class FileManagement {
 
   /**
    * Read the Property file.  @return the propertyfile
+   *
+   * @return the propertyfile
    */
   public static String getPropertyfile() {
     try {
@@ -220,8 +223,7 @@ public class FileManagement {
    * Read cucumblan properties file properties.
    *
    * @param path the path
-   * @return properties
-   * @throws IOException
+   * @return properties properties
    */
   public static Properties readCucumblanPropertiesFile(String path) {
     FileInputStream fis = null;
@@ -262,6 +264,7 @@ public class FileManagement {
   /**
    * Read any file and give back the String content.  @param file the file
    *
+   * @param file the file
    * @return the string
    * @throws FileNotFoundException the file not found exception
    * @throws IOException           the io exception
@@ -284,7 +287,7 @@ public class FileManagement {
    *
    * @param source       the source
    * @param targetFolder the target folder
-   * @return string
+   * @return string string
    */
   public static String copyFiles(String source, String targetFolder) {
     Path sourcePath = Paths.get(source);
@@ -332,7 +335,7 @@ public class FileManagement {
    * Gets reportfile.
    *
    * @param target the target
-   * @return reportfile
+   * @return reportfile reportfile
    */
   public static String getReportfile(String target) {
     Path testPath = Paths.get(target);
@@ -370,7 +373,7 @@ public class FileManagement {
    *
    * @param path       the path
    * @param fileStream the file stream
-   * @return boolean
+   * @return boolean boolean
    */
   public static boolean addCollection(String path, @Valid MultipartFile fileStream) {
     try {
@@ -397,7 +400,7 @@ public class FileManagement {
    *
    * @param path     the path
    * @param resource the resource
-   * @return boolean
+   * @return boolean boolean
    */
   public static boolean removeServer(String path, String resource) {
     String key = null;
