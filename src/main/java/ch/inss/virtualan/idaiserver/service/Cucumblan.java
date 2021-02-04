@@ -261,7 +261,6 @@ public class Cucumblan {
    * From property.
    *
    * @param path the path
-   * @return Read the property file. service.api=http://localhost:8080 virtualan.data.load=idaiserver.postman_collection.json
    * virtualan.data.type=POSTMAN
    */
   public void fromProperty(String path) {
