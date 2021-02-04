@@ -13,6 +13,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+/**
+ * The type Cucumblan.
+ */
 @Component
 public class Cucumblan {
 
@@ -35,15 +38,26 @@ public class Cucumblan {
   /* List of all postman collection files. */
   private LinkedHashSet<String> postmanCollections;  //TODO: check if always only one.
 
+  /**
+   * Instantiates a new Cucumblan.
+   */
   public Cucumblan() {
 
   }
 
+  /**
+   * Init.
+   */
   public void init() {
     this.uuid = UUID.randomUUID();
     this.iniAll();
   }
 
+  /**
+   * Init.
+   *
+   * @param uuid the uuid
+   */
   public void init(UUID uuid) {
     this.uuid = uuid;
     this.iniAll();
@@ -66,63 +80,133 @@ public class Cucumblan {
   }
 
 
+  /**
+   * Gets folder.
+   *
+   * @return the folder
+   */
   public String getFolder() {
     return folder;
   }
 
+  /**
+   * Gets upload filename.
+   *
+   * @return the upload filename
+   */
   public String getUploadFilename() {
     return uploadFilename;
   }
 
+  /**
+   * Sets upload filename.
+   *
+   * @param uploadFilename the upload filename
+   */
   public void setUploadFilename(String uploadFilename) {
     this.uploadFilename = uploadFilename;
   }
 
+  /**
+   * Gets uuid.
+   *
+   * @return the uuid
+   */
   public UUID getUuid() {
     return uuid;
   }
 
+  /**
+   * Gets session nr.
+   *
+   * @return the session nr
+   */
   public Integer getSessionNr() {
     return sessionNr;
   }
 
 
+  /**
+   * Sets session nr.
+   *
+   * @param sessionNr the session nr
+   */
   public void setSessionNr(Integer sessionNr) {
     this.sessionNr = sessionNr;
   }
 
 
+  /**
+   * Gets input stream.
+   *
+   * @return the input stream
+   */
   public InputStream getInputStream() {
     return inputStream;
   }
 
+  /**
+   * Sets input stream.
+   *
+   * @param inputStream the input stream
+   */
   public void setInputStream(InputStream inputStream) {
     this.inputStream = inputStream;
   }
 
 
+  /**
+   * Gets type.
+   *
+   * @return the type
+   */
   public String getTYPE() {
     return TYPE;
   }
 
+  /**
+   * Sets type.
+   *
+   * @param tYPE the t ype
+   */
   public void setTYPE(String tYPE) {
     TYPE = tYPE;
   }
 
+  /**
+   * Gets execute.
+   *
+   * @return the execute
+   */
   public Boolean getExecute() {
     return execute;
   }
 
+  /**
+   * Sets execute.
+   *
+   * @param execute the execute
+   */
   public void setExecute(Boolean execute) {
     this.execute = execute;
   }
 
 
+  /**
+   * Gets skip response validation.
+   *
+   * @return the skip response validation
+   */
   public Boolean getSkipResponseValidation() {
     return skipResponseValidation;
   }
 
 
+  /**
+   * Sets skip response validation.
+   *
+   * @param skipResponseValidation the skip response validation
+   */
   public void setSkipResponseValidation(Boolean skipResponseValidation) {
     this.skipResponseValidation = skipResponseValidation;
   }
@@ -130,6 +214,9 @@ public class Cucumblan {
 
   /**
    * Input is only the resource. service.api is added.
+   *
+   * @param resource the resource
+   * @param value    the value
    */
   public void addURL(String resource, String value) {
     if (resource == null || "".equals(resource)) {
@@ -143,6 +230,8 @@ public class Cucumblan {
 
   /**
    * Add a postman collection file name for the property virtualan.data.load.
+   *
+   * @param dataload the dataload
    */
   public void addFILE(String dataload) {
     if (dataload == null) {
@@ -169,6 +258,9 @@ public class Cucumblan {
   }
 
   /**
+   * From property.
+   *
+   * @param path the path
    * @return Read the property file. service.api=http://localhost:8080 virtualan.data.load=idaiserver.postman_collection.json
    * virtualan.data.type=POSTMAN
    */
@@ -195,6 +287,8 @@ public class Cucumblan {
 
   /**
    * Get a single file.
+   *
+   * @return the one file
    */
   public String getOneFILE() {
     if (this.postmanCollections.size() > 1) {
@@ -213,6 +307,11 @@ public class Cucumblan {
     }
   }
 
+  /**
+   * Report factory report.
+   *
+   * @return the report
+   */
   public Report reportFactory() {
     Report reportLinks = new Report();
     reportLinks.setError(FileManagement.NOERROR);
@@ -223,10 +322,20 @@ public class Cucumblan {
   }
 
 
+  /**
+   * Gets url.
+   *
+   * @return the url
+   */
   public HashMap<String, String> getURL() {
     return URL;
   }
 
+  /**
+   * Gets file.
+   *
+   * @return the file
+   */
   public LinkedHashSet<String> getFILE() {
     return postmanCollections;
   }
