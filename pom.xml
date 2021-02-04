@@ -4,7 +4,7 @@
   <artifactId>idaiserver</artifactId>
   <packaging>jar</packaging>
   <name>idaiserver</name>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <properties>
     <java.version>1.8</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -22,7 +22,7 @@
     <developerConnection>scm:git:ssh://git@github.com/virtualansoftware/idaithalam-server.git
     </developerConnection>
     <url>https://github.com/virtualansoftware/idaithalam-server.git</url>
-    <tag>v1.0.0</tag>
+    <tag>v1.0.0.1</tag>
   </scm>
   <developers>
     <developer>
