@@ -7,17 +7,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.virtualan.idaithalam.contract.IdaithalamExecutor;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -131,7 +123,7 @@ public class TestService {
       List<Report> list = PersistJSON.readReports(allSessions);
       list.add(links);
       logger.debug("There are " + list.size() + " test sessions stored.");
-      
+
       String target = reportURL + File.separator + FEATUREX + "0" + DOTFEATURE;
       links.setLinkToFeature(target);
 
@@ -148,18 +140,20 @@ public class TestService {
       PersistJSON.writeJSON(reportFolder + File.separator + LASTTEST, links);
       String reportList = PersistJSON.writeArray(list, allSessions);
       FileManagement.writeString(allSessions, reportList);
-      
-
 
 
     } catch (JsonProcessingException e) {
       e.printStackTrace();
-      if ( links == null) links = new Report();
+      if (links == null) {
+        links = new Report();
+      }
       links.setError(e.getLocalizedMessage());
       links.setMessage("An internal error occured.");
       links.setTestExecuted(false);
     } catch (IOException ioe) {
-      if ( links == null) links = new Report();
+      if (links == null) {
+        links = new Report();
+      }
       ioe.printStackTrace();
       links.setError(ioe.getLocalizedMessage());
       links.setMessage("An internal error occured.");
@@ -299,9 +293,11 @@ public class TestService {
       String array = PersistJSON.writeArray(list, allSessions);
       FileManagement.writeString(allSessions, array);
 
-      
+
     } catch (Exception e) {
-      if ( links == null) links = new Report();
+      if (links == null) {
+        links = new Report();
+      }
       links.setError(e.getLocalizedMessage());
       links.setMessage("No reports.");
       links.setSuccess(false);
@@ -333,77 +329,12 @@ public class TestService {
       } else {
         isSuccess = true;
       }
-      //removeFromClasspath(reportFolder);
       result = Boolean.valueOf(isSuccess).toString();
-//    } catch (MalformedURLException e) {
-//      result = e.getLocalizedMessage();
-//      logger.info("Maven execution MalformedURLException raised: " + result);
-//      e.printStackTrace();
-//    } catch (NoSuchMethodException e) {
-//      result = e.getLocalizedMessage();
-//      logger.info("Maven execution NoSuchMethodException raised: " + result);
-//      e.printStackTrace();
-//    } catch (InvocationTargetException e) {
-//      result = e.getLocalizedMessage();
-//      logger.info("Maven execution InvocationTargetException raised: " + result);
-//      e.printStackTrace();
-//    } catch (IllegalAccessException e) {
-//      result = e.getLocalizedMessage();
-//      logger.info("Maven execution IllegalAccessException raised: " + result);
-//      e.printStackTrace();
     } catch (Exception e) {
       result = e.getLocalizedMessage();
       logger.info("Maven execution Execption raised: " + result);
-      e.printStackTrace();
     }
     return result;
-  }
-
-  /**
-   * Warning: This method does not work with Java 9 or greater. Only Java 8 is working.
-   * <p>
-   * https://stackoverflow.com/questions/52385610/java-class-cast-exception-spring-boot
-   *
-   * @param s
-   * @throws MalformedURLException
-   * @throws NoSuchMethodException
-   * @throws InvocationTargetException
-   * @throws IllegalAccessException
-   */
-  private void addToClasspath(String s)
-      throws MalformedURLException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-//    File f = new File(s);
-//    URI u = f.toURI();
-//    // class jdk.internal.loader.ClassLoaders$AppClassLoader cannot be cast to class java.net.URLClassLoader
-//    URLClassLoader urlClassLoader = (URLClassLoader) ClassLoader.getSystemClassLoader();
-//    Class<URLClassLoader> urlClass = URLClassLoader.class;
-//    Method method = urlClass.getDeclaredMethod("addURL", new Class[]{URL.class});
-//    method.setAccessible(true);
-//    method.invoke(urlClassLoader, new Object[]{u.toURL()});
-  }
-  
-
-  /**
-   * @param path
-   * @throws Exception
-   */
-  private static void removeFromClasspath(String path) throws Exception {
-//    URL url = new File(path).toURI().toURL();
-//    URLClassLoader urlClassLoader = (URLClassLoader)
-//        ClassLoader.getSystemClassLoader();
-//    Class<?> urlClass = URLClassLoader.class;
-//    Field ucpField = urlClass.getDeclaredField("ucp");
-//    ucpField.setAccessible(true);
-//    URLClassPath ucp = (URLClassPath) ucpField.get(urlClassLoader);
-//    Class<?> ucpClass = URLClassPath.class;
-//    Field urlsField = ucpClass.getDeclaredField("urls");
-//    urlsField.setAccessible(true);
-//    Stack urls = (Stack) urlsField.get(ucp);
-//    urls.remove(url);
-//    urlsField = ucpClass.getDeclaredField("path");
-//    urlsField.setAccessible(true);
-//    List urlss = (List) urlsField.get(ucp);
-//    urlss.remove(url);
   }
 
   private String addSlash(String url) {
@@ -418,20 +349,19 @@ public class TestService {
    * List all ids.  @return the testidlist
    */
   public Testidlist listAllIDs() {
-		List<String> list = FileManagement.listFolders(this.storagePath);
-		Testidlist idlist = new Testidlist();
-		for ( String folder : list) {
-			idlist.addServerUrlItem(this.serverHost + "/" + folder + "/" + ALLTESTS);
-			idlist.addIdListItem(folder);
-		}
-		if ( list.size() == 0) {
-			idlist.addIdListItem("empty");
-			idlist.addServerUrlItem("empty");
-		}
-		
-		
-		return idlist;
-	}
+    List<String> list = FileManagement.listFolders(this.storagePath);
+    Testidlist idlist = new Testidlist();
+    for (String folder : list) {
+      idlist.addServerUrlItem(this.serverHost + "/" + folder + "/" + ALLTESTS);
+      idlist.addIdListItem(folder);
+    }
+    if (list.size() == 0) {
+      idlist.addIdListItem("empty");
+      idlist.addServerUrlItem("empty");
+    }
+
+    return idlist;
+  }
 
   /**
    * Remove.
@@ -439,9 +369,9 @@ public class TestService {
    * @param testId the test id
    */
   public void remove(java.lang.String testId) {
-		final String reportFolder = this.storagePath + File.separator + testId;
-		FileManagement.removeFolder(reportFolder);
-	}
+    final String reportFolder = this.storagePath + File.separator + testId;
+    FileManagement.removeFolder(reportFolder);
+  }
 
 
 }
