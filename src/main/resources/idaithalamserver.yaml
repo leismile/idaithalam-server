@@ -137,29 +137,6 @@ paths:
       operationId: runTest
       summary: Run test.
       description: Run test
-    post:
-      tags:
-        - API test execution
-      parameters:
-        - name: testId
-          description: testid for that test
-          schema:
-            format: uuid
-            type: string
-          in: path
-          required: true
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Report'
-          description: Gives back the entire cucumblan.properties file and generated testid.
-        '404':
-           description: testID not found
-      operationId: runTestById
-      summary: Run test based on an existing test ID.
-      description: Run test based on an existing test ID.
       
     delete:
       tags:
