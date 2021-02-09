@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
 /**
  * Report
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-02-01T06:05:55.567165+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-02-09T19:26:52.052547+01:00[Europe/Zurich]")
 public class Report   {
   @JsonProperty("testId")
   private UUID testId;
@@ -53,6 +53,9 @@ public class Report   {
 
   @JsonProperty("linkToSessions")
   private String linkToSessions;
+
+  @JsonProperty("linkToCollection")
+  private String linkToCollection;
 
   @JsonProperty("message")
   private String message;
@@ -321,6 +324,26 @@ public class Report   {
     this.linkToSessions = linkToSessions;
   }
 
+  public Report linkToCollection(String linkToCollection) {
+    this.linkToCollection = linkToCollection;
+    return this;
+  }
+
+  /**
+   * Link to the Postman collection.
+   * @return linkToCollection
+  */
+  @ApiModelProperty(value = "Link to the Postman collection.")
+
+
+  public String getLinkToCollection() {
+    return linkToCollection;
+  }
+
+  public void setLinkToCollection(String linkToCollection) {
+    this.linkToCollection = linkToCollection;
+  }
+
   public Report message(String message) {
     this.message = message;
     return this;
@@ -384,13 +407,14 @@ public class Report   {
         Objects.equals(this.linkToReport, report.linkToReport) &&
         Objects.equals(this.linkToProperties, report.linkToProperties) &&
         Objects.equals(this.linkToSessions, report.linkToSessions) &&
+        Objects.equals(this.linkToCollection, report.linkToCollection) &&
         Objects.equals(this.message, report.message) &&
         Objects.equals(this.error, report.error);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(testId, success, sessionNr, testExecuted, skipResponseValidation, creationTime, startTime, endTime, durationSeconds, linkToFeature, linkToReport, linkToProperties, linkToSessions, message, error);
+    return Objects.hash(testId, success, sessionNr, testExecuted, skipResponseValidation, creationTime, startTime, endTime, durationSeconds, linkToFeature, linkToReport, linkToProperties, linkToSessions, linkToCollection, message, error);
   }
 
   @Override
@@ -411,6 +435,7 @@ public class Report   {
     sb.append("    linkToReport: ").append(toIndentedString(linkToReport)).append("\n");
     sb.append("    linkToProperties: ").append(toIndentedString(linkToProperties)).append("\n");
     sb.append("    linkToSessions: ").append(toIndentedString(linkToSessions)).append("\n");
+    sb.append("    linkToCollection: ").append(toIndentedString(linkToCollection)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("}");

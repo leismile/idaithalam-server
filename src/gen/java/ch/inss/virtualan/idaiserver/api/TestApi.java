@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-02-01T06:05:55.567165+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-02-09T19:26:52.052547+01:00[Europe/Zurich]")
 @Validated
 @Api(value = "test", description = "the test API")
 public interface TestApi {
@@ -84,7 +84,7 @@ public interface TestApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"sessionNr\" : 0, \"linkToProperties\" : \"linkToProperties\", \"creationTime\" : \"creationTime\", \"durationSeconds\" : 6, \"linkToReport\" : \"linkToReport\", \"linkToSessions\" : \"linkToSessions\", \"message\" : \"message\", \"error\" : \"error\", \"linkToFeature\" : \"linkToFeature\", \"skipResponseValidation\" : true, \"success\" : true, \"testExecuted\" : true, \"testId\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"startTime\" : \"startTime\", \"endTime\" : \"endTime\" }";
+                    String exampleString = "{ \"sessionNr\" : 0, \"linkToCollection\" : \"linkToCollection\", \"linkToProperties\" : \"linkToProperties\", \"creationTime\" : \"creationTime\", \"durationSeconds\" : 6, \"linkToReport\" : \"linkToReport\", \"linkToSessions\" : \"linkToSessions\", \"message\" : \"message\", \"error\" : \"error\", \"linkToFeature\" : \"linkToFeature\", \"skipResponseValidation\" : true, \"success\" : true, \"testExecuted\" : true, \"testId\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"startTime\" : \"startTime\", \"endTime\" : \"endTime\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -224,7 +224,7 @@ public interface TestApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"sessionNr\" : 0, \"linkToProperties\" : \"linkToProperties\", \"creationTime\" : \"creationTime\", \"durationSeconds\" : 6, \"linkToReport\" : \"linkToReport\", \"linkToSessions\" : \"linkToSessions\", \"message\" : \"message\", \"error\" : \"error\", \"linkToFeature\" : \"linkToFeature\", \"skipResponseValidation\" : true, \"success\" : true, \"testExecuted\" : true, \"testId\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"startTime\" : \"startTime\", \"endTime\" : \"endTime\" }";
+                    String exampleString = "{ \"sessionNr\" : 0, \"linkToCollection\" : \"linkToCollection\", \"linkToProperties\" : \"linkToProperties\", \"creationTime\" : \"creationTime\", \"durationSeconds\" : 6, \"linkToReport\" : \"linkToReport\", \"linkToSessions\" : \"linkToSessions\", \"message\" : \"message\", \"error\" : \"error\", \"linkToFeature\" : \"linkToFeature\", \"skipResponseValidation\" : true, \"success\" : true, \"testExecuted\" : true, \"testId\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"startTime\" : \"startTime\", \"endTime\" : \"endTime\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -255,7 +255,38 @@ public interface TestApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"sessionNr\" : 0, \"linkToProperties\" : \"linkToProperties\", \"creationTime\" : \"creationTime\", \"durationSeconds\" : 6, \"linkToReport\" : \"linkToReport\", \"linkToSessions\" : \"linkToSessions\", \"message\" : \"message\", \"error\" : \"error\", \"linkToFeature\" : \"linkToFeature\", \"skipResponseValidation\" : true, \"success\" : true, \"testExecuted\" : true, \"testId\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"startTime\" : \"startTime\", \"endTime\" : \"endTime\" }";
+                    String exampleString = "{ \"sessionNr\" : 0, \"linkToCollection\" : \"linkToCollection\", \"linkToProperties\" : \"linkToProperties\", \"creationTime\" : \"creationTime\", \"durationSeconds\" : 6, \"linkToReport\" : \"linkToReport\", \"linkToSessions\" : \"linkToSessions\", \"message\" : \"message\", \"error\" : \"error\", \"linkToFeature\" : \"linkToFeature\", \"skipResponseValidation\" : true, \"success\" : true, \"testExecuted\" : true, \"testId\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"startTime\" : \"startTime\", \"endTime\" : \"endTime\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * POST /test/{testId} : Run test based on an existing test ID.
+     * Run test based on an existing test ID.
+     *
+     * @param testId testid for that test (required)
+     * @return Gives back the entire cucumblan.properties file and generated testid. (status code 201)
+     *         or testID not found (status code 404)
+     */
+    @ApiOperation(value = "Run test based on an existing test ID.", nickname = "runTestById", notes = "Run test based on an existing test ID.", response = Report.class, tags={ "API test execution", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 201, message = "Gives back the entire cucumblan.properties file and generated testid.", response = Report.class),
+        @ApiResponse(code = 404, message = "testID not found") })
+    @PostMapping(
+        value = "/test/{testId}",
+        produces = { "application/json" }
+    )
+    default ResponseEntity<Report> runTestById(@ApiParam(value = "testid for that test",required=true) @PathVariable("testId") UUID testId) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"sessionNr\" : 0, \"linkToCollection\" : \"linkToCollection\", \"linkToProperties\" : \"linkToProperties\", \"creationTime\" : \"creationTime\", \"durationSeconds\" : 6, \"linkToReport\" : \"linkToReport\", \"linkToSessions\" : \"linkToSessions\", \"message\" : \"message\", \"error\" : \"error\", \"linkToFeature\" : \"linkToFeature\", \"skipResponseValidation\" : true, \"success\" : true, \"testExecuted\" : true, \"testId\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"startTime\" : \"startTime\", \"endTime\" : \"endTime\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -294,7 +325,7 @@ public interface TestApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"sessionNr\" : 0, \"linkToProperties\" : \"linkToProperties\", \"creationTime\" : \"creationTime\", \"durationSeconds\" : 6, \"linkToReport\" : \"linkToReport\", \"linkToSessions\" : \"linkToSessions\", \"message\" : \"message\", \"error\" : \"error\", \"linkToFeature\" : \"linkToFeature\", \"skipResponseValidation\" : true, \"success\" : true, \"testExecuted\" : true, \"testId\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"startTime\" : \"startTime\", \"endTime\" : \"endTime\" }";
+                    String exampleString = "{ \"sessionNr\" : 0, \"linkToCollection\" : \"linkToCollection\", \"linkToProperties\" : \"linkToProperties\", \"creationTime\" : \"creationTime\", \"durationSeconds\" : 6, \"linkToReport\" : \"linkToReport\", \"linkToSessions\" : \"linkToSessions\", \"message\" : \"message\", \"error\" : \"error\", \"linkToFeature\" : \"linkToFeature\", \"skipResponseValidation\" : true, \"success\" : true, \"testExecuted\" : true, \"testId\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"startTime\" : \"startTime\", \"endTime\" : \"endTime\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

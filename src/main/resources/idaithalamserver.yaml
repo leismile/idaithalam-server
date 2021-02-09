@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: idaithalamserver
-  version: 1.1.7
+  version: 1.2.0
   description: Idaithalam Server
   contact:
     name: Oliver Glas/Elan Thangamani
@@ -137,6 +137,30 @@ paths:
       operationId: runTest
       summary: Run test.
       description: Run test
+    post:
+      tags:
+        - API test execution
+      parameters:
+        - name: testId
+          description: testid for that test
+          schema:
+            format: uuid
+            type: string
+          in: path
+          required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+          description: Gives back the entire cucumblan.properties file and generated testid.
+        '404':
+           description: testID not found
+      operationId: runTestById
+      summary: Run test based on an existing test ID.
+      description: Run test based on an existing test ID.
+      
     delete:
       tags:
         - API test execution
@@ -337,6 +361,73 @@ paths:
           type: string
         in: path
         required: true
+        
+  /preparation/collection:
+    post:
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - filestream
+                
+              type: object
+              properties:
+                filestream:
+                  format: binary
+                  type: string
+
+      tags:
+        - Preparation
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+          description: Test created.
+        '400':
+          description: Bad request.
+        '418':
+          description: I am a teapot.
+        default:
+          description: unexpected error
+      operationId: createCollection
+      summary: Create a Postman collection from an OAS3 specification.
+      description: Create a Postman collection from an OAS3 specification.
+  /preparation/testdata:
+    post:
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - filestream
+                
+              type: object
+              properties:
+                filestream:
+                  format: binary
+                  type: string
+      tags:
+        - Preparation
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+          description: Test created.
+        '400':
+          description: Bad request.
+        '418':
+          description: I am a teapot.
+        default:
+          description: unexpected error
+      operationId: createTestdata
+      summary: Create test data for an existing Postman collection.
+      description: Create test data for an existing Postman collection.
+    
 components:
   schemas:
    
@@ -402,6 +493,9 @@ components:
         linkToSessions:
           description: ''
           type: string
+        linkToCollection:
+          description: Link to the Postman collection.
+          type: string
         message:
           description: ''
           type: string
@@ -439,5 +533,7 @@ tags:
     description: Test results and reports of the test sessions
   - name: Configuration
     description: Configuration of the test sessions in the cucumblan.properties file.
+  - name: Preparation
+    description: Do some steps to prepare for the actual test.
   - name: health
     description: Health of the server.
