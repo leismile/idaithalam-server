@@ -21,19 +21,23 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.core.type.*;
 
 
-
+/**
+ * The type Persist json.
+ */
 @Service
 public class PersistJSON {
 	
 	private static final Logger logger = LoggerFactory.getLogger(PersistJSON.class);
 
 	/**
-	 * @param filePath
-	 * @param report
-	 * @return
-	 * @throws IOException 
-	 * @throws JsonMappingException 
-	 * @throws JsonGenerationException 
+	 * Write json boolean.
+	 *
+	 * @param filePath the file path
+	 * @param report   the report
+	 * @return boolean
+	 * @throws JsonGenerationException the json generation exception
+	 * @throws JsonMappingException    the json mapping exception
+	 * @throws IOException             the io exception
 	 */
 	public static boolean writeJSON(String filePath, Report report) throws JsonGenerationException, JsonMappingException, IOException {
 		boolean ok = false;
@@ -43,12 +47,14 @@ public class PersistJSON {
 
 		return ok;
 	}
-	
+
 	/**
-	 * @param string
-	 * @return
-	 * @throws JsonMappingException
-	 * @throws JsonProcessingException
+	 * Report from json report.
+	 *
+	 * @param string the string
+	 * @return report
+	 * @throws JsonMappingException    the json mapping exception
+	 * @throws JsonProcessingException the json processing exception
 	 */
 	public static Report reportFromJSON(String string) throws JsonMappingException, JsonProcessingException {
 		logger.debug("Going to read JSON from file " + string);
@@ -58,7 +64,15 @@ public class PersistJSON {
 		
 		return report;
 	}
-	
+
+	/**
+	 * Read array list.
+	 *
+	 * @param array the array
+	 * @return the list
+	 * @throws JsonMappingException    the json mapping exception
+	 * @throws JsonProcessingException the json processing exception
+	 */
 	public static List<Report> readArray(String array) throws JsonMappingException, JsonProcessingException{
 		String jsonArray = "[{\"brand\":\"ford\"}, {\"brand\":\"Fiat\"}]";
 
@@ -69,7 +83,15 @@ public class PersistJSON {
 		
 		return Arrays.asList(reports);
 	}
-	
+
+	/**
+	 * Write array string.
+	 *
+	 * @param list     the list
+	 * @param filePath the file path
+	 * @return the string
+	 * @throws IOException the io exception
+	 */
 	public static String writeArray(List<Report> list, String filePath) throws IOException {
 		String string = null;
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -91,7 +113,14 @@ public class PersistJSON {
 //	    	objectMapper.writeValue(new File(filePath), string);
 		return string;
 	}
-	
+
+	/**
+	 * Gets report list.
+	 *
+	 * @param string the string
+	 * @return the report list
+	 * @throws JsonProcessingException the json processing exception
+	 */
 	public static List<Report> getReportList(String string) throws JsonProcessingException{
 //		String jsonCarArray = "[{ \"color\" : \"Black\", \"type\" : \"BMW\" }, { \"color\" : \"Red\", \"type\" : \"FIAT\" }]";
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -101,8 +130,15 @@ public class PersistJSON {
 		return list;
 
 	}
-	
-	//TODO just sample.
+
+	/**
+	 * Gets map.
+	 *
+	 * @return the map
+	 * @throws JsonMappingException    the json mapping exception
+	 * @throws JsonProcessingException the json processing exception
+	 */
+//TODO just sample.
 	public static Map<String, Object> getMap() throws JsonMappingException, JsonProcessingException
 	{
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -112,6 +148,15 @@ public class PersistJSON {
 		return map;
 	}
 
+	/**
+	 * Read reports list.
+	 *
+	 * @param filename the filename
+	 * @return the list
+	 * @throws JsonParseException   the json parse exception
+	 * @throws JsonMappingException the json mapping exception
+	 * @throws IOException          the io exception
+	 */
 	public static List<Report> readReports(String filename) throws JsonParseException, JsonMappingException, IOException{
 		logger.debug("Reading into List<Report>: " + filename);
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -122,6 +167,15 @@ public class PersistJSON {
 	}
 
 
+	/**
+	 * Read latest report report.
+	 *
+	 * @param filename the filename
+	 * @return the report
+	 * @throws JsonParseException   the json parse exception
+	 * @throws JsonMappingException the json mapping exception
+	 * @throws IOException          the io exception
+	 */
 	public static Report readLatestReport(String filename) throws JsonParseException, JsonMappingException, IOException{
 		logger.debug("Reading into Report: " + filename);
 		ObjectMapper objectMapper = new ObjectMapper();
