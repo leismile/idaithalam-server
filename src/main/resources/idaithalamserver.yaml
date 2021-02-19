@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: idaithalamserver
-  version: 1.2.0
+  version: 1.2.1
   description: Idaithalam Server
   contact:
     name: Oliver Glas/Elan Thangamani
@@ -28,8 +28,15 @@ paths:
               type: object
               properties:
                 filestream:
-                  format: binary
                   type: string
+                  format: binary
+                dataType:
+                  type: string
+                  enum:
+                    - POSTMAN
+                    - OPENAPI
+                    - EXCEL
+                    - VIRTUALAN
                 serverurl:
                   format: url
                   description: The server url to be tested.
@@ -68,7 +75,7 @@ paths:
     get:
       tags:
         - Results
-      
+
       responses:
         '200':
           content:
@@ -84,7 +91,7 @@ paths:
           description: unexpected error
       operationId: listTest
       summary: Get all test IDs as a list.
-      
+
       description: Get all test IDs as a list.
   '/test/{testId}':
     get:
@@ -133,11 +140,11 @@ paths:
                 $ref: '#/components/schemas/Report'
           description: Gives back the entire cucumblan.properties file and generated testid.
         '404':
-           description: testID not found
+          description: testID not found
       operationId: runTest
       summary: Run test.
       description: Run test
-      
+
     delete:
       tags:
         - API test execution
@@ -156,7 +163,7 @@ paths:
                 type: string
           description: Removed the entire test including all sessions.
         '404':
-           description: testID not found
+          description: testID not found
       operationId: removetest
       summary: Remove the entire test including all sessions.
       description: Removed the entire test including all sessions.
@@ -166,7 +173,7 @@ paths:
           type: string
         in: path
         required: true
-        
+
   '/test/{testId}/report':
     get:
       tags:
@@ -189,7 +196,7 @@ paths:
                   $ref: '#/components/schemas/Report'
           description: Configuration of cucumblan.properties file.
         '404':
-           description: testID not found
+          description: testID not found
         '500':
           description: Internal server error.
         default:
@@ -218,7 +225,7 @@ paths:
                 type: string
           description: Content of the generated Gherkin feature file.
         '404':
-           description: testID not found
+          description: testID not found
         '500':
           description: Internal server error.
         default:
@@ -295,7 +302,7 @@ paths:
                 type: string
           description: Gives back the entire test configuration as a cucumblan.properties file.
         '404':
-           description: testID not found
+          description: testID not found
         '400':
           description: Bad request.
         default:
@@ -328,7 +335,7 @@ paths:
                 type: string
           description: delete key Configuration of cucumblan.properties file.
         '404':
-           description: testID not found
+          description: testID not found
       operationId: removeConf
       summary: Remove the single config configuration.
       description: Remove the test.
@@ -338,7 +345,7 @@ paths:
           type: string
         in: path
         required: true
-        
+
   /preparation/collection:
     post:
       requestBody:
@@ -347,7 +354,7 @@ paths:
             schema:
               required:
                 - filestream
-                
+
               type: object
               properties:
                 filestream:
@@ -380,7 +387,7 @@ paths:
             schema:
               required:
                 - filestream
-                
+
               type: object
               properties:
                 filestream:
@@ -404,10 +411,10 @@ paths:
       operationId: createTestdata
       summary: Create test data for an existing Postman collection.
       description: Create test data for an existing Postman collection.
-    
+
 components:
   schemas:
-   
+
     HealthResponse:
       required:
         - status
@@ -488,7 +495,14 @@ components:
           type: array
           items:
             type: string
-          
+        dataType:
+          type: string
+          enum:
+            - POSTMAN
+            - OPENAPI
+            - EXCEL
+            - VIRTUALAN
+
     Testidlist:
       description: 'List of all test IDs.'
       type: object
