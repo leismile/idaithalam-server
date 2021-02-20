@@ -97,15 +97,12 @@ public class TestApiController implements TestApi {
 
     /** POST for the main initial test with execution and creation of the uuid. */
     @Override
-    public ResponseEntity<Report> testRun(@ApiParam(value = "") @Valid @RequestPart(value = "filestream", required = true) MultipartFile filestream,@ApiParam(value = "The server url to be tested.", required=true, defaultValue="http://localhost:8080") @Valid @RequestPart(value = "serverurl", required = true)  String serverurl,@ApiParam(value = "Execute test immediately. If false, only the property file will be updated (append).", defaultValue="true") @Valid @RequestPart(value = "execute", required = false)  String execute,@ApiParam(value = "Skip the respone validation in tests.", defaultValue="true") @Valid @RequestPart(value = "skipResponseValidation", required = false)  String skipResponseValidation) {
+    public ResponseEntity<Report> testRun(@ApiParam(value = "") @Valid @RequestPart(value = "filestream", required = true) MultipartFile filestream,@ApiParam(value = "The server url to be tested.", required=true) @Valid @RequestPart(value = "serverurl", required = true)  String serverurl,@ApiParam(value = "", allowableValues="POSTMAN, OPENAPI, EXCEL, VIRTUALAN") @Valid @RequestPart(value = "dataType", required = false)  String dataType,@ApiParam(value = "Execute test immediately. If false, only the property file will be updated (append).", defaultValue="true") @Valid @RequestPart(value = "execute", required = false)  String execute,@ApiParam(value = "Skip the respone validation in tests.", defaultValue="false") @Valid @RequestPart(value = "skipResponseValidation", required = false)  String skipResponseValidation) {
         logger.debug("Start POST /test");
         if (getRequest().isPresent() == false || filestream == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         ;
-		if ( "teapot".equalsIgnoreCase(serverurl)) {
-            return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
-        }
         
         Report links = null;
         
@@ -130,6 +127,7 @@ public class TestApiController implements TestApi {
                     cucumblan.addFILE(dataload);
                     cucumblan.setUploadFilename(dataload);
                     cucumblan.setSkipResponseValidation(skip);
+                    cucumblan.setTYPE(dataType);
                     
                     try {
                         cucumblan.setInputStream(filestream.getInputStream());

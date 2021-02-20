@@ -164,7 +164,7 @@ public class TestService {
   }
 
   /**
-   * Do initial test report.
+   * Do initial test report (POST).
    *
    * @param cucumblan the cucumblan
    * @return the report
@@ -175,15 +175,16 @@ public class TestService {
     logger.debug(
         "Store reports in folder: " + this.addSlash(this.storagePath) + cucumblan.getFolder());
     logger.debug("Cucumblan: " + cucumblan.toString());
-    Report links = new Report();
+    cucumblan.setSessionNr(1); //First session for this specific test (POST).
+    
     /* Initialize response. */
-    cucumblan.setSessionNr(1);
-    links.setError(FileManagement.NOERROR);
-    links.setCreationTime(FileManagement.whatTime());
-    links.setSkipResponseValidation(cucumblan.getSkipResponseValidation());
-    links.setSessionNr(cucumblan.getSessionNr());
+    Report response = new Report();
+    response.setError(FileManagement.NOERROR);
+    response.setCreationTime(FileManagement.whatTime());
+    response.setSkipResponseValidation(cucumblan.getSkipResponseValidation());
+    response.setSessionNr(cucumblan.getSessionNr());
     final String testId = cucumblan.getUuid().toString();
-    links.setTestId(cucumblan.getUuid());
+    response.setTestId(cucumblan.getUuid());
 
     /* Paths for the results in the filesystem and URLs. */
     final String testIdFolder =
@@ -214,8 +215,8 @@ public class TestService {
       }
       if (!new File(reportFolder).exists()) {
         logger.error("Cannot create folder " + reportFolder);
-        links.setError("Cannot create folder " + reportFolder);
-        return links;
+        response.setError("Cannot create folder " + reportFolder);
+        return response;
       }
 
       /* Generate the cucumblan.properties and some other files.*/
@@ -231,7 +232,7 @@ public class TestService {
       /* Execute mvn test. */
       if (cucumblan.getExecute()) {
         long startTime = System.nanoTime();
-        links.setStartTime(FileManagement.whatTime());
+        response.setStartTime(FileManagement.whatTime());
 
         /* Here comes the actual man Maven test execution.
          **/
@@ -241,70 +242,70 @@ public class TestService {
         long endTime = System.nanoTime();
         long duration = (endTime - startTime);
         Duration d = Duration.ofNanos(duration);
-        links.setDurationSeconds(Long.valueOf(d.getSeconds()));
-        links.setEndTime(FileManagement.whatTime());
+        response.setDurationSeconds(Long.valueOf(d.getSeconds()));
+        response.setEndTime(FileManagement.whatTime());
 
         /* Check test result. */
         boolean isSuccess = Boolean.valueOf(result);
-        links.setSuccess(isSuccess);
+        response.setSuccess(isSuccess);
         if (isSuccess == false && result.equalsIgnoreCase("false") == false) {
-          links.setError(result);
-          links.setTestExecuted(false);
-          links.setMessage("An internal error occured.");
-          return links;
+          response.setError(result);
+          response.setTestExecuted(false);
+          response.setMessage("An internal error occured.");
+          return response;
         } else {
-          links.setTestExecuted(true);
+          response.setTestExecuted(true);
         }
 
       } else {
         /* Message */
-        links.setLinkToFeature("Not generated");
-        links.setLinkToReport("Not generated.");
-        links.setTestExecuted(false);
-        links.setMessage("Property file updated, no test executed (execute=false).");
+        response.setLinkToFeature("Not generated");
+        response.setLinkToReport("Not generated.");
+        response.setTestExecuted(false);
+        response.setMessage("Property file updated, no test executed (execute=false).");
         if (isSaved == false) {
-          links.setError("Error: Could not save file.");
+          response.setError("Error: Could not save file.");
         }
-        return links;
+        return response;
       }
 
       /* Copy generated feature file to the public folder. */
       String target = reportURL + File.separator + FEATUREX + "0" + DOTFEATURE;
-      links.setLinkToFeature(target);
+      response.setLinkToFeature(target);
 
       /* Copy the cucumber report folder and send back the link
        * to the main report html file: report-feature_1959214294.html.
        * */
       String linkReport = reportURL + File.separator + REPORTOVERVIEW;
       logger.info("Generated report html file: " + linkReport);
-      links.setLinkToReport(linkReport);
-      links.setLinkToProperties(propsUrl + File.separator + FileManagement.PROPERTIES);
-      links.setLinkToSessions(propsUrl + File.separator + ALLTESTS);
+      response.setLinkToReport(linkReport);
+      response.setLinkToProperties(propsUrl + File.separator + FileManagement.PROPERTIES);
+      response.setLinkToSessions(propsUrl + File.separator + ALLTESTS);
 
       /* Message */
-      links.setMessage("Report created.");
-      links.setError(FileManagement.NOERROR);
+      response.setMessage("Report created.");
+      response.setError(FileManagement.NOERROR);
 
       /* Persist test execution in JSON file. */
       List<Report> list = new ArrayList<Report>();
-      list.add(links);
+      list.add(response);
 
-      PersistJSON.writeJSON(testIdFolder + File.separator + LASTTEST, links);
+      PersistJSON.writeJSON(testIdFolder + File.separator + LASTTEST, response);
       String array = PersistJSON.writeArray(list, allSessions);
       FileManagement.writeString(allSessions, array);
 
 
     } catch (Exception e) {
-      if (links == null) {
-        links = new Report();
+      if (response == null) {
+        response = new Report();
       }
-      links.setError(e.getLocalizedMessage());
-      links.setMessage("No reports.");
-      links.setSuccess(false);
+      response.setError(e.getLocalizedMessage());
+      response.setMessage("No reports.");
+      response.setSuccess(false);
 
     }
 
-    return links;
+    return response;
   }
 
   /**

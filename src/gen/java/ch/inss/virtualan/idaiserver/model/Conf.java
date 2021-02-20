@@ -3,6 +3,7 @@ package ch.inss.virtualan.idaiserver.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -14,11 +15,53 @@ import javax.validation.constraints.*;
 /**
  * Conf
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-02-19T21:11:18.557400+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-02-20T10:44:08.806251+01:00[Europe/Zurich]")
 public class Conf   {
   @JsonProperty("serverUrls")
   @Valid
   private List<String> serverUrls = null;
+
+  /**
+   * Gets or Sets dataType
+   */
+  public enum DataTypeEnum {
+    POSTMAN("POSTMAN"),
+    
+    OPENAPI("OPENAPI"),
+    
+    EXCEL("EXCEL"),
+    
+    VIRTUALAN("VIRTUALAN");
+
+    private String value;
+
+    DataTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static DataTypeEnum fromValue(String value) {
+      for (DataTypeEnum b : DataTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  @JsonProperty("dataType")
+  private DataTypeEnum dataType;
 
   public Conf serverUrls(List<String> serverUrls) {
     this.serverUrls = serverUrls;
@@ -48,6 +91,26 @@ public class Conf   {
     this.serverUrls = serverUrls;
   }
 
+  public Conf dataType(DataTypeEnum dataType) {
+    this.dataType = dataType;
+    return this;
+  }
+
+  /**
+   * Get dataType
+   * @return dataType
+  */
+  @ApiModelProperty(value = "")
+
+
+  public DataTypeEnum getDataType() {
+    return dataType;
+  }
+
+  public void setDataType(DataTypeEnum dataType) {
+    this.dataType = dataType;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -58,12 +121,13 @@ public class Conf   {
       return false;
     }
     Conf conf = (Conf) o;
-    return Objects.equals(this.serverUrls, conf.serverUrls);
+    return Objects.equals(this.serverUrls, conf.serverUrls) &&
+        Objects.equals(this.dataType, conf.dataType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(serverUrls);
+    return Objects.hash(serverUrls, dataType);
   }
 
   @Override
@@ -72,6 +136,7 @@ public class Conf   {
     sb.append("class Conf {\n");
     
     sb.append("    serverUrls: ").append(toIndentedString(serverUrls)).append("\n");
+    sb.append("    dataType: ").append(toIndentedString(dataType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
