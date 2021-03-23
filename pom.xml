@@ -53,6 +53,7 @@
     </license>
   </licenses>
   <build>
+    		<finalName>idaiserver</finalName>
     <sourceDirectory>src/main/java</sourceDirectory>
     <plugins>
       <plugin>
