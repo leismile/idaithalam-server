@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
  * List of all test IDs.
  */
 @ApiModel(description = "List of all test IDs.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-02-01T06:05:55.567165+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-06-21T07:37:11.815302+02:00[Europe/Zurich]")
 public class Testidlist   {
   @JsonProperty("serverUrl")
   @Valid

@@ -22,7 +22,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-02-01T06:05:55.567165+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-06-21T07:37:11.815302+02:00[Europe/Zurich]")
 @Validated
 @Api(value = "health", description = "the health API")
 public interface HealthApi {
@@ -38,7 +38,10 @@ public interface HealthApi {
      * @return OK (status code 200)
      *         or Server not available. (status code 503)
      */
-    @ApiOperation(value = "The health check of this service.", nickname = "health", notes = "The health check of this service.", response = HealthResponse.class, tags={ "health", })
+    @ApiOperation(value = "The health check of this service.", nickname = "health", notes = "The health check of this service.", response = HealthResponse.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "health", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = HealthResponse.class),
         @ApiResponse(code = 503, message = "Server not available.") })

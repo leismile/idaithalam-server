@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-02-01T06:05:55.567165+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-06-21T07:37:11.815302+02:00[Europe/Zurich]")
 @Validated
 @Api(value = "test", description = "the test API")
 public interface TestApi {
@@ -40,13 +40,18 @@ public interface TestApi {
      *
      * @param testId  (required)
      * @return Configuration of cucumblan.properties file. (status code 200)
+     *         or Not authorized (status code 401)
      *         or Test not found. (status code 404)
      *         or Internal server error. (status code 500)
      *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "Get the test configuration content from the cucumblan.properties.", nickname = "getConfProperty", notes = "Get the content of the configured cucumblan.properties.", response = String.class, tags={ "Configuration", })
+    @ApiOperation(value = "Get the test configuration content from the cucumblan.properties.", nickname = "getConfProperty", notes = "Get the content of the configured cucumblan.properties.", response = String.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Configuration", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Configuration of cucumblan.properties file.", response = String.class),
+        @ApiResponse(code = 401, message = "Not authorized"),
         @ApiResponse(code = 404, message = "Test not found."),
         @ApiResponse(code = 500, message = "Internal server error."),
         @ApiResponse(code = 200, message = "unexpected error") })
@@ -66,13 +71,18 @@ public interface TestApi {
      *
      * @param testId testId for that test (required)
      * @return Configuration of cucumblan.properties file. (status code 200)
+     *         or Not authorized (status code 401)
      *         or Test not found. (status code 404)
      *         or Internal server error. (status code 500)
      *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "Get the test result links for the last test session..", nickname = "getReport", notes = "Get the test result links for the last test session..", response = Report.class, tags={ "Results", })
+    @ApiOperation(value = "Get the test result links for the last test session..", nickname = "getReport", notes = "Get the test result links for the last test session..", response = Report.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Results", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Configuration of cucumblan.properties file.", response = Report.class),
+        @ApiResponse(code = 401, message = "Not authorized"),
         @ApiResponse(code = 404, message = "Test not found."),
         @ApiResponse(code = 500, message = "Internal server error."),
         @ApiResponse(code = 200, message = "unexpected error") })
@@ -101,13 +111,18 @@ public interface TestApi {
      *
      * @param testId testid for that Gherkin file. (required)
      * @return Content of the generated Gherkin feature file. (status code 200)
+     *         or Not authorized (status code 401)
      *         or testID not found (status code 404)
      *         or Internal server error. (status code 500)
      *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "Get the content of the generated Gherkin feature file.", nickname = "getgherkin", notes = "Get the content of the generated Gherkin feature file.", response = String.class, tags={ "Results", })
+    @ApiOperation(value = "Get the content of the generated Gherkin feature file.", nickname = "getgherkin", notes = "Get the content of the generated Gherkin feature file.", response = String.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Results", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Content of the generated Gherkin feature file.", response = String.class),
+        @ApiResponse(code = 401, message = "Not authorized"),
         @ApiResponse(code = 404, message = "testID not found"),
         @ApiResponse(code = 500, message = "Internal server error."),
         @ApiResponse(code = 200, message = "unexpected error") })
@@ -126,13 +141,18 @@ public interface TestApi {
      * Get all test IDs as a list.
      *
      * @return List of all test IDs. (status code 200)
+     *         or Not authorized (status code 401)
      *         or No test found. (status code 404)
      *         or Internal server error. (status code 500)
      *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "Get all test IDs as a list.", nickname = "listTest", notes = "Get all test IDs as a list.", response = Testidlist.class, tags={ "Results", })
+    @ApiOperation(value = "Get all test IDs as a list.", nickname = "listTest", notes = "Get all test IDs as a list.", response = Testidlist.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Results", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "List of all test IDs.", response = Testidlist.class),
+        @ApiResponse(code = 401, message = "Not authorized"),
         @ApiResponse(code = 404, message = "No test found."),
         @ApiResponse(code = 500, message = "Internal server error."),
         @ApiResponse(code = 200, message = "unexpected error") })
@@ -162,11 +182,16 @@ public interface TestApi {
      * @param configKey remove given key configuration. (required)
      * @param testId  (required)
      * @return delete key Configuration of cucumblan.properties file. (status code 204)
+     *         or Not authorized (status code 401)
      *         or testID not found (status code 404)
      */
-    @ApiOperation(value = "Remove the single config configuration.", nickname = "removeConf", notes = "Remove the test.", response = String.class, tags={ "Configuration", })
+    @ApiOperation(value = "Remove the single config configuration.", nickname = "removeConf", notes = "Remove the test.", response = String.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Configuration", })
     @ApiResponses(value = { 
         @ApiResponse(code = 204, message = "delete key Configuration of cucumblan.properties file.", response = String.class),
+        @ApiResponse(code = 401, message = "Not authorized"),
         @ApiResponse(code = 404, message = "testID not found") })
     @DeleteMapping(
         value = "/test/{testId}/conf",
@@ -184,11 +209,16 @@ public interface TestApi {
      *
      * @param testId  (required)
      * @return Removed the entire test including all sessions. (status code 204)
+     *         or Not authorized (status code 401)
      *         or testID not found (status code 404)
      */
-    @ApiOperation(value = "Remove the entire test including all sessions.", nickname = "removetest", notes = "Removed the entire test including all sessions.", response = String.class, tags={ "API test execution", })
+    @ApiOperation(value = "Remove the entire test including all sessions.", nickname = "removetest", notes = "Removed the entire test including all sessions.", response = String.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "API test execution", })
     @ApiResponses(value = { 
         @ApiResponse(code = 204, message = "Removed the entire test including all sessions.", response = String.class),
+        @ApiResponse(code = 401, message = "Not authorized"),
         @ApiResponse(code = 404, message = "testID not found") })
     @DeleteMapping(
         value = "/test/{testId}",
@@ -206,13 +236,18 @@ public interface TestApi {
      *
      * @param testId testid for that test (required)
      * @return Configuration of cucumblan.properties file. (status code 200)
+     *         or Not authorized (status code 401)
      *         or testID not found (status code 404)
      *         or Internal server error. (status code 500)
      *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "Get all sesson reports for this uuid.", nickname = "report", notes = "Get all sesson reports for this uuid.", response = Report.class, responseContainer = "List", tags={ "Results", })
+    @ApiOperation(value = "Get all sesson reports for this uuid.", nickname = "report", notes = "Get all sesson reports for this uuid.", response = Report.class, responseContainer = "List", authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Results", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Configuration of cucumblan.properties file.", response = Report.class, responseContainer = "List"),
+        @ApiResponse(code = 401, message = "Not authorized"),
         @ApiResponse(code = 404, message = "testID not found"),
         @ApiResponse(code = 500, message = "Internal server error."),
         @ApiResponse(code = 200, message = "unexpected error") })
@@ -241,11 +276,16 @@ public interface TestApi {
      *
      * @param testId testid for that test (required)
      * @return Gives back the entire cucumblan.properties file and generated testid. (status code 201)
+     *         or Not authorized (status code 401)
      *         or testID not found (status code 404)
      */
-    @ApiOperation(value = "Run test.", nickname = "runTest", notes = "Run test", response = Report.class, tags={ "API test execution", })
+    @ApiOperation(value = "Run test.", nickname = "runTest", notes = "Run test", response = Report.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "API test execution", })
     @ApiResponses(value = { 
         @ApiResponse(code = 201, message = "Gives back the entire cucumblan.properties file and generated testid.", response = Report.class),
+        @ApiResponse(code = 401, message = "Not authorized"),
         @ApiResponse(code = 404, message = "testID not found") })
     @PutMapping(
         value = "/test/{testId}",
@@ -276,13 +316,18 @@ public interface TestApi {
      * @param skipResponseValidation Skip the respone validation in tests. (optional, default to &quot;false&quot;)
      * @return Test created. (status code 201)
      *         or Bad request. (status code 400)
+     *         or Not authorized (status code 401)
      *         or I am a teapot. (status code 418)
      *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "Create and run the test with the uploaded Postman collection.", nickname = "testRun", notes = "Create a new test and run against an API. Generates the Cucumber report and a Gherkin file.", response = Report.class, tags={ "API test execution", })
+    @ApiOperation(value = "Create and run the test with the uploaded Postman collection.", nickname = "testRun", notes = "Create a new test and run against an API. Generates the Cucumber report and a Gherkin file.", response = Report.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "API test execution", })
     @ApiResponses(value = { 
         @ApiResponse(code = 201, message = "Test created.", response = Report.class),
         @ApiResponse(code = 400, message = "Bad request."),
+        @ApiResponse(code = 401, message = "Not authorized"),
         @ApiResponse(code = 418, message = "I am a teapot."),
         @ApiResponse(code = 200, message = "unexpected error") })
     @PostMapping(
@@ -312,13 +357,18 @@ public interface TestApi {
      * @param testId  (required)
      * @param conf  (required)
      * @return Gives back the entire test configuration as a cucumblan.properties file. (status code 200)
+     *         or Not authorized (status code 401)
      *         or testID not found (status code 404)
      *         or Bad request. (status code 400)
      *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "Update the configuration.", nickname = "updateConf", notes = "Update the configuration.", response = String.class, tags={ "Configuration", })
+    @ApiOperation(value = "Update the configuration.", nickname = "updateConf", notes = "Update the configuration.", response = String.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Configuration", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Gives back the entire test configuration as a cucumblan.properties file.", response = String.class),
+        @ApiResponse(code = 401, message = "Not authorized"),
         @ApiResponse(code = 404, message = "testID not found"),
         @ApiResponse(code = 400, message = "Bad request."),
         @ApiResponse(code = 200, message = "unexpected error") })
