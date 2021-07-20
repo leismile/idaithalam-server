@@ -22,7 +22,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-02-20T10:44:08.806251+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-07-20T18:25:52.218752+02:00[Europe/Zurich]")
 @Validated
 @Api(value = "preparation", description = "the preparation API")
 public interface PreparationApi {
@@ -41,7 +41,10 @@ public interface PreparationApi {
      *         or I am a teapot. (status code 418)
      *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "Create a Postman collection from an OAS3 specification.", nickname = "createCollection", notes = "Create a Postman collection from an OAS3 specification.", response = Report.class, tags={ "Preparation", })
+    @ApiOperation(value = "Create a Postman collection from an OAS3 specification.", nickname = "createCollection", notes = "Create a Postman collection from an OAS3 specification.", response = Report.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Preparation", })
     @ApiResponses(value = { 
         @ApiResponse(code = 201, message = "Test created.", response = Report.class),
         @ApiResponse(code = 400, message = "Bad request."),
@@ -77,7 +80,10 @@ public interface PreparationApi {
      *         or I am a teapot. (status code 418)
      *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "Create test data for an existing Postman collection.", nickname = "createTestdata", notes = "Create test data for an existing Postman collection.", response = Report.class, tags={ "Preparation", })
+    @ApiOperation(value = "Create test data for an existing Postman collection.", nickname = "createTestdata", notes = "Create test data for an existing Postman collection.", response = Report.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Preparation", })
     @ApiResponses(value = { 
         @ApiResponse(code = 201, message = "Test created.", response = Report.class),
         @ApiResponse(code = 400, message = "Bad request."),

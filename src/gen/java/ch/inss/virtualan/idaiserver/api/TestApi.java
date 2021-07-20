@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-02-20T10:44:08.806251+01:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-07-20T18:25:52.218752+02:00[Europe/Zurich]")
 @Validated
 @Api(value = "test", description = "the test API")
 public interface TestApi {
@@ -35,52 +35,60 @@ public interface TestApi {
     }
 
     /**
-     * GET /test/{testId}/conf : Get the test configuration content from the cucumblan.properties.
+     * GET /test/{userId}/{testId}/conf : Get the test configuration content from the cucumblan.properties.
      * Get the content of the configured cucumblan.properties.
      *
+     * @param userId testId for that test (required)
      * @param testId  (required)
      * @return Configuration of cucumblan.properties file. (status code 200)
      *         or Test not found. (status code 404)
      *         or Internal server error. (status code 500)
      *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "Get the test configuration content from the cucumblan.properties.", nickname = "getConfProperty", notes = "Get the content of the configured cucumblan.properties.", response = String.class, tags={ "Configuration", })
+    @ApiOperation(value = "Get the test configuration content from the cucumblan.properties.", nickname = "getConfProperty", notes = "Get the content of the configured cucumblan.properties.", response = String.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Configuration", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Configuration of cucumblan.properties file.", response = String.class),
         @ApiResponse(code = 404, message = "Test not found."),
         @ApiResponse(code = 500, message = "Internal server error."),
         @ApiResponse(code = 200, message = "unexpected error") })
     @GetMapping(
-        value = "/test/{testId}/conf",
+        value = "/test/{userId}/{testId}/conf",
         produces = { "text/plain" }
     )
-    default ResponseEntity<String> getConfProperty(@ApiParam(value = "",required=true) @PathVariable("testId") String testId) {
+    default ResponseEntity<String> getConfProperty(@ApiParam(value = "testId for that test",required=true) @PathVariable("userId") String userId,@ApiParam(value = "",required=true) @PathVariable("testId") String testId) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
 
 
     /**
-     * GET /test/{testId} : Get the test result links for the last test session..
+     * GET /test/{userId}/{testId} : Get the test result links for the last test session..
      * Get the test result links for the last test session..
      *
+     * @param userId testId for that test (required)
      * @param testId testId for that test (required)
      * @return Configuration of cucumblan.properties file. (status code 200)
      *         or Test not found. (status code 404)
      *         or Internal server error. (status code 500)
      *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "Get the test result links for the last test session..", nickname = "getReport", notes = "Get the test result links for the last test session..", response = Report.class, tags={ "Results", })
+    @ApiOperation(value = "Get the test result links for the last test session..", nickname = "getReport", notes = "Get the test result links for the last test session..", response = Report.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Results", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Configuration of cucumblan.properties file.", response = Report.class),
         @ApiResponse(code = 404, message = "Test not found."),
         @ApiResponse(code = 500, message = "Internal server error."),
         @ApiResponse(code = 200, message = "unexpected error") })
     @GetMapping(
-        value = "/test/{testId}",
+        value = "/test/{userId}/{testId}",
         produces = { "application/json" }
     )
-    default ResponseEntity<Report> getReport(@ApiParam(value = "testId for that test",required=true) @PathVariable("testId") String testId) {
+    default ResponseEntity<Report> getReport(@ApiParam(value = "testId for that test",required=true) @PathVariable("userId") String userId,@ApiParam(value = "testId for that test",required=true) @PathVariable("testId") String testId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -96,51 +104,63 @@ public interface TestApi {
 
 
     /**
-     * GET /test/{testId}/feature : Get the content of the generated Gherkin feature file.
+     * GET /test/{userId}/{testId}/feature : Get the content of the generated Gherkin feature file.
      * Get the content of the generated Gherkin feature file.
      *
+     * @param userId testId for that test (required)
      * @param testId testid for that Gherkin file. (required)
      * @return Content of the generated Gherkin feature file. (status code 200)
      *         or testID not found (status code 404)
      *         or Internal server error. (status code 500)
      *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "Get the content of the generated Gherkin feature file.", nickname = "getgherkin", notes = "Get the content of the generated Gherkin feature file.", response = String.class, tags={ "Results", })
+    @ApiOperation(value = "Get the content of the generated Gherkin feature file.", nickname = "getgherkin", notes = "Get the content of the generated Gherkin feature file.", response = String.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Results", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Content of the generated Gherkin feature file.", response = String.class),
         @ApiResponse(code = 404, message = "testID not found"),
         @ApiResponse(code = 500, message = "Internal server error."),
         @ApiResponse(code = 200, message = "unexpected error") })
     @GetMapping(
-        value = "/test/{testId}/feature",
+        value = "/test/{userId}/{testId}/feature",
         produces = { "text/plain" }
     )
-    default ResponseEntity<String> getgherkin(@ApiParam(value = "testid for that Gherkin file.",required=true) @PathVariable("testId") String testId) {
+    default ResponseEntity<String> getgherkin(@ApiParam(value = "testId for that test",required=true) @PathVariable("userId") String userId,@ApiParam(value = "testid for that Gherkin file.",required=true) @PathVariable("testId") String testId) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
 
 
     /**
-     * GET /test : Get all test IDs as a list.
+     * GET /test/{userId} : Get all test IDs as a list.
      * Get all test IDs as a list.
      *
+     * @param userId userId from the login. (required)
+     * @param workspace Any like a project name. (optional)
+     * @param testrun Any like the date of the rest run or a specific test. (optional)
+     * @param staging Staging of the test. (optional)
+     * @param version  (optional)
      * @return List of all test IDs. (status code 200)
      *         or No test found. (status code 404)
      *         or Internal server error. (status code 500)
      *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "Get all test IDs as a list.", nickname = "listTest", notes = "Get all test IDs as a list.", response = Testidlist.class, tags={ "Results", })
+    @ApiOperation(value = "Get all test IDs as a list.", nickname = "listTest", notes = "Get all test IDs as a list.", response = Testidlist.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Results", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "List of all test IDs.", response = Testidlist.class),
         @ApiResponse(code = 404, message = "No test found."),
         @ApiResponse(code = 500, message = "Internal server error."),
         @ApiResponse(code = 200, message = "unexpected error") })
     @GetMapping(
-        value = "/test",
+        value = "/test/{userId}",
         produces = { "application/json" }
     )
-    default ResponseEntity<Testidlist> listTest() {
+    default ResponseEntity<Testidlist> listTest(@ApiParam(value = "userId from the login.",required=true) @PathVariable("userId") String userId,@ApiParam(value = "Any like a project name.") @Valid @RequestParam(value = "workspace", required = false) String workspace,@ApiParam(value = "Any like the date of the rest run or a specific test.") @Valid @RequestParam(value = "testrun", required = false) String testrun,@ApiParam(value = "Staging of the test.") @Valid @RequestParam(value = "staging", required = false) String staging,@ApiParam(value = "") @Valid @RequestParam(value = "version", required = false) String version) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -156,71 +176,83 @@ public interface TestApi {
 
 
     /**
-     * DELETE /test/{testId}/conf : Remove the single config configuration.
+     * DELETE /test/{userId}/{testId}/conf : Remove the single config configuration.
      * Remove the test.
      *
+     * @param userId testId for that test (required)
      * @param configKey remove given key configuration. (required)
      * @param testId  (required)
      * @return delete key Configuration of cucumblan.properties file. (status code 204)
      *         or testID not found (status code 404)
      */
-    @ApiOperation(value = "Remove the single config configuration.", nickname = "removeConf", notes = "Remove the test.", response = String.class, tags={ "Configuration", })
+    @ApiOperation(value = "Remove the single config configuration.", nickname = "removeConf", notes = "Remove the test.", response = String.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Configuration", })
     @ApiResponses(value = { 
         @ApiResponse(code = 204, message = "delete key Configuration of cucumblan.properties file.", response = String.class),
         @ApiResponse(code = 404, message = "testID not found") })
     @DeleteMapping(
-        value = "/test/{testId}/conf",
+        value = "/test/{userId}/{testId}/conf",
         produces = { "text/plain" }
     )
-    default ResponseEntity<String> removeConf(@NotNull @ApiParam(value = "remove given key configuration.", required = true) @Valid @RequestParam(value = "configKey", required = true) String configKey,@ApiParam(value = "",required=true) @PathVariable("testId") String testId) {
+    default ResponseEntity<String> removeConf(@ApiParam(value = "testId for that test",required=true) @PathVariable("userId") String userId,@NotNull @ApiParam(value = "remove given key configuration.", required = true) @Valid @RequestParam(value = "configKey", required = true) String configKey,@ApiParam(value = "",required=true) @PathVariable("testId") String testId) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
 
 
     /**
-     * DELETE /test/{testId} : Remove the entire test including all sessions.
+     * DELETE /test/{userId}/{testId} : Remove the entire test including all sessions.
      * Removed the entire test including all sessions.
      *
+     * @param userId testId for that test (required)
      * @param testId  (required)
      * @return Removed the entire test including all sessions. (status code 204)
      *         or testID not found (status code 404)
      */
-    @ApiOperation(value = "Remove the entire test including all sessions.", nickname = "removetest", notes = "Removed the entire test including all sessions.", response = String.class, tags={ "API test execution", })
+    @ApiOperation(value = "Remove the entire test including all sessions.", nickname = "removetest", notes = "Removed the entire test including all sessions.", response = String.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "API test execution", })
     @ApiResponses(value = { 
         @ApiResponse(code = 204, message = "Removed the entire test including all sessions.", response = String.class),
         @ApiResponse(code = 404, message = "testID not found") })
     @DeleteMapping(
-        value = "/test/{testId}",
+        value = "/test/{userId}/{testId}",
         produces = { "text/plain" }
     )
-    default ResponseEntity<String> removetest(@ApiParam(value = "",required=true) @PathVariable("testId") String testId) {
+    default ResponseEntity<String> removetest(@ApiParam(value = "testId for that test",required=true) @PathVariable("userId") String userId,@ApiParam(value = "",required=true) @PathVariable("testId") String testId) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
 
 
     /**
-     * GET /test/{testId}/report : Get all sesson reports for this uuid.
+     * GET /test/{userId}/{testId}/report : Get all sesson reports for this uuid.
      * Get all sesson reports for this uuid.
      *
+     * @param userId testId for that test (required)
      * @param testId testid for that test (required)
      * @return Configuration of cucumblan.properties file. (status code 200)
      *         or testID not found (status code 404)
      *         or Internal server error. (status code 500)
      *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "Get all sesson reports for this uuid.", nickname = "report", notes = "Get all sesson reports for this uuid.", response = Report.class, responseContainer = "List", tags={ "Results", })
+    @ApiOperation(value = "Get all sesson reports for this uuid.", nickname = "report", notes = "Get all sesson reports for this uuid.", response = Report.class, responseContainer = "List", authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Results", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Configuration of cucumblan.properties file.", response = Report.class, responseContainer = "List"),
         @ApiResponse(code = 404, message = "testID not found"),
         @ApiResponse(code = 500, message = "Internal server error."),
         @ApiResponse(code = 200, message = "unexpected error") })
     @GetMapping(
-        value = "/test/{testId}/report",
+        value = "/test/{userId}/{testId}/report",
         produces = { "application/json" }
     )
-    default ResponseEntity<List<Report>> report(@ApiParam(value = "testid for that test",required=true) @PathVariable("testId") String testId) {
+    default ResponseEntity<List<Report>> report(@ApiParam(value = "testId for that test",required=true) @PathVariable("userId") String userId,@ApiParam(value = "testid for that test",required=true) @PathVariable("testId") String testId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -236,22 +268,26 @@ public interface TestApi {
 
 
     /**
-     * PUT /test/{testId} : Run test.
+     * PUT /test/{userId}/{testId} : Run test.
      * Run test
      *
+     * @param userId testId for that test (required)
      * @param testId testid for that test (required)
      * @return Gives back the entire cucumblan.properties file and generated testid. (status code 201)
      *         or testID not found (status code 404)
      */
-    @ApiOperation(value = "Run test.", nickname = "runTest", notes = "Run test", response = Report.class, tags={ "API test execution", })
+    @ApiOperation(value = "Run test.", nickname = "runTest", notes = "Run test", response = Report.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "API test execution", })
     @ApiResponses(value = { 
         @ApiResponse(code = 201, message = "Gives back the entire cucumblan.properties file and generated testid.", response = Report.class),
         @ApiResponse(code = 404, message = "testID not found") })
     @PutMapping(
-        value = "/test/{testId}",
+        value = "/test/{userId}/{testId}",
         produces = { "application/json" }
     )
-    default ResponseEntity<Report> runTest(@ApiParam(value = "testid for that test",required=true) @PathVariable("testId") UUID testId) {
+    default ResponseEntity<Report> runTest(@ApiParam(value = "testId for that test",required=true) @PathVariable("userId") String userId,@ApiParam(value = "testid for that test",required=true) @PathVariable("testId") UUID testId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -267,11 +303,16 @@ public interface TestApi {
 
 
     /**
-     * POST /test : Create and run the test with the uploaded Postman collection.
+     * POST /test/{userId} : Create and run the test with the uploaded Postman collection.
      * Create a new test and run against an API. Generates the Cucumber report and a Gherkin file.
      *
+     * @param userId userId from the login. (required)
      * @param filestream  (required)
      * @param serverurl The server url to be tested. (required)
+     * @param workspace Any like a project name. (optional)
+     * @param testrun Any like the date of the rest run or a specific test. (optional)
+     * @param staging Staging of the test. (optional)
+     * @param version  (optional)
      * @param dataType  (optional)
      * @param execute Execute test immediately. If false, only the property file will be updated (append). (optional, default to &quot;true&quot;)
      * @param skipResponseValidation Skip the respone validation in tests. (optional, default to &quot;false&quot;)
@@ -280,18 +321,21 @@ public interface TestApi {
      *         or I am a teapot. (status code 418)
      *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "Create and run the test with the uploaded Postman collection.", nickname = "testRun", notes = "Create a new test and run against an API. Generates the Cucumber report and a Gherkin file.", response = Report.class, tags={ "API test execution", })
+    @ApiOperation(value = "Create and run the test with the uploaded Postman collection.", nickname = "testRun", notes = "Create a new test and run against an API. Generates the Cucumber report and a Gherkin file.", response = Report.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "API test execution", })
     @ApiResponses(value = { 
         @ApiResponse(code = 201, message = "Test created.", response = Report.class),
         @ApiResponse(code = 400, message = "Bad request."),
         @ApiResponse(code = 418, message = "I am a teapot."),
         @ApiResponse(code = 200, message = "unexpected error") })
     @PostMapping(
-        value = "/test",
+        value = "/test/{userId}",
         produces = { "application/json" },
         consumes = { "multipart/form-data" }
     )
-    default ResponseEntity<Report> testRun(@ApiParam(value = "") @Valid @RequestPart(value = "filestream", required = true) MultipartFile filestream,@ApiParam(value = "The server url to be tested.", required=true) @Valid @RequestPart(value = "serverurl", required = true)  String serverurl,@ApiParam(value = "", allowableValues="POSTMAN, OPENAPI, EXCEL, VIRTUALAN") @Valid @RequestPart(value = "dataType", required = false)  String dataType,@ApiParam(value = "Execute test immediately. If false, only the property file will be updated (append).", defaultValue="true") @Valid @RequestPart(value = "execute", required = false)  String execute,@ApiParam(value = "Skip the respone validation in tests.", defaultValue="false") @Valid @RequestPart(value = "skipResponseValidation", required = false)  String skipResponseValidation) {
+    default ResponseEntity<Report> testRun(@ApiParam(value = "userId from the login.",required=true) @PathVariable("userId") String userId,@ApiParam(value = "") @Valid @RequestPart(value = "filestream", required = true) MultipartFile filestream,@ApiParam(value = "The server url to be tested.", required=true) @Valid @RequestPart(value = "serverurl", required = true)  String serverurl,@ApiParam(value = "Any like a project name.") @Valid @RequestPart(value = "workspace", required = false)  String workspace,@ApiParam(value = "Any like the date of the rest run or a specific test.") @Valid @RequestPart(value = "testrun", required = false)  String testrun,@ApiParam(value = "Staging of the test.") @Valid @RequestPart(value = "staging", required = false)  String staging,@ApiParam(value = "") @Valid @RequestPart(value = "version", required = false)  String version,@ApiParam(value = "", allowableValues="POSTMAN, OPENAPI, EXCEL, VIRTUALAN") @Valid @RequestPart(value = "dataType", required = false)  String dataType,@ApiParam(value = "Execute test immediately. If false, only the property file will be updated (append).", defaultValue="true") @Valid @RequestPart(value = "execute", required = false)  String execute,@ApiParam(value = "Skip the respone validation in tests.", defaultValue="false") @Valid @RequestPart(value = "skipResponseValidation", required = false)  String skipResponseValidation) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -307,9 +351,10 @@ public interface TestApi {
 
 
     /**
-     * PUT /test/{testId}/conf : Update the configuration.
+     * PUT /test/{userId}/{testId}/conf : Update the configuration.
      * Update the configuration.
      *
+     * @param userId testId for that test (required)
      * @param testId  (required)
      * @param conf  (required)
      * @return Gives back the entire test configuration as a cucumblan.properties file. (status code 200)
@@ -317,18 +362,21 @@ public interface TestApi {
      *         or Bad request. (status code 400)
      *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "Update the configuration.", nickname = "updateConf", notes = "Update the configuration.", response = String.class, tags={ "Configuration", })
+    @ApiOperation(value = "Update the configuration.", nickname = "updateConf", notes = "Update the configuration.", response = String.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Configuration", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Gives back the entire test configuration as a cucumblan.properties file.", response = String.class),
         @ApiResponse(code = 404, message = "testID not found"),
         @ApiResponse(code = 400, message = "Bad request."),
         @ApiResponse(code = 200, message = "unexpected error") })
     @PutMapping(
-        value = "/test/{testId}/conf",
+        value = "/test/{userId}/{testId}/conf",
         produces = { "text/plain" },
         consumes = { "application/json" }
     )
-    default ResponseEntity<String> updateConf(@ApiParam(value = "",required=true) @PathVariable("testId") String testId,@ApiParam(value = "" ,required=true )  @Valid @RequestBody Conf conf) {
+    default ResponseEntity<String> updateConf(@ApiParam(value = "testId for that test",required=true) @PathVariable("userId") String userId,@ApiParam(value = "",required=true) @PathVariable("testId") String testId,@ApiParam(value = "" ,required=true )  @Valid @RequestBody Conf conf) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: idaithalamserver
-  version: 1.2.1
+  version: 1.3.0
   description: Idaithalam Server
   contact:
     name: Oliver Glas/Elan Thangamani
@@ -15,8 +15,22 @@ servers:
     description: Prod server
   - url: 'http://localhost:8080'
     description: Localhost
+security:
+  - ApiKeyAuth: []
+tags:
+  - name: Demo
+  - name: API test execution
+    description: Run a test against an API and generate the Cucumber report and a Gherkin file.
+  - name: Results
+    description: Test results and reports of the test sessions
+  - name: Configuration
+    description: Configuration of the test sessions in the cucumblan.properties file.
+  - name: health
+    description: Health of the server.
+  - name: Preparation
+    description: Some tasks to prepare the tests.
 paths:
-  /test:
+  /demotest:
     post:
       requestBody:
         content:
@@ -27,6 +41,255 @@ paths:
                 - serverurl
               type: object
               properties:
+                filestream:
+                  format: binary
+                  type: string
+                serverurl:
+                  format: url
+                  description: The server url to be tested.
+                  type: string
+                  example: 'https://live.virtualandemo.com'
+                execute:
+                  format: string
+                  description: 'Execute test immediately. If false, only the property file will be updated (append).'
+                  default: 'true'
+                  type: string
+                  example: 'true'
+                skipResponseValidation:
+                  format: string
+                  description: Skip the respone validation in tests.
+                  default: 'false'
+                  type: string
+                  example: 'false'
+      tags:
+        - Demo
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+          description: Test created.
+        '400':
+          description: Bad request.
+        '401':
+          description: Not authorized
+        '418':
+          description: I am a teapot.
+        default:
+          description: unexpected error
+      operationId: demoTestRun
+      summary: Create and run the test with the uploaded Postman collection.
+      description: Create a new test and run against an API. Generates the Cucumber report and a Gherkin file.
+    get:
+      tags:
+        - Demo
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Testidlist'
+          description: List of all test IDs.
+        '401':
+          description: Not authorized
+        '404':
+          description: No test found.
+        '500':
+          description: Internal server error.
+        default:
+          description: unexpected error
+      operationId: demoListTest
+      summary: Get all test IDs as a list.
+      description: Get all test IDs as a list.
+  '/demotest/{testId}':
+    get:
+      tags:
+        - Demo
+      parameters:
+        - name: testId
+          description: testId for that test
+          schema:
+            format: string
+            type: string
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+          description: Configuration of cucumblan.properties file.
+        '401':
+          description: Not authorized
+        '404':
+          description: Test not found.
+        '500':
+          description: Internal server error.
+        default:
+          description: unexpected error
+      operationId: demoGetReport
+      summary: Get the test result links for the last test session..
+      description: Get the test result links for the last test session..
+    put:
+      tags:
+        - Demo
+      parameters:
+        - name: testId
+          description: testid for that test
+          schema:
+            format: uuid
+            type: string
+          in: path
+          required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+          description: Gives back the entire cucumblan.properties file and generated testid.
+        '401':
+          description: Not authorized
+        '404':
+          description: testID not found
+      operationId: demoRunTest
+      summary: Run test.
+      description: Run test
+    delete:
+      tags:
+        - Demo
+      parameters:
+        - name: testId
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '204':
+          content:
+            text/plain:
+              schema:
+                format: properties
+                type: string
+          description: Removed the entire test including all sessions.
+        '401':
+          description: Not authorized
+        '404':
+          description: testID not found
+      operationId: demoRemovetest
+      summary: Remove the entire test including all sessions.
+      description: Removed the entire test including all sessions.
+    parameters:
+      - name: testId
+        schema:
+          type: string
+        in: path
+        required: true
+  '/demotest/{testId}/report':
+    get:
+      tags:
+        - Demo
+      parameters:
+        - name: testId
+          description: testid for that test
+          schema:
+            format: string
+            type: string
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Report'
+          description: Configuration of cucumblan.properties file.
+        '401':
+          description: Not authorized
+        '404':
+          description: testID not found
+        '500':
+          description: Internal server error.
+        default:
+          description: unexpected error
+      operationId: demoReport
+      summary: Get all sesson reports for this uuid.
+      description: Get all sesson reports for this uuid.
+  '/demotest/{testId}/feature':
+    get:
+      tags:
+        - Demo
+      parameters:
+        - name: testId
+          description: testid for that Gherkin file.
+          schema:
+            format: string
+            type: string
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            text/plain:
+              schema:
+                format: Gherkin
+                type: string
+          description: Content of the generated Gherkin feature file.
+        '401':
+          description: Not authorized
+        '404':
+          description: testID not found
+        '500':
+          description: Internal server error.
+        default:
+          description: unexpected error
+      operationId: demoGetgherkin
+      summary: Get the content of the generated Gherkin feature file.
+      description: Get the content of the generated Gherkin feature file.
+
+  '/test/{userId}':
+    post:
+      parameters:
+        - name: userId
+          description: userId from the login.
+          schema:
+            format: string
+            type: string
+          in: path
+          required: true
+          example: info@example.com
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - filestream
+                - serverurl
+              type: object
+              properties:
+                workspace:
+                  format: string
+                  type: string
+                  example: workspace1
+                  description: Any like a project name.
+                testrun:
+                  format: string
+                  type: string
+                  example: 'TestDate24012021'
+                  description: Any like the date of the rest run or a specific test.
+                staging:
+                  format: stage
+                  type: string
+                  example: 'dev'
+                  description: Staging of the test.
+                version:
+                  format: version
+                  type: string
+                  example: v1
                 filestream:
                   type: string
                   format: binary
@@ -43,17 +306,17 @@ paths:
                   type: string
                   example: 'https://live.virtualandemo.com'
                 execute:
-                  format: stringboolean
+                  format: string
                   description: 'Execute test immediately. If false, only the property file will be updated (append).'
-                  default: true
+                  default: 'true'
                   type: string
-                  example: true
+                  example: 'true'
                 skipResponseValidation:
-                  format: stringboolean
+                  format: string
                   description: Skip the respone validation in tests.
-                  default: false
+                  default: 'false'
                   type: string
-                  example: false
+                  example: 'false'
       tags:
         - API test execution
       responses:
@@ -75,7 +338,43 @@ paths:
     get:
       tags:
         - Results
-
+      parameters:
+        - name: userId
+          description: userId from the login.
+          schema:
+            format: string
+            type: string
+          in: path
+          required: true
+          example: info@example.com
+        - name: workspace
+          schema:
+            format: string
+            type: string
+          in: query
+          required: false
+          example: workspace1
+          description: Any like a project name.
+        - name: testrun
+          in: query
+          schema:
+            format: string
+            type: string
+          example: 'TestDate24012021'
+          description: Any like the date of the rest run or a specific test.
+        - name: staging
+          in: query
+          schema:
+            format: stage
+            type: string
+          example: 'dev'
+          description: Staging of the test.
+        - name: version
+          in: query
+          schema:
+            format: version
+            type: string
+            example: v1
       responses:
         '200':
           content:
@@ -93,11 +392,18 @@ paths:
       summary: Get all test IDs as a list.
 
       description: Get all test IDs as a list.
-  '/test/{testId}':
+  '/test/{userId}/{testId}':
     get:
       tags:
         - Results
       parameters:
+        - name: userId
+          description: testId for that test
+          schema:
+            format: string
+            type: string
+          in: path
+          required: true
         - name: testId
           description: testId for that test
           schema:
@@ -125,6 +431,13 @@ paths:
       tags:
         - API test execution
       parameters:
+        - name: userId
+          description: testId for that test
+          schema:
+            format: string
+            type: string
+          in: path
+          required: true
         - name: testId
           description: testid for that test
           schema:
@@ -149,6 +462,13 @@ paths:
       tags:
         - API test execution
       parameters:
+        - name: userId
+          description: testId for that test
+          schema:
+            format: string
+            type: string
+          in: path
+          required: true
         - name: testId
           schema:
             type: string
@@ -174,11 +494,18 @@ paths:
         in: path
         required: true
 
-  '/test/{testId}/report':
+  '/test/{userId}/{testId}/report':
     get:
       tags:
         - Results
       parameters:
+        - name: userId
+          description: testId for that test
+          schema:
+            format: string
+            type: string
+          in: path
+          required: true
         - name: testId
           description: testid for that test
           schema:
@@ -204,11 +531,18 @@ paths:
       operationId: report
       summary: Get all sesson reports for this uuid.
       description: Get all sesson reports for this uuid.
-  '/test/{testId}/feature':
+  '/test/{userId}/{testId}/feature':
     get:
       tags:
         - Results
       parameters:
+        - name: userId
+          description: testId for that test
+          schema:
+            format: string
+            type: string
+          in: path
+          required: true
         - name: testId
           description: testid for that Gherkin file.
           schema:
@@ -251,11 +585,18 @@ paths:
       operationId: health
       summary: The health check of this service.
       description: The health check of this service.
-  '/test/{testId}/conf':
+  '/test/{userId}/{testId}/conf':
     get:
       tags:
         - Configuration
       parameters:
+        - name: userId
+          description: testId for that test
+          schema:
+            format: string
+            type: string
+          in: path
+          required: true
         - name: testId
           schema:
             type: string
@@ -288,6 +629,13 @@ paths:
       tags:
         - Configuration
       parameters:
+        - name: userId
+          description: testId for that test
+          schema:
+            format: string
+            type: string
+          in: path
+          required: true
         - name: testId
           schema:
             type: string
@@ -314,6 +662,13 @@ paths:
       tags:
         - Configuration
       parameters:
+        - name: userId
+          description: testId for that test
+          schema:
+            format: string
+            type: string
+          in: path
+          required: true
         - name: configKey
           description: remove given key configuration.
           schema:
@@ -387,7 +742,6 @@ paths:
             schema:
               required:
                 - filestream
-
               type: object
               properties:
                 filestream:
@@ -517,14 +871,9 @@ components:
           type: array
           items:
             type: string
-tags:
-  - name: API test execution
-    description: Run a test against an API and generate the Cucumber report and a Gherkin file.
-  - name: Results
-    description: Test results and reports of the test sessions
-  - name: Configuration
-    description: Configuration of the test sessions in the cucumblan.properties file.
-  - name: Preparation
-    description: Do some steps to prepare for the actual test.
-  - name: health
-    description: Health of the server.
+  securitySchemes:
+    ApiKeyAuth:        # arbitrary name for the security scheme
+      type: apiKey
+      in: header       # can be "header", "query" or "cookie"
+      name: X-API-KEY  # name of the header, query parameter or cookie
+
