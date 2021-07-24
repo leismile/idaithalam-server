@@ -85,7 +85,7 @@ paths:
           description: I am a teapot.
         default:
           description: unexpected error
-      operationId: demoTestRun
+      operationId: demoTestCreateRun
       summary: Create and run the test with the uploaded Postman collection.
       description: Create a new test and run against an API. Generates the Cucumber report and a Gherkin file.
     get:
@@ -339,7 +339,7 @@ paths:
           description: I am a teapot.
         default:
           description: unexpected error
-      operationId: testRun
+      operationId: testCreateRun
       summary: Create and run the test with the uploaded Postman collection.
       description: Create a new test and run against an API. Generates the Cucumber report and a Gherkin file.
     get:

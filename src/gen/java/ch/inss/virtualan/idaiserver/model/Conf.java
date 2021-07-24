@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
 /**
  * Conf
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-07-24T03:49:36.324082+02:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-07-24T04:39:15.575686+02:00[Europe/Zurich]")
 public class Conf   {
   @JsonProperty("serverUrls")
   @Valid

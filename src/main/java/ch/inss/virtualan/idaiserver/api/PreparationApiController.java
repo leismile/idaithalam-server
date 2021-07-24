@@ -27,7 +27,8 @@ public class PreparationApiController implements PreparationApi {
 
     @Override
     public ResponseEntity<Report> createPostmanCollection(MultipartFile filestream) {
-//        return PreparationApi.super.createCollection(filestream);
+        //TODO
+        return PreparationApi.super.createPostmanCollection(filestream);
     }
 
 }

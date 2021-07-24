@@ -76,7 +76,7 @@ public class DemotestApiController implements DemotestApi {
 
       /** POST for the main initial test with execution and creation of the uuid. */
     @Override
-    public ResponseEntity<Report> demoTestRun(MultipartFile filestream, String serverurl, String dataType, String execute, String skipResponseValidation) {
+    public ResponseEntity<Report> demoTestCreateRun(MultipartFile filestream, String serverurl, String dataType, String execute, String skipResponseValidation) {
         logger.debug("Start POST /test");
         if (getRequest().isPresent() == false || filestream == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -102,11 +102,13 @@ public class DemotestApiController implements DemotestApi {
 
                     Cucumblan cucumblan = new Cucumblan();
                     cucumblan.init();
+                    cucumblan.setDemo(true);
                     cucumblan.addFILE(dataload);
                     cucumblan.setUploadFilename(dataload);
                     cucumblan.setSkipResponseValidation(skip);
                     cucumblan.setTYPE(dataType);
-
+                    cucumblan.generateIdAndFolder();
+                    
                     try {
                         cucumblan.setInputStream(filestream.getInputStream());
                     } catch (IOException e1) {

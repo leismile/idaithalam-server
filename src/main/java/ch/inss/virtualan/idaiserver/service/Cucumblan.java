@@ -23,6 +23,12 @@ public class Cucumblan {
   private static final String datatype = "virtualan.data.type";
   private static final String serviceapi = "service.api";
   private static final Logger logger = LoggerFactory.getLogger(Cucumblan.class);
+  private String userId = "demo";
+  private String workspace = "demo";
+  private String staging = "demo";
+  private String version = "v1";
+  private boolean isDemo = false;
+  
   private String TYPE;
   private InputStream inputStream;
   private String folder;
@@ -39,10 +45,19 @@ public class Cucumblan {
   private LinkedHashSet<String> postmanCollections;  //TODO: check if always only one.
 
   /**
-   * Instantiates a new Cucumblan.
+   * Instantiates a new Cucumblan object for demo requests.
    */
   public Cucumblan() {
 
+  }
+
+  /** Constructor for logged in user. */
+  public Cucumblan(String userId, String workspace, String staging, String version, boolean isDemo) {
+    this.userId = userId;
+    this.workspace = workspace;
+    this.staging = staging;
+    this.version = version;
+    this.isDemo = isDemo;
   }
 
   /**
@@ -72,13 +87,44 @@ public class Cucumblan {
       return;
     }
     this.execute = new Boolean(true);
-    this.folder = this.uuid.toString();
+//    this.folder = this.uuid.toString();
     this.postmanCollections = new LinkedHashSet<String>();
     this.URL = new HashMap<String, String>();
     this.sessionNr = new Integer(0);
     this.TYPE = "POSTMAN";
   }
 
+  public boolean isDemo() {
+    return isDemo;
+  }
+
+  public void setDemo(boolean demo) {
+    isDemo = demo;
+  }
+
+  public String getWorkspace() {
+    return workspace;
+  }
+
+  public void setWorkspace(String workspace) {
+    this.workspace = workspace;
+  }
+
+  public String getStaging() {
+    return staging;
+  }
+
+  public void setStaging(String staging) {
+    this.staging = staging;
+  }
+
+  public String getVersion() {
+    return version;
+  }
+
+  public void setVersion(String version) {
+    this.version = version;
+  }
 
   /**
    * Gets folder.
@@ -154,6 +200,13 @@ public class Cucumblan {
     this.inputStream = inputStream;
   }
 
+  public String getUserId() {
+    return userId;
+  }
+
+  public void setUserId(String userId) {
+    this.userId = userId;
+  }
 
   /**
    * Gets type.
@@ -339,9 +392,17 @@ public class Cucumblan {
     return postmanCollections;
   }
 
-    
-    
-
-
-
+//TODO Question if UUID adding to ID ?
+  /** Genereate test ID from userId, workspace, staging and version.
+   * */
+  public String generateIdAndFolder() {
+    StringBuilder id = null;
+    id.append(this.userId).append(".").append(this.workspace).append(".").append(this.staging).append(".").append(this.version);
+    if ( this.isDemo == false ){
+      this.folder = id.toString();
+    }else{
+      this.folder = this.uuid.toString();
+    }
+    return id.toString();
+  }
 }

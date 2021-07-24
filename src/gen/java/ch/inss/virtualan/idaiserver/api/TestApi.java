@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-07-24T03:49:36.324082+02:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-07-24T04:39:15.575686+02:00[Europe/Zurich]")
 @Validated
 @Api(value = "test", description = "the test API")
 public interface TestApi {
@@ -321,7 +321,7 @@ public interface TestApi {
      *         or I am a teapot. (status code 418)
      *         or unexpected error (status code 200)
      */
-    @ApiOperation(value = "Create and run the test with the uploaded Postman collection.", nickname = "testRun", notes = "Create a new test and run against an API. Generates the Cucumber report and a Gherkin file.", response = Report.class, authorizations = {
+    @ApiOperation(value = "Create and run the test with the uploaded Postman collection.", nickname = "testCreateRun", notes = "Create a new test and run against an API. Generates the Cucumber report and a Gherkin file.", response = Report.class, authorizations = {
         
         @Authorization(value = "ApiKeyAuth")
          }, tags={ "API test execution", })
@@ -335,7 +335,7 @@ public interface TestApi {
         produces = { "application/json" },
         consumes = { "multipart/form-data" }
     )
-    default ResponseEntity<Report> testRun(@ApiParam(value = "userId from the login.",required=true) @PathVariable("userId") String userId,@ApiParam(value = "") @Valid @RequestPart(value = "filestream", required = true) MultipartFile filestream,@ApiParam(value = "The server url to be tested.", required=true) @Valid @RequestPart(value = "serverurl", required = true)  String serverurl,@ApiParam(value = "Any like a project name.") @Valid @RequestPart(value = "workspace", required = false)  String workspace,@ApiParam(value = "Any like the date of the rest run or a specific test.") @Valid @RequestPart(value = "testrun", required = false)  String testrun,@ApiParam(value = "Staging of the test.") @Valid @RequestPart(value = "staging", required = false)  String staging,@ApiParam(value = "") @Valid @RequestPart(value = "version", required = false)  String version,@ApiParam(value = "", allowableValues="POSTMAN, OPENAPI, EXCEL, VIRTUALAN") @Valid @RequestPart(value = "dataType", required = false)  String dataType,@ApiParam(value = "Execute test immediately. If false, only the property file will be updated (append).", defaultValue="true") @Valid @RequestPart(value = "execute", required = false)  String execute,@ApiParam(value = "Skip the respone validation in tests.", defaultValue="false") @Valid @RequestPart(value = "skipResponseValidation", required = false)  String skipResponseValidation) {
+    default ResponseEntity<Report> testCreateRun(@ApiParam(value = "userId from the login.",required=true) @PathVariable("userId") String userId,@ApiParam(value = "") @Valid @RequestPart(value = "filestream", required = true) MultipartFile filestream,@ApiParam(value = "The server url to be tested.", required=true) @Valid @RequestPart(value = "serverurl", required = true)  String serverurl,@ApiParam(value = "Any like a project name.") @Valid @RequestPart(value = "workspace", required = false)  String workspace,@ApiParam(value = "Any like the date of the rest run or a specific test.") @Valid @RequestPart(value = "testrun", required = false)  String testrun,@ApiParam(value = "Staging of the test.") @Valid @RequestPart(value = "staging", required = false)  String staging,@ApiParam(value = "") @Valid @RequestPart(value = "version", required = false)  String version,@ApiParam(value = "", allowableValues="POSTMAN, OPENAPI, EXCEL, VIRTUALAN") @Valid @RequestPart(value = "dataType", required = false)  String dataType,@ApiParam(value = "Execute test immediately. If false, only the property file will be updated (append).", defaultValue="true") @Valid @RequestPart(value = "execute", required = false)  String execute,@ApiParam(value = "Skip the respone validation in tests.", defaultValue="false") @Valid @RequestPart(value = "skipResponseValidation", required = false)  String skipResponseValidation) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
