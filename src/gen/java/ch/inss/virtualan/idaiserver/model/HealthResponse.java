@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
 /**
  * HealthResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-07-24T03:22:48.984660+02:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-07-24T03:49:36.324082+02:00[Europe/Zurich]")
 public class HealthResponse   {
   /**
    * Gets or Sets status

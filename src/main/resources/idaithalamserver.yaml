@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: idaithalamserver
-  version: 1.3.0
+  version: 1.3.1
   description: Idaithalam Server
   contact:
     name: Oliver Glas/Elan Thangamani
@@ -45,12 +45,12 @@ paths:
                   format: binary
                   type: string
                 dataType:
-                    type: string
-                    enum:
-                      - POSTMAN
-                      - OPENAPI
-                      - EXCEL
-                      - VIRTUALAN
+                  type: string
+                  enum:
+                    - POSTMAN
+                    - OPENAPI
+                    - EXCEL
+                    - VIRTUALAN
                 serverurl:
                   format: url
                   description: The server url to be tested.
@@ -708,7 +708,7 @@ paths:
         in: path
         required: true
 
-  /preparation/collection:
+  /preparation/topostman:
     post:
       requestBody:
         content:
@@ -738,40 +738,10 @@ paths:
           description: I am a teapot.
         default:
           description: unexpected error
-      operationId: createCollection
+      operationId: createPostmanCollection
       summary: Create a Postman collection from an OAS3 specification.
       description: Create a Postman collection from an OAS3 specification.
-  /preparation/testdata:
-    post:
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              required:
-                - filestream
-              type: object
-              properties:
-                filestream:
-                  format: binary
-                  type: string
-      tags:
-        - Preparation
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Report'
-          description: Test created.
-        '400':
-          description: Bad request.
-        '418':
-          description: I am a teapot.
-        default:
-          description: unexpected error
-      operationId: createTestdata
-      summary: Create test data for an existing Postman collection.
-      description: Create test data for an existing Postman collection.
+
 
 components:
   schemas:
