@@ -44,6 +44,13 @@ paths:
                 filestream:
                   format: binary
                   type: string
+                dataType:
+                    type: string
+                    enum:
+                      - POSTMAN
+                      - OPENAPI
+                      - EXCEL
+                      - VIRTUALAN
                 serverurl:
                   format: url
                   description: The server url to be tested.
@@ -484,7 +491,7 @@ paths:
           description: Removed the entire test including all sessions.
         '404':
           description: testID not found
-      operationId: removetest
+      operationId: removeTest
       summary: Remove the entire test including all sessions.
       description: Removed the entire test including all sessions.
     parameters:

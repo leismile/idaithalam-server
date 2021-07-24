@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-07-20T18:25:52.218752+02:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-07-24T03:22:48.984660+02:00[Europe/Zurich]")
 @Validated
 @Api(value = "test", description = "the test API")
 public interface TestApi {
@@ -211,7 +211,7 @@ public interface TestApi {
      * @return Removed the entire test including all sessions. (status code 204)
      *         or testID not found (status code 404)
      */
-    @ApiOperation(value = "Remove the entire test including all sessions.", nickname = "removetest", notes = "Removed the entire test including all sessions.", response = String.class, authorizations = {
+    @ApiOperation(value = "Remove the entire test including all sessions.", nickname = "removeTest", notes = "Removed the entire test including all sessions.", response = String.class, authorizations = {
         
         @Authorization(value = "ApiKeyAuth")
          }, tags={ "API test execution", })
@@ -222,7 +222,7 @@ public interface TestApi {
         value = "/test/{userId}/{testId}",
         produces = { "text/plain" }
     )
-    default ResponseEntity<String> removetest(@ApiParam(value = "testId for that test",required=true) @PathVariable("userId") String userId,@ApiParam(value = "",required=true) @PathVariable("testId") String testId) {
+    default ResponseEntity<String> removeTest(@ApiParam(value = "testId for that test",required=true) @PathVariable("userId") String userId,@ApiParam(value = "",required=true) @PathVariable("testId") String testId) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
