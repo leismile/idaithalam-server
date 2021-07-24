@@ -49,6 +49,18 @@ public class DemotestApiController implements DemotestApi {
         return Optional.ofNullable(request);
     }
 
+    @Override
+    public ResponseEntity<Report> demoGetReport(String testId) {
+//        return DemotestApi.super.demoGetReport(testId);
+        return utilService.readLatestTestResult( testId);
+    }
+
+    @Override
+    public ResponseEntity<String> demoRemovetest(String testId) {
+//        return DemotestApi.super.demoRemovetest(testId);
+        testServices.remove(testId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
     @Override
     public ResponseEntity<String> demoGetgherkin(String testId) {

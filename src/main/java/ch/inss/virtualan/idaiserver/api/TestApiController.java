@@ -52,9 +52,9 @@ public class TestApiController implements TestApi {
     }
 
     @Override
-    public ResponseEntity<String> removetest(String userId, String testId) {
+    public ResponseEntity<String> removeTest(String userId, String testId) {
 //        return TestApi.super.removetest(userId, testId);
-        testServices.remove(testId);
+        testServices.remove(userId, testId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }
@@ -62,13 +62,13 @@ public class TestApiController implements TestApi {
     @Override
     public ResponseEntity<String> removeConf(String userId, String configKey, String testId) {
 //        return TestApi.super.removeConf(userId, configKey, testId);
-        return utilService.deleteCucumblanPropKey(testId, configKey, userId);
+        return utilService.deleteCucumblanPropKey(userId, testId, configKey);
     }
 
     @Override
     public ResponseEntity<String> updateConf(String userId, String testId, Conf conf) {
 //        return TestApi.super.updateConf(userId, testId, conf);
-        return utilService.updateCucumblan(testId, conf, userId);
+        return utilService.updateCucumblan(userId, testId, conf);
     }
 
 
@@ -87,10 +87,110 @@ public class TestApiController implements TestApi {
     @Override
     public ResponseEntity<String> getConfProperty(String userId, String testId) {
 //        return TestApi.super.getConfProperty(userId, testId);
-        return utilService.getContent(testId, CUCUMBLAN);
+        return utilService.getContent(userId, testId, CUCUMBLAN);
     }
 
 
+    @Override
+    public ResponseEntity<String> getgherkin(String userId, String testId) {
+        return utilService.getSessionContent(userId, testId, FEATURE );
+    }
 
+    @Override
+    public ResponseEntity<Testidlist> listTest(String userId, String workspace, String testrun, String staging, String version) {
+//        return TestApi.super.listTest(userId, workspace, testrun, staging, version);
+        //        return DemotestApi.super.demoListTest();
+        Testidlist idlist = null;
+        for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+            if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                idlist = testServices.listAllIDs();
 
+                break;
+            }
+        }
+        return new ResponseEntity<Testidlist>(idlist,HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+    @Override
+    public ResponseEntity<List<Report>> report(String userId, String testId) {
+//        return TestApi.super.report(userId, testId);
+        return utilService.readAllReport(userId, testId);
+    }
+
+    @Override
+    public ResponseEntity<Report> runTest(String userId, UUID testId) {
+//        return TestApi.super.runTest(userId, testId);
+        logger.debug("Start PUT /test");
+        if (getRequest().isPresent() == false || testId == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        Report reportLinks = null;
+        for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+            if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+
+                Cucumblan cucumblan = new Cucumblan();
+                cucumblan.init(testId);
+                reportLinks = testServices.runTest(userId, cucumblan, testId);
+                break;
+            }
+        }
+        return new ResponseEntity<Report>(reportLinks, HttpStatus.CREATED);
+
+    }
+
+    @Override
+    public ResponseEntity<Report> testRun(String userId, MultipartFile filestream, String serverurl, String workspace, String testrun, String staging, String version, String dataType, String execute, String skipResponseValidation) {
+//        return TestApi.super.testRun(userId, filestream, serverurl, workspace, testrun, staging, version, dataType, execute, skipResponseValidation);
+        logger.debug("Start POST /test");
+        if (getRequest().isPresent() == false || filestream == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        Report links = null;
+
+        for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+            if (mediaType.isCompatibleWith(MediaType.valueOf("application/octet-stream"))) {
+                logger.debug("Start application/octet-stream.");
+                try {
+
+                    String dataload = filestream.getOriginalFilename();
+
+                    Boolean e = new Boolean(true);
+                    if ( execute != null) {
+                        e = new Boolean(execute);
+                    }
+                    Boolean skip = new Boolean(false);
+                    if ( skipResponseValidation != null) {
+                        skip = new Boolean(skipResponseValidation);
+                    }
+
+                    Cucumblan cucumblan = new Cucumblan();
+                    cucumblan.init();
+                    cucumblan.addFILE(dataload);
+                    cucumblan.setUploadFilename(dataload);
+                    cucumblan.setSkipResponseValidation(skip);
+                    cucumblan.setTYPE(dataType);
+
+                    try {
+                        cucumblan.setInputStream(filestream.getInputStream());
+                    } catch (IOException e1) {
+                        logger.error("The uploaded file is not readable.");
+                    }
+                    cucumblan.addURL(null,serverurl);
+                    cucumblan.setExecute(e);
+                    links = testServices.doInitialTest(cucumblan);
+
+                    if (links.getError() != null && links.getError().equals(FileManagement.NOERROR) == false) {
+                        return new ResponseEntity<Report>(links,HttpStatus.INTERNAL_SERVER_ERROR);
+                    }
+                }catch(Exception e) {
+                    Report error = new Report();
+                    error.setError(e.getLocalizedMessage());
+                    return new ResponseEntity<Report>(error,HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+                break;
+            }
+        }
+        return new ResponseEntity<Report>(links,HttpStatus.CREATED);
+    }
 }
