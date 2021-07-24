@@ -3,6 +3,7 @@ package ch.inss.virtualan.idaiserver.api;
 import ch.inss.virtualan.idaiserver.model.Report;
 import ch.inss.virtualan.idaiserver.model.Testidlist;
 import ch.inss.virtualan.idaiserver.service.Cucumblan;
+import ch.inss.virtualan.idaiserver.service.TestDemoService;
 import ch.inss.virtualan.idaiserver.service.TestService;
 import ch.inss.virtualan.idaiserver.service.UtilService;
 import ch.inss.virtualan.idaiserver.utils.FileManagement;
@@ -35,7 +36,7 @@ public class DemotestApiController implements DemotestApi {
     private final NativeWebRequest request;
 
     @Autowired
-    private TestService testServices;
+    private TestDemoService testDemoServices;
 
     @Autowired private UtilService utilService;
 
@@ -58,7 +59,7 @@ public class DemotestApiController implements DemotestApi {
     @Override
     public ResponseEntity<String> demoRemovetest(String testId) {
 //        return DemotestApi.super.demoRemovetest(testId);
-        testServices.remove(testId);
+        testDemoServices.remove(testId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
@@ -90,7 +91,6 @@ public class DemotestApiController implements DemotestApi {
                 try {
 
                     String dataload = filestream.getOriginalFilename();
-
                     Boolean e = new Boolean(true);
                     if ( execute != null) {
                         e = new Boolean(execute);
@@ -116,7 +116,7 @@ public class DemotestApiController implements DemotestApi {
                     }
                     cucumblan.addURL(null,serverurl);
                     cucumblan.setExecute(e);
-                    links = testServices.doInitialTest(cucumblan);
+                    links = testDemoServices.doInitialTest(cucumblan);
 
                     if (links.getError() != null && links.getError().equals(FileManagement.NOERROR) == false) {
                         return new ResponseEntity<Report>(links,HttpStatus.INTERNAL_SERVER_ERROR);
@@ -126,7 +126,6 @@ public class DemotestApiController implements DemotestApi {
                     error.setError(e.getLocalizedMessage());
                     return new ResponseEntity<Report>(error,HttpStatus.INTERNAL_SERVER_ERROR);
                 }
-
                 break;
             }
         }
@@ -147,7 +146,7 @@ public class DemotestApiController implements DemotestApi {
 
                 Cucumblan cucumblan = new Cucumblan();
                 cucumblan.init(testId);
-                reportLinks = testServices.runTest(cucumblan, testId);
+                reportLinks = testDemoServices.runTest(cucumblan, testId);
                 break;
             }
         }
@@ -161,7 +160,7 @@ public class DemotestApiController implements DemotestApi {
         Testidlist idlist = null;
         for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
             if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                idlist = testServices.listAllIDs();
+                idlist = testDemoServices.listAllIDs();
 
                 break;
             }

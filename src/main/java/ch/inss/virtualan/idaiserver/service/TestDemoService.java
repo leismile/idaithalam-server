@@ -5,23 +5,24 @@ import ch.inss.virtualan.idaiserver.model.Testidlist;
 import ch.inss.virtualan.idaiserver.utils.FileManagement;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.virtualan.idaithalam.contract.IdaithalamExecutor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 
 
 /**
  * The type Test service.
  */
 @Service
-public class TestService {
+public class TestDemoService {
 
   /**
    * The constant ALLTESTS.
@@ -31,7 +32,7 @@ public class TestService {
    * The constant LASTTEST.
    */
   public static final String LASTTEST = "lasttest.json";
-  private static final Logger logger = LoggerFactory.getLogger(TestService.class);
+  private static final Logger logger = LoggerFactory.getLogger(TestDemoService.class);
   private static final String FEATUREX = "feature/virtualan-contract.";     // 0.feature";
   private static final String DOTFEATURE = ".feature";
   private static final String REPORTOVERVIEW = "cucumber-html-reports/overview-features.html";
@@ -52,8 +53,7 @@ public class TestService {
    * @param testid    the testid
    * @return report report
    */
-  public Report runTest(String userId, Cucumblan cucumblan, UUID testid) {
-    //TODO check userId
+  public Report runTest(Cucumblan cucumblan, UUID testid) {
     logger.debug(
         "Running tests from folder: " + this.addSlash(this.storagePath) + cucumblan.getFolder());
 
@@ -373,8 +373,7 @@ public class TestService {
    *
    * @param testId the test id
    */
-  public void remove(String userId, java.lang.String testId) {
-    //TODO check user
+  public void remove(String testId) {
     final String reportFolder = this.storagePath + File.separator + testId;
     FileManagement.removeFolder(reportFolder);
   }

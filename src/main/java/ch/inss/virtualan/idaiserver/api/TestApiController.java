@@ -113,13 +113,15 @@ public class TestApiController implements TestApi {
     @Override
     public ResponseEntity<String> removeConf(String userId, String configKey, String testId) {
 //        return TestApi.super.removeConf(userId, configKey, testId);
-        return utilService.deleteCucumblanPropKey(userId, testId, configKey);
+        //TODO check userId
+        return utilService.deleteCucumblanPropKey(testId, configKey);
     }
 
     @Override
     public ResponseEntity<String> updateConf(String userId, String testId, Conf conf) {
 //        return TestApi.super.updateConf(userId, testId, conf);
-        return utilService.updateCucumblan(userId, testId, conf);
+        //TODO check userId
+        return utilService.updateCucumblan( testId, conf);
     }
 
 
@@ -127,7 +129,8 @@ public class TestApiController implements TestApi {
     @Override
     public ResponseEntity<Report> getReport(String userId, String testId) {
 //        return TestApi.super.getReport(userId, testId);
-        return utilService.readLatestTestResult( userId, testId);
+        //TODO check userId
+        return utilService.readLatestTestResult(  testId);
     }
 
     @Override
@@ -138,13 +141,15 @@ public class TestApiController implements TestApi {
     @Override
     public ResponseEntity<String> getConfProperty(String userId, String testId) {
 //        return TestApi.super.getConfProperty(userId, testId);
-        return utilService.getContent(userId, testId, CUCUMBLAN);
+        //TODO check userId
+        return utilService.getContent( testId, CUCUMBLAN);
     }
 
 
     @Override
     public ResponseEntity<String> getgherkin(String userId, String testId) {
-        return utilService.getSessionContent(userId, testId, FEATURE );
+        //TODO check userId
+        return utilService.getSessionContent( testId, FEATURE );
     }
 
     @Override
@@ -166,7 +171,8 @@ public class TestApiController implements TestApi {
     @Override
     public ResponseEntity<List<Report>> report(String userId, String testId) {
 //        return TestApi.super.report(userId, testId);
-        return utilService.readAllReport(userId, testId);
+        //TODO check userId
+        return utilService.readAllReport(testId);
     }
 
     @Override
