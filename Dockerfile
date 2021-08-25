@@ -10,6 +10,6 @@ RUN mvn -f /home/app/pom.xml clean package
 #
 # Package stage
 #
-FROM openjdk:11-jre-slim
+FROM openjdk:17-ea-22-jdk-oracle
 COPY --from=build /home/app/target/idaiserver.jar /openapi/virtualan/idaiserver.jar
 ENTRYPOINT ["java", "-jar", "/openapi/virtualan/idaiserver.jar"] 
