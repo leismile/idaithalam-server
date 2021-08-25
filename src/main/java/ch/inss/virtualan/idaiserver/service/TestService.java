@@ -327,8 +327,7 @@ public class TestService {
       if("VIRTUALAN".equalsIgnoreCase(cucumblan.getTYPE())){
         apiExecutorParam.setInputExcel(cucumblan.getInputFileName());
       }
-      apiExecutorParam.setEnv("Idaithalam-SASS");
-      //TODO reportTitle
+      apiExecutorParam.setEnv("Idaithalam as SAAS");
       apiExecutorParam.setReportTitle(cucumblan.getReportName());
       VirtualanTestExecutor testExecutor = new VirtualanTestExecutor(apiExecutorParam);
 
