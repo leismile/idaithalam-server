@@ -8,6 +8,9 @@
 *.iml
 *.iws
 
+# kube
+*.yml
+
 # Mac
 .DS_Store
 
