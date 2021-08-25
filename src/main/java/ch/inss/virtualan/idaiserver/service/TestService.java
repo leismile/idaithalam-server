@@ -196,8 +196,8 @@ public class TestService {
 
     final String skip = ".*=IGNORE";
     final String skipProp = testIdFolder + File.separator + "exclude-response.properties";
-    final String reportURL = this.serverHost + File.separator + cucumblan.getFolder()
-        + File.separator + cucumblan.getSessionNr();
+    final String reportURL = this.serverHost + File.separator + cucumblan.getFolder();
+        //+ File.separator + cucumblan.getSessionNr();
     final String propsUrl = this.serverHost + File.separator + cucumblan.getFolder();
     final String allSessions = testIdFolder + File.separator + ALLTESTS;
 
