@@ -130,7 +130,7 @@ You can use the other APIs to re-run tests, get links again and the test summary
 
 ## API 
 The API is hosted at:
-[http://api.idaithalam.io](http://api.idaithalam.io "http://api.idaithalam.io")
+[http://microservices.virtualandemo.com:8900/](http://microservices.virtualandemo.com:8900/ "http://microservices.virtualandemo.com:8900/")
 
 ## API list
 Here the APIs provided by Idaiserver.
