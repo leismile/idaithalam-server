@@ -27,6 +27,8 @@ paths:
               required:
                 - filestream
                 - serverurl
+                - type
+                - reportTitle
               type: object
               properties:
                 filestream:
@@ -49,6 +51,14 @@ paths:
                   default: false
                   type: string
                   example: false
+                type:
+                  description: API Execution type.
+                  type: string
+                  example: VIRTUALAN
+                reportTitle:
+                  description: API Execution type.
+                  type: string
+                  example: "API EXCEL/POSTMAN based api testing"
       tags:
         - API test execution
       responses:
