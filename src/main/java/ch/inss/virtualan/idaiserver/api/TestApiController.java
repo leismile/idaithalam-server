@@ -185,7 +185,6 @@ public class TestApiController implements TestApi {
         Report reportLinks = null;
         for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
             if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-
                 Cucumblan cucumblan = new Cucumblan();
                 cucumblan.init(testId);
                 reportLinks = testServices.runTest(userId, cucumblan, testId);
