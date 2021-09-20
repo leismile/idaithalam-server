@@ -8,13 +8,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"ch.inss.virtualan.idaiserver", "ch.inss.virtualan.idaiserver.api" , "ch.inss.virtualan.idaiserver.config"})
-public class OpenAPI2SpringBoot implements CommandLineRunner {
+public class IdaiServerSpringBoot implements CommandLineRunner {
 
     @Override
     public void run(String... arg0) throws Exception {
@@ -24,7 +23,7 @@ public class OpenAPI2SpringBoot implements CommandLineRunner {
     }
 
     public static void main(String[] args) throws Exception {
-        new SpringApplication(OpenAPI2SpringBoot.class).run(args);
+        new SpringApplication(IdaiServerSpringBoot.class).run(args);
     }
 
     static class ExitException extends RuntimeException implements ExitCodeGenerator {

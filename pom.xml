@@ -87,7 +87,7 @@
               <goal>generate</goal>
             </goals>
             <configuration>
-              <inputSpec>${project.basedir}/src/main/resources/idaithalamserver.yaml</inputSpec>
+              <inputSpec>${project.basedir}/src/main/resources/idaithalamserver_oas3.yaml</inputSpec>
               <generatorName>spring</generatorName>
               <apiPackage>ch.inss.virtualan.idaiserver.api</apiPackage>
               <modelPackage>ch.inss.virtualan.idaiserver.model</modelPackage>

@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
 /**
  * Report
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-09-15T12:58:07.688384+02:00[Europe/Zurich]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-09-20T03:18:06.453295+02:00[Europe/Zurich]")
 public class Report   {
   @JsonProperty("testId")
   private UUID testId;

@@ -22,7 +22,7 @@ public class HomeController {
 
     private static YAMLMapper yamlMapper = new YAMLMapper();
 
-    @Value("classpath:/idaithalamserver.yaml")
+    @Value("classpath:/idaithalamserver_oas3.yaml")
     private Resource openapi;
 
     @Bean
