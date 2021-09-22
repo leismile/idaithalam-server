@@ -38,7 +38,7 @@ public class ApiKeyRequestFilter extends GenericFilterBean {
 
         if(apiKeyHeaderValue != null) {
             if(apiKeyHeaderValue.equals(principalRequestValue)) {
-//                chain.doFilter(request, response);
+                chain.doFilter(request, response);
                 return;
             }
             else {

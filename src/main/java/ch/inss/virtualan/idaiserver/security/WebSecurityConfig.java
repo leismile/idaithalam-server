@@ -30,13 +30,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //        super.configure(http);
-//        http.csrf().disable().cors(); //disable cors restriction
-        http.headers().frameOptions().disable();
+        http.csrf().disable().cors(); //disable cors restriction
+        http.headers().frameOptions().sameOrigin();
 //        http.addFilterAfter(filter, UsernamePasswordAuthenticationFilter.class);
-
+//        http.antMatcher("/**").authorizeRequests().anyRequest().permitAll();
+        http.httpBasic();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).
                 and().addFilterAfter(filter, UsernamePasswordAuthenticationFilter.class);
-        
+
     }
 
 }
