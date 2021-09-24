@@ -1,5 +1,7 @@
 package ch.inss.virtualan.idaiserver.security;
 
+import ch.inss.virtualan.idaiserver.service.RepositoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -14,10 +16,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class Filter extends OncePerRequestFilter {
+public class UserFilter extends OncePerRequestFilter {
 
     private Map<String, String> apiMap = new HashMap<>();
     private final String USERAPIKEY = "X-USER-API-KEY";
+    
+    @Autowired
+    private RepositoryService rep;
 
     private void returnNoAPIKeyError(ServletResponse response) throws IOException {
         HttpServletResponse resp = (HttpServletResponse) response;
@@ -30,7 +35,7 @@ public class Filter extends OncePerRequestFilter {
         
     }
 
-    public Filter() {
+    public UserFilter() {
         this.apiMap = new HashMap<>();
         apiMap.put(USERAPIKEY, "user1");
     }
@@ -38,9 +43,7 @@ public class Filter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         String apiKey = request.getHeader(USERAPIKEY);
-//        String user = request.getPathInfo();
-        String value = this.apiMap.get(apiKey);
-        if (!apiMap.containsValue(apiKey)) {
+        if (!this.rep.checkKeyExists(apiKey)) {
             returnNoAPIKeyError(response);
             return;
         }
