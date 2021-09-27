@@ -27,3 +27,6 @@ reports/
 reports/**
 
 
+/logs/
+/src/gen/java/
+/.openapi-generator/idaithalamserver.yaml.sha256

@@ -44,7 +44,7 @@ public class HomeController {
         return yamlMapper.readValue(openapiContent(), Object.class);
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/swagger")
     public String index() {
         return "redirect:swagger-ui/index.html?url=../openapi.json";
     }
