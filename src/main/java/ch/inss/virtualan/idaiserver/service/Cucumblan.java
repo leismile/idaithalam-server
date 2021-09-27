@@ -40,7 +40,7 @@ public class Cucumblan {
    */
   private HashMap<String, String> URL;
   /* List of all postman collection files. */
-  private LinkedHashSet<String> postmanCollections;  //TODO: check if always only one.
+  private LinkedHashSet<String> collections;  //TODO: check if always only one.
 
   /**
    * Instantiates a new Cucumblan.
@@ -93,7 +93,7 @@ public class Cucumblan {
     }
     this.execute = new Boolean(true);
     this.folder = this.uuid.toString();
-    this.postmanCollections = new LinkedHashSet<String>();
+    this.collections = new LinkedHashSet<String>();
     this.URL = new HashMap<String, String>();
     this.sessionNr = new Integer(0);
     this.TYPE = "POSTMAN";
@@ -266,7 +266,7 @@ public class Cucumblan {
     if (dataload == null) {
       return;
     }
-    this.postmanCollections.add(dataload);
+    this.collections.add(dataload);
   }
 
   public Map<String, String> toMap() {
@@ -276,9 +276,10 @@ public class Cucumblan {
       cucumblan.put(key, this.URL.get(key));
     }
     cucumblan.put(datatype, this.TYPE);
-    if("POSTMAN".equalsIgnoreCase(TYPE) && this.postmanCollections != null) {
+    if(("VIRTUALAN".equalsIgnoreCase(TYPE) || "POSTMAN".equalsIgnoreCase(TYPE)) && this.collections
+        != null) {
       StringBuffer bufferFN = new StringBuffer();
-      for (String filename : this.postmanCollections) {
+      for (String filename : this.collections) {
         bufferFN.append(filename).append(";");
       }
       cucumblan.put(dataload, bufferFN.toString());
@@ -294,7 +295,7 @@ public class Cucumblan {
       sb.append(key).append(" = ").append(this.URL.get(key)).append(FileManagement.lf);
     }
     sb.append(dataload).append(" = ");
-    for (String filename : this.postmanCollections) {
+    for (String filename : this.collections) {
       sb.append(filename).append(";");
     }
     sb.append(FileManagement.lf);
@@ -319,7 +320,7 @@ public class Cucumblan {
     /* Semicolon separated list of postman collections. */
     String post = p.getProperty(dataload);
     String[] posts = post.split(";");
-    this.postmanCollections = new LinkedHashSet(Arrays.asList(posts));
+    this.collections = new LinkedHashSet(Arrays.asList(posts));
 
     /* List of URLs with resources */
     for (Object key : p.keySet()) {
@@ -336,15 +337,15 @@ public class Cucumblan {
    * @return the one file
    */
   public String getOneFILE() {
-    if (this.postmanCollections.size() > 1) {
+    if (this.collections.size() > 1) {
       logger.warn(
           "There are more files in this configuration. This method should be only called for a single file configuration like instan execution for a test. ");
     }
-    if (this.postmanCollections == null || this.postmanCollections.isEmpty()) {
+    if (this.collections == null || this.collections.isEmpty()) {
       logger.error("There was no postman collection file added.");
       return null;
     }
-    Iterator<String> iterator = this.postmanCollections.iterator();
+    Iterator<String> iterator = this.collections.iterator();
     if (iterator.hasNext()) {
       return iterator.next();
     } else {
@@ -382,7 +383,7 @@ public class Cucumblan {
    * @return the file
    */
   public LinkedHashSet<String> getFILE() {
-    return postmanCollections;
+    return collections;
   }
 
 
