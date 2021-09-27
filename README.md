@@ -128,9 +128,15 @@ Check also TestId. You can use it for later test executions or getting again the
 You will need the testId for all further API requests.
 You can use the other APIs to re-run tests, get links again and the test summary.
 
+
+## UI
+The Idaithalam UI is hosted at:
+[http://microservices.virtualandemo.com:8900/](http://microservices.virtualandemo.com:8900/ "http://microservices.virtualandemo.com:8900/")
+
+
 ## API 
 The API is hosted at:
-[http://microservices.virtualandemo.com:8900/](http://microservices.virtualandemo.com:8900/ "http://microservices.virtualandemo.com:8900/")
+[http://microservices.virtualandemo.com:8900/swagger](http://microservices.virtualandemo.com:8900/swagger "http://microservices.virtualandemo.com:8900/swagger")
 
 ## API list
 Here the APIs provided by Idaiserver.
