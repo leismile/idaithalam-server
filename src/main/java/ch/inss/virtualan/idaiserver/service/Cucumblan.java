@@ -35,6 +35,22 @@ public class Cucumblan {
   private String inputFileName;
   private String reportName;
 
+  private Map<String, String> cucumblanEnvProperties = new HashMap<>();
+
+  public Map<String, String> getCucumblanEnvProperties() {
+    return cucumblanEnvProperties;
+  }
+
+  public void addCucumblanEnvProperties(
+      String key, String value) {
+    this.cucumblanEnvProperties.put(key, value);
+  }
+
+  public void setCucumblanEnvProperties(
+      Map<String, String> cucumblanEnvProperties) {
+    this.cucumblanEnvProperties = cucumblanEnvProperties;
+  }
+
   /**
    * Store keys as key=service.api. Add resourcees with key=service.api.nextresource.
    */
@@ -96,7 +112,7 @@ public class Cucumblan {
     this.collections = new LinkedHashSet<String>();
     this.URL = new HashMap<String, String>();
     this.sessionNr = new Integer(0);
-    this.TYPE = "POSTMAN";
+    this.TYPE = "VIRTUALAN";
   }
 
 

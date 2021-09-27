@@ -55,10 +55,14 @@ paths:
                   description: API Execution type.
                   type: string
                   example: VIRTUALAN
+                envVariables:
+                  description: API Env params.
+                  type: string
+                  example: "key=value;key=value;"
                 reportTitle:
                   description: API Execution type.
                   type: string
-                  example: "API EXCEL/POSTMAN based api testing"
+                  example: "API VIRTUALAN/EXCEL/POSTMAN based api testing"
       tags:
         - API test execution
       responses:

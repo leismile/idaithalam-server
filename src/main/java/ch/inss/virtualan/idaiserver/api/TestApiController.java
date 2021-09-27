@@ -97,7 +97,9 @@ public class TestApiController implements TestApi {
 
     /** POST for the main initial test with execution and creation of the uuid. */
     @Override
-    public ResponseEntity<Report> testRun(@ApiParam(value = "") @Valid @RequestPart(value = "filestream", required = true) MultipartFile filestream,@ApiParam(value = "The server url to be tested.", required=true) @Valid @RequestPart(value = "serverurl", required = true)  String serverurl,@ApiParam(value = "API Execution type.", required=true) @Valid @RequestPart(value = "type", required = true)  String type,@ApiParam(value = "Execute test immediately. If false, only the property file will be updated (append).", defaultValue="true") @Valid @RequestPart(value = "execute", required = false)  String execute,@ApiParam(value = "Skip the respone validation in tests.", defaultValue="false") @Valid @RequestPart(value = "skipResponseValidation", required = false)  String skipResponseValidation,@ApiParam(value = "API Execution type.") @Valid @RequestPart(value = "reportTitle", required = false)  String reportTitle) {
+    public ResponseEntity<Report> testRun(@ApiParam(value = "") @Valid @RequestPart(value = "filestream", required = true) MultipartFile filestream,@ApiParam(value = "The server url to be tested.", required=true) @Valid @RequestPart(value = "serverurl", required = true)  String serverurl,@ApiParam(value = "API Execution type.", required=true) @Valid @RequestPart(value = "type", required = true)  String type,@ApiParam(value = "Execute test immediately. If false, only the property file will be updated (append).", defaultValue="true") @Valid @RequestPart(value = "execute", required = false)  String execute,@ApiParam(value = "Skip the respone validation in tests.", defaultValue="false") @Valid @RequestPart(value = "skipResponseValidation", required = false)  String skipResponseValidation,@ApiParam(value = "API Execution type.")
+                    @Valid @RequestPart(value = "reportTitle", required = false)  String reportTitle
+                    , String envVariables) {
         logger.debug("Start POST /test");
         if (getRequest().isPresent() == false || filestream == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -130,7 +132,18 @@ public class TestApiController implements TestApi {
                     cucumblan.addFILE(dataload);
                     cucumblan.setUploadFilename(dataload);
                     cucumblan.setSkipResponseValidation(skip);
-
+                    if(envVariables != null & !envVariables.isEmpty()) {
+                        String[] envVariablesReceived = envVariables.split(";");
+                        if(envVariablesReceived.length >0) {
+                            for (String s : envVariablesReceived) {
+                                if (s.split("=").length == 2) {
+                                    cucumblan
+                                        .addCucumblanEnvProperties(s.split("=")[0],
+                                            s.split("=")[1]);
+                                }
+                            }
+                        }
+                    }
                     try {
                         cucumblan.setInputStream(filestream.getInputStream());
                     } catch (IOException e1) {

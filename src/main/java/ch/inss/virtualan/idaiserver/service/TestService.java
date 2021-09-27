@@ -323,6 +323,7 @@ public class TestService {
       ApiExecutorParam apiExecutorParam = new ApiExecutorParam();
       apiExecutorParam.setOutputDir(reportFolder);
       apiExecutorParam.setCucumblanProperties(cucumblan.toMap());
+      apiExecutorParam.setCucumblanEnvProperties(cucumblan.getCucumblanEnvProperties());
       apiExecutorParam.setReportTitle(cucumblan.getReportName());
       if("EXCEL".equalsIgnoreCase(cucumblan.getTYPE())){
         apiExecutorParam.setInputExcel(cucumblan.getInputFileName());
