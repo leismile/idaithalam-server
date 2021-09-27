@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Properties;
 import java.util.UUID;
 import org.slf4j.Logger;
@@ -31,6 +32,9 @@ public class Cucumblan {
   private Boolean execute;
   private Boolean skipResponseValidation;
   private UUID uuid;
+  private String inputFileName;
+  private String reportName;
+
   /**
    * Store keys as key=service.api. Add resourcees with key=service.api.nextresource.
    */
@@ -43,6 +47,22 @@ public class Cucumblan {
    */
   public Cucumblan() {
 
+  }
+
+  public String getInputFileName() {
+    return inputFileName;
+  }
+
+  public void setInputFileName(String inputFileName) {
+    this.inputFileName = inputFileName;
+  }
+
+  public String getReportName() {
+    return reportName;
+  }
+
+  public void setReportName(String reportName) {
+    this.reportName = reportName;
   }
 
   /**
@@ -219,13 +239,22 @@ public class Cucumblan {
    * @param value    the value
    */
   public void addURL(String resource, String value) {
-    if (resource == null || "".equals(resource)) {
-      resource = "service.api";
-    } else {
-      resource = "service.api." + resource;
-    }
-    this.URL.put(resource, value);
 
+    if(value.indexOf(";") != -1){
+      String[] urls = value.split(";");
+      for (int i = 0; i < urls.length; i++) {
+        String urlR = urls[i].substring(0, urls[i].indexOf("="));
+        String url = urls[i].substring(urls[i].indexOf("=")+1);
+        this.URL.put("service.api."+urlR, url);
+      }
+    } else {
+      if (resource == null || "".equals(resource)) {
+        resource = "service.api";
+      } else {
+        resource = "service.api." + resource;
+      }
+      this.URL.put(resource, value);
+    }
   }
 
   /**
@@ -238,6 +267,23 @@ public class Cucumblan {
       return;
     }
     this.postmanCollections.add(dataload);
+  }
+
+  public Map<String, String> toMap() {
+    Map<String, String> cucumblan = new HashMap<>();
+
+    for (String key : this.URL.keySet()) {
+      cucumblan.put(key, this.URL.get(key));
+    }
+    cucumblan.put(datatype, this.TYPE);
+    if("POSTMAN".equalsIgnoreCase(TYPE) && this.postmanCollections != null) {
+      StringBuffer bufferFN = new StringBuffer();
+      for (String filename : this.postmanCollections) {
+        bufferFN.append(filename).append(";");
+      }
+      cucumblan.put(dataload, bufferFN.toString());
+    }
+    return cucumblan;
   }
 
   @Override

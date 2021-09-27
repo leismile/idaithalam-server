@@ -5,6 +5,8 @@ import ch.inss.virtualan.idaiserver.model.Testidlist;
 import ch.inss.virtualan.idaiserver.utils.FileManagement;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.virtualan.idaithalam.contract.IdaithalamExecutor;
+import io.virtualan.idaithalam.core.api.VirtualanTestExecutor;
+import io.virtualan.idaithalam.core.domain.ApiExecutorParam;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
@@ -97,7 +99,7 @@ public class TestService {
 
       /* Here comes the actual man Maven test execution.
        **/
-      String result = this.mvnTest(reportFolder, cucumblan.getSessionNr());
+      String result = this.mvnTest(reportFolder, cucumblan);
 
       /* Calcuate execution time. */
       long endTime = System.nanoTime();
@@ -194,8 +196,8 @@ public class TestService {
 
     final String skip = ".*=IGNORE";
     final String skipProp = testIdFolder + File.separator + "exclude-response.properties";
-    final String reportURL = this.serverHost + File.separator + cucumblan.getFolder()
-        + File.separator + cucumblan.getSessionNr();
+    final String reportURL = this.serverHost + File.separator + cucumblan.getFolder();
+        //+ File.separator + cucumblan.getSessionNr();
     final String propsUrl = this.serverHost + File.separator + cucumblan.getFolder();
     final String allSessions = testIdFolder + File.separator + ALLTESTS;
 
@@ -218,10 +220,9 @@ public class TestService {
         return links;
       }
 
-      /* Generate the cucumblan.properties and some other files.*/
-      boolean isSaved = FileManagement.saveCucumblan(testIdFolder, cucumblan.toString());
-      String postmanFile = testIdFolder + File.separator + cucumblan.getUploadFilename();
-      FileManagement.writeFilestream(postmanFile, cucumblan.getInputStream());
+      String file = testIdFolder + File.separator + cucumblan.getUploadFilename();
+      FileManagement.writeFilestream(file, cucumblan.getInputStream());
+      cucumblan.setInputFileName(file);
       logger.info("skipResponseValidation: " + cucumblan.getSkipResponseValidation());
       if (cucumblan.getSkipResponseValidation()) {
         FileManagement.writeString(skipProp, skip);
@@ -235,7 +236,7 @@ public class TestService {
 
         /* Here comes the actual man Maven test execution.
          **/
-        String result = mvnTest(testIdFolder, cucumblan.getSessionNr());
+        String result = mvnTest(testIdFolder, cucumblan);
 
         /* Calcuate execution time. */
         long endTime = System.nanoTime();
@@ -262,9 +263,6 @@ public class TestService {
         links.setLinkToReport("Not generated.");
         links.setTestExecuted(false);
         links.setMessage("Property file updated, no test executed (execute=false).");
-        if (isSaved == false) {
-          links.setError("Error: Could not save file.");
-        }
         return links;
       }
 
@@ -314,15 +312,26 @@ public class TestService {
    * @return the result as String. "true" if success, "false" if test failed, or Exception message
    * if an error occured.
    */
-  private String mvnTest(String reportFolder, int runId) {
+  private String mvnTest(String reportFolder, Cucumblan cucumblan) {
+    int runId = cucumblan.getSessionNr();
     logger.debug("Starting Maven test in folder " + reportFolder);
     int status = 0;
     String result = null;
     boolean isSuccess = false;
     try {
-      //addToClasspath(reportFolder);
-      status = IdaithalamExecutor
-          .validateContract("IDAI server test execution", reportFolder, runId);
+
+      ApiExecutorParam apiExecutorParam = new ApiExecutorParam();
+      apiExecutorParam.setOutputDir(reportFolder);
+      apiExecutorParam.setCucumblanProperties(cucumblan.toMap());
+      apiExecutorParam.setReportTitle(cucumblan.getReportName());
+      if("VIRTUALAN".equalsIgnoreCase(cucumblan.getTYPE())){
+        apiExecutorParam.setInputExcel(cucumblan.getInputFileName());
+      }
+      apiExecutorParam.setEnv("Idaithalam as SAAS");
+      apiExecutorParam.setReportTitle(cucumblan.getReportName());
+      VirtualanTestExecutor testExecutor = new VirtualanTestExecutor(apiExecutorParam);
+
+      status = testExecutor.call();
       logger.info("Execution status: " + status);
       if (status != 0) {
         isSuccess = false;
