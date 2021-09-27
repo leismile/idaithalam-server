@@ -77,7 +77,7 @@ paths:
         default:
           description: unexpected error
       operationId: testRun
-      summary: Create and run the test with the uploaded Postman collection.
+      summary: Create and run the test with the uploaded Virtualan Collection/Postman Collection/Excel .
       description: Create a new test and run against an API. Generates the Cucumber report and a Gherkin file.
     get:
       tags:
