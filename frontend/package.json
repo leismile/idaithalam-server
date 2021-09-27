@@ -1,0 +1,34 @@
+{
+  "name": "idaithalam-ui",
+  "version": "0.1.0",
+  "description": "",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "immutable": "3.8.2",
+    "react": "16.14.0",
+    "react-bootstrap": "0.32.4",
+    "react-data-grid": "5.0.1",
+    "react-dom": "16.8.0",
+    "react-download-link": "2.3.0",
+    "react-flow-renderer": "^7.1.2",
+    "react-icons": "4.2.0",
+    "react-router-dom": "5.2.0",
+    "react-scripts": "2.0.3",
+    "styled-components": "^5.3.1",
+    "web-vitals": "^0.2.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
