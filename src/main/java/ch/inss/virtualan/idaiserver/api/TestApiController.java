@@ -49,6 +49,7 @@ public class TestApiController implements TestApi {
     @Override
     public ResponseEntity<Report> testCreateRun(String userId, MultipartFile filestream, String serverurl, String workspace, String testrun, String staging, String version, String dataType, String execute, String skipResponseValidation) {
         logger.debug("Start POST /testCreateRun");
+
         if (getRequest().isPresent() == false || filestream == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -57,45 +58,12 @@ public class TestApiController implements TestApi {
         for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
             if (mediaType.isCompatibleWith(MediaType.valueOf("application/octet-stream"))) {
                 logger.debug("Start application/octet-stream.");
-                try {
-
-                    String dataload = filestream.getOriginalFilename();
-                    Boolean e = new Boolean(true);
-                    if ( execute != null) {
-                        e = new Boolean(execute);
-                    }
-                    Boolean skip = new Boolean(false);
-                    if ( skipResponseValidation != null) {
-                        skip = new Boolean(skipResponseValidation);
-                    }
-
-                    Cucumblan cucumblan = new Cucumblan(userId,workspace, staging, version, false);
-                    cucumblan.init();
-                    cucumblan.addFILE(dataload);
-                    cucumblan.setUploadFilename(dataload);
-                    cucumblan.setSkipResponseValidation(skip);
-                    cucumblan.setTYPE(dataType);
-                    cucumblan.generateIdAndFolder();
-
-                    try {
-                        cucumblan.setInputStream(filestream.getInputStream());
-                    } catch (IOException e1) {
-                        logger.error("The uploaded file is not readable.");
-                    }
-                    cucumblan.addURL(null,serverurl);
-                    cucumblan.setExecute(e);
-                    
                     /* Create and run the actual test. */
-                    links = testServices.doInitialTest(cucumblan);
-
-                    if (links.getError() != null && links.getError().equals(FileManagement.NOERROR) == false) {
+                    links = testServices.doInitialTest(userId,  filestream,  serverurl,  workspace,  testrun,  staging,  version,  dataType,  execute,  skipResponseValidation);
+                    
+                    if (links.getError() != null ) {
                         return new ResponseEntity<Report>(links,HttpStatus.INTERNAL_SERVER_ERROR);
                     }
-                }catch(Exception e) {
-                    Report error = new Report();
-                    error.setError(e.getLocalizedMessage());
-                    return new ResponseEntity<Report>(error,HttpStatus.INTERNAL_SERVER_ERROR);
-                }
                 break;
             }
         }

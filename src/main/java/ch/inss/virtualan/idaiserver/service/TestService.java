@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 
 /**
@@ -162,6 +163,43 @@ public class TestService {
     }
 
     return links;
+  }
+
+  public Report doInitialTest(String userId, MultipartFile filestream, String serverurl, String workspace, String testrun, String staging, String version, String dataType, String execute, String skipResponseValidation) {
+    Cucumblan cucumblan = null;
+    try {
+      String dataload = filestream.getOriginalFilename();
+      Boolean e = new Boolean(true);
+      if ( execute != null) {
+        e = new Boolean(execute);
+      }
+      Boolean skip = new Boolean(false);
+      if ( skipResponseValidation != null) {
+        skip = new Boolean(skipResponseValidation);
+      }
+  
+      cucumblan = new Cucumblan(userId,workspace, staging, version, false);
+      cucumblan.init();
+      cucumblan.addFILE(dataload);
+      cucumblan.setUploadFilename(dataload);
+      cucumblan.setSkipResponseValidation(skip);
+      cucumblan.setTYPE(dataType);
+      cucumblan.generateIdAndFolder();
+      cucumblan.setInputStream(filestream.getInputStream());
+      cucumblan.addURL(null,serverurl);
+      cucumblan.setExecute(e);
+      } catch (IOException e1) {
+        logger.error("The uploaded file is not readable.");
+        Report report = new Report();
+        report.setError("The uploaded file is not readable.");
+        return report;
+      } catch(Exception ex){
+        logger.error("Server error.", ex);
+        Report report = new Report();
+        report.setError("A server error occured: " + ex.getLocalizedMessage());
+        return report;
+    }
+      return this.doInitialTest(cucumblan);
   }
 
   /**

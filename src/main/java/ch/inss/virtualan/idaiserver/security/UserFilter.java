@@ -2,7 +2,6 @@ package ch.inss.virtualan.idaiserver.security;
 
 import ch.inss.virtualan.idaiserver.service.RepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -22,7 +21,7 @@ public class UserFilter extends OncePerRequestFilter {
     private final String USERAPIKEY = "X-USER-API-KEY";
     
     @Autowired
-    private RepositoryService rep;
+    private RepositoryService repo;
 
     private void returnNoAPIKeyError(ServletResponse response) throws IOException {
         HttpServletResponse resp = (HttpServletResponse) response;
@@ -35,15 +34,10 @@ public class UserFilter extends OncePerRequestFilter {
         
     }
 
-    public UserFilter() {
-        this.apiMap = new HashMap<>();
-        apiMap.put(USERAPIKEY, "user1");
-    }
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         String apiKey = request.getHeader(USERAPIKEY);
-        if (!this.rep.checkKeyExists(apiKey)) {
+        if (!this.repo.checkKeyExists(apiKey)) {
             returnNoAPIKeyError(response);
             return;
         }
@@ -53,6 +47,6 @@ public class UserFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         String path = request.getRequestURI();
-        return "/health".equals(path) || "/database".equalsIgnoreCase(path);
+        return "/health".equals(path) || "/database".equalsIgnoreCase(path) || path.startsWith("/demo");
     }
 }
